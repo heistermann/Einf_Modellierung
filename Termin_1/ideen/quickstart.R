@@ -5,35 +5,35 @@
 # The #-sign starts a comment. Everything following it is ignored. 
 
 # simple assignment
-  x <- 3
+  x = 3
 
 # just the same (but not liked by the true R-purist)
-  x = 3
+  x <- 3
   
 # print value of x
   x
   print(x)
 
 # do some math
-  y <- x^2 + 3
+  y = x^2 + 3
   y
 
 # vectors (a.k.a. "arrays")
-  z <- 1:5
+  z = 1:5
   z
   
-  q <- seq(from = 2, to = 10, by = 2)
+  q = seq(from = 2, to = 10, by = 2)
   q
 
-  z[1] <- 4 #set first element in vector
+  z[1] = 4 #set first element in vector
   
-  both <- c(z,q) #concatenate vectors
+  both = c(z,q) #concatenate vectors
   both
 
 # vector math
-  z <- z + 1 #add 1 to all elements in z
+  z = z + 1 #add 1 to all elements in z
   
-  v <- q + z #add single elements of q and z to each other
+  v = q + z #add single elements of q and z to each other
   v
   
   sum(z)   #sum     of all elements
@@ -50,11 +50,11 @@
   
 
 # file i/o (reading and writing data)
-  #change working directory first (e.g. via "Session" <- "Set working directory" or using the command "setwd()" )
-  imported_data <- read.table(file = "data_table.txt", header = TRUE) #import a text-file having column names
+  #change working directory first (e.g. via "Session" = "Set working directory" or using the command "setwd()" )
+  imported_data = read.table(file = "data_table.txt", header = TRUE) #import a text-file having column names
   imported_data
   
-  imported_data <- read.table(file = "data_table.txt", header = TRUE, sep = "\t", dec = ".", nrows = 4) #you may also specify lots of other settings
+  imported_data = read.table(file = "data_table.txt", header = TRUE, sep = "\t", dec = ".", nrows = 4) #you may also specify lots of other settings
   imported_data #this is called a "data frame", basically a table with different kind of data
   
   imported_data$Rknowledge #access single column of table
@@ -71,7 +71,7 @@
   write.table(file = "output.csv", x = imported_data, sep = ";") #export data using ";" as field separator
   
 #program control structures
-  animal <- "cat"
+  animal = "cat"
   
   if (animal == "cat")          #use "==", not "=" for comparison
     print("meeouw!") else
@@ -80,14 +80,50 @@
   for (counter in 1:10)        #loop with predetermined number of iterations
     print(counter)
   
-  countdown <- 10
+  countdown = 10
   while (countdown > 0)        #loop with undetermined number of iterations
   {                            # use curly braces {} to combine multiple commands within the loop
     print(countdown)
-    countdown <- countdown - 1
+    countdown = countdown - 1
   }
   print("ignition!")
   
+#functions
+ #einfache Funktion ohne Argumente und Rückgabewert
+ abwasch = function() #Funktion für den gesamten Abwasch definieren
+ {
+	print("Gläser spülen")
+	print("Teller spülen")
+	print("Besteck spülen")
+ } 
+ 
+ abwasch() #Funktion aufrufen, d.h. benutzen
+ 
+#Funktion mit Argument
+ abwasch2 = function(was_noch) #Funktion für den gesamten Abwasch definieren
+ {
+	print("Gläser spülen")
+	print("Teller spülen")
+	print("Besteck spülen")
+	print(paste0(was_noch, " spülen"))
+ } 
+
+ abwasch2("Töpfe") #Funktion mit Argument benutzen
   
+
+#Funktion mit Argument und Rückgabewert
+ abwasch3 = function(was_noch) #Funktion für den gesamten Abwasch definieren
+ {
+	print("Gläser spülen")
+	print("Teller spülen")
+	print("Besteck spülen")
+	print(paste0(was_noch, " spülen"))
+	dauer = runif(n=1, min = 1, max=10)
+	return(dauer)
+ } 
+
+abwaschdauer = abwasch3("Töpfe") #Funktion mit Argument benutzen, Rückgabewert in Variable speichern
+print(abwaschdauer) 
+
   
   
