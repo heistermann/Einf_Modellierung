@@ -1,0 +1,44 @@
+Beschreibung:
+
+Die gesuchte Funktion gibt die übergebene Zahl zurück.
+
+    [time limit] 5000ms (r)
+
+    [input] integer n
+
+    eine Zahl
+
+    [output] integer
+
+    die selbe Zahl wie das Eingabeargument.
+
+
+Test 1:
+Input:
+n: 1
+Expected Output:
+1	
+	
+Test 2:
+Input:
+n: 2
+Expected Output:
+2	
+	
+Test 3:
+Input:
+n: 3
+Expected Output:
+3	
+	
+
+Lösung:
+
+Echo <- function(n) {
+return(n)
+}
+
+	
+	
+	
+	
