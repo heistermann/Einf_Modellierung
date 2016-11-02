@@ -1,0 +1,49 @@
+---
+task_name: max_maximum
+
+description: >
+	Gib die größte Zahl zurück, die in den beiden 
+	gegebenen Vektoren _v1_ und _v2_ enthalten ist!
+    
+input1:
+	name: v1
+	type: array.integer
+	description: Erster Vektor
+
+input2:
+	name: v2
+	type: array.integer
+	description: Zweiter Vektor
+
+output:
+	type: integer
+	description: Das größte Element beider Vektoren.
+
+test1:
+	input:
+	- [1, 2, 3]
+	- [1, 2, 3, 4]
+	output: 4
+
+test2:
+	input:
+	- [5, 2, 3]
+	- [0]
+	output: 5
+
+test3:
+	input:
+	- [1000]
+	- [1, 2, 3, 4, 5, 6, 7]
+	output: 1000
+
+solution: |
+	max_maximum <- function(v1, v2) {
+	   max(c(v1,v2))
+	}
+
+
+	
+	
+	
+	
