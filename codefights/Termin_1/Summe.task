@@ -1,0 +1,50 @@
+Beschreibung:
+
+Bilde die Summe der beiden Argumente _arg1_ und _arg2_ und gib sie zurück!
+
+    [time limit] 5000ms (r)
+
+    [input] float arg1
+
+    Eine Zahl
+
+    [input] float arg2
+
+    Noch eine Zahl
+
+    [output] float
+
+    Die Summe beider Zahlen
+
+
+
+
+Test 1:
+Input:
+arg1: 1
+arg2: 1
+Expected Output: 2
+	
+Test 2:
+Input:
+arg1: 2
+arg2: 3
+Expected Output: 5
+	
+Test 3:
+Input:
+arg1: 4
+arg2: 4
+
+Expected Output: 8
+
+Lösung:
+
+Summe <- function(arg1, arg2) {
+arg1+arg2
+}
+
+	
+	
+	
+	
