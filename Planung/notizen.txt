@@ -1,3 +1,7 @@
+offene Fragen:
+- Kommentare im Code besser hinter oder über den Befehl?
+
+
 Termin 1  : Einführung in R/Rstudio
 Termin 2-4: Hydrologische Modellierung
 Termin 5-7: Populationsmodellierung
