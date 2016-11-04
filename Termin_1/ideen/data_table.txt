@@ -1,5 +1,0 @@
-Rknowledge	Happyness	knowledge_index	happyness_index
-none	desperate	0	-3
-some	sad	1	1
-moderate	fine	5	3
-excellent	awesome	10	12
