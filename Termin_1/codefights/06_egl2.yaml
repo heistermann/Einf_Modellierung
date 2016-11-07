@@ -21,7 +21,7 @@ input2:
 	
 output:
 	type: integer
-	description: Laenge der Abflussganglinie
+	description: Länge der Abflussganglinie
 
 test1:
 	input: 

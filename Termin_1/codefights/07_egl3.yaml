@@ -6,7 +6,7 @@ description: >
 	die Abflussganglinie (m3/s) am Auslass 
 	des Einzugsgebiets. Für den Niederschlag liegt
 	nun nicht ein einzelner Impuls, sondern eine beliebig
-	lange Ganglinien vor. Die zeitliche Auflösung aller
+	lange Ganglinie vor. Die zeitliche Auflösung aller
 	Ganglinien sei eine Stunde.
     
 input1:
@@ -22,7 +22,7 @@ input2:
 input3:
 	name: area
 	type: float
-	description: Flaeche des Einzugsgebiets (km2) 
+	description: Fläche des Einzugsgebiets (km2) 
 	
 output:
 	type: array.float
