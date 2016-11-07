@@ -1,2 +1,0 @@
-- Vektor der Länge n bestehen aus lauter Elementen mit dem Wert n erzeugen
-- von zwei gegebenen Vektoren den längeren zurückgeben

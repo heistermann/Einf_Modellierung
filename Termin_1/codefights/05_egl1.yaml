@@ -1,0 +1,59 @@
+---
+task_name: egl1
+
+description: >
+	Berechnen Sie aus den gegebenen Argumenten
+	die Abflussganglinie (m3/s) am Auslass 
+	des Einzugsgebiets. Das Zeitintervall der
+	Einheitsganglinie und und die Dauer des 
+	Niederschlagsimpulses seien je eine Stunde.
+    
+input1:
+	name: precip
+	type: float
+	description: EIN Effektivniederschlagsimpuls (mm/h)
+
+input2:
+	name: egl
+	type: array.float
+	description: Einheitsganglinie als Vektor von Gewichten 
+
+input3:
+	name: area
+	type: float
+	description: Flaeche des Einzugsgebiets (km2) 
+	
+output:
+	type: array.float
+	description: Abflussganglinie (m3/s)
+
+test1:
+	input: 
+	- 5
+	- [0.2, 0.5, 0.3]
+	- 3.6
+	output: [1.0, 2.5, 1.5]
+
+test2:
+	input: 
+	- 10
+	- [0.1, 0.6, 0.3]
+	- 7.2
+	output: [2, 12, 6]
+
+test3:
+	input: 
+	- 0
+	- [0.1, 0.6, 0.3]
+	- 10.8
+	output: [0, 0, 0]
+
+solution: |
+	egl1 = function(precip, egl, area) {
+	  return(precip * area * egl / 3.6)
+	}
+
+	
+	
+	
+	

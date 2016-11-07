@@ -1,0 +1,52 @@
+---
+task_name: egl2
+
+description: >
+	Berechnen Sie aus der Länge der Einheitsganglinie
+	und der Länge der Effektivniederschlagsganglinie
+	die Länge der resultierenden Abflussganglinie.
+	Alle Ganglinien sollen jeweils in stündlicher 
+	Auflösung vorliegen.
+    
+input1:
+	name: precip
+	type: array.float
+	description: Effektivniederschlagsganglinie
+
+input2:
+	name: egl
+	type: array.float
+	description: Einheitsganglinie
+
+	
+output:
+	type: integer
+	description: Laenge der Abflussganglinie
+
+test1:
+	input: 
+	- [2, 6, 3, 2, 7, 4, 5]
+	- [0.2, 0.5, 0.3]
+	output: 9
+
+test2:
+	input: 
+	- [2]
+	- [0.1, 0.6, 0.2, 0.1]
+	output: 4
+
+test3:
+	input: 
+	- [2, 6, 3, 2, 7, 4, 5, 15]
+	- [0.1, 0.6, 0.2, 0.1]
+	output: 11	
+
+solution: |
+	egl2 = function(precip, egl) {
+	  return(length(precip) + length(egl) - 1)
+	}
+
+	
+	
+	
+	

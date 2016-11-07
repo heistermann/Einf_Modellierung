@@ -1,7 +1,7 @@
 ---
 task_name: echo
 
-description: Die gesuchte Funktion gibt die übergebene Zahl zurück.
+description: Die gesuchte Funktion gibt die übergebene Zahl wieder zurück.
 
 input1:
 	name: n	
@@ -10,7 +10,7 @@ input1:
 
 output:
 	type: integer
-	description: die selbe Zahl wie das Eingabeargument.
+	description: Die selbe Zahl wie das Eingabeargument.
 
 test1:
 	input: 1

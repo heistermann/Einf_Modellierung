@@ -1,7 +1,7 @@
 ---
-task_name: Summe
+task_name: summe
 
-description: Bilde die Summe der beiden Argumente _arg1_ und _arg2_ und gib sie zurück!
+description: Gib die Summe der beiden Argumente _arg1_ und _arg2_ zurück!
 
 input1:
 	name: arg1
@@ -37,7 +37,7 @@ test3:
 
 solution: |
 	Summe <- function(arg1, arg2) {
-	   arg1+arg2
+	   return(arg1+arg2)
 	}
 
 	
