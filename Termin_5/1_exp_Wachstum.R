@@ -7,21 +7,28 @@
 # r  : Wachstumsrate
 # nt : Anzahl Zeitschritte
   
-  n0 = 2
-  r  = 1.1
-  nt = 100
-  
+  #Parameter (s.o.) zuweisen
+#<
+n0 = 2
+R  = 1.5
+nt = 30
+#>
+
   #Variablen vorbereiten
-  n = rep(NA,nt)
+  n = rep(NA,nt) #Vektor für zeitlichen Verlauf der Population
   n[1] = n0
   
   # Iterationsschleife
   #<
   for (t in 2:nt)
-    n[t] = r * n[t-1]
+    n[t] = R * n[t-1]
   #>
   
   #Resultat darstellen
   #<
   plot(1:nt, n, xlab = "Zeitschritte", ylab="Populationsgröße")
   #>
+  
+  #? Wann überschreitet die Population den Wert 10000?
+  #? Unter welchen Bedingungen bleibt die Population konstant?
+  #? Kann die Population auch schrumpfen? (Wann) stirbt dann sie aus?
