@@ -1,0 +1,61 @@
+---
+task_name: ereignisdauer
+
+description: >
+	Sie erhalten zwei Zeichenketten der "2016-12-03 10:30:00", 
+	die Beginn und Ende eines Niederschlagsereignisses
+	repräsentieren.
+	
+	Berechnen Sie die Dauer des Niederschlagsereingisses in
+	Stunden, und zwar mit einer Genauigkeit von zwei
+	Nachkommastellen.
+    
+input1:
+	name: start
+	type: String
+	description: Datum/Zeit als YYYY-MM-DD HH:MM:SS
+
+input2:
+	name: ende
+	type: String
+	description: Datum/Zeit als YYYY-MM-DD HH:MM:SS 
+
+output:
+	type: Float
+	description: Dauer des Ereignisses (Stunden mit zwei Nachkommastellen)
+
+test1:
+	input:
+	- "2011-03-05 09:02:34"
+	- "2011-03-05 16:40:43"
+	output: 7.64
+
+test2:
+	input:
+	- "1999-04-06 20:00:00"
+	- "1999-04-08 17:40:00"
+	output: 45.67
+
+test3:
+	input:
+	- "2023-04-06 19:30:00"
+	- "2023-05-08 17:40:00"
+	output: 766.17
+
+test4:
+	input:
+	- "2011-03-05 10:02:00"
+	- "2011-03-05 16:40:43"
+	output: 6.65
+
+solution: |
+	ereignisdauer = function(start, ende) {
+	  dauer = difftime(as.POSIXct(ende), as.POSIXct(start), units="hours")
+	  return(round(as.numeric(dauer), 2))
+	}
+
+
+	
+	
+	
+	
