@@ -1,0 +1,51 @@
+---
+task_name: ausschlafen
+
+description: >
+	Sie erhalten eine Zeichenkette (auch String genannt)
+	der Form "2016-12-03", die ein Datum repräsentiert 
+	(in diesem Beispiel den 3. Dezember 2016).
+	
+	Ihre Funktion soll entscheiden, ob Sie an diesem Tag
+	ausschlafen können. Falls es sich um einen Tag am 
+	Wochenende handelt, soll die Funktion `TRUE` zurückgeben.
+	Falls Sie nicht ausschlafen können, soll die Funktion
+	`FALSE` zurückgeben.
+    
+input1:
+	name: datum
+	type: String
+	description: Datum als YYYY-MM-DD 
+
+output:
+	type: Boolean
+	description: Information, ob Sie ausschlafen können.
+
+test1:
+	input: "1944-05-03"
+	output: false
+
+test2:
+	input: "1988-06-11"
+	output: true
+
+test3:
+	input: "1915-08-16"
+	output: false
+
+test4:
+	input: "2023-12-27"
+	output: false
+	
+solution: |
+	ausschlafen = function(datum) {
+	  name = strftime(as.Date(datum), format="%A")
+	  wochenende = c("Saturday", "Sunday")
+	  return(name %in% wochenende)
+	}
+
+
+	
+	
+	
+	
