@@ -2,3 +2,8 @@
 
 .Rhistory
 .gitignore
+
+*dds.log
+*dds.pro
+Termin_4/code/dds.log
+*.pro

@@ -32,7 +32,7 @@ mopex = read.mopex("../data/02296750.monthly")
 # Parameter als Vektor
 params = c(a=0.99, b=500., c=0.4, d=0.5)
 # Ausfuehrung des Modells
-sim = abcd(mopex$precip, mopex$pet, params)
+sim = abcd(mopex, params)
 plot.discharges(mopex, sim, baseflow=FALSE,
                 zoominto=c(as.Date("1990-01-01"), 
                            as.Date("2000-01-01")))
@@ -91,7 +91,7 @@ nash(mopex$discharge, sim$Q)
 # AUFGABE: Falls die Pakete noch nicht vorhanden sind,
 #   installiere sie nun mit Hilfe des "install.packages"-Befehls.
 #   Fuer ppso brauchst Du besondere Argumente:
-###install.packages(pkgs="ppso", repos="http://rforge.net/", type = "source")
+install.packages(pkgs="ppso", repos="http://rforge.net/", type = "source")
 ###install.packages("lhs")
 
 library(ppso)
@@ -114,14 +114,11 @@ row.names(bounds) = c("a", "b", "c", "d")
 #   Diese haben wir mal vorgegeben.
 #   BEACHTE: "ziel" gibt die negativen NSE zurueck, weil
 #   unser Suchalgorithmus immer nach einem Minimum sucht. 
-ziel= function(params) {
+ziel= function(params, model) {
   x = mopex$discharge
-  # Simulierter Abfluss unter Nutzung von param
-  y = abcd(mopex$precip, mopex$pet, params)$Q
+  y = model(mopex, params)$Q
 #  # Es wird bestraft, wenn die Zielfunktion ungueltige Werte produziert 
 #  if (length(which(!is.finite(y)))>0) return(1e6)
-#  # Waehle nur gueltige Wertepaare aus
-#  i = is.finite(x)  
   return(-nash(x, y)) 
 }
 
@@ -132,6 +129,7 @@ ziel= function(params) {
 #
 # ACHTUNG: Die Suche dauert eine ganze Weile!
 fit = optim_dds(objective_function=ziel,
+                model=abcd,
                 number_of_parameters=4,
                 parameter_bounds = bounds,
                 load_projectfile="no",
@@ -147,15 +145,48 @@ print( paste(c("a:","b:","c:","d:"), round(fit$par,3)) )
 plot_optimization_progress(logfile="dds.log", projectfile="dds.pro")
 
 # Graphischer Vergleich des beobachteten und simulierten Abflusses 
-bestmod = abcd(mopex$precip, mopex$pet, fit$par)
+bestabcd = abcd(mopex, fit$par)
 par(mfrow=c(2,1), mar=c(5, 4, 1, 2) + 0.1 )
 # Zeitreihe
-plot.discharges(mopex, bestmod, baseflow=FALSE,
+plot.discharges(mopex, bestabcd, baseflow=FALSE,
                 zoominto=c(as.Date("1970-01-01"), 
                            as.Date("1980-01-01")),fmt="%b'%y")
-axlim = c(0, max(c(bestmod$Q, mopex$discharge), na.rm=TRUE))
+axlim = c(0, max(c(bestabcd$Q, mopex$discharge), na.rm=TRUE))
 # Scatterplot
-plot(mopex$discharge, bestmod$Q, xlab="Observed discharge", 
+plot(mopex$discharge, bestabcd$Q, xlab="Observed discharge", 
      ylab="Simulated discharge", 
      xlim=axlim, ylim=axlim, cex=0.5)
+lines(x=c(axlim[1]-100,axlim[2]+100), y=c(axlim[1]-100,axlim[2]+100))
+
+
+# Nun probieren wir mal, das abc-Modell zu kalibrieren
+abcbounds = data.frame(lower=c(0, 0, 0), upper=c(1.,1.,1.))
+row.names(abcbounds) = c("a", "b", "c")
+
+fitabc = optim_dds(objective_function=ziel,
+                   model=abc,
+                   number_of_parameters=3,
+                   parameter_bounds = abcbounds,
+                   load_projectfile="no",
+                   max_number_function_calls=1000)
+print( paste("NSE nach Optimierung:", round(-fitabc$value,2)) )
+print( paste(c("a:","b:","c:"), round(fitabc$par,3)) )
+plot_optimization_progress(logfile="dds.log", projectfile="dds.pro")
+
+# Graphischer Vergleich des beobachteten und simulierten Abflusses 
+bestabc = abc(mopex, fitabc$par)
+par(mfrow=c(2,1), mar=c(5, 4, 1, 2) + 0.1 )
+# Zeitreihe
+plot.discharges(mopex, bestabcd, baseflow=FALSE,
+                zoominto=c(as.Date("1970-01-01"), 
+                           as.Date("1980-01-01")),fmt="%b'%y")
+lines(mopex$date, bestabc$Q, lwd=2, col="blue")
+legend("topleft", legend=c("obs", "abc", "abcd"), 
+       col=c("red", "black", "blue"), lwd=2)
+axlim = c(0, max(c(bestabcd$Q, mopex$discharge), na.rm=TRUE))
+# Scatterplot
+plot(mopex$discharge, bestabcd$Q, xlab="Observed discharge", 
+     ylab="Simulated discharge", 
+     xlim=axlim, ylim=axlim, cex=0.5)
+points(mopex$discharge, bestabc$Q, cex=0.5, col="blue")
 lines(x=c(axlim[1]-100,axlim[2]+100), y=c(axlim[1]-100,axlim[2]+100))
