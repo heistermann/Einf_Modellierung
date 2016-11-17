@@ -1,0 +1,2 @@
+best_a	best_b	best_c	best_d	best_objective_function	current_a	current_b	current_c	current_d	current_velocity_a	current_velocity_b	current_velocity_c	current_velocity_d	current_objective_function	status	begin_execution	node_id	function_calls
+0.998648022611369	808.232602526206	0.46697644589751	0.999539585114337	-0.722452729856599	0.998648022611369	1026.55812392295	0.46697644589751	0.999539585114337	0	218.325521396744	0	0	-0.698266067163249	1	2016-11-17 14:42:54	0	1000
