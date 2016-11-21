@@ -5,13 +5,18 @@
 
 # Funktion "exp_Wachstum_stoch" definieren
 #<
-exp_Wachstum_stoch = function (n0, R_pess, R_opt, nt)
+exp_Wachstum_stoch = function (n0, R_pess, R_opt, nt, seed=NULL)
 #>
 {  
-# n0 :            Startpopulation
-# Rmin, Rmax:   : minimale und maximale Wachstumsrate
-# nt :            Anzahl Zeitschritte
+# n0 :               Startpopulation
+# R_pess, R_opt:   : minimale und maximale Wachstumsrate
+# nt :               Anzahl Zeitschritte
+# seed (optional)  : Inititalisierung des Zufallsgenerators  
  
+  #(optional): Inititalisierung des Zufallsgenerators für reproduzierbaren Zufall
+  #<
+  set.seed(seed)
+  #>
   
   #Variablen vorbereiten
   n = rep(NA,nt) #Vektor für zeitlichen Verlauf der Population
@@ -23,9 +28,6 @@ exp_Wachstum_stoch = function (n0, R_pess, R_opt, nt)
   #<
   {
     # zufällige Ausprägung der Wachstumsrate (z.B. durch Klima)
-    if (runif(1) < 0.5)
-      R = R_pess else
-      R = R_opt  
     R = runif(n = 1, min=R_pess, max=R_opt)  
       
     n[t] = R * n[t-1]
@@ -36,12 +38,12 @@ exp_Wachstum_stoch = function (n0, R_pess, R_opt, nt)
   return(n)
 }
   
-  #Funktion mit n0 = 2, R_pess= 0.8, R_opt=1.2, nt = 30 aufrufen, Rückgabewert in n_1 speichern
+  #Funktion mit n0 = 2, R_pess= 0.8, R_opt=1.2, nt = 100 aufrufen, Rückgabewert in n_1 speichern
   #<
-  n_1 = exp_Wachstum_stoch(n0 = 2, R_pess  = 0.8, R_opt = 1.2, nt = 100)
+  n_1 = exp_Wachstum_stoch(n0 = 2, R_pess  = 0.8, R_opt = 1.25, nt = 100)
   #>
   
-  #Funktion mit n0 = 4, r  = 1.1, nt = 30 aufrufen, Rückgabewert in n_2 speichern
+  #Funktion mit n0 = 2, R_pess= 0.75, R_opt=1.2, nt = 100 aufrufen, Rückgabewert in n_2 speichern
   #<
   n_2 = exp_Wachstum_stoch(n0 = 2, R_pess  = 0.75, R_opt = 1.2, nt = 100)
   #>
@@ -54,4 +56,15 @@ exp_Wachstum_stoch = function (n0, R_pess, R_opt, nt)
   legend("bottomright", legend=c("n_1", "n_2"), col=c("black","red"), pch = 21)
   #>
   
+  #? Welche Population stirbt (meist) (früher) aus?
+  #? Wie kann der Zufallsaspekt reproduzierbar gemacht werden (Tipp: set.seed)
+  #<
+  seed=6
+  n_1 = exp_Wachstum_stoch(n0 = 2, R_pess  = 0.8, R_opt = 1.25, nt = 100, seed = seed)
+  n_2 = exp_Wachstum_stoch(n0 = 2, R_pess  = 0.75, R_opt = 1.2, nt = 100, seed = seed)
   
+  plot  (x=1:length(n_1), y=n_1, type="l", col="black", xlab = "Zeitschritte", ylab="Populationsgröße", main=seed)
+  lines(x=1:length(n_2), y=n_2, col="red")
+  legend("bottomright", legend=c("n_1", "n_2"), col=c("black","red"), pch = 21)
+   
+  #>
