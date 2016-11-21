@@ -1,0 +1,76 @@
+---
+task_name: vegetationsperiode
+
+description: >
+	Sie erhalten eine Zeichenkette (auch String genannt)
+	der Form "2016-12-03", die ein Datum repräsentiert 
+	(in diesem Beispiel den 3. Dezember 2016).
+	
+	Außerdem erhalten Sie Informationen zu Beginn und Ende der
+	Vegetationsperiode. Diese Information liegt als "Tag 
+	im Jahr" vor - 1 entspräche also dem 1. Januar eines
+	belibigen Jahres, 32 dem 1. Februar usw.
+	
+	Wenn das gegebene Datum innerhalb der Vegetationsperiode
+	liegt, geben Sie `TRUE` zurück, sonst `FALSE`.
+    
+input1:
+	name: datum
+	type: String
+	description: Datum als YYYY-MM-DD 
+
+input2:
+	name: start
+	type: Integer
+	description: Start der Vegetationsperiode (Day of Year) 
+
+input3:
+	name: ende
+	type: Integer
+	description: Ende der Vegetationsperiode (Day of Year) 
+
+output:
+	type: Boolean
+	description: Aussage, ob der Tag innerhalb der Vegetationsperiode liegt.
+
+test1:
+	input:
+	- "1944-05-03"
+	- 90
+	- 300
+	output: true
+
+test2:
+	input:
+	- "2025-02-15"
+	- 132
+	- 196
+	output: false
+
+test3:
+	input:
+	- "2015-10-15"
+	- 132
+	- 196
+	output: false
+
+test4:
+	input:
+	- "1993-07-23"
+	- 101
+	- 290
+	output: true
+
+solution: |
+	vegetationsperiode = function(datum, start, ende) {
+	  doy = as.numeric(strftime(as.Date(datum), format="%j"))
+	  if ((doy>= start) & (doy<=ende)) {
+		return(TRUE)
+	  } else return(FALSE)
+	}
+
+
+	
+	
+	
+	

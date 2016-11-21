@@ -1,0 +1,50 @@
+---
+task_name: welchertag
+
+description: >
+	Sie erhalten eine Zeichenkette (auch String genannt)
+	der Form "2016-12-03", die ein Datum repräsentiert 
+	(in diesem Beispiel den 3. Dezember 2016).
+	
+	Geben Sie den englischen Namen des entsprechenden
+	Wochentages zurück. Nutzen Sie die Funktionen
+	`as.Date` und `strftime`. Tipp: Der `strftime`
+	Funktion muss ein passender Wert für das Argument
+	`format` übergeben werden.
+	 
+input1:
+	name: datum
+	type: String
+	description: Datum als YYYY-MM-DD 
+
+output:
+	type: String
+	description: Name des zugehörigen Wochentages
+
+test1:
+	input: 2016-11-15
+	output: Tuesday
+
+test2:
+	input: 2000-10-30
+	output: Monday
+
+test3:
+	input: 1999-05-10
+	output: Monday
+
+test4:
+	input: 1999-01-31
+	output: Sunday
+
+
+solution: |
+	welchertag = function(datum) {
+	  return(strftime(as.Date(datum), format="%A"))
+	}	
+
+
+	
+	
+	
+	
