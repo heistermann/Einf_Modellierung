@@ -43,29 +43,67 @@ bodentyp = function() {
 }
 
 
-curveNumber = function(ln1, ln2, boden) {
-  tab = "LN1;LN2;A;B;C;D
-  Freiflaeche;geringer Wiesenanteil;68;79;86;89
-  Freiflaeche;mittlerer Wiesenanteil;49;69;79;84
-  Freiflaeche;hoher Wiesenanteil;39;61;74;80
-  Strasse;vollversiegelt;98;98;98;98
-  Strasse;offener Wegerand;83;89;92;93
-  Strasse;Schotterweg;76;85;89;91
-  Strasse;Feldweg;72;82;87;89
-  Urbane Flaeche;Geschaeftsflaeche;89;92;94;95
-  Urbane Flaeche;Insustrieflaeche;81;88;91;93
-  Wohngebiet;>65% bebaut;77;85;90;92
-  Wohngebiet;38% bebaut;61;75;83;87
-  Wohngebiet;30% bebaut;57;72;81;86
-  Wohngebiet;25% bebaut;54;70;80;85
-  Wohngebiet;20%bebaut;51;68;79;84
-  Wohngebiet;<12%bebaut;46;65;77;82"
-  con = textConnection(text)
-  data = read.table(con, header=TRUE, sep=";", stringsAsFactors=FALSE, strip.white=TRUE)
-  return(subset(data, LN1==ln1 & LN2==ln2)[,boden])
+curveNumber1 = function(lanu1, lanu2, boden) {
+  tab = "LANU1;LANU2;A;B;C;D
+	Freiflaeche;geringer Wiesenanteil;68;79;86;89
+	Freiflaeche;mittlerer Wiesenanteil;49;69;79;84
+	Freiflaeche;hoher Wiesenanteil;39;61;74;80
+	Verkehrsflaeche;vollversiegelt;98;98;98;98
+	Verkehrsflaeche;offener Wegerand;83;89;92;93
+	Verkehrsflaeche;Schotterweg;76;85;89;91
+	Verkehrsflaeche;Feldweg;72;82;87;89
+	Gewerbeflaeche;Geschaeftsflaeche;89;92;94;95
+	Gewerbeflaeche;Industrieflaeche;81;88;91;93
+	Wohngebiet;>65% bebaut;77;85;90;92
+	Wohngebiet;38% bebaut;61;75;83;87
+	Wohngebiet;30% bebaut;57;72;81;86
+	Wohngebiet;25% bebaut;54;70;80;85
+	Wohngebiet;20%bebaut;51;68;79;84
+	Wohngebiet;<12%bebaut;46;65;77;82"
+  con = textConnection(tab)
+  df = read.table(con, header=TRUE, sep=";", stringsAsFactors=FALSE, strip.white=TRUE)
+  return(subset(df, LANU1==lanu1 & LANU2==lanu2)[,boden])
 }
 
-curveNumber("Freiflaeche","hoher Wiesenanteil","B")
-curveNumber("Wohngebiet","30% bebaut","A")
-curveNumber("Strasse","Feldweg","A")
-curveNumber("Freiflaeche","mittlerer Wiesenanteil","D")
+curveNumber1("Freiflaeche","hoher Wiesenanteil","B")
+curveNumber1("Wohngebiet","30% bebaut","A")
+curveNumber1("Verkehrsflaeche","Feldweg","A")
+curveNumber1("Freiflaeche","mittlerer Wiesenanteil","D")
+
+
+curveNumber2 = function(cn2, precip, vegetation) {
+  tab = "normal;trocken;feucht
+  10;0.40;2.22
+  20;0.45;1.85
+  30;0.50;1.67
+  40;0.55;1.50
+  50;0.62;1.40
+  60;0.67;1.30
+  70;0.73;1.21
+  80;0.79;1.14
+  90;0.87;1.07
+  100;1.00;1.00"
+  con = textConnection(tab)
+  df = read.table(con, header=TRUE, sep=";", stringsAsFactors=FALSE, strip.white=TRUE)
+
+  P5 = sum(precip)
+  amc = "normal"
+  if (vegetation) {
+    if (P5<36) amc = "trocken"
+    if (P5>53) amc = "feucht"
+  } else {
+    if (P5<13) amc = "trocken"
+    if (P5>28) amc = "feucht"
+  }
+  
+  if (amc=="normal") {
+    return(cn2)
+  } else {
+    return( df[which.min(abs(df$normal - cn2)),amc] * cn2 )
+  }
+}
+
+curveNumber2(72, c(2,5,3,6,0), TRUE)
+curveNumber2(57, c(2,20,30,6,0), FALSE)
+curveNumber2(63, c(2,1,3,1,0), FALSE)
+curveNumber2(92, c(2,5,3,6,30), TRUE)
