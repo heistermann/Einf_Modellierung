@@ -1,0 +1,28 @@
+---
+name: abc
+
+description: >
+	Welcher Anteil `x` des monatlichen Niederschlags gelangt laut
+	dem abc-Modell unmittelbar zum Abfluss?
+    
+num_answers: 5
+
+answer_description_1:
+	description: `x = c`
+	is_correct: False	
+
+answer_description_2:
+	description: `x = 1-a-b`
+	is_correct: True	
+
+answer_description_3:
+	description: `x = 1 - c`
+	is_correct: False	
+
+answer_description_4:
+	description: `x = a + b`
+	is_correct: False	
+
+answer_description_5:
+	description: `x = 1 - a - b - c`
+	is_correct: False	

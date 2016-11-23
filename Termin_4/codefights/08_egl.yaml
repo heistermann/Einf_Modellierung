@@ -1,0 +1,75 @@
+---
+name: egl
+
+description: >
+	Welcher Funktion berechnet korrekt die 
+	Direktabflussganglinie mit Hilfe des 
+	Einheitsganglinienverfahrens?
+	
+	Die Argumenten seien:
+	```
+	p: Vektor - Ganglinie der Effektivniederschlagsintensitaet (m3/s)
+	egl: Vektor - Einheitsganglinie
+	```	
+    
+num_answers: 4
+
+answer_description_1:
+	description: |
+		```
+		qd = function(p, egl) {
+		  out = rep(0., length(p) + length(egl))        
+		  for (i in 1:length(p)) {
+			out_i = p[i] * egl 
+			ix = i:(i+length(egl)-1)
+			out[ix] = out[ix] + out_i
+		  }          
+		  return(out)
+		}
+		```
+	is_correct: False	
+
+
+answer_description_2:
+	description: |
+		```
+		qd = function(p, egl) {
+		  out = rep(0., length(p) + length(egl) - 1)        
+		  for (i in 1:length(p)) {
+			out_i = p[i] * egl 
+			ix = i:(i+length(egl)-1)
+			out[ix] = out_i
+		  }          
+		  return(out)
+		}
+		```
+	is_correct: False	
+
+answer_description_3:
+	description: |
+		```
+		qd = function(p, egl) {
+		  out = rep(0., length(p) + length(egl) - 1)        
+		  for (i in 1:length(p)) {
+			out_i = p[i] * egl 
+			ix = i:(i+length(egl)-1)
+			out[ix] = out[ix] + out_i
+		  }          
+		  return(out)
+		}
+		```
+	is_correct: True	
+
+answer_description_4:
+	description: |
+		```
+		qd = function(p, egl) {
+		  out = rep(0., length(p) + length(egl) - 1)        
+		  for (i in 1:length(p)) {
+			out_i = p[i] * egl 
+			ix = i:(i+length(egl)-1)
+			out[ix] = out[ix] + out_i
+		  }          
+		}
+		```
+	is_correct: False	
