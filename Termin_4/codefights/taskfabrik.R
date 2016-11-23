@@ -41,21 +41,23 @@ df = read.csv("input.csv", sep=";", header=TRUE, stringsAsFactors=TRUE)
 df$date = as.Date(df$date, format="%d.%m.%Y")
 
 # QUIZ 8
-func_egl = function(precip, egl) {
-  # Abflussganglinie (in m3/s)
-  out = rep(0., length(precip) + length(egl) - 1)        
-  for (i in 1:length(precip)) {
-    # Abflussantwort auf Impuls i
-    out_i = precip[i] * egl 
-    # Zeitindices, auf welche sich Impuls i verteilt
+qd = function(p, egl) {
+  out = rep(0., length(p) + length(egl) - 1)        
+  for (i in 1:length(p)) {
+    out_i = p[i] * egl 
     ix = i:(i+length(egl)-1)
-    # Addiere auf Abflussganglinie
     out[ix] = out[ix] + out_i
   }          
   return(out)
 }
 # Aufruf der Funktion mit beliebigen Argumenten 
-func_egl(c(1., 5., 10.), c(0.1, 0.4, 0.3, 0.2))
+qd(c(1., 5., 10.), c(0.1, 0.4, 0.3, 0.2))
 
-
-
+# QUIZ 09
+obs = runif(10,0,1)
+sim = runif(10,0,1)
+x = sum((obs - sim)^2)
+x = sqrt( sum((obs - sim)^2) )
+x = 1 - sum((obs - sim)^2) / s
+(x = cor(obs, sim))
+(x = mean(abs(obs - sim)))
