@@ -23,7 +23,7 @@ for (i in 1:length(precip)) {
   # Zeitindices, auf welche sich Impuls i verteilt
   ix = i:(i+length(egl)-1)
   # Addiere auf Abflussganglinie
-  out[ix] = out[ix] + precip[i] * egl * area / 3.6
+  out[ix] = out[ix] + out_i
 }
 
 # Ergebnis (Abflussganglinie) anzeigen
@@ -43,7 +43,7 @@ func_egl = function(precip, egl, area) {
     # Zeitindices, auf welche sich Impuls i verteilt
     ix = i:(i+length(egl)-1)
     # Addiere auf Abflussganglinie
-    out[ix] = out[ix] + precip[i] * egl * area / 3.6
+    out[ix] = out[ix] + out_i
   }          
   return(out)
 }
@@ -63,7 +63,7 @@ func_egl2 = function(precip, egl, area, baseflow) {
   for (i in 1:length(precip)) {
     out_i = precip[i] * egl * area / 3.6 
     ix = i:(i+length(egl)-1)
-    out[ix] = out[ix] + precip[i] * egl * area / 3.6
+    out[ix] = out[ix] + out_i
   }          
   return(out)
 }
