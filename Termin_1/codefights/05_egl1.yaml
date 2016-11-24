@@ -2,7 +2,7 @@
 task_name: egl1
 
 description: >
-	Berechnen Sie aus den gegebenen Argumenten
+	Berechne aus den gegebenen Argumenten
 	die Abflussganglinie (m3/s) am Auslass 
 	des Einzugsgebiets. Das Zeitintervall der
 	Einheitsganglinie und und die Dauer des 

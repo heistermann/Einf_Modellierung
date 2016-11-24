@@ -2,7 +2,7 @@
 task_name: egl3
 
 description: >
-	Berechnen Sie aus den gegebenen Argumenten
+	Berechne aus den gegebenen Argumenten
 	die Abflussganglinie (m3/s) am Auslass 
 	des Einzugsgebiets. Für den Niederschlag liegt
 	nun nicht ein einzelner Impuls, sondern eine beliebig

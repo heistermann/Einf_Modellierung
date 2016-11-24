@@ -5,7 +5,7 @@ description: >
 	In einem Einzugsgebiet stehen drei Niederschlagsstationen.
 	Mit dem Thiessen-Verfahren wurden 50 Prozent des Gebiets der
 	Station 1 zu geordnet, 30 Prozent der Station 2 und 20 Prozent
-	der Station 3. Berechnen Sie auf Grundlage beliebiger Messwerte
+	der Station 3. Berechne auf Grundlage beliebiger Messwerte
 	der drei Stationen den Gebietsniederschlag.
     
 input1:

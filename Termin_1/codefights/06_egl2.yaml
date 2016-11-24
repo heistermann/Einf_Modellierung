@@ -2,7 +2,7 @@
 task_name: egl2
 
 description: >
-	Berechnen Sie aus der Länge der Einheitsganglinie
+	Berechne aus der Länge der Einheitsganglinie
 	und der Länge der Effektivniederschlagsganglinie
 	die Länge der resultierenden Abflussganglinie.
 	Alle Ganglinien sollen jeweils in stündlicher 
