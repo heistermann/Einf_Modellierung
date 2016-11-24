@@ -1,0 +1,55 @@
+---
+task_name: instoepfchen
+
+description: >
+	Wie viele Elemente des Vektors `erbsen` entsprechen
+	der Zahl `gut`?
+	 
+input1:
+	name: erbsen
+	type: Array of integers
+	description: Eine Schuessel voll Erbsen 
+
+input2:
+	name: gut
+	type: Integer
+	description: Zahl, die eine gute Erbse markiert. 
+	
+output:
+	type: Integer
+	description: Anzahl der guten Erbsen in der Schuessel
+
+test1:
+	input:
+	- [0,1,0,1,0,1]
+	- 1
+	output: 3
+
+test2:
+	input:
+	- [0,0,1,1,1,1]
+	- 0
+	output: 2
+
+test3:
+	input:
+	- [0,1,1,1,1,1]
+	- 1
+	output: 5
+
+test4:
+	input:
+	- [1,1,1,1,0,0]
+	- 0
+	output: 2
+
+
+solution: |
+	instoepfchen = function(erbsen, gut) {
+	  return(length(which(erbsen==gut)))
+	}
+
+	
+	
+	
+	

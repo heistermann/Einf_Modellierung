@@ -1,0 +1,32 @@
+---
+name: dtype
+
+description: >
+	Was fuer einen Datentyp hat `x`, wenn es sich bei `y` um den
+	Pfad zu einer komma-separierten csv-Datei handelt?
+	
+	```
+	x = read.csv(y)
+	```
+	
+num_answers: 5
+
+answer_description_1:
+	description: `matrix`
+	is_correct: False	
+
+answer_description_2:
+	description: `vector`
+	is_correct: False	
+
+answer_description_3:
+	description: `data.frame`
+	is_correct: True	
+	
+answer_description_4:
+	description: `array`
+	is_correct: False	
+
+answer_description_5:
+	description: `list`
+	is_correct: False	
