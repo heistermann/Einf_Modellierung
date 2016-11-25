@@ -18,6 +18,7 @@ for (sd in subdirs)
     while (1) #repeated regexp replacement
     {
       cont=sub(cont, pattern = "(.*)#<.*#>(.*)$", repl="\\1#...hier ergänzen...\\2")
+      cont=sub(cont, pattern = "#![^\n]*", repl="\n")
       if (cont==cont_prev) break #all done
       cont_prev=cont
     }
