@@ -9,8 +9,8 @@ description: >
 	Modellierung der Schneeschmelze, des Heizwaermebedarfs oder
 	der phaenologischen Entwicklung von Pflanzen.
 	
-	Nehmen Sie an, eine Feldfrucht ist nach einer bestimmten Zahl
-	Gradtagen `erntereif`. Bestimmen Sie den Zeitpunkt der Ernte.
+	Wir nehmen an, eine Feldfrucht ist nach einer bestimmten Zahl
+	Gradtagen `erntereif`. Bestimme den Zeitpunkt der Ernte.
 	 
 input1:
 	name: temp

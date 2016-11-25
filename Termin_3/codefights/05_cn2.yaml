@@ -8,7 +8,7 @@ description: >
 	und wird auf Grundlage von Gebietseigenschaften sowie dem
 	Vorereignisniederschlag bestimmt.
 	
-	Im ersten Schritt haben Sie bereits den CN-Wert aus
+	Im ersten Schritt wurde bereits der CN-Wert aus
 	Landnutzung und Bodentyp ermittelt. Dieser Wert gilt fuer eine
 	"normale" Gebietsvorfeuchte (engl.: *antecedent moisture condition*, AMC).
 	Fuer feuchte oder trockene Bedingungen muss dieser CN-Wert angepasst werden.
@@ -37,8 +37,8 @@ description: >
 	100;1.00;1.00"
 	```
 	
-	Auch diese Tabelle koennen Sie in Ihren Code kopieren und dann wie gehabt
-	als `data.frame` einlesen:
+	Auch diese Tabelle kann in den Code kopiert und dann wie gehabt
+	als `data.frame` eingelesen werden:
 	
 	```	
 	con = textConnection(tab)
@@ -54,9 +54,9 @@ description: >
 	kommt ist `70`. Der Anpassungfaktor ist somit `0.73`, und der resultierende CN-Wert
 	somit CN = 0.73 * 72.
 	
-	Berechnen Sie nun auf Grundlage des CN-Wertes fuer normale Bedingungen (`cn2`), der
+	Berechne nun auf Grundlage des CN-Wertes fuer normale Bedingungen (`cn2`), der
 	Niederschlagshoehen der jeweils fuenf vorangegangene Tage (precip) und der Information,
-	ob Sie sich innerhalb der Vegetationsperiode befinden, den resultierenden CN-Wert.
+	ob sie sich innerhalb der Vegetationsperiode befinden, den resultierenden CN-Wert.
 	 
 input1:
 	name: cn2

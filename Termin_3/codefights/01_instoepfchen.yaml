@@ -43,6 +43,12 @@ test4:
 	- 0
 	output: 2
 
+test5:
+	input:
+	- [1,2,1,4,0,0]
+	- 2
+	output: 1
+
 
 solution: |
 	instoepfchen = function(erbsen, gut) {

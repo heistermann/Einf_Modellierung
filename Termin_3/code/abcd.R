@@ -25,12 +25,12 @@ plot(W,  Y(W, 0.9, 10), type="l", lwd=2,
 lines(W, Y(W, 0.7, 10), type="l", col="blue",  lwd=2)
 lines(W, Y(W, 0.5, 10), type="l", col="red", lwd=2)
 abline(h=10, lty="dashed")
-text(1, 11,"b=10")
+text(3, 11,"b=10")
 lines(W, Y(W, 0.9, 5), type="l", col="black", lwd=2)
 lines(W, Y(W, 0.7, 5), type="l", col="blue", lwd=2)
 lines(W, Y(W, 0.5, 5), type="l", col="red", lwd=2)
 abline(h=5, lty="dashed", col="black")
-text(1, 6,"b=5")
+text(3, 6,"b=5")
 legend("bottomright", 
        legend=c("a=0.9","a=0.7","a=0.5"),
        lwd=2, col=c("black", "blue", "red"))

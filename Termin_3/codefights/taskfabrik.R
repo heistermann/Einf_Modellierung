@@ -10,6 +10,7 @@ instoepfchen(c(0,1,0,1,0,1), 1)
 instoepfchen(c(0,0,1,1,1,1), 0)
 instoepfchen(c(0,1,1,1,1,1), 1)
 instoepfchen(c(1,1,1,1,0,0), 0)
+instoepfchen(c(1,2,1,4,0,0), 2)
 
 
 # Task 02

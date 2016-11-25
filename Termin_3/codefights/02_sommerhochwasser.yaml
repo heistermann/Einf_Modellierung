@@ -2,10 +2,10 @@
 task_name: sommerhochwasser
 
 description: >
-	Sie erhalten einen Vektor mit Hochwasserabfluessen und
-	einen weiteren Vektor mit den Monaten, in welchen
-	diese Abfluesse jeweils gemessen wurden. Ermitteln
-	Sie den mittleren Hochwasserabfluss im Sommer. 
+	Gegeben ist ein Vektor mit Hochwasserabfluessen und
+	ein weiterer Vektor mit den Monaten, in welchen
+	diese Abfluesse jeweils gemessen wurden. Ermittle
+	den mittleren Hochwasserabfluss im Sommer. 
 	
 	Aber was heißt eigentlich Sommer? Das Argument `beginn`
 	definiert den ersten Sommermonat und das Argument `ende`
