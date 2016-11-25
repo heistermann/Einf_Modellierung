@@ -7,18 +7,21 @@
 # r  : Wachstumsrate
 # nt : Anzahl Zeitschritte
   
-  #Parameter (s.o.) zuweisen
-#<
-n0 = 2
-r  = 0.2
-nt = 30
-#>
+#Parameter (s.o.) zuweisen
+  #<
+  n0 = 2
+  r  = 0.2
+  nt = 30
+  #>
 
   #Variablen vorbereiten
-  n = rep(NA,nt) #Vektor für zeitlichen Verlauf der Population
+  n = rep(NA,nt) #Vektor für zeitlichen Verlauf der Population anlegen
+  # Startwerte an die erste Stelle des Vektors schreiben
+  #<
   n[1] = n0
+  #>
   
-  # Iterationsschleife
+  # Iterationsschleife über alle weiteren Zeitschritte
   #<
   for (t in 2:nt)
     n[t] = n[t-1] + r * n[t-1]
