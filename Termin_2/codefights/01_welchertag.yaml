@@ -2,12 +2,12 @@
 task_name: welchertag
 
 description: >
-	Sie erhalten eine Zeichenkette (auch String genannt)
+	Gegeben ist eine Zeichenkette (auch String genannt)
 	der Form "2016-12-03", die ein Datum repräsentiert 
 	(in diesem Beispiel den 3. Dezember 2016).
 	
-	Geben Sie den englischen Namen des entsprechenden
-	Wochentages zurück. Nutzen Sie die Funktionen
+	Gib den englischen Namen des entsprechenden
+	Wochentages zurück. Nutze die Funktionen
 	`as.Date` und `strftime`. Tipp: Der `strftime`
 	Funktion muss ein passender Wert für das Argument
 	`format` übergeben werden.

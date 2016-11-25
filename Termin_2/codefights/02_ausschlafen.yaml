@@ -2,15 +2,14 @@
 task_name: ausschlafen
 
 description: >
-	Sie erhalten eine Zeichenkette (auch String genannt)
+	Gegeben ist Zeichenkette (auch String genannt)
 	der Form "2016-12-03", die ein Datum repräsentiert 
 	(in diesem Beispiel den 3. Dezember 2016).
 	
-	Ihre Funktion soll entscheiden, ob Sie an diesem Tag
-	ausschlafen können. Falls es sich um einen Tag am 
+	Deine Funktion soll entscheiden, ob Du an diesem Tag
+	ausschlafen kannst. Falls es sich um einen Tag am 
 	Wochenende handelt, soll die Funktion `TRUE` zurückgeben.
-	Falls Sie nicht ausschlafen können, soll die Funktion
-	`FALSE` zurückgeben.
+	Für Wochentage soll die Funktion `FALSE` zurückgeben.
     
 input1:
 	name: datum

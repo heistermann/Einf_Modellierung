@@ -54,7 +54,7 @@ ereignisdauer("2011-03-05 10:02:00", "2011-03-05 16:40:43")
 niederschlagsintensitaet = function(start, ende, volumen, radius) {
   dauer = difftime(as.POSIXct(ende), as.POSIXct(start), units="hours")
   hoehe = volumen * 1e-3 / (pi*(radius*1e-2)^2)
-  return(round(hoehe / as.numeric(dauer), 2))
+  return(round(hoehe / as.numeric(dauer), digits=2))
 }
 # Tests
 niederschlagsintensitaet("2011-03-05 09:02:00", "2011-03-05 16:40:00", 101, 5.64)

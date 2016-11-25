@@ -34,7 +34,7 @@ abc = function(P, a, b, c) {
 #   diese hydrologisch zu interpretieren! 
 zeit = 1:40 # Tage, Monate, Jahre?
 P = rep(0., length(zeit))
-# Wir lassen es in den Zeitschritten 10 und 20 regnen...
+# Wir lassen es in den Zeitschritten 10 und 20 jeweils 10 Einheiten regnen...
 P[c(10,20)] = 10.
 # Anwendung der Funktion
 Q = abc(P, 0.5, 0.3, 0.1)

@@ -2,13 +2,14 @@
 task_name: ereignisdauer
 
 description: >
-	Sie erhalten zwei Zeichenketten der "2016-12-03 10:30:00", 
+	Gegeben sind zwei Zeichenketten der "2016-12-03 10:30:00", 
 	die Beginn und Ende eines Niederschlagsereignisses
 	repräsentieren.
 	
-	Berechnen Sie die Dauer des Niederschlagsereingisses in
+	Berechne die Dauer des Niederschlagsereingisses in
 	Stunden, und zwar mit einer Genauigkeit von zwei
-	Nachkommastellen.
+	Nachkommastellen. Hinweis: Benutze as.POSIXct(), um
+	Zeichenketten mit Uhrzeit zu verarbeiten.
     
 input1:
 	name: start

@@ -80,11 +80,11 @@ func_egl2(c(6, 3, 4), c(0.2, 0.5, 0.3), 10.8, 0.)
 #   - fuege Achsenbeschriftungen und einen Titel hinzu,
 #   - sorge dafür, dass die y-Achse bei "0" beginnt
 #   - ziehe mit "abline" eine horizotale Linie auf Basisabflussniveau
-P = c(0., 1., 10, 5., 1., 0., 0.)
+precip = c(0., 1., 10, 5., 1., 0., 0.)
 egl = c(0.1, 0.4, 0.3, 0.2)
 area = 7.2
 basisabfluss = 2.
-Q = func_egl2(P, egl, area, basisabfluss)
+Q = func_egl2(precip, egl, area, basisabfluss)
 
 #<
 plot(x=1:length(Q), y=Q, type="l", lwd=2, ylim=c(0,max(Q)),

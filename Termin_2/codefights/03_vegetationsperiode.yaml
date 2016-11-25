@@ -2,17 +2,17 @@
 task_name: vegetationsperiode
 
 description: >
-	Sie erhalten eine Zeichenkette (auch String genannt)
+	Gegeben ist ein Zeichenkette (auch String genannt)
 	der Form "2016-12-03", die ein Datum repräsentiert 
 	(in diesem Beispiel den 3. Dezember 2016).
 	
-	Außerdem erhalten Sie Informationen zu Beginn und Ende der
+	Außerdem erhältst Du Informationen zu Beginn und Ende der
 	Vegetationsperiode. Diese Information liegt als "Tag 
 	im Jahr" vor - 1 entspräche also dem 1. Januar eines
-	belibigen Jahres, 32 dem 1. Februar usw.
+	beliebigen Jahres, 32 dem 1. Februar usw.
 	
 	Wenn das gegebene Datum innerhalb der Vegetationsperiode
-	liegt, geben Sie `TRUE` zurück, sonst `FALSE`.
+	liegt, soll die Funktion `TRUE` zurückgeben, sonst `FALSE`.
     
 input1:
 	name: datum
