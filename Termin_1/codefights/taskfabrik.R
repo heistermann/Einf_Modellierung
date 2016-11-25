@@ -1,43 +1,46 @@
 # Task 04
-gebietsniederschlag = function(messungen) {
-  return(0.5*messungen[1] + 0.3*messungen[2] + 0.2*messungen[3])
+vektorteil = function(v, start, laenge) {
+  if (start+laenge -1 > length(v))
+    return(c())
+  return(v[start:(start+laenge-1)])
 }
 
-avg(c(1, 2, 3))
-avg(c(5, 2, 3))
-avg(c(15, 13, 20))
+vektorteil(c(1, 2, 3), 1, 2)
+vektorteil(c(5, 2, 3, 9), 2, 3 )
+vektorteil(c(15, 13, 20), 3, 1)
+vektorteil(1:20, 19, 2)
+vektorteil(1:3, 3, 2)
 
 
 # Task 05
-egl1 = function(precip, egl, area) {
-  return(precip * area * egl / 3.6)
+draengler = function(reihe) {
+  reihe = reihe[reihe >= 1]
+  for (i in 2:length(reihe))
+    if (reihe[i] > reihe[i-1])
+      reihe[(i-1):i] = reihe[i:(i-1)]
+    return(reihe)
 }
 
-egl1(5, c(0.2, 0.5, 0.3), 3.6)
-egl1(10, c(0.1, 0.6, 0.3), 7.2)
-egl1(0, c(0.1, 0.6, 0.3), 10.8)
+draengler (c(1.8, 1.2, 1.7))
+draengler (c(1.1, 1.8, 1.2, 1.7, 1.3))
+draengler (c(1, 1, 0.8, 2, 0.9))
+draengler (c(1.4, 1.3, 1.2, 1.1, 0.9))
 
 
-# Task 06
-egl2 = function(precip, egl) {
-  return(length(precip) + length(egl) - 1)
-}
+#Task 6
+hitzephasen = function(zeitreihe_temp, schwellenwert_temp, schwellenwert_laenge)
+{
+  hitzetage = as.numeric(zeitreihe_temp > schwellenwert_temp)
+  phasen = strsplit(x = paste0(hitzetage, collapse = ""), split = "0+") 
+  phasenlaenge = sapply(phasen[[1]], FUN = nchar)         
+  return(sum(phasenlaenge >= schwellenwert_laenge))
+}  
+  
 
-egl2(c(2, 6, 3, 2, 7, 4, 5), c(0.2, 0.5, 0.3))
-egl2(c(2), c(0.1, 0.6, 0.2, 0.1))
-egl2(c(2, 6, 3, 2, 7, 4, 5, 15), c(0.1, 0.6, 0.2, 0.1))
+hitzephasen( c(19, 23, 24, 25, 19, 21), 20, 1)
+hitzephasen( c(30, 33, 19, 23, 24, 25, 19, 21, 22), 20, 3)
+hitzephasen( c(30, 33, 27, 15, 30, 31, 33, 20, 32, 33), 20, 1)
+hitzephasen( c(30, 33, 27, 15, 30, 31, 33, 20, 32, 33), 15, 2)
+hitzephasen( c(30, 33, 27, 15, 30, 31, 33, 20, 32, 33), 40, 2)
 
 
-# Task 07
-egl3 = function(precip, egl, area) {
-  out = rep(0, length(precip) + length(egl) - 1)
-  for (i in 1:length(precip)) {
-    ix = i:(i+length(egl)-1)
-    out[ix] = out[ix] + precip[i] * egl * area / 3.6
-  }  
-  return(out)
-}
-
-egl3(c(2, 6), c(0.2, 0.5, 0.3), 3.6)
-egl3(c(3, 10, 5), c(0.1, 0.6, 0.2, 0.1), 7.2)
-egl3(c(6, 3, 4), c(0.2, 0.5, 0.3), 10.8)

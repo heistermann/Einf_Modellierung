@@ -1,0 +1,80 @@
+---
+task_name: hitzephasen
+
+description: >
+	Wenn die mittlere Tagestemperatur den Werte _schwellenwert_temp_ an mindestens 
+	_schwellenwert_laenge_ aufeinanderfolgenden Tagen
+	überschreitet, sprich man von einer Hitzephase.
+	Wieviele Hitzephasen enthält die Zeitreihe der Tagestemperaturen _zeitreihe_temp_ ?
+}  
+    
+input1:
+	name: zeitreihe_temp
+	type: array.float
+	description: Vektor der mittleren Tagestemperaturen.
+
+input1:
+	name: schwellenwert_temp
+	type: float
+	description: Schwellenwert der Temperatur, der überschritten werden muss.
+
+input1:
+	name: _schwellenwert_laenge_
+	type: integer
+	description: Anzahl von aufeinanderfolgenden Tagen, die die Schwellentemperatur überschreiten müssen.
+
+output:
+	name: n_h
+	type: integer
+	description: Anzahl der Hitzephasen.
+	
+test1:
+	-[19, 23, 24, 25, 19, 21]
+	- 20
+	- 2
+	output: [1.8, 1.7, 1.2]
+
+test2:
+	input:
+	-[30 33 19 23 24 25 19 21 22]
+	- 20
+	- 1
+	output: [1.8, 1.2, 1.7, 1.3, 1.1]
+
+test3:
+	input:
+	-[30 33 27 15 30 31 33 20 32 33]
+	- 20
+	- 3
+	output: [1, 2, 1]
+
+test4:
+	input:
+	-[30 33 27 15 30 31 33 20 32 33]
+	- 15
+	- 2
+	output: [1.4, 1.3, 1.2, 1.1]
+
+test5:
+	input:
+	-[30 33 27 15 30 31 33 20 32 33]
+	- 40
+	- 0
+	output: [1.4, 1.3, 1.2, 1.1]
+
+	
+	
+solution: |
+	hitzephasen = function(zeitreihe_temp, schwellenwert_temp, schwellenwert_laenge)
+{
+  hitzetage = as.numeric(zeitreihe_temp > schwellenwert_temp)
+  phasen = strsplit(x = paste0(hitzetage, collapse = ""), split = "0+") 
+  phasenlaenge = sapply(phasen[[1]], FUN = nchar)         
+  return(sum(phasenlaenge >= schwellenwert_laenge))
+}  
+
+
+	
+	
+	
+	

@@ -1,0 +1,75 @@
+---
+task_name: vektorteil
+
+description: >
+	Gib aus einem gegebenen Vektor _v_ den Teilvektor zurück, der
+	bei Postion _start_ beginnt und die folgenden _laenge_ Elemente hat.
+	Sollte dabei die Länge von _v_ überschritten werden, gib einen leeren Vektor zurück.
+    
+input1:
+	name: v
+	type: array.integer
+	description: ganzer Vektor
+
+input2:
+	name: start
+	type: integer
+	description: Position, ab der extrahiert werden soll
+	
+input3:
+	name: n
+	type: integer
+	description: Länge des zu extrahierenden Vektors
+	
+
+output:
+	type: array.integer
+	description: Der gesuchte Teil-Vektor.
+
+test1:
+	- [1, 2, 3]
+	- 1
+	- 2
+	output: [1,2]
+
+test2:
+	input:
+	- [5, 2, 3, 9]
+	- 2
+	- 3
+	output: [2, 3, 9]
+
+test3:
+	input:
+	- [15, 13, 20]
+	- 3
+	- 1
+	output: [20]
+
+test4:
+	input:
+	- [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+	- 19
+	- 2
+	output: [19, 20]
+
+test5:
+	input:
+	- [1, 2, 3]
+	- 3
+	- 2
+	output: []
+	
+
+solution: |
+	vektorteil = function(v, start, laenge) {
+  if (start+laenge -1 > length(v))
+    return(c())
+  return(v[start:(start+laenge-1)])
+}
+
+
+	
+	
+	
+	
