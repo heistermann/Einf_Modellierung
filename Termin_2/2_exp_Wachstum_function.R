@@ -5,11 +5,11 @@
 
 # Funktion "exp_Wachstum" definieren
 #<
-exp_Wachstum = function (n0, R, nt)
+exp_Wachstum = function (n0, r, nt)
 #>
 {  
 # n0 : Startpopulation
-# R  : Wachstumsrate
+# r  : Wachstumsrate
 # nt : Anzahl Zeitschritte
   
   #Variablen vorbereiten
@@ -18,7 +18,7 @@ exp_Wachstum = function (n0, R, nt)
   
   # Iterationsschleife
   for (t in 2:nt)
-    n[t] = R * n[t-1]
+    n[t] = n[t-1] + r * n[t-1]
   
   # Ergebnis zurückgeben
   #<
@@ -26,14 +26,14 @@ exp_Wachstum = function (n0, R, nt)
   #>
 }
   
-  #Funktion mit n0 = 2, r  = 1.5, nt = 30 aufrufen, Rückgabewert in n_1 speichern
+  #Funktion mit n0 = 2, r  = 0.2, nt = 30 aufrufen, Rückgabewert in n_1 speichern
   #<
-  n_1 = exp_Wachstum(n0 = 2, R  = 1.5, nt = 30)
+  n_1 = exp_Wachstum(n0 = 2, r  = 0.2, nt = 30)
   #>
   
-  #Funktion mit n0 = 4, r  = 1.5, nt = 30 aufrufen, Rückgabewert in n_2 speichern
+  #Funktion mit n0 = 4, r  = 0.2, nt = 30 aufrufen, Rückgabewert in n_2 speichern
   #<
-  n_2 = exp_Wachstum(n0 = 4, R  = 1.5, nt = 30)
+  n_2 = exp_Wachstum(n0 = 4, r  = 0.2, nt = 30)
   #>
 
 
@@ -47,8 +47,8 @@ exp_Wachstum = function (n0, R, nt)
   #? Wie groß muss die Anfangspopulation sein, damit bei halbsogroßem Wachstum
   #? nach 30 Zeitschritten etwa die gleiche Population wie bei n_1 besteht?
   #<
-  n_3 = exp_Wachstum(n0 = 400, R  = 1.25, nt = 30)
+  n_3 = exp_Wachstum(n0 = 25, r = 0.1, nt = 30)
   plot  (x=1:length(n_1), y=n_1, col="black", xlab = "Zeitschritte", ylab="Populationsgröße")
-  lines(x=1:length(n_2), y=n_2, col="red")
-  legend("bottomright", legend=c("n_1", "n_3"), col=c("black","red"), pch = 21)
+  points(x=1:length(n_3), y=n_3, col="blue")
+  legend("bottomright", legend=c("n_1", "n_3"), col=c("black","blue"), pch = 21)
   #>
