@@ -5,51 +5,51 @@
 
 # Funktion "exp_Wachstum" definieren
 #<
-exp_Wachstum = function (n0, r, nt)
+exp_Wachstum = function (N0, r, nt)
 #>
 {  
-# n0 : Startpopulation
+# N0 : Startpopulation
 # r  : Wachstumsrate
 # nt : Anzahl Zeitschritte
   
   #Variablen vorbereiten
-  n = rep(NA,nt) #Vektor für zeitlichen Verlauf der Population anlegen
+  N = rep(NA,nt) #Vektor für zeitlichen Verlauf der Population anlegen
 # Startwerte an die erste Stelle des Vektors schreiben
-  n[1] = n0
+  N[1] = N0
   
 # Iterationsschleife über alle weiteren Zeitschritte
   for (t in 2:nt)
-    n[t] = n[t-1] + r * n[t-1]
+    N[t] = N[t-1] + r * N[t-1]
   
   # Ergebnis zurückgeben
   #<
-  return(n)
+  return(N)
   #>
 }
   
-  #Funktion mit n0 = 2, r  = 0.2, nt = 30 aufrufen, Rückgabewert in n_1 speichern
+  #Funktion mit N0 = 2, r  = 0.2, nt = 30 aufrufen, Rückgabewert in N_1 speichern
   #<
-  n_1 = exp_Wachstum(n0 = 2, r  = 0.2, nt = 30)
+  N_1 = exp_Wachstum(N0 = 2, r  = 0.2, nt = 30)
   #>
   
-  #Funktion mit n0 = 4, r  = 0.2, nt = 30 aufrufen, Rückgabewert in n_2 speichern
+  #Funktion mit N0 = 4, r  = 0.2, nt = 30 aufrufen, Rückgabewert in N_2 speichern
   #<
-  n_2 = exp_Wachstum(n0 = 4, r  = 0.2, nt = 30)
+  N_2 = exp_Wachstum(N0 = 4, r  = 0.2, nt = 30)
   #>
 
 
-  #Resultate (n_1, n_2) in einer Grafik darstellen
+  #Resultate (N_1, N_2) in einer Grafik darstellen
   #<
-  plot  (x=1:length(n_1), y=n_1, col="black", xlab = "Zeitschritte", ylab="Populationsgröße")
-  points(x=1:length(n_2), y=n_2, col="red")
-  legend("bottomright", legend=c("n_1", "n_2"), col=c("black","red"), pch = 21)
+  plot  (x=1:length(N_1), y=N_1, col="black", xlab = "Zeitschritte", ylab="Populationsgröße")
+  points(x=1:length(N_2), y=N_2, col="red")
+  legend("bottomright", legend=c("N_1", "N_2"), col=c("black","red"), pch = 21)
   #>
   
   #? Wie groß muss die Anfangspopulation sein, damit bei halbsogroßem Wachstum
-  #? nach 30 Zeitschritten etwa die gleiche Population wie bei n_1 besteht?
+  #? nach 30 Zeitschritten etwa die gleiche Population wie bei N_1 besteht?
   #<
-  n_3 = exp_Wachstum(n0 = 25, r = 0.1, nt = 30)
-  plot  (x=1:length(n_1), y=n_1, col="black", xlab = "Zeitschritte", ylab="Populationsgröße")
-  points(x=1:length(n_3), y=n_3, col="blue")
-  legend("bottomright", legend=c("n_1", "n_3"), col=c("black","blue"), pch = 21)
+  N_3 = exp_Wachstum(N0 = 25, r = 0.1, nt = 30)
+  plot  (x=1:length(N_1), y=N_1, col="black", xlab = "Zeitschritte", ylab="Populationsgröße")
+  points(x=1:length(N_3), y=N_3, col="blue")
+  legend("bottomright", legend=c("N_1", "N_3"), col=c("black","blue"), pch = 21)
   #>
