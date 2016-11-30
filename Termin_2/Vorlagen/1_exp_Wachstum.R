@@ -1,17 +1,18 @@
 # Seminar zu "Einführung in die Modellierung/Integrierte Modellierung"
 # 1.11.2016
 # Populationswachstum, exponentielles Modell
-# n0 : Startpopulation
+# N0 : Startpopulation
 # r  : Wachstumsrate
 # nt : Anzahl Zeitschritte
   
-  #Parameter (s.o.) zuweisen
-#...hier ergänzen...
+#Parameter (s.o.) zuweisen
+  #...hier ergänzen...
   #Variablen vorbereiten
-  n = rep(NA,nt) #Vektor für zeitlichen Verlauf der Population
-  n[1] = n0
+  N = rep(NA,nt) #Vektor für zeitlichen Verlauf der Population anlegen
+  # Startwerte an die erste Stelle des Vektors schreiben
+  #...hier ergänzen...
   
-  # Iterationsschleife
+  # Iterationsschleife über alle weiteren Zeitschritte
   #...hier ergänzen...
   
   #Resultat darstellen

@@ -8,11 +8,11 @@ subdirs=dir()
 for (sd in subdirs)
 {
   if (!file.info(sd)$isdir) next #skip files, only consider dirs
-  r_files = dir(path = sd, pattern = "\\.[Rr]$")
+  r_files = dir(path = paste0(sd,"/code"), pattern = "\\.[Rr]$")
   if (length(r_files) == 0) next #no files found
   for (r_file in r_files)
   {
-    cont=scan(file = paste0(sd,"/",r_file), what = character(), sep = "\n")
+    cont=scan(file = paste0(sd,"/code/",r_file), what = character(), sep = "\n")
     cont=paste0(cont, collapse = "\n")
     cont_prev=cont
     while (1) #repeated regexp replacement
