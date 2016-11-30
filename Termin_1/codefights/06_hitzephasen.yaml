@@ -5,8 +5,8 @@ description: >
 	Wenn die mittlere Tagestemperatur den Werte _schwellenwert_temp_ an mindestens 
 	_schwellenwert_laenge_ aufeinanderfolgenden Tagen
 	überschreitet, sprich man von einer Hitzephase.
-	Wieviele Hitzephasen enthält die Zeitreihe der Tagestemperaturen _zeitreihe_temp_ ?
-}  
+	
+	Wieviele Hitzephasen enthält die Zeitreihe der Tagestemperaturen _zeitreihe_temp_ ?  
     
 input1:
 	name: zeitreihe_temp
@@ -66,12 +66,12 @@ test5:
 	
 solution: |
 	hitzephasen = function(zeitreihe_temp, schwellenwert_temp, schwellenwert_laenge)
-{
-  hitzetage = as.numeric(zeitreihe_temp > schwellenwert_temp)
-  phasen = strsplit(x = paste0(hitzetage, collapse = ""), split = "0+") 
-  phasenlaenge = sapply(phasen[[1]], FUN = nchar)         
-  return(sum(phasenlaenge >= schwellenwert_laenge))
-}  
+	{
+	  hitzetage = as.numeric(zeitreihe_temp > schwellenwert_temp)
+	  phasen = strsplit(x = paste0(hitzetage, collapse = ""), split = "0+") 
+	  phasenlaenge = sapply(phasen[[1]], FUN = nchar)         
+	  return(sum(phasenlaenge >= schwellenwert_laenge))
+	}  
 
 
 	

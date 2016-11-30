@@ -15,10 +15,11 @@ vektorteil(1:3, 3, 2)
 # Task 05
 draengler = function(reihe) {
   reihe = reihe[reihe >= 1]
-  for (i in 2:length(reihe))
+  for (i in 2:length(reihe)) {
     if (reihe[i] > reihe[i-1])
       reihe[(i-1):i] = reihe[i:(i-1)]
-    return(reihe)
+  }
+  return(reihe)
 }
 
 draengler (c(1.8, 1.2, 1.7))

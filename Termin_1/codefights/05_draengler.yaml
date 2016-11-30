@@ -3,11 +3,11 @@ task_name: draengler
 
 description: >
 	In einer Schlange stehen Kinder an der Essensausgabe. 
-	Der beaufichtigende Lehrer wendet kurz den Blick ab. Sofort
+	Der beaufsichtigende Lehrer wendet kurz den Blick ab. Sofort
 	beginnt die Drängelei: Beginnend am Kopf der Schlange drängelt jedes Kind
 	_ein Mal_ vor seinen Vordermann, wenn es größer ist als dieser.
-	Kinder kleiner als 1 m werden ganz aus der Schlange geschubst.
-	Gib die neue Reihenfolge der Kinder (d.h. dsen Vektor ihrer Körpergrößen) zurück,
+	Kinder kleiner als 1 m werden gleich ganz aus der Schlange geschubst.
+	Gib die neue Reihenfolge der Kinder (d.h. den Vektor ihrer Körpergrößen) zurück,
 	wenn der Lehrer sich wieder zurückgewendet hat.
     
 input1:
@@ -41,12 +41,13 @@ test4:
 
 solution: |
 	draengler = function(reihe) {
-  reihe = reihe[reihe >= 1]
-  for (i in 2:length(reihe))
-    if (reihe[i] > reihe[i-1])
-      reihe[(i-1):i] = reihe[i:(i-1)]
-    return(reihe)
-}
+	  reihe = reihe[reihe >= 1]
+	  for (i in 2:length(reihe)) {
+		if (reihe[i] > reihe[i-1])
+		  reihe[(i-1):i] = reihe[i:(i-1)]
+	  }
+	  return(reihe)
+	}
 
 
 	

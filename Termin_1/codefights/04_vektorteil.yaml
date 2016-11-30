@@ -63,10 +63,10 @@ test5:
 
 solution: |
 	vektorteil = function(v, start, laenge) {
-  if (start+laenge -1 > length(v))
-    return(c())
-  return(v[start:(start+laenge-1)])
-}
+	  if (start+laenge -1 > length(v))
+		return(c())
+	  return(v[start:(start+laenge-1)])
+	}
 
 
 	
