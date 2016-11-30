@@ -3,7 +3,7 @@ task_name: vektorteil
 
 description: >
 	Gib aus einem gegebenen Vektor _v_ den Teilvektor zurück, der
-	bei Postion _start_ beginnt und die folgenden _laenge_ Elemente hat.
+	bei Position _start_ beginnt und die folgenden _laenge_ Elemente hat.
 	Sollte dabei die Länge von _v_ überschritten werden, gib einen leeren Vektor zurück.
     
 input1:
@@ -14,7 +14,7 @@ input1:
 input2:
 	name: start
 	type: integer
-	description: Position, ab der extrahiert werden soll
+	description: Position, ab der der Teilvektor extrahiert werden soll
 	
 input3:
 	name: n

@@ -21,7 +21,7 @@ output:
 	description: Vektor der Körpergrößen der Kinder, nachdem gedrängelt wurde.
 	
 test1:
-	- [1.8, 1.2, 1.7)]
+	- [1.8, 1.2, 1.7]
 	output: [1.8, 1.7, 1.2]
 
 test2:
