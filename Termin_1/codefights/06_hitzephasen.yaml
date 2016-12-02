@@ -1,13 +1,14 @@
 ---
 task_name: hitzephasen
 
-description: >
-	Wenn die mittlere Tagestemperatur den Werte _schwellenwert_temp_ an mindestens 
-	_schwellenwert_laenge_ aufeinanderfolgenden Tagen
-	überschreitet, sprich man von einer Hitzephase.
+description: 
+	Wenn die mittlere Tagestemperatur den Werte `schwellenwert_temp` an mindestens `schwellenwert_laenge` aufeinanderfolgenden Tagen überschreitet, sprich man von einer Hitzephase.
+		
+	Wieviele Hitzephasen enthält die Zeitreihe der Tagestemperaturen `zeitreihe_temp` ?  
 	
-	Wieviele Hitzephasen enthält die Zeitreihe der Tagestemperaturen _zeitreihe_temp_ ?  
-    
+	#### Beispiel
+	Für den Vektor `zeitreihe_temp = c(19, 23, 24, 18, 19, 21)` soll mit `schwellenwert_temp = 20` und `schwellenwert_laenge = 2`  das Ergebnis `1` erzeugt werden.
+	#### Input / Output 
 input1:
 	name: zeitreihe_temp
 	type: array.float

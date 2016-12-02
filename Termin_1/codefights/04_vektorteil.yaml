@@ -2,9 +2,12 @@
 task_name: vektorteil
 
 description: >
-	Gib aus einem gegebenen Vektor _v_ den Teilvektor zurück, der
-	bei Position _start_ beginnt und die folgenden _laenge_ Elemente hat.
+	Gib aus einem gegebenen Vektor `v` den Teilvektor zurück, der bei Position `start` beginnt und die folgenden `n_e`  Elemente hat.
 	Sollte dabei die Länge von _v_ überschritten werden, gib einen leeren Vektor zurück.
+
+	#### Beispiel
+	Für  den Vektor `v = c(2, 3, 4, 5, 6)` soll mit  `start = 2` und `n_e = 3` das Ergebnis `[3, 4, 5]` erzeugt werden.
+	#### Input / Output
     
 input1:
 	name: v
@@ -17,7 +20,7 @@ input2:
 	description: Position, ab der der Teilvektor extrahiert werden soll
 	
 input3:
-	name: n
+	name: n_e
 	type: integer
 	description: Länge des zu extrahierenden Vektors
 	

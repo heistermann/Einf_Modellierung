@@ -1,7 +1,12 @@
 ---
 task_name: echo
 
-description: Die gesuchte Funktion gibt die übergebene Zahl wieder zurück.
+description: 
+	Gibt die übergebene Zahl `n` wieder zurück.
+
+	#### Beispiel
+	Für `n = 7` soll das Ergebnis `7` erzeugt werden.
+	#### Input / Output
 
 input1:
 	name: n	

@@ -1,7 +1,12 @@
 ---
 task_name: summe
 
-description: Gib die Summe der beiden Argumente _arg1_ und _arg2_ zurück!
+description: 
+	Gib die Summe der beiden Argumente `arg1` und `arg2` zurück!
+
+	#### Beispiel
+	Für die Zahlen `arg1 = 17` und `arg2 = 4` soll das Ergebnis `21` erzeugt werden.
+	#### Input / Output
 
 input1:
 	name: arg1

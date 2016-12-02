@@ -1,9 +1,12 @@
 ---
 task_name: max_maximum
 
-description: >
-	Gib die größte Zahl zurück, die in den beiden 
-	gegebenen Vektoren _v1_ und _v2_ enthalten ist!
+description: 
+	Gib die größte Zahl zurück, die in den beiden gegebenen Vektoren `v1` und `v2` enthalten ist!
+	
+	#### Beispiel
+	Für  die Vektoren `v1 = c(23, 17, 1)` und `v2 = c(5, 4)` soll das Ergebnis `23` erzeugt werden.
+	#### Input / Output
     
 input1:
 	name: v1
