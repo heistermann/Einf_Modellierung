@@ -3,7 +3,7 @@ task_name: schwimmbad
 
 description: Die Vermehrung von Coli-Bakterien in einem Schwimmbad lasse sich mit dem Ansatz des exponentiellen Wachstums beschreiben.
 Dafür haben wir folgende Funktion verwendet, die Du in den Quelltext kopieren kannst:
-exp_Wachstum = function (N0, r, nt)
+`exp_Wachstum = function (N0, r, nt)
   {  
     
     N = rep(NA,nt) #Vektor für zeitlichen Verlauf der Population anlegen
@@ -13,13 +13,15 @@ exp_Wachstum = function (N0, r, nt)
       N[t] = N[t-1] + r * N[t-1]
     
     return(N)
-  }
+  }`
 
   Ab einer Bakterienpopulation _N_grenzwert_ ist das Baden nicht mehr gefahrlos möglich.
   Gib an, ab welchem Zeitschritt der Badebetrieb bei den gegebenen Parametern (_N0_, _r_, _nt_) und _N_grenzwert_ eingestellt werden muss.
   Wird der Schwellenwert innerhalb von 1000 Tagen nicht überschritten, gib -1 zurück.
 
-
+#### Beispiel
+Für `N0 = 2`, `r = 0.1` entwickelt sich die Bakterienpopulations wie `[2.0, 2.2, 2.4, 2.6, ... , 82.2, 90.5,  99.5, 109.5, ...]`. Am 43. Tag wird der Grenzwert `N_grenzwert=100` überschritten. Es soll als das Ergebnis `43` erzeugt werden.
+#### Input / Output
   
 input1:
 	name: N0	

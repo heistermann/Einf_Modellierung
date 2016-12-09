@@ -3,11 +3,11 @@ task_name: schwimmbad2
 
 description: Wie in der vorherigen Aufgabe betrachten wir ein Schwimmbad, in dem sich Bakterien mit exponentiellen Wachstum vermehren.
 Wenn der Bademeister bemerkt, dass der Grenzwert _N_grenzwert_ überschritten wird, setzt er Chlor zum Becken hinzu. Dadurch verändert sich die Wachstumsrate auf _r_chlor_.
-Gib an, wie groß die Bakterienpopulation 3 Tage nach der Chlorzugabe ist (gerundet). 
-Wurde der Grenzwert nicht überschritten und war eine Chlorzugabe somit nicht nötig, gib die maximal beobachtetet Bakteriendichte zurück (gerundet).
+Gib an, wie groß die Bakterienpopulation 3 Tage nach der Chlorzugabe ist (ganzzahlig gerundet). 
+Wurde der Grenzwert nicht überschritten und war eine Chlorzugabe somit nicht nötig, gib die maximal beobachtetet Bakteriendichte zurück (ganzzahlig gerundet).
 
 Die Funktion für das exponentielle Wachstum kannst Du wieder in den Quelltext übernehmen:
-exp_Wachstum = function (N0, r, nt)
+`exp_Wachstum = function (N0, r, nt)
   {  
     
     N = rep(NA,nt) #Vektor für zeitlichen Verlauf der Population anlegen
@@ -17,8 +17,13 @@ exp_Wachstum = function (N0, r, nt)
       N[t] = N[t-1] + r * N[t-1]
     
     return(N)
-  }
-
+  }`
+  
+#### Beispiel
+Für `N0 = 2`, `r = 0.1` entwickelt sich die Bakterienpopulations wie `[2.0, 2.2, 2.4, 2.6, ... , 82.2, 90.5,  99.5, 109.5, ...]`. Am 43. Tag wird der Grenzwert `N_grenzwert=100` überschritten. Nun wird Chlor zugegeben, wodurch die Bakterien in den folgenden Tagen reduziert werden:  `[109.5, 98.5, 88.7, 79.8]`. 
+Es soll als das Ergebnis `80` (gerundete von 79.8) erzeugt werden.
+#### Input / Output
+ 
    
 input1:
 	name: N0	
@@ -46,27 +51,22 @@ output:
 	description: Bakterienpopulation drei Tage nach Chlorzugabe (gerundet).
 
 
-
-
-
-
-
-
-
 	
 test1:
 	input: 
 	- 2
 	- 0.1
 	- 100
-
+	- -0.1
 	output: 80	
+
 	
 test2:
 	input: 
 	- 50
 	- 0.01
 	- 200
+	- 0
 	output: 201	
 	
 test3:
@@ -74,6 +74,7 @@ test3:
 	- 5
 	- 0.001
 	- 1000
+	- -0.1
 	output: 14	
 	
 test4:
@@ -81,6 +82,7 @@ test4:
 	- 10
 	- 1.2
 	- 100
+	- 0.3
 	output: 234	
 	
 test5:
@@ -88,6 +90,7 @@ test5:
 	- 200
 	- 0.1
 	- 100
+	- 0.01
 	output: 206	
 	
 	
