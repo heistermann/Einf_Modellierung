@@ -1,0 +1,61 @@
+---
+task_name: interpolation
+
+description: Ein Zoologe hat einem Wal einen Sensor angelegt, der die zurückgelegte Strecke aufzeichnet. Wenn der Wal auftaucht, sendet der Sensor die Zeit und die seit Messbeginn zurückgelegte Strecke. Die Position des Wals für beliebige Zeitpunkte zwischen den Auftauchpasen soll durch lineare Interpolation abgeschätzt werden. Benutze dafür die Funktion _approx()_ . 
+
+   
+input1:
+	name: t_mess	
+	type: array.float
+	description: Zeitpunkte, zu denen die Position aufgezeichnet wurde
+
+input2:
+	name: x_mess
+	type: array.float
+	description: Zurückgelegte Strecke zu den Zeitpunkten _t_mess_
+
+input3:
+	name: t_approx	
+	type: array.float
+	description: Zeitpunkte, für die die Stecke geschätzt werden soll.
+	
+output:
+	type: array.float
+	description: Geschätzte Strecke zu den Zeitpunkten in _t_approx_.
+
+
+	
+test1:
+	input: 
+	- [0,1]
+	- [0,30]
+	- [0.5]
+
+	output: [15]
+	
+test2:
+	input: 
+	-[0, 1, 2.5]
+	-[0,30, 31]
+	-[0.5, 1, 1.1]
+	output: [15.00000, 30.00000, 30.06667]
+	
+test3:
+	input: 
+	-[2, 4, 5, 8] 
+	-[1, 2, 5, 10]
+	-[2.5, 2.5, 3]
+	output: [1.25, 1.25, 1.50]
+	
+test4:
+	input: 
+	-[-1,2]
+	-[2,3]
+	-[0]
+	output: [2.333333]
+	
+	
+solution: |
+	interpolation = function(t_mess, x_mess, t_approx) {
+return(approx(x=t_mess, y = x_mess, xout = t_approx)$y)
+}
