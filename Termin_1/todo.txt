@@ -1,0 +1,5 @@
+- R Aufruf in Pool testen
+- Preis für Turnier besorgen
+- Turnier anlegen (x)
+- Challenges anlegen
+- quickstart.R ausdrucken
