@@ -1,43 +1,4 @@
 # Task 01
-wuerfel = function(n_wuerfe, seed) {
-  set.seed(seed)
-  wuerfe = ceiling(runif(n = n_wuerfe, min = 0, max=6))
-  return (wuerfe)
-}
-
-wuerfel(1, 1)
-wuerfel(5, 3)
-wuerfel(7, 0)
-wuerfel(3, 1000)
-
-# Task 02
-wuerfel_gezinkt = function(ergebnis) {
-  n_wuerfe = length(ergebnis)
-  testwurf = rep(0, n_wuerfe)
-  seed=0
-  while(any(testwurf != ergebnis))
-  {
-    seed=seed+1
-    set.seed(seed)
-    testwurf = sample(x = 1:6, size = n_wuerfe, replace = TRUE)
-  }
-
-  return (seed)
-}
-
-wuerfel_gezinkt(1)
-
-wuerfel_gezinkt(c(6,6))
-
-wuerfel_gezinkt(c(1,2,3,4))
-
-wuerfel_gezinkt(c(1,1,1,1,1))
-
-
-
-
-
-# Task 03
 schwimmbad = function(N0, r, N_grenzwert) {
   
   exp_Wachstum = function (N0, r, nt)
@@ -70,7 +31,7 @@ schwimmbad(10, 1.2, 100)
 schwimmbad(200, 0.1, 100)
 
 
-# Task 04
+# Task 02
 schwimmbad2 = function(N0, r, N_grenzwert, r_chlor) {
   
   exp_Wachstum = function (N0, r, nt)
@@ -105,10 +66,46 @@ schwimmbad2(10, 1.2, 100, 0.3)
 schwimmbad2(200, 0.1, 100, 0.01)
 
 
+# Task 03
+wuerfel = function(n_wuerfe, seed) {
+  set.seed(seed)
+  wuerfe = ceiling(runif(n = n_wuerfe, min = 0, max=6))
+  return (wuerfe)
+}
+
+wuerfel(1, 1)
+wuerfel(5, 3)
+wuerfel(7, 0)
+wuerfel(3, 1000)
+
+# Task 04
+wuerfel_gezinkt = function(ergebnis) {
+  n_wuerfe = length(ergebnis)
+  testwurf = rep(0, n_wuerfe)
+  seed=0
+  while(any(testwurf != ergebnis))
+  {
+    seed=seed+1
+    set.seed(seed)
+    testwurf = sample(x = 1:6, size = n_wuerfe, replace = TRUE)
+  }
+  
+  return (seed)
+}
+
+wuerfel_gezinkt(1)
+wuerfel_gezinkt(c(6,6))
+wuerfel_gezinkt(c(1,2,3,4))
+wuerfel_gezinkt(c(1,1,1,1,1))
+
+
+
+
+
 # Task 05
 interpolation = function(t_mess, x_mess, t_approx) {
-return(approx(x=t_mess, y = x_mess, xout = t_approx)$y)
-}
+  return(round(approx(x=t_mess, y = x_mess, xout = t_approx)$y), digits=2)
+  }
 
 interpolation(c(0,1), c(0,30), 0.5)
 interpolation(c(0, 1, 2.5), c(0,30, 31), c(0.5, 1, 1.1))

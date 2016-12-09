@@ -1,0 +1,126 @@
+---
+task_name: schwimmbad2
+
+description: Wie in der vorherigen Aufgabe betrachten wir ein Schwimmbad, in dem sich Bakterien mit exponentiellen Wachstum vermehren.
+Wenn der Bademeister bemerkt, dass der Grenzwert `N_grenzwert` überschritten wird, setzt er Chlor zum Becken hinzu. Dadurch verändert sich die Wachstumsrate auf `r_chlor`.
+Gib an, wie groß die Bakterienpopulation 3 Tage nach der Chlorzugabe ist (ganzzahlig gerundet). 
+Wurde der Grenzwert nicht überschritten und war eine Chlorzugabe somit nicht nötig, gib die maximal beobachtetet Bakteriendichte zurück (ganzzahlig gerundet).
+
+Die Funktion für das exponentielle Wachstum kannst Du wieder in den Quelltext übernehmen:
+
+
+    exp_Wachstum = function (N0, r, nt)
+    {  
+       N = rep(NA,nt) #Vektor für zeitlichen Verlauf der Population anlegen
+      N[1] = N0
+      
+      for (t in 2:nt)
+        N[t] = N[t-1] + r * N[t-1]
+      
+      return(N)
+    }
+
+
+  
+#### Beispiel
+Für `N0 = 2`, `r = 0.1` entwickelt sich die Bakterienpopulations wie `[2.0, 2.2, 2.4, 2.6, ... , 82.2, 90.5,  99.5, 109.5, ...]`. Am 43. Tag wird der Grenzwert `N_grenzwert=100` überschritten. Nun wird Chlor zugegeben, wodurch die Bakterien in den folgenden Tagen reduziert werden:  `[109.5, 98.5, 88.7, 79.8]`. 
+Es soll als das Ergebnis `80` (gerundete von 79.8) erzeugt werden.
+#### Input / Output
+ 
+   
+input1:
+	name: N0	
+	type: float
+	description: Startpopulation der Bakterien
+
+input2:
+	name: r	
+	type: float
+	description: Wachstumsrate
+
+input3:
+	name: N_grenzwert
+	type: float
+	description: Grenzwert für Sperrung des Badegewässers (Chlorzugabe)
+
+input2:
+	name: r_chlor
+	type: float
+	description: Wachstumsrate nach Chlorzugabe
+	
+output:
+	type: integer
+	description: Bakterienpopulation drei Tage nach Chlorzugabe (gerundet)
+
+
+	
+test1:
+	input: 
+	- 2
+	- 0.1
+	- 100
+	- -0.1
+	output: 80	
+
+	
+test2:
+	input: 
+	- 50
+	- 0.01
+	- 200
+	- 0
+	output: 201	
+	
+test3:
+	input: 
+	- 5
+	- 0.001
+	- 1000
+	- -0.1
+	output: 14	
+	
+test4:
+	input: 
+	- 10
+	- 1.2
+	- 100
+	- 0.3
+	output: 234	
+	
+test5:
+	input: 
+	- 200
+	- 0.1
+	- 100
+	- 0.01
+	output: 206	
+	
+	
+solution: |
+	schwimmbad2 = function(N0, r, N_grenzwert, r_chlor) {
+  
+  exp_Wachstum = function (N0, r, nt)
+  {  
+    # N0 : Startpopulation
+    # r  : Wachstumsrate
+    # nt : Anzahl Zeitschritte
+    
+    N = rep(NA,nt) #Vektor für zeitlichen Verlauf der Population anlegen
+    N[1] = N0
+    
+    for (t in 2:nt)
+      N[t] = N[t-1] + r * N[t-1]
+    
+    return(N)
+  }
+  
+  N = exp_Wachstum (N0=N0, r=r, nt=1000)
+  sperrtag = which (N > N_grenzwert)[1]
+  
+  if (is.na(sperrtag)) return(round(max(N)))   #Grenzwert wurde nicht überschritten, gib Maximalpopulation zurück
+  
+  N_chlor = exp_Wachstum (N0=N[sperrtag], r=r_chlor, nt=4)  #Wachstum unter Chloreinfluss
+  
+  return (round(N_chlor[4]))
+}
+	
