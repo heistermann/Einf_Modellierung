@@ -39,11 +39,11 @@ test4:
 	output: 3886
 
 solution: |
-wuerfel_gezinkt = function(ergebnis) {
-  n_wuerfe = length(ergebnis)
+wuerfel_gezinkt = function(wurf) {
+  n_wuerfe = length(wurf)
   testwurf = rep(0, n_wuerfe)
   seed=0
-  while(any(testwurf != ergebnis))
+  while(any(testwurf != wurf))
   {
     seed=seed+1
     set.seed(seed)

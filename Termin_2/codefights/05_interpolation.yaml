@@ -4,7 +4,7 @@ task_name: interpolation
 description: Ein Zoologe hat einem Wal einen Sensor angelegt, der die zurückgelegte Strecke aufzeichnet. Wenn der Wal auftaucht, sendet der Sensor die Zeit und die seit Messbeginn zurückgelegte Strecke. Die Position des Wals für beliebige Zeitpunkte zwischen den Auftauchpasen soll durch lineare Interpolation abgeschätzt werden. Benutze dafür die Funktion `approx()`. 
 
 #### Beispiel
-Zu den Zeitpunkten `[0, 1]` wurden die Strecken `[0, 30]` bestimmt. Für den Zeitpunkt `0.5` befand sich der Wal vermutlich etwa bei `15`.
+Zu den Zeitpunkten `[0, 1]` wurden die Strecken `[0, 30]` bestimmt. Für die Zeitpunkte `[0.5, 1]` befand sich der Wal vermutlich jeweils bei `[15, 30]`.
 #### Input / Output   
 
    
@@ -33,9 +33,9 @@ test1:
 	input: 
 	- [0,1]
 	- [0,30]
-	- [0.5]
+	- [0.5, 1]
 
-	output: [15]
+	output: [15, 30]
 	
 test2:
 	input: 

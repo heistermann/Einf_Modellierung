@@ -3,7 +3,7 @@ task_name: wuerfel
 
 description: Simuliere das Werfen eines normalen sechsseitigen Würfels mit `runif()`! Der Würfel soll `n_wuerfe` mal geworfen werden, das Ergebnis in Form eines Vektors zurückgegeben werden.
 Damit die Augenzahl eine ganze Zahl ist, benutze die Funktion `ceiling()`.
-Um das Zufallsereignis reproduzierbar zu machen, initialisiere den Zufallsgenerator mit `seed` (siehe Hilfe `runif()`).
+Um das Zufallsereignis reproduzierbar zu machen, initialisiere den Zufallsgenerator mit `set.seed(seed)`.
    
 #### Beispiel
 Für `n_wuerfe = 5` und `seed = 3` werden die Zahlen `[2, 5, 3, 2, 4]` gewürfelt.
@@ -26,9 +26,9 @@ output:
 	
 test1:
 	input: 
+	- 2
 	- 1
-	- 1
-	output: [2]
+	output: [2, 3]
 	
 test2:
 	input: 

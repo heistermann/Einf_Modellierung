@@ -73,17 +73,17 @@ wuerfel = function(n_wuerfe, seed) {
   return (wuerfe)
 }
 
-wuerfel(1, 1)
+wuerfel(2, 1)
 wuerfel(5, 3)
 wuerfel(7, 0)
 wuerfel(3, 1000)
 
 # Task 04
-wuerfel_gezinkt = function(ergebnis) {
-  n_wuerfe = length(ergebnis)
+wuerfel_gezinkt = function(wurf) {
+  n_wuerfe = length(wurf)
   testwurf = rep(0, n_wuerfe)
   seed=0
-  while(any(testwurf != ergebnis))
+  while(any(testwurf != wurf))
   {
     seed=seed+1
     set.seed(seed)
@@ -104,10 +104,10 @@ wuerfel_gezinkt(c(1,1,1,1,1))
 
 # Task 05
 interpolation = function(t_mess, x_mess, t_approx) {
-  return(round(approx(x=t_mess, y = x_mess, xout = t_approx)$y), digits=2)
+  return(round(approx(x=t_mess, y = x_mess, xout = t_approx)$y, digits=2))
   }
 
-interpolation(c(0,1), c(0,30), 0.5)
+interpolation(c(0,1), c(0,30), c(0.5,1))
 interpolation(c(0, 1, 2.5), c(0,30, 31), c(0.5, 1, 1.1))
 interpolation(c(2, 4, 5, 8) , c(1, 2, 5, 10), c(2.5, 2.5, 3))
 interpolation(c(-1,2), c(2,3), 0)
