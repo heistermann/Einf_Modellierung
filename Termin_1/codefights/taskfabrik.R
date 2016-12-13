@@ -1,13 +1,13 @@
 # Task 04
-vektorteil = function(v, start, laenge) {
-  if (start+laenge -1 > length(v))
+vektorteil = function(v, start, n_e) {
+  if (start+n_e -1 > length(v))
     return(c())
-  return(v[start:(start+laenge-1)])
+  return(v[start:(start+n_e-1)])
 }
 
 vektorteil(c(1, 2, 3), 1, 2)
 vektorteil(c(5, 2, 3, 9), 2, 3 )
-vektorteil(c(15, 13, 20), 3, 1)
+vektorteil(c(15, 13, 20, 21), 3, 2)
 vektorteil(1:20, 19, 2)
 vektorteil(1:3, 3, 2)
 
@@ -43,5 +43,18 @@ hitzephasen( c(30, 33, 19, 23, 24, 25, 19, 21, 22), 20, 3)
 hitzephasen( c(30, 33, 27, 15, 30, 31, 33, 20, 32, 33), 20, 1)
 hitzephasen( c(30, 33, 27, 15, 30, 31, 33, 20, 32, 33), 15, 2)
 hitzephasen( c(30, 33, 27, 15, 30, 31, 33, 20, 32, 33), 40, 2)
+
+
+
+
+R_bug <- function(arg1) {
+if (arg1==0) return (NULL)  else
+  return(as.array(as.integer(1)))
+}
+
+R_bug(0)
+str(R_bug(1))
+
+a=1:3
 
 

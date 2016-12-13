@@ -44,10 +44,10 @@ test2:
 
 test3:
 	input:
-	- [15, 13, 20]
+	- [15, 13, 20, 21]
 	- 3
-	- 1
-	output: [20]
+	- 2
+	output: [20, 21]
 
 test4:
 	input:
@@ -65,10 +65,10 @@ test5:
 	
 
 solution: |
-	vektorteil = function(v, start, laenge) {
-	  if (start+laenge -1 > length(v))
+	vektorteil = function(v, start, n_e) {
+	  if (start+n_e -1 > length(v))
 		return(c())
-	  return(v[start:(start+laenge-1)])
+	  return(v[start:(start+n_e-1)])
 	}
 
 

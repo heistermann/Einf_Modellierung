@@ -1,6 +1,6 @@
 # Seminar zu "Einführung in die Modellierung/Integrierte Modellierung"
 # 1.11.2016
-# Populationswachstum, exponentielles Modell
+# Populationswachstum: exponentielles Modell
 # N0 : Startpopulation
 # r  : Wachstumsrate
 # nt : Anzahl Zeitschritte
