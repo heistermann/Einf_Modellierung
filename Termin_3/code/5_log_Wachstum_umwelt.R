@@ -1,20 +1,33 @@
 # Seminar zu "Einführung in die Modellierung/Integrierte Modellierung"
 # 1.11.2016
 
-# Populationswachstum, exponentielles Modell mit Umweltstochastizität
+# Populationswachstum: logistisches Modell + Umwelteinfluss
 
 
-kapazitaet = function (K_opt, K_pess, theta_opt, praeferendumsbreite, theta)
-{
-  #K = K_pess + (K_opt-K_pess) * dnorm(theta, mean = theta_opt, sd = praeferendumsbreite/6) / dnorm(x=0, sd=praeferendumsbreite/6)
-  #K = approx(x=c(theta_opt - praeferendumsbreite/2, theta_opt, theta_opt + praeferendumsbreite/2), y = c(K_pess, K_opt, K_pess), xout = theta, rule = 2)$y
-  K = approx(x=c(theta_opt + praeferendumsbreite*c(-1.5, -0.5, 0.5, 1.5)), y = c(K_pess, K_opt, K_opt, K_pess), xout = theta, rule = 2)$y
-  return(K)
-}
+# Konzept der umweltabhängigen Kapazität ausprobieren
+  # Funktion "kapazitaet" definieren, die die Kapazität in Abhängigkeit der Parameter
+  # K_opt, K_pess, theta_opt, praeferendumsbreite für eine gegebenes theta berechnet
+  #<
+  kapazitaet = function (K_opt, K_pess, theta_opt, praeferendumsbreite, theta)
+  {
+    #K = K_pess + (K_opt-K_pess) * dnorm(theta, mean = theta_opt, sd = praeferendumsbreite/6) / dnorm(x=0, sd=praeferendumsbreite/6)
+    #K = approx(x=c(theta_opt - praeferendumsbreite/2, theta_opt, theta_opt + praeferendumsbreite/2), y = c(K_pess, K_opt, K_pess), xout = theta, rule = 2)$y
+    K = approx(x=c(theta_opt + praeferendumsbreite*c(-1.5, -0.5, 0.5, 1.5)), y = c(K_pess, K_opt, K_opt, K_pess), xout = theta, rule = 2)$y
+    return(K)
+  }
+  #>
+  
+  #Funktion testen und Diagramm erzeugen:
+  theta_opt = 0.7 #Optimum hinsichtlich theta 
+  K_opt  = 100 #Habitatkapazität unter optimalen Bedingungen
+  K_pess = 3   #Habitatkapazität unter schlechtestmöglichen Bedingungen
+  praeferendumsbreite = 0.2 #0.25
+  
+  theta_plot = 0:100/100
+  K_plot = kapazitaet(K_opt = K_opt, K_pess=K_pess, theta_opt = theta_opt, praeferendumsbreite = praeferendumsbreite, theta = theta_plot)
+  plot(theta_plot, K_plot, xlab="theta", ylab="K_max", type="l", col="blue")
 
-plot(kapazitaet(K_opt = K_opt, K_pess=K_pess, theta_opt = theta_opt, praeferendumsbreite = praeferendumsbreite, theta = (0:100)/100))
-
-# Funktion "log_Wachstum_umwelt" definieren
+# Funktion "log_Wachstum_umwelt" definieren (n_min=2)
 #<
 log_Wachstum_umwelt = function (n0, r_max, nt, K_opt, K_pess, theta_opt, praeferendumsbreite, theta, n_min=2)
 #>
@@ -35,42 +48,43 @@ log_Wachstum_umwelt = function (n0, r_max, nt, K_opt, K_pess, theta_opt, praefer
   
   # Iterationsschleife
   for (t in 2:nt)
-  # dichtegesteuerte Wachstumsrate (logistischer Regression)
-  # Umweltabhängige Kapazität  
-  #<
   {
-    
+    # Umweltabhängige Kapazität  
+    #<
     K = kapazitaet(K_opt = K_opt, K_pess=K_pess, theta_opt = theta_opt, praeferendumsbreite = praeferendumsbreite, theta = theta[t])
-    
-    r = r_max* (1 - n[t-1]/K)
+    #>
       
+    # dichtegesteuerte Wachstumsrate (logistischer Regression)
+    #<
+    r = r_max* (1 - n[t-1]/K)
+    #>
+    
     n[t] = n[t-1] + r * n[t-1]
-    if (n[t]<n_min) n[t]=0
+    if (n[t] < n_min) n[t] = 0     #Population kleiner als n_min stirbt aus
   }
-  #>
-  
+
   # Ergebnis zurückgeben
   return(n)
 }
   
-  theta_opt = 0.7
-  
-  
-  K_opt  = 100 #Habitatkapazität unter optimalen Bedingungen
-  K_pess = 3   #Habitatkapazität unter schlechtestmöglichen Bedingungen
-  praeferendumsbreite = 0.2 #0.25
-  r_max = 0.1
-  nt = 500
-  
-  # Umweltbedingung (hier synthetisch erzeugt)
-    # Initialisierung des Zufallsgenerators für reproduzierbaren Zufall
-    set.seed(3)
+
+  # Umweltbedingung theta (hier synthetisch erzeugt)
+    set.seed(3) # Initialisierung des Zufallsgenerators für reproduzierbaren Zufall
     theta_min=0 #Minimum und Maximum der Umweltvariable
     theta_max=1
-    theta = runif(n = nt, min=theta_min, max=theta_max)  
+    theta = runif(n = nt, min=theta_min, max=theta_max)  #Zufallsgenerator
     theta = lowess(theta, f=0.05)$y  #Glättung, damit sich ein kontinuierlicher Verlauf zeigt
     #theta = (theta - min(theta)) / diff(range(theta))* (theta_max-theta_min) + theta_min
+
+  #
+    theta_opt = 0.7 #Optimum hinsichtlich theta 
+    K_opt  = 100 #Habitatkapazität unter optimalen Bedingungen
+    K_pess = 3   #Habitatkapazität unter schlechtestmöglichen Bedingungen
+    praeferendumsbreite = 0.2 #0.15
+    r_max = 0.1
+    nt = 500
     
+        
   #Funktion mit n0 = 2, r_max aus Vektor, K = 100 aufrufen, Rückgabewert in n_1 speichern
   #<
   n_1 = log_Wachstum_umwelt(n0 = 2, r_max=r_max, nt = nt, 
@@ -80,41 +94,43 @@ log_Wachstum_umwelt = function (n0, r_max, nt, K_opt, K_pess, theta_opt, praefer
   #>
   
 
-  #Population (n_1) in einer Grafik darstellen
+  #Population (n_1) darstellen
   plot  (x=1:length(n_1), y=n_1, type="l", col="black", xlab = "Zeitschritte", ylab="Populationsgröße")
 
-  #weitere Grafik über die erstere legen, ohne diese zu löschen
-  par(new=TRUE)
-  #Zeitreihe von theta (Klima) einzeichnen
-  #Amplitude auf ca. Hälfte des Fensters skalieren (Tipp: plot(..., ymin=...))
-  #erneute Titel unterdrücken (Tipp: plot(..., xlab=...))
-  #erneute Achsenbeschriftung unterdrücken (Tipp: plot(..., axes=...))
-
-  #<
-    plot(x=1:length(n_1), y = theta, col="blue", type="l", ylim = c(min(theta), 2*max(theta)), axes = FALSE,
-       xlab="", ylab="" )
-  #>  
-  #zweite y-Achsenbeschriftung rechts einfügen (Tipp: axis(...))
-  #<  
-  axis(side=4)
-  #>
-  #horizontale Linie bei theta_opt +/- praeferendumsbreite/2 einzeichnen
-  #<  
-  abline(h=c(theta_opt-praeferendumsbreite/2, theta_opt, theta_opt+praeferendumsbreite/2) , lty="dashed", col="black")
-  #>
+  #Zeitreihe von theta (Klima) in die gleich Grafik einzeichnen
+    #weitere Grafik über die erstere legen, ohne diese zu löschen
+    par(new=TRUE)
   
-  legend("topleft", legend=c("n_1", "theta"), col=c("black","blue"), lty= 1)
+    #Amplitude auf ca. Hälfte des Fensters skalieren (Tipp: plot(..., ymin=...))
+    #erneute Titelausgabe unterdrücken               (Tipp: plot(..., xlab=...))
+    #erneute Achsenbeschriftung unterdrücken         (Tipp: plot(..., axes=...))
+    #<
+      plot(x=1:length(n_1), y = theta, col="blue", type="l", ylim = c(min(theta), 2*max(theta)), axes = FALSE,
+         xlab="", ylab="" )
+    #>  
+    #zweite y-Achsenbeschriftung rechts einfügen (Tipp: axis(...))
+    #<  
+    axis(side=4)
+    #>
+    #horizontale Linie bei theta_opt +/- praeferendumsbreite/2 einzeichnen
+    #<  
+    abline(h=c(theta_opt-praeferendumsbreite/2, theta_opt, theta_opt+praeferendumsbreite/2) , lty="dashed", col="black")
+    #>
   
-  #<? Was passiert, wenn die Art etwas stenöker (paeferendumsbreite=0.2) ist?
+    legend("topleft", legend=c("n_1", "theta"), col=c("black","blue"), lty= 1)
+  
+  #<? Was passiert, wenn die Art etwas stenöker (paeferendumsbreite=0.15) ist?
   
   
-  #<? Vergleiche die Popultionsdynamik mit einer zweiten Populationen  
+  #<? Vergleiche die Popultionsdynamik mit einer zweiten Populationen n_2, 
   #<? die trockenresistenter (theta_opt=0.3) ist
   
+  #<
    n_2 = log_Wachstum_umwelt(n0 = 2, r_max=r_max, nt = nt, 
                             K_opt = K_opt, K_pess = K_pess, 
                             theta_opt=0.3, praeferendumsbreite = praeferendumsbreite,
                             theta=theta)
+  #> 
  
   #Population (n_1 und n_2) in einer Grafik darstellen
   plot  (x=1:length(n_1), y=n_1, type="l", col="black", xlab = "Zeitschritte", ylab="Populationsgröße")

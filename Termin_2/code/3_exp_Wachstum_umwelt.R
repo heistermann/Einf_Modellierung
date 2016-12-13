@@ -1,7 +1,7 @@
 # Seminar zu "Einführung in die Modellierung/Integrierte Modellierung"
 # 1.11.2016
 
-# Populationswachstum, exponentielles Modell mit Umwelteinwirkungen
+# Populationswachstum: exponentielles Modell mit Umwelteinwirkungen
 
 # Funktion "exp_Wachstum_umwelt" definieren
 #<
