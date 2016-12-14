@@ -3,8 +3,8 @@ task_name: draengler
 
 description: >
 	In einer Schlange stehen Kinder an der Essensausgabe. 
-	Der beaufsichtigende Lehrer wendet kurz den Blick ab. Sofort beginnt die Drängelei: Beginnend am Kopf der Schlange drängelt jedes Kind _ein Mal_ vor seinen Vordermann, wenn es größer ist als dieser.
-	Kinder kleiner als 1 m werden gleich ganz aus der Schlange geschubst.
+	Der beaufsichtigende Lehrer wendet kurz den Blick ab. Sofort beginnt die Drängelei: Kinder kleiner als 1 m werden gleich ganz aus der Schlange geschubst. Danach,
+	 beginnend am Kopf der Schlange, drängelt jedes Kind _ein Mal_ vor seinen Vordermann, wenn es größer ist als dieser.
 	Gib die neue Reihenfolge der Kinder (d.h. den Vektor ihrer Körpergrößen) zurück, wenn der Lehrer sich wieder zurückgewendet hat.
 	
 	#### Beispiel
