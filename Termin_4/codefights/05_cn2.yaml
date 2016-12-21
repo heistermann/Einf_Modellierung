@@ -45,19 +45,27 @@ description: >
 	df = read.table(con, header=TRUE, sep=";", stringsAsFactors=FALSE, strip.white=TRUE)
 	```
 
-	Wenn also trockene oder feuchte Bedinungen herrschen, wird der entsprechende
+	Wenn trockene oder feuchte Bedinungen herrschen, wird der entsprechende
 	Faktor mit dem CN-Wert fuer normale Bedingungen multipliziert. 
+		
+	Berechne nun den resultierenden CN-Wert auf Grundlage
+	- des CN-Wertes fuer normale Bedingungen (`cn2`), 
+	- der Niederschlagshoehen (in mm) der jeweils fuenf vorangegangenen Tage (`precip`),
+	- der Angabe, ob man sich innerhalb der Vegetationsperiode befindet (`vegetation`). 
+
+	#### Beispiel
+	Der CN-Wert fuer normale Bedingungen sei `cn2=72`. Der Niederschlag der Vortage sei
+	`precip=c(4,3,0,2,1)`. Damit ergibt sich der P5-Wert zu `sum(precip)=10`.
+	Wenn `vegetation=FALSE`, dann befinden wir uns außerhalb der Vegetationsperiode.
+	Die Bedingungen sind somit **trocken**. Der Tabellenwert, welcher unserem CN-Wert 
+	fuer normale Bedingungen (`cn2`) am naechsten kommt ist `70`. 
+	Der Anpassungfaktor ist also `0.73`, und der resultierende CN-Wert
+	ergibt sich zu CN = 0.73 * 72.
 	
-	**Beispiel:** Der CN-Wert fuer normale Bedingungen ist `72`. Der P5-Wert ergibt
-	`10 mm` (ausserhalb der Vegetationsperiode). Die Bedingungen sind daher *trocken*.
-	Der Tabellenwert, welcher unserem CNB-Wert fuer normale Bedingungen am naechsten
-	kommt ist `70`. Der Anpassungfaktor ist somit `0.73`, und der resultierende CN-Wert
-	somit CN = 0.73 * 72.
+	*Hinweis*: Die Funktion ``which.min` gibt für einen Vektor diejenige Position ("Index")
+	zurück, an welcher sich der kleinste Wert befindet. Das könnte beim Auffinden des
+	Anpassungsfaktors hilfreich sein.
 	
-	Berechne nun auf Grundlage des CN-Wertes fuer normale Bedingungen (`cn2`), der
-	Niederschlagshoehen der jeweils fuenf vorangegangene Tage (precip) und der Information,
-	ob sie sich innerhalb der Vegetationsperiode befinden, den resultierenden CN-Wert.
-	 
 input1:
 	name: cn2
 	type: Integer
