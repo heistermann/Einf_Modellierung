@@ -76,14 +76,14 @@ test4:
 	- 10
 	- 1.2
 	- 100
-	output: 1	
+	output: 4	
 	
 test5:
 	input: 
 	- 200
 	- 0.1
 	- 100
-	output: 4	
+	output: 1	
 	
 	
 	
