@@ -1,12 +1,12 @@
 # Task 01
-manipulation = function(precip, stoertage) {
+qualitatetskontrolle = function(precip, stoertage) {
   precip[stoertage] = -9999
-  return(ziehung)
+  return(precip)
 }
 
-manipulation(c(1,2,3,4,5,6), c(1,2))
-manipulation(c(1,2,3,4,5,6), c(4,5))
-manipulation(c(1,2,3,4,5,6), c(1,3,6))
+qualitatetskontrolle(c(1,2,3,4,5,6), c(1,2))
+qualitatetskontrolle(c(1,2,3,4,5,6), c(4,5))
+qualitatetskontrolle(c(1,2,3,4,5,6), c(1,3,6))
 
 
 # Task 02
