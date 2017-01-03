@@ -42,9 +42,13 @@ description: >
 	```
 	
 	Nutze nun diesen `data.frame`, um aus den folgenden Argumenten 
-	den passenden CN-Wert zu ermitteln: Landnutzung Typ 1 (LANU1),
-	Landnutzung Typ 2 (LANU2) und Bodentyp (kann die Werte "A", "B",
-	"C" oder "D" annehmen).	
+	den passenden CN-Wert zu ermitteln: Landnutzung Typ 1 (`lanu1`),
+	Landnutzung Typ 2 (`lanu2`) und Bodentyp `boden` (kann die Werte "A", "B",
+	"C" oder "D" annehmen).
+
+	#### Beispiel
+	Wenn `lanu1=Verkehrsflaeche`, `lanu2=Feldweg` und `boden="B"`, dann
+	ist die Kurvennummer CN=82.
 	 
 input1:
 	name: lanu1
