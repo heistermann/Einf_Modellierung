@@ -1,0 +1,85 @@
+---
+task_name: egl1
+
+description: >
+	Ihr erinnert Euch: Das Einheitsganglinienverfahren 
+	beschreibt die Abflusskonzentration im Einzugsgebiet:Der
+	Vektor der Einheitsganglinie stellt dar, wie sich ein
+	Effektivniederschlagsimpuls am Gebietsauslaus 
+	als Abfluss über die Zeit verteilt.
+	
+	#### Beispiel
+	
+	Die Vektor der Einheitsganglinien heiße `egl` und habe den
+	Wert `egl = c(0.2, 0.5, 0.3)`. Der Zeitschritt der Einhheitsganglinie
+	sei eine Stunde. Dies bedeutet, dass innerhalb der ersten Stunde 20 % des
+	Effektivniederschlagsimpulses am Gebietsauslass abfließen. In der zweiten
+	Stunde fließen 50 % ab, und in der dritten Stunde 30 %. Nach drei Stunden
+	ist der Effektivniederschlagsimpuls vollständig aus dem Gebiet abgeflossen.
+	
+	Bevor man jedoch die Abflussantwort auf einen Effektivniederschlagsimpuls 
+	berechnen kann, muss man den Effektivniederschlag in die
+	Einheit des Abflusses umrechnen. Falls der Effektivniederschlag `precip`
+	in *mm/h* und die Einzugsgebietsgröße `area` in *km2* gegeben ist, 
+	ergibt sich der Effektivniederschlag in der Einheit *m3/s* aus
+	`precip * area / 3.6`. Ein Effektivniederschlagsimpuls mit der Intensität
+	*2 mm/h* ergibt auf einem *7.2 km2* großen Einzugsgebiet somit
+	einen Direktabflussimpuls von *4 m3/s*, der dann mit Hilfe der
+	Einheitganglinie über die Zeit verteilt wird. Für die oben angebene Einheitsganglinie
+	`egl = c(0.2, 0.5, 0.3)` ergäbe sich sich somit als Direktabflussganglinie
+	`c(0.8, 2, 1.2)` (in m3/s).	
+	
+	Berechne nun also für **einen einzigen** Effektivniederschlagsimpuls `precip` (in mm/h)
+	die Abflussganglinie (m3/s) am Auslass des Einzugsgebiets der Größe `area` (km2).
+	Das Zeitintervall der Einheitsganglinie `egl` und die Dauer des	Niederschlagsimpulses
+	seien je eine Stunde.
+    
+input1:
+	name: precip
+	type: float
+	description: EIN Effektivniederschlagsimpuls (mm/h)
+
+input2:
+	name: egl
+	type: array.float
+	description: Einheitsganglinie als Vektor von Gewichten 
+
+input3:
+	name: area
+	type: float
+	description: Flaeche des Einzugsgebiets (km2) 
+	
+output:
+	type: array.float
+	description: Abflussganglinie (m3/s)
+
+test1:
+	input: 
+	- 5
+	- [0.2, 0.5, 0.3]
+	- 3.6
+	output: [1.0, 2.5, 1.5]
+
+test2:
+	input: 
+	- 10
+	- [0.1, 0.6, 0.3]
+	- 7.2
+	output: [2, 12, 6]
+
+test3:
+	input: 
+	- 0
+	- [0.1, 0.6, 0.3]
+	- 10.8
+	output: [0, 0, 0]
+
+solution: |
+	egl1 = function(precip, egl, area) {
+	  return(precip * area * egl / 3.6)
+	}
+
+	
+	
+	
+	

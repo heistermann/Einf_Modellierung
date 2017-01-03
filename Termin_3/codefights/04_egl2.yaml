@@ -2,11 +2,18 @@
 task_name: egl2
 
 description: >
-	Berechne aus der Länge der Einheitsganglinie
-	und der Länge der Effektivniederschlagsganglinie
-	die Länge der resultierenden Abflussganglinie.
-	Alle Ganglinien sollen jeweils in stündlicher 
-	Auflösung vorliegen.
+	Gegebene seien der Vektor der Einheitsganglinie `egl` und
+	der Vektor der Effektivniederschlagsganglinie `precip` (diese
+	Ganglinie kann also nun im Unterschied zur vorherigen Aufgabe
+	mehrere zeitlich aufeinanderfolgende Effektivniederschlagsimpulse enthalten).
+
+	Berechnen nun die Länge der resultierenden Direktabflussganglinie. 
+	Alle Ganglinien liegen jeweils in stündlicher Auflösung vor.
+	
+	#### Beispiel
+	
+	Wenn `egl = c(0.2, 0.5, 0.3)` und `precip = c(2.0, 3.5)`, dann hat
+	die Direktabflussganglinie eine Länge von `4` Stunden.
     
 input1:
 	name: precip

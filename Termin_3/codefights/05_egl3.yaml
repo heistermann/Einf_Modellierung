@@ -2,12 +2,23 @@
 task_name: egl3
 
 description: >
-	Berechne aus den gegebenen Argumenten
-	die Abflussganglinie (m3/s) am Auslass 
-	des Einzugsgebiets. Für den Niederschlag liegt
-	nun nicht ein einzelner Impuls, sondern eine beliebig
-	lange Ganglinie vor. Die zeitliche Auflösung aller
-	Ganglinien sei eine Stunde.
+	Bevor Du Dich an dieser Aufgabe versuchst, solltest Du die Aufgaben
+	`egl1` und `egl2` lösen.
+	
+	Berechne wie in `egl1` aus den gegebenen Argumenten
+	die Direktabflussganglinie (m3/s) am Auslass 
+	des Einzugsgebiets. Für den Effektivniederschlag liegt
+	nun aber nicht ein einzelner Impuls, sondern eine beliebig
+	lange Ganglinie (Vektor) vor. Die zeitliche Auflösung aller
+	Ganglinien sei eine Stunde. 
+	
+	#### Beispiel
+	
+	Die Einheitsganglinie sei `egl = c(0.2, 0.8)`, die
+	Effektivniederschlagsganglinie (in mm/h) sei
+	`precip = c(2, 4)`, die Einzugsbietsfläche (in km2) sei
+	`area = 7.2`. Die Direktabflussganglinie ist somit
+	`3` Stunden lang und ergibt sich zu `c(0.8, 4.8, 6.4)`.	
     
 input1:
 	name: precip
