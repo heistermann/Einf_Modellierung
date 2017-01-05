@@ -88,12 +88,12 @@ n_2 = log_Wachstum(n0 = 2, r_max=2, K=100, nt = 50)
 
 #Funktion mit n0 = 2, r_max=2.5, K=100, nt = 50 aufrufen, Rückgabewert in n_3 speichern
 #<
-n_2_5 = log_Wachstum(n0 = 2, r_max=2.5, K=100, nt = 50)
+n_3 = log_Wachstum(n0 = 2, r_max=2.5, K=100, nt = 50)
 #>
 
 #Funktion mit n0 = 2, r_max=3, K=100, nt = 50 aufrufen, Rückgabewert in n_4 speichern
 #<
-n_3 = log_Wachstum(n0 = 2, r_max=3, K=100, nt = 50)
+n_4 = log_Wachstum(n0 = 2, r_max=3, K=100, nt = 50)
 #>
 
 
@@ -102,9 +102,9 @@ n_3 = log_Wachstum(n0 = 2, r_max=3, K=100, nt = 50)
 plot  (x=1:length(n_1), y=n_1, type="l", col="black", xlab = "Zeitschritte", ylab="Populationsgröße", 
        ylim=range(c(n_1, n_2, n_2_5, n_3)))
 lines(x=1:length(n_2), y=n_2, col="red")
-lines(x=1:length(n_2_5), y=n_2_5, col="blue")
-lines(x=1:length(n_3), y=n_3, col="green")
-legend("bottomright", legend=c("n_1", "n_2", "n_2_5", "n_3"), col=c("black","red","blue","green"), pch = 21)
+lines(x=1:length(n_3), y=n_2_5, col="blue")
+lines(x=1:length(n_4), y=n_3, col="green")
+legend("bottomright", legend=c("n_1", "n_2", "n_3", "n_4"), col=c("black","red","blue","green"), pch = 21)
 #>
   
   #? Was bedeutet es inhaltlich, wenn die Population die Kapazität überschreitet?
@@ -113,7 +113,7 @@ legend("bottomright", legend=c("n_1", "n_2", "n_2_5", "n_3"), col=c("black","red
 
   #? Was bedeutet es inhaltlich, wenn die Population Werte nahe Null annimmt?
   #? Wann ist die nachfolgende Entwicklung noch realistisch, wann nicht?
-  #? Wie könnte gg.f korrigiert werden?
+  #? Wie könnte ggf. korrigiert werden?
 
  #? Ausgehend von der obigen Funktion log_Wachstum, erstelle eine Variante "log_Wachstum_lim", 
  #? die die beiden o.g. Punkte berücksichtigt
@@ -148,7 +148,7 @@ log_Wachstum_lim = function (n0, r_max, K, nt)
 }
 #>
  
-# veränderte Funktion mit den gleichen Parametern wie oben ernuet aufrufen
+# veränderte Funktion mit den gleichen Parametern wie oben erneut aufrufen
 n_1   = log_Wachstum_lim(n0 = 2, r_max=1, K=100, nt = 50)
 n_2   = log_Wachstum_lim(n0 = 2, r_max=2, K=100, nt = 50)
 n_2_5 = log_Wachstum_lim(n0 = 2, r_max=2.5, K=100, nt = 50)

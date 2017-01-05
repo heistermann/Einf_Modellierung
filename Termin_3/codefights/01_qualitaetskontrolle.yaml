@@ -8,7 +8,7 @@ description: >
 	unzuverlässig gemessen hat (Vektor `stoertage`). Du möchtest nun die Werte für die
 	betreffenden Tage als Fehlwerte markieren. Als Fehlwertmarker wird
 	oft der Wert -9999 genutzt. Ersetze also alle unzuverlässigen Messungen
-	durch den Wert -9999.
+	durch den Wert -9999 und gib den somit korrigieren Vektor zurück.
 	
 	#### Beispiel
 	
@@ -18,7 +18,7 @@ description: >
 input1:
 	name: precip
 	type: array.float
-	description: Vektor mit täglichen Niederschlagshoehen (in mm) 
+	description: Vektor mit täglichen Niederschlagshöhen (in mm) 
 
 input2:
 	name: stoertage
@@ -27,7 +27,7 @@ input2:
 
 output:
 	type: array.float
-	description: Vektor mit Niederschlagshoehen und Fehlwertmarkierung
+	description: Vektor mit Niederschlagshöhen und Fehlwertmarkierung
 
 test1:
 	input:

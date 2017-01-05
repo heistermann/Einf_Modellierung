@@ -44,7 +44,7 @@ exp_Wachstum_umwelt = function (n0, r_pess, r_opt, nt)
   n_1 = exp_Wachstum_umwelt(n0 = 2, r_pess  = -0.2, r_opt = 0.25, nt = 100)
   #>
   
-  #Funktion mit n0 = 2, r_pess= 0.75, r_opt=1.2, nt = 100 aufrufen, Rückgabewert in n_2 speichern
+  #Funktion mit n0 = 2, r_pess= -0.25, r_opt=0.2, nt = 100 aufrufen, Rückgabewert in n_2 speichern
   #<
   n_2 = exp_Wachstum_umwelt(n0 = 2, r_pess  = -0.25, r_opt = 0.2, nt = 100)
   #>
@@ -58,16 +58,5 @@ exp_Wachstum_umwelt = function (n0, r_pess, r_opt, nt)
   #>
   
   #? Welche Population stirbt (meist) (früher) aus?
-  #? Wie kann der Zufallsaspekt reproduzierbar gemacht werden (Tipp: set.seed)
-  seed=6
-  set.seed(seed)
+  #? Für welche Initialisierung des Zufallsgenerators (seed) ist das nicht so?
   
-  #<
-  n_1 = exp_Wachstum_umwelt(n0 = 2, r_pess  = -0.2, r_opt = 0.25, nt = 100)
-  n_2 = exp_Wachstum_umwelt(n0 = 2, r_pess  = -0.25, r_opt = 0.2, nt = 100)
-  
-  plot  (x=1:length(n_1), y=n_1, type="l", col="black", xlab = "Zeitschritte", ylab="Populationsgröße", main=seed)
-  lines(x=1:length(n_2), y=n_2, col="red")
-  legend("bottomright", legend=c("n_1", "n_2"), col=c("black","red"), pch = 21)
-   
-  #>
