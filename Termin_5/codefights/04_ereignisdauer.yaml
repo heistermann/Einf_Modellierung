@@ -2,21 +2,23 @@
 task_name: ereignisdauer
 
 description: >
+	## Dauer eines Ereignisses
+
 	Gegeben sind zwei Zeichenketten der Form "2016-12-03 10:30:00", 
 	die Beginn (`start`) und Ende (`ende`) eines Niederschlagsereignisses
 	repräsentieren.
-	
+
 	Berechne die Dauer des Niederschlagsereingisses in
 	Stunden, und zwar mit einer Genauigkeit von zwei
 	Nachkommastellen.
 
 	#### Beispiel
-	
+
 	Wenn `start="2016-12-03 10:00:00"` und `ende="2016-12-03 12:20:00"`,
 	dann ist das Ergebnis `2.33` (Dauer in Stunden, gerundet auf zwei Stellen).
-	
+
 	#### Hinweise
-	
+
 	- Mit `as.POSIXct` wandelst Du die Zeichenketten in eine Datumszeit um;
 	- mit `difftime` berechnest Du die Zeitdifferenz (beachte Argument `units`!)
 	- mit `round` rundest Du das Ergebnis.
