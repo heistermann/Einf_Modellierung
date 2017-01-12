@@ -2,17 +2,19 @@
 task_name: gradtage
 
 description: >
+	## Gradtage
+
 	Das Tag-Grad-Verfahren ermittelt fuer mehrere
 	aufeinanderfolgende Tage die **Summe** der Tagesmitteltemperaturen,
 	die einen Schwellenwert `minT` ueberschreiten. Das Verfahren
 	wird in unterschiedlichsten Bereichen eingesetzt: z.B. bei der
 	Modellierung der Schneeschmelze, des Heizwaermebedarfs oder
 	der phaenologischen Entwicklung von Pflanzen.
-	
+
 	Wir nehmen an, eine Feldfrucht ist nach einer bestimmten Zahl
 	Gradtagen `erntereif` (Einheit: Grad Celsius*Tag). 
 	Bestimme den Zeitpunkt der Ernte.
-	
+
 	#### Beispiel
 	Der Vektor der Tagesmitteltemperaturen (in Grad Celsius) sei
 	`temp = c(1,7,3,2,4)`. Bei einem Schwellenwert
@@ -36,12 +38,17 @@ input1:
 input2:
 	name: minT
 	type: Float
-	description: Schwellenwert der Tempertur, ab welcher Gradtage gezaehlt werden. 
+	description: Schwellenwert der Temperatur, ab welcher Gradtage gezaehlt werden. 
 	
-output:
+input3:
 	type: erntereif
+	type: Integer
 	description: Gradtage, die zur Ernte erreicht werden muessen.
 
+output:
+	type: Integer
+	description: Zahl der Tage, nach denen geerntet wird.
+	
 test1:
 	input:
 	- [1,7,3,2,4,8,3,8,7,3,5,1]

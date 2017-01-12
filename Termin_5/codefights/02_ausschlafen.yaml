@@ -2,7 +2,7 @@
 task_name: ausschlafen
 
 description: >
-	Gegeben ist Zeichenkette (auch String genannt)
+	Gegeben ist eine Zeichenkette (auch String genannt)
 	der Form "2016-12-03", die ein Datum repräsentiert 
 	(in diesem Beispiel den 3. Dezember 2016).
 	
@@ -10,6 +10,17 @@ description: >
 	ausschlafen kannst. Falls es sich um einen Tag am 
 	Wochenende handelt, soll die Funktion `TRUE` zurückgeben.
 	Für Wochentage soll die Funktion `FALSE` zurückgeben.
+	
+	#### Beispiel
+	
+	Wenn `datum="2017-01-17`, dann soll `FALSE` 
+	zurückgegeben werden. Wenn `datum="2017-01-15"`,
+	dann soll `TRUE` zurückgegeben werden.
+	
+	#### Hinweise
+	
+	Nutze den Code aus der ersten Aufgabe (`welchertag`)
+	und mache von dort aus weiter.	
     
 input1:
 	name: datum

@@ -2,15 +2,31 @@
 task_name: niederschlagsintensitaet
 
 description: >
-	Gegeben sind zwei Zeichenketten der "2016-12-03 10:30:00", 
-	die Beginn und Ende eines Niederschlagsereignisses
-	repräsentieren. Außerdem erhalten Sie das aufgefangene
-	Niederschlagsvolumen (in ml) sowie den Radius der
-	kreisförmigen Auffangfläche des Totalisators (in cm).
+	Gegeben sind zwei Zeichenketten der Form "2016-12-03 10:30:00", 
+	die Beginn (`start`) und Ende (`ende`) eines Niederschlagsereignisses
+	repräsentieren. Außerdem kennst Du das in diesem Zeitraum aufgefangene
+	Niederschlagsvolumen (`volumen`, in ml) sowie den Radius der 
+	kreisförmigen Auffangfläche	des Totalisators (`radius`, in cm).
 	
-	Berechne die mittlere Niederschlagsintensität
-	des Ereignisses in mm/h mit einer Geneauigkeit von zwei
-	Nachkommastellen.	
+	Berechne nun die mittlere Niederschlagsintensität
+	des Ereignisses in mm/h mit einer Genauigkeit von zwei
+	Nachkommastellen.
+
+	#### Beispiel
+
+	Wenn `start="2016-12-03 10:00:00"`, `ende="2016-12-03 12:20:00"`,
+	`volumen=400` (ml) und `radius=10` (cm), dann ist die mittlere 
+	Niederschlagsintensität	für das Ereignis 
+	`400e3 / (10e1^2 * pi) / 2.33 = 5.46` (mm/(h).
+	
+	#### Hinweise
+	
+	- Nutze den Code aus der vorherigen Aufgabe (`ereignisdauer`), 
+	  um die Ereignisdauer (in Stunden) zu ermitteln;
+	- den Wert von *Pi* kennt R unter der Variable `pi`;
+	- ein Milliliter (ml) ist ein Kubikzentimeter;
+	- die Zieleinheit ist `mm/h`;
+	- der Ausdruck `400e3` ist äquivalent zu `400*1000`.
     
 input1:
 	name: start
@@ -25,7 +41,7 @@ input2:
 input3:
 	name: volumen
 	type: Float
-	description: Aufgefangendes Volumen (ml)
+	description: Aufgefangenes Volumen (ml)
 
 input4:
 	name: radius
@@ -71,7 +87,7 @@ test4:
 solution: |
 	niederschlagsintensitaet = function(start, ende, volumen, radius) {
 	  dauer = difftime(as.POSIXct(ende), as.POSIXct(start), units="hours")
-	  hoehe = volumen * 1e-3 / (pi*(radius*1e-2)^2)
+	  hoehe = volumen * 1e3 / (pi*(radius*10)^2)
 	  return(round(hoehe / as.numeric(dauer), digits=2))
 	}
 	

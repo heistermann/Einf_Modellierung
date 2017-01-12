@@ -2,16 +2,18 @@
 task_name: sommerhochwasser
 
 description: >
+	## Sommerhochwasser
+	
 	Gegeben ist ein Vektor mit Hochwasserabfluessen (`abfluss`) und
 	ein weiterer Vektor mit den Monaten, in welchen
 	diese Abfluesse jeweils gemessen wurden (`monat`). Ermittle
 	den mittleren Hochwasserabfluss im Sommer. 
-	
+
 	Aber was heißt eigentlich Sommer? Das Argument `beginn`
 	definiert den ersten Sommermonat und das Argument `ende`
 	den letzten.
-	
-	Runden Sie das Ergebnis auf zwei Nachkommastellen.
+
+	Runden Sie das Ergebnis auf zwei Nachkommastellen (Funktion `round`).
 
 	#### Beispiel
 	In den Monaten `monat=c(1,3,5,7,9,11,2,4,6,8,10,12)` wurde der
@@ -23,7 +25,7 @@ description: >
 input1:
 	name: abfluss
 	type: Array of floats
-	description: Vektor mit Hochwasserabfluessen
+	description: Vektor mit 12 Hochwasserabfluessen.
 
 input2:
 	name: monat

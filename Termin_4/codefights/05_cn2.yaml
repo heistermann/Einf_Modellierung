@@ -2,12 +2,14 @@
 task_name: curveNumber2
 
 description: >
+	## Das US-SCS Curve Number Verfahren (Teil 2)
+
 	Das Curve Number (CN) Verfahren wurde urspruenglich vom US Soil
 	Conservation Service (US-SCS) entwickelt und ist auch heute
 	noch weit verbreitet. Der CN-Wert beeinflusst den Ereignisabflussbeiwert
 	und wird auf Grundlage von Gebietseigenschaften sowie dem
 	Vorereignisniederschlag bestimmt.
-	
+
 	Im ersten Schritt wurde bereits der CN-Wert aus
 	Landnutzung und Bodentyp ermittelt. Dieser Wert gilt fuer eine
 	"normale" Gebietsvorfeuchte (engl.: *antecedent moisture condition*, AMC).
@@ -18,11 +20,11 @@ description: >
 	- trocken: wenn P5 < 13 mm (Vegetationsperiode: P5 < 36 mm)
 	- feucht : wenn P5 > 28 mm (Vegetationsperiode: P5 > 53 mm)
 	- normal : sonst
-	
+
 	Entsprechend erfolgt die Umrechung des CN-Wertes von normalen zu
 	trockenen oder feuchten Bedingungen mit Hilfe von Anpassungsfaktoren,
 	die der folgenden Tabelle entnommen werden koennen:
-	
+
 	```
 	tab = "normal;trocken;feucht
 	10;0.40;2.22
@@ -36,10 +38,10 @@ description: >
 	90;0.87;1.07
 	100;1.00;1.00"
 	```
-	
+
 	Auch diese Tabelle kann in den Code kopiert und dann wie gehabt
 	als `data.frame` eingelesen werden:
-	
+
 	```	
 	con = textConnection(tab)
 	df = read.table(con, header=TRUE, sep=";", stringsAsFactors=FALSE, strip.white=TRUE)
@@ -61,8 +63,8 @@ description: >
 	fuer normale Bedingungen (`cn2`) am naechsten kommt ist `70`. 
 	Der Anpassungfaktor ist also `0.73`, und der resultierende CN-Wert
 	ergibt sich zu CN = 0.73 * 72.
-	
-	*Hinweis*: Die Funktion ``which.min` gibt für einen Vektor diejenige Position ("Index")
+
+	*Hinweis*: Die Funktion `which.min` gibt für einen Vektor diejenige Position ("Index")
 	zurück, an welcher sich der kleinste Wert befindet. Das könnte beim Auffinden des
 	Anpassungsfaktors hilfreich sein.
 	

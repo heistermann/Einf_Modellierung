@@ -39,10 +39,6 @@ gradtage(c(1,7,3,2,4,8,3,8,7,3,5,1), 4, 10)
 gradtage(c(1,7,3,2,4,8,3,8,7,3,5,1), 4, 12)
 gradtage(c(1,7,3,2,4,8,3,8,7,3,5,1), 4, 15)
 
-bodentyp = function() {
-  
-}
-
 
 curveNumber1 = function(lanu1, lanu2, boden) {
   tab = "LANU1;LANU2;A;B;C;D

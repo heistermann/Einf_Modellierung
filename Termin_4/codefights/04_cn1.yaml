@@ -2,16 +2,18 @@
 task_name: curveNumber1
 
 description: >
+	## Das US-SCS Curve Number Verfahren (Teil 1)
+	
 	Das Curve Number (CN) Verfahren wurde urspruenglich vom US Soil
 	Conservation Service (US-SCS) entwickelt und ist auch heute
 	noch weit verbreitet. Der CN-Wert beeinflusst den Ereignisabflussbeiwert
 	und wird auf Grundlage von Gebietseigenschaften sowie dem
 	Vorereignisniederschlag bestimmt.
-	
+
 	Im ersten Schritt wird die sogenannte "Curve Number" aus der
 	Landnutzung und dem Bodentyp ermittelt. Dazu gibt es Tabellenwerke.
 	Die folgende Tabelle stellt die CN-Werte fuer urbane Flaechen dar.
-	
+
 	```
 	tab = "LANU1;LANU2;A;B;C;D
 	Freiflaeche;geringer Wiesenanteil;68;79;86;89
@@ -30,25 +32,30 @@ description: >
 	Wohngebiet;20%bebaut;51;68;79;84
 	Wohngebiet;<12%bebaut;46;65;77;82"
 	```
-	
+
 	Leider erlaubt Codefights keine Datenbereitstellung via URL. 
 	Daher muss diese Tabelle zunaechst in den Code kopiert werden.
 	Mit den folgenden beiden Zeilen kann man daraus einen
-	data.frame` erzeugen:
-	
+	`data.frame` erzeugen:
+
 	```	
 	con = textConnection(tab)
 	df = read.table(con, header=TRUE, sep=";", stringsAsFactors=FALSE, strip.white=TRUE)
 	```
-	
+
 	Nutze nun diesen `data.frame`, um aus den folgenden Argumenten 
 	den passenden CN-Wert zu ermitteln: Landnutzung Typ 1 (`lanu1`),
 	Landnutzung Typ 2 (`lanu2`) und Bodentyp `boden` (kann die Werte "A", "B",
-	"C" oder "D" annehmen).
+	"C" oder "D" annehmen). Nutze dazu z.B. die `subset` Funktion:
+
+	```
+	subset(df, LANU1==lanu1 & LANU2==lanu2)[,boden]) 
+	```
 
 	#### Beispiel
+
 	Wenn `lanu1=Verkehrsflaeche`, `lanu2=Feldweg` und `boden="B"`, dann
-	ist die Kurvennummer CN=82.
+	ist die Kurvennummer *CN=82*.
 	 
 input1:
 	name: lanu1

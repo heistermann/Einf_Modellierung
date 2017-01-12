@@ -2,17 +2,34 @@
 task_name: vegetationsperiode
 
 description: >
-	Gegeben ist ein Zeichenkette (auch String genannt)
+	Gegeben ist eine Zeichenkette (auch String genannt)
 	der Form "2016-12-03", die ein Datum repräsentiert 
 	(in diesem Beispiel den 3. Dezember 2016).
 	
-	Außerdem erhältst Du Informationen zu Beginn und Ende der
-	Vegetationsperiode. Diese Information liegt als "Tag 
-	im Jahr" vor - 1 entspräche also dem 1. Januar eines
-	beliebigen Jahres, 32 dem 1. Februar usw.
+	Außerdem erhältst Du Informationen, wann die Vegetationsperiode
+	beginnt (`start`) und endet (`ende`). `start` und `ende`
+	liegen als  "Tag im Jahr" vor - ein Wert von 1 entspräche 
+	also dem 1. Januar eines beliebigen Jahres, 32 dem 1. Februar usw.
 	
 	Wenn das gegebene Datum innerhalb der Vegetationsperiode
 	liegt, soll die Funktion `TRUE` zurückgeben, sonst `FALSE`.
+	
+	#### Beispiel
+	
+	Wenn `datum="2015-11-13"` sowie `beginn=120` und `ende=273`,
+	dann soll `FALSE` zurückgegeben werden.
+	
+	#### Hinweise
+	
+	Gehe ähnlich vor wie in den beiden vorherigen Aufgaben: 
+	
+	- Wandle zunächst den String in ein Datum um (`as.Date`);
+	- wandle dann das Datum in den "Tag im Jahr" um (wieder mit
+	  `strftime`, diesmal aber mit einem anderen Wert für `format`);
+	- der Rückgabewert ist auch ein String und muss mit
+	  `as.numeric` in eine Zahl umgewandelt werden;
+	- schließlich kannst Du prüfen, ob dieser Tag nach Beginn (>=) und vor
+	  Ende (<=) der Vegetationsperiode liegt.	
     
 input1:
 	name: datum

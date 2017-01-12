@@ -37,12 +37,12 @@ P = rep(0., length(zeit))
 # Wir lassen es in den Zeitschritten 10 und 20 jeweils 10 Einheiten regnen...
 P[c(10,20)] = 10.
 # Anwendung der Funktion
-Q = abc(P, 0.5, 0.3, 0.1)
+Q = abc(P, 0.5, 0.5, 0.1)
 
 # Darstellung als Zeitreihendiagramm
 par(mar = c(5,5,2,5))
 plot(zeit, Q, type="l", lwd=2, col="red", 
-     xlab="Zeitindex", ylab="Abfluss")
+     xlab="Zeitindex", ylab="Abfluss", ylim=c(0,5))
 abline(v=zeit, col="grey")
 par(new = T)
 plot(zeit, P, type="h", lwd=2, axes=F, xlab=NA, ylab=NA)
@@ -81,12 +81,11 @@ abc2 = function(P, a, b, c) {
 #   Diagramm).
 
 #   ACHTUNG: Deine Funktion gibt nun eine Liste
-#   zurueck (zeigen dies mit Hilfe des "str"-Befehls).
+#   zurueck (zeige dies mit Hilfe des "str"-Befehls).
 #   Auf Element x einer Liste y greift man so zu: y$x
-out = abc2(P, 0.3, 0.2, 0.1)
-#<
+out = abc2(P, 0.5, 0.3, 0.1)
 str(out)
-#>
+
 #<
 # Darstellung als Zeitreihendiagramm
 par(mar = c(5,5,2,5))
