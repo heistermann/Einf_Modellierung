@@ -1,0 +1,3 @@
+Stringoperationen (paste, strsplit)
+Matrixoperationen (Schach)
+Schleifen (Sieb des Erastosthenes)
