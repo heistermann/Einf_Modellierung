@@ -4,375 +4,229 @@
 rm(list = ls())
 
 
-# INSPEKTION EINES MOPEX-DATENSATZES
-# ----------------------------------
+# DIE NASH-SUTCLIFFE MODELLEFFIZIENZ
 
-# AUFGABE: Wir inspizieren nun einen Datensatz fuer den
-#   MOPEX-Pegel "02296750" ("PEACE RIVER AT ARCADIA, FLORIDA").
-#   Der Datensatz enth‰lt u.a. monatliche Werte fuer Niederschlag,
-#   Abfluss und Potenzielle Verdunstung. Diese Werte sind als
-#   mm Wassersaeule ¸ber das gesamte Einzugsgebiet angegeben.
-#   Wir belassen es bei dieser Einheit.
+# AUFAGBE: Beim letzten Termin hast Du bereits eine
+#   Funktion zur Berechnung des RMSE geschrieben.
 #
-#   Die entsprechende Datei heiﬂt "02296750.monthly" und wird
-#   mit dem "read.table"-Befehl in R eingelesen. 
-
-#   1. Schau Dir die Datei mit einem Text-Editor (notepad++) an.
-#      Welches Zeichen wird als Spaltentrenner verwendet? Fuege
-#      passende Argumente in den "read.table"-Befehl ein,
-#      welche R den Spaltentrenner mitteilen sowie die Tatsache,
-#      dass die Datei eine Kopfzeile (header) mit Spaltenbezeichnern
-#      besitzt. Ersetze dazu die beiden Platzhalter {SPALTENTRENNUNG}
-#      und {KOPFZEILE} durch sinnvolle Ausdruecke.
+#   1. Schreibe nun eine Funktion "nash" zur Berechnung der
+#      Modelleffizienz nach Nash und Sutcliffe (NSE, siehe Folie #8!).
 #
-#   2. Welcher Datentyp wird von "read.table" zurueckgegeben?
-#      Inspiziere die Variable "mopex" mit Hilfe des "str"-Befehls.
-#      - Welche Spalten gibt es, welchen Datentyp haben diese?
-#      - Wieviel Zeilen hat der Datensatz?
-#      - Wie lauten Anfangs- und Enddatum?
+#   2. Ueberpruefe mit Hilfe der Testdaten x und y, 
+#      ob die Funktion richtig funktioniert. Schiebe gleich noch eine Funktion "nash2" hinterher,
+#      welche vor der Berechnung die NA-Werte aussortiert.
+#      Orientiere dich dabei am Code vom letzten Termin.
 #
-#   3. Nutze nun den untenstehende Code, um die Ganglinien
-#      von Niederschlag und Abfluss in EINE Abbildung zu plotten.
+#   3. Was ist der bestmˆgliche NSE-Wert?
 #
-#   4. Ergaenze den Code mit einem weiteren Aufruf des "lines"-Befehls,
-#      um auch noch die PET als Ganglinie (in rot) darzustellen.
-#
-#   5. Ergaenze den "legend"-Befehl, so dass auch PET in der
-#      Legende auftaucht.
-#
-#   6. Was faellt an der PET-Ganglinie auf?
-#
-#   7. Schaue Dir auch andere Zeitfenster an. 
-#      Aendere dafuer die Variable "zoominto".
+#   4. Was ist der denkbar schlechteste NSE-Wert?
 
-# Lese die Daten (ERSETZE DIE PLATZHALTER!)
-mopex = read.table("02296750.monthly", stringsAsFactors=FALSE,
-                   {SPALTENTRENNUNG}, {KOPFZEILE})
-# DELETE
-mopex = read.table("02296750.monthly", stringsAsFactors=FALSE,
-                   sep=";", header=TRUE)
+nash = function(obs, sim) {
+  #<
+  return( 1. - sum((obs-sim)^2) / sum((obs-mean(obs))^2) )
+  #>
+}
 
-# Struktur und Datentyp des Rueckgabewertes
-str(mopex)
+# Teste mit Hilfe von x und y
+x = c(2, 3, 2, 5, 1)
+y = c(1, 3, 4, 5, 1)
+round( nash(x, y), 2) == 0.46
 
-# Konvertiere Strings aus der Spalte "date" zu Datumsobjekten 
-mopex$date = as.Date(mopex$date)
-
-# Schaue Dir nun erneut die Struktur an... was hat sich geaendert?
-str(mopex)
-
-# Graphische Darstellung als Ganglinien mit Datum
-zoominto = c(as.Date("1990-01-01"), as.Date("1995-01-01"))
-plot(mopex$date, mopex$discharge, type="n", ylim = c(0,300),
-     xlab = "Zeit", ylab = "Q, P, PET (mm)", xaxt="n",
-     xlim=zoominto)
-axis.Date(1, at=mopex$date, format="%m/%y")
-lines(mopex$date, mopex$discharge, type="l", col="black", lwd=2)
-lines(mopex$date, mopex$precip,    type="l", col="blue",  lwd=2)
-# Zeichne die Ganglinie fuer PET mit Hilfe des "lines"-Befehls
-#<
-lines(mopex$date, mopex$pet,       type="l", col="red",   lwd=2)
-# Legende zeichnen (ERGAENZE DEN EINTRAG FUER PET!)
-legend("topright", 
-       legend=c("Abfluss (mm)", "Niederschlag (mm)"),
-       lwd=2, col=c("black","blue"))
+# Schreibe hier die Funktion, welche die NA Werte aussortiert
+nash2 = function(obs, sim) {
+  #<
+  ix = is.finite(obs) & is.finite(sim)
+  return ( nash(obs[ix], sim[ix]) )
+  #>
+}
 
 
-# Workspace ausleeren
-rm(list = ls())
+# AUTOMATISCHE KALIBRIERUNG DES ABCD-MODELLS
+# ------------------------------------------
 
+# AUFGABE: Wir nutzen erneut den Datensatz fuer den
+#   MOPEX-Pegel "02296750" ("PEACE RIVER AT ARCADIA, FLORIDA")
+#   und unsere Funktionsbibliothek "ModelLibrary.R".
+#   Berechne testweise mal den NSE-Wert fuer einen beliebigen
+#   Parametersatz params.
 
-# ANWENDUNG UND DIAGNOSE DES ABCD-MODELLS
-# ---------------------------------------
-
-# Du verstehst nun die Implementierung und das Verhalten des 
-#   abcd-Modells und kennst die Struktur des MOPEX-Datensatzes
-#   "02296750.monthly". Du sollst nun das abcd-Modell mit Hilfe
-#   dieses Datensatzes antreiben und untersuchen, wie gut das
-#   Modell fuer das betreffende Einzugsgebiet des Peace River
-#   funktioniert.
-
-# AUFGABE: Wende das abcd-Modell exemplarisch fuer den Peace River an
-#   und vergleiche die simulierten Werte des Abflusses mit den
-#   Beobachtungen. Gehe dazu schrittweise vor: 
-#
-#   1. Wir haben die Funktion "abcd" gegenueber dem letzten
-#      Termin geringfuegig geaendert: Anstatt der einzelne Argumente
-#      fuer P, PET, a, b, c und d erhaelt die Funktion nun einen
-#      data.frame mit dem MOPEX-Datensatz sowie einen Vektor
-#      mit den Parameters a, b, c und d. Die neue Funktion haben wir
-#      in der Datei "ModelLibrary.R" abgelegt. Du kannst die Funktion
-#      in Deinen Workspace importieren. Nutze dazu den Befehl "source".
-#      Wenn Du Dir die neue Funktion abcd anschauen moechtest, kannst
-#      Du einfach die Datei "ModelLibary.R" in RStudio oeffnen.
-#
-#   2. Mit dem "source"-Befehl haben wir noch weitere Funktionen
-#      aus "ModelLibary.R" importiert:
-#      - "read.mopex" liest eine MOPEX-Datei ein;
-#      - "plot.hydro" zeichnet Ganglinien des beobachteten
-#        und simulierten Abflusses.
-#      Lies nun also mit Hilfe des untenstehenden Codes den
-#      Datensatz "02296750.monthly" ein, definiere den Parametervektor,
-#      fuhre das abcd-Modell aus und stelle die Abflussganglinien dar.
-#
-#   3. Spiele nun mit den Parameterwerten, um eine moeglichst
-#      gute Uebereinstimmung des simulierten mit dem beobachteten
-#      Abfluss zu erreichen. Mit Hilfe des "zoominto"-Arguments
-#      kannst Du unterschiedliche Zeitfenster betrachten.
-
-# Importiere mit dem Befehl "source" die Funktionen aus "ModelLibrary.R"
-#<
 source("ModelLibrary.R")
-#>
-
 # Daten lesen
 mopex = read.mopex("02296750.monthly")
 # Parameter als Vektor definieren
 params = c(a=0.99, b=100, c=0.4, d=0.1)
 # Ausfuehrung des Modells
 sim = abcd(mopex, params)
-# Darstellung der Ganglinien
-plot.hydro(mopex, sim, baseflow=FALSE,
-                zoominto=c(as.Date("1990-01-01"), 
-                           as.Date("2000-01-01")))
+# Berechne den NSE-Wert (ARGUMENTE EINFUEGEN)
+nash2(..., ...)
 
 
-# AUFGABE: Die visuelle Betrachtung ermoeglicht einen guten Eindruck der
-#   Uebereinstimmung zwischen Simulation und Beobachtung.
+# AUFGABE: Du sollst nun einen Suchalgorithmus zur automatischen
+#   Kalibrierung anwenden. Dieser Algorithmus soll die Modellparameter
+#   a, b, c und d so optimieren, dass der NSE-Wert maximal wird.
 #
-#   Allerdings waere ein objektives, quantitatives Uebereinstimmungsmaﬂ
-#   wuenschenswert (Guetemaﬂ oder Fehlermaﬂ). Ein verbreitetes
-#   Fehlermaﬂ ist der "Root Mean Squared Error" (RMSE).
+#   1. Wir brauchen dafuer ein neues R-Paket namens "ppso". Dieses
+#      Paket gehoert nicht zum Standardumfang von R. Installiere ppso
+#      mit Hilfe des install.packages-Befehls.
 #
-#   1. Uebersetze "Root Mean Squared Error" ins Deutsche.
+#   2. Importiere nun ppso mit Hilfe des "library"-Befehls
+#      in Deine Arbeitsumgebung.
 #
-#   2. Als "Error" bezeichnet man die Differenz zwischen Beobachtung
-#      und Simulation fuer einen einzelnen Zeitschritt. Definiere
-#      auf dieser Grundlage die Formel fuer den RMSE (recherchiere
-#      im Internet, wenn Du es nicht schaffst).
+#   3. Bevor ppso mit der Suche loslegt, muss noch Einiges geklaert
+#      werden, z.B. die erlaubten Wertebereiche fuer a, b, c und d.
+#      Diese Information legen wir in einem 4x2 data.frame fest, der als
+#      Spaltennamen "lower" und "upper" (Unter- und Obergrenze) und
+#      Zeilennamen "a", "b", "c" und "d" traegt. Trage in den data.frame
+#      "bounds" sinnvolle Werte fuer a, b, c und d ein.
 #
-#   3. Implementiere nun die Funktion rmse, welche aus zwei Argumenten
-#      "obs" und "sim" den RMSE berechnet.
+#   4. Zu guter letzt muessen wir noch eine Funktion definieren,
+#      die fuer einen bestimmten Parametervektor direkt den Wert der
+#      Modellguete zurueckgibt (hier der NSE-Wert). Diese
+#      Funktion nennen wir "zielfunktion" - sie ist unten
+#      bereits vorgegeben. Schaue Dir die Funktion an - was
+#      ist merkwuerdig?
 #
-#   4. Wende nun die Funktion rmse an. Nutze dafuer zunaechst die
-#      beiden ausgedachten Vektoren x (als Beobachtung) und 
-#      y (als Simulation). Wenn Deine Funktion "rmse" richtig ist,
-#      muesste als Ergebnis "1" zurueckgegeben werden.
+#   5. Nun kann optim_dds aufgerufen werden. Das Ergebnis der 
+#      Kalibrierung wird in der Liste "fit" abgelegt. 
+#      - Welcher NSE-Wert wird erreicht?
+#      - Wie lauten die optimalen Paramater a, b, c und d?
 #
-#   4. Wende nun die Funktion "rmse" auf das  abcd-Modell fuer
-#      dem Peace River an (siehe oben). Berechne also den RMSE
-#      des simulierten Abflusses im Vergleich zum beobachteten Abfluss
-#      fuer einen beliebigen Parametersatz param.
-#
-#   5. Mist! Heraus kommt der Wert "NA". Was hat das zu bedeuten?
+#   6. Wenn Du dem dem Suchalgorithmus mehr Zeit gibst, wird das
+#      Ergebnis evtl. besser. Setze das Argument 
+#      max_number_function_calls hoch - aendert sich das Suchergebnis?
 
-# Schreibe hier die Funktion zur Berechnung des RMSE
-rmse = function(obs, sim) {
-  #<
-  return(sqrt(mean((obs-sim)^2)))
-  #>
-}
+install.packages(pkgs="ppso", repos="http://rforge.net/", type = "source")
 
-# Teste Deine Funktion rmse anhand der Testdatensaetze x und y
-#   Richtiges Ergebnis: RMSE = 1
-x = c(2, 3, 2, 5, 1)
-y = c(1, 3, 4, 5, 1)
-rmse(x, y)
-
-# Berechnung des RMSE fuer das abcd-Modell im Peace River Einzugsgebiet
-rmse( mopex$discharge, abcd(mopex, params)$Q )
-
-
-# AUFGABE: Die Berechnung des RMSE mit Hilfe der Funktion rmse
-#   ergibt NA, also einen Fehlwert (Not Available, Missing Value).
-#   Dies liegt daran, dass die Zeitreihe der beobachten MOPEX-Abfluesse
-#   Ebenfalls Fehlwerte (NA) enthaelt.
-#
-#   1. Eine Rechenoperation mit NA-Werten ergibt immer NA. 
-#      Probiere es aus.
-#
-#   2. Um den RMSE fuer das abcd-Modell zu berechnen, duerfen wir
-#      folglich nur Zeitschritte beruecksichtigen, die keine Fehlwerte
-#      enthalten. Dies bewerkstelligt die untenstehende Funktion
-#      "rmse2". Probiere es nun also mit dieser Funktion.
-#
-#   3. Wenn die monatlichen Abfluesse in "mm" vorliegen, welche Einheit
-#      hat dann der RMSE?
-#
-#   6. Wer schafft es, den kleinsten RMSE zu erzeugen?
-
-# Diese Funktion entfernt Zeitschritte mit NA
-#   und berechnet dann den RMSE.
-rmse2 = function(obs, sim) {
-  ix = is.finite(obs) & is.finite(sim)
-  return ( rmse(obs[ix], sim[ix]) )
-}
-
-# Und nun nochmal Berechnung des RMSE fuer das abcd-Modell
-#   im Peace River Einzugsgebiet
-params = c(a=0.99, b=100, c=0.4, d=0.1)
-rmse2( mopex$discharge, abcd(mopex, params)$Q )
-
-
-
-
-# Die Herausforderung fuer konzeptionelle Wasserhaushalts-
-#   modelle wie das abcd-Modell ist die Identifikation der Modell-
-#   parameter durch Kalibrierung. Prinzip: Definiere ein Guetemaﬂ,
-#   welches die Uebereinstimmung zwischen Modell und Beobachtungen
-#   quantifiziert. Suche dann den Parametersatz, fuer welchen die
-#   Guete maximal ist (oder der Fehler minimal).
-
-
-# AUFGABE: Wir nutzen hier die sogenannte Nash-Sutcliffe-Effizienz (NSE),
-#   eigentlich nichts anderes als das Bestimmtsheitsmaﬂ (Anteil
-#   erklaerter Varianz). Der bestmˆgliche Wert fuer den NSE ist 1,
-#   der schlechteste Wert ist minus unendlich. Der NSE-Wert sollte
-#   also maximal werden. Die Funktion "nash" gibt fuer einen 
-#   Vektor von Beobachtungen x und einen Vektor simulierter 
-#   Werte y den NSE zurueck.
-
-#   Berechne unter Verwendung dieser Funktion die NSE
-#   des abcd-Modells fuer das MOPEX-Gebiet 02296750 
-#   unter Nutzung des von Dir gewahlten Parametersatzes.
-#   Was faellt auf?
-
-nash= function(x,y) {
-  return( 1. - sum((x-y)^2) / sum((x-mean(x))^2) )
-}
-
-# HIER DIE PASSENDEN ARGUMENTE EINFUEGEN 
-nash(..., ...)
-
-
-# AUFGABE: Richtig - die Funktion nash gibt NA zur¸ck, weil
-#   die Zeitreihe der beobachteten Abfluesse Fehlwerte enthaelt.
-#   Schreibe eine neue Funktion "nash", die nur gueltige Zeit-
-#   schritte auswertet. Nutze dazu den Befehl "is.finite".
-#   Welchen nash-Wert erhaeltst Du nun? 
-#   Was sagt Dir das ueber die Modellguete?
-#<
-nash = function(x,y) {
-  ix = is.finite(x) & is.finite(y)
-  x = x[ix]
-  y = y[ix]
-  return ( 1. - sum((x-y)^2) / sum((x-mean(x))^2) )
-}
-nash(mopex$discharge, sim$Q)
-#>
-
-
-# AUFGABE: Kalibrierung bedeutet nun, dass wir nach Parameter-
-#   setzen suchen, die einen hoehere Nash produzieren.
-#   Dafuer brauchen wir nun weitere R-Pakete: ppso und lhs. 
-#   Pruefe zunaechst, ob die Pakete auf Deinem System 
-#   installiert sind.
-
+# Importiere ppso mit Hilfe des "library"-Befehls
 #<
 library(ppso)
-library(lhs)
 #>
 
-# AUFGABE: Falls die Pakete noch nicht vorhanden sind,
-#   installiere sie nun mit Hilfe des "install.packages"-Befehls.
-#   Fuer ppso brauchst Du besondere Argumente:
-if(!require(ppso)) install.packages(pkgs="ppso", repos="http://rforge.net/", type = "source")
-if(!require(lhs)) install.packages(pkgs="lhs")#, repos="http://rforge.net/", type = "source")
-###install.packages("lhs")
-
-library(ppso)
-
-# AUFGABE: Nun muessen wir noch die gueltigen Wertebereiche
-#   fuer unsere Parameter a, b, c und d festlegen. Definiere
-#   dazu einen data.frame mit zwei Spalten und vier Zeilen.
-#   Die erste Spalte lege die Untergrenze und die zweite Spalte
-#   die Obergrenze fest. Die Zeilennamen (row.names) seien die
-#   Namen der Paramenter.
-#<
+# Trage hier sinnvolle Unter- und Obergrenzen fuer a, b, c und d ein.
+bounds = data.frame(lower=c(..., ..., ..., ...), 
+                    upper=c(..., ..., ..., ...))
+# DELETE
 bounds = data.frame(lower=c(0.8, 0,     0,  0), 
                     upper=c(1.,  3000., 1., 1.))
 row.names(bounds) = c("a", "b", "c", "d")
-#>
 
-# Zu guter letzt muessen wir noch eine Funktion definieren,
-#   die fuer einen bestimmten Parametersatz den Wert der
-#   Modellguete zurueckgibt - die Zielfunktion "ziel". 
-#   Diese haben wir mal vorgegeben.
-#   BEACHTE: "ziel" gibt die negativen NSE zurueck, weil
-#   unser Suchalgorithmus immer nach einem Minimum sucht. 
-ziel= function(params, model) {
-  x = mopex$discharge
-  y = model(mopex, params)$Q
-#  # Es wird bestraft, wenn die Zielfunktion ungueltige Werte produziert 
-#  if (length(which(!is.finite(y)))>0) return(1e6)
-  return(-nash(x, y)) 
+# Diese Funktion erhaelt einen Parametervektor und eine Modellfunktion
+zielfunktion= function(params, model, data) {
+  x = data$discharge
+  y = model(data, params)$Q
+  return(-nash2(x, y)) 
 }
 
 # Nun fuehren wir die eigentliche Kalibrierung durch.
 #   Der Suchalgorithmus heiﬂt optim_dds. Wer mehr ueber
-#   diesen Algorithmus erfahren moechte:
+#   den DDS-Algorithmus erfahren moechte: 
 #   dx.doi.org/10.1029/2005WR004723
 #
-# ACHTUNG: Die Suche dauert eine ganze Weile!
-fit = optim_dds(objective_function=ziel,
+#   ACHTUNG: Die Suche dauert eine Weile!
+fit = optim_dds(objective_function=zielfunktion,
                 model=abcd,
+                data=mopex,
                 number_of_parameters=4,
                 parameter_bounds = bounds,
                 load_projectfile="no",
-                max_number_function_calls=1000)
+                max_number_function_calls=50)
 
 # Das Objekt "fit" informiert uns ueber das
 #   Ergebnis der Kalibrierung.
 print( paste("NSE nach Optimierung:", round(-fit$value,2)) )
-print( paste(c("a:","b:","c:","d:"), round(fit$par,3)) )
+print( paste(c("a:","b:","c:","d:"), round(fit$par,2)) )
 
 # Mit Hilfe des folgenden Befehls erfahren wir mehr
 #   ueber den Prozess der Kalibrierung.
 plot_optimization_progress(logfile="dds.log", projectfile="dds.pro")
 
-# Graphischer Vergleich des beobachteten und simulierten Abflusses 
+
+# AUFGABE: Nun visualisieren wir das Ergebnis der Kalibrierung nochmal.
+#   Wir basteln dazu eine zweiteilige Abbildung. Der obere Teil stellt
+#   die Ganglinien des beobachteten und simulierten Abflusses dar.
+#   Der untere Teil stellt Beobachtung und Simulation in einem
+#   sog. Scatterplot gegenueber.
+#
+#   1. Was sind die Vor- und Nachteile der beiden Darstellungsformen?
+#
+#   2. Mit welchem Befehl unterteilen wir die Abbildung?
+
+# Zunaechst nutzen wir den "besten" Parametersatz fuer die Simulation
 bestabcd = abcd(mopex, fit$par)
+# Abbildung mit zwei Zeilen und einer Spalte
 par(mfrow=c(2,1), mar=c(5, 4, 1, 2) + 0.1 )
-# Zeitreihe
-plot.discharges(mopex, bestabcd, baseflow=FALSE,
-                zoominto=c(as.Date("1970-01-01"), 
-                           as.Date("1980-01-01")),fmt="%b'%y")
+# Ganglinie
+plot.hydro(mopex, bestabcd, fmt="%b'%y", 
+           zoominto=c(as.Date("1970-01-01"), as.Date("1980-01-01")) )
+# Maximum           
 axlim = c(0, max(c(bestabcd$Q, mopex$discharge), na.rm=TRUE))
 # Scatterplot
-plot(mopex$discharge, bestabcd$Q, xlab="Observed discharge", 
-     ylab="Simulated discharge", 
-     xlim=axlim, ylim=axlim, cex=0.5)
+plot(mopex$discharge, bestabcd$Q, 
+     xlab="Beobachtung", 
+     ylab="Simulation", 
+     xlim=axlim, ylim=axlim)
+# Winkelhalbierende
 lines(x=c(axlim[1]-100,axlim[2]+100), y=c(axlim[1]-100,axlim[2]+100))
 
 
-# Nun probieren wir mal, das abc-Modell zu kalibrieren
-abcbounds = data.frame(lower=c(0, 0, 0), upper=c(1.,1.,1.))
+# AUFGABE: Schreibe nun den Code, um das abc-Modell zu kalibrieren. 
+#   Denke an die erforderlichen Schritte: 
+#   - data.frame mit Ober- und Untergrenzen definieren
+#   - optim_dds aufrufen: ACHTE auf die richtigen Argumente
+#     fuer "model", "number_of_parameters" und "parameter_bounds"
+#   - Ergebnis inspizieren
+#
+#  MASTERFRAGE: Was funktioniert besser: abc oder abcd?
+
+#<
+abcbounds = data.frame(lower=c(0, 0, 0), 
+                       upper=c(1.,1.,1.))
 row.names(abcbounds) = c("a", "b", "c")
 
-fitabc = optim_dds(objective_function=ziel,
+fitabc = optim_dds(objective_function=zielfunktion,
                    model=abc,
+                   data=mopex,
                    number_of_parameters=3,
                    parameter_bounds = abcbounds,
                    load_projectfile="no",
-                   max_number_function_calls=200)
+                   max_number_function_calls=50)
 print( paste("NSE nach Optimierung:", round(-fitabc$value,2)) )
-print( paste(c("a:","b:","c:"), round(fitabc$par,3)) )
+print( paste(c("a:","b:","c:"), round(fitabc$par,2)) )
 plot_optimization_progress(logfile="dds.log", projectfile="dds.pro")
+#>
 
-# Graphischer Vergleich des beobachteten und simulierten Abflusses 
-bestabc = abc(mopex, fitabc$par)
-par(mfrow=c(2,1), mar=c(5, 4, 1, 2) + 0.1 )
-# Zeitreihe
-plot.discharges(mopex, bestabcd, baseflow=FALSE,
-                zoominto=c(as.Date("1970-01-01"), 
-                           as.Date("1980-01-01")),fmt="%b'%y")
-lines(mopex$date, bestabc$Q, lwd=2, col="blue")
-legend("topleft", legend=c("obs", "abc", "abcd"), 
-       col=c("red", "black", "blue"), lwd=2)
-axlim = c(0, max(c(bestabcd$Q, mopex$discharge), na.rm=TRUE))
-# Scatterplot
-plot(mopex$discharge, bestabcd$Q, xlab="Observed discharge", 
-     ylab="Simulated discharge", 
-     xlim=axlim, ylim=axlim, cex=0.5)
-points(mopex$discharge, bestabc$Q, cex=0.5, col="blue")
-lines(x=c(axlim[1]-100,axlim[2]+100), y=c(axlim[1]-100,axlim[2]+100))
+
+# AUFGABE (optional): Implementiere fuer das abcd-Modell
+#   Kalibierung UND Validierung als Split-Sampling. Gehe dafuer
+#   wie folgt vor:
+#
+#   1. Generiere einen zwei Index-Vektoren, welche Deinen Datensatz
+#      in zwei Teile zerlegen: einen fuer die Kalibrierung und einen
+#      fuer die Validierung.
+#
+#   2. Fuehre dann mit dem einen Datensatz die Kalibrierung durch.
+#
+#   3. Fuehre dann das Modell mit dem besten Parametersatz aus und
+#      berechne anhand des zweiten Datensatzteils die den NSE-Wert.
+#
+#   4. Vergleiche die NSE-Werte, die Du jeweils fuer Kalibrierung und
+#      Validierung erreicht hast. Was schlieﬂt Du im Hinblick auf die
+#      Modellguete?
+
+#<
+calix = 1:(nrow(mopex)/2)
+valix = (nrow(mopex)/2):nrow(mopex)
+fit = optim_dds(objective_function=zielfunktion,
+                   model=abcd,
+                   data=mopex[calix,],
+                   number_of_parameters=4,
+                   parameter_bounds = bounds,
+                   load_projectfile="no",
+                   max_number_function_calls=500)
+print( paste("NSE nach Kalibrierung:", round(-fit$value,2)) )
+print( paste(c("a:","b:","c:","d:"), round(fit$par,2)) )
+print( paste("NSE nach Validierung:", 
+             round(nash2(mopex$discharge[valix], 
+                         abcd(mopex[valix,], fit$par)$Q)
+                   ,2)) )
+#>
