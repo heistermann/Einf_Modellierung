@@ -18,4 +18,5 @@ plot.discharges = function(mopex, model, zoominto=NULL, baseflow=TRUE, fmt="%Y")
   lines(mopex$date, model$Q,  col="black", lwd=2)
   if(baseflow) lines(mopex$date, model$QB, col="blue", lwd=2)
   lines(mopex$date, mopex$discharge, col="red", lwd=2)
+  legend("topright", c("obs", "sim"), col=c("red", "black"), lwd=2)
 }

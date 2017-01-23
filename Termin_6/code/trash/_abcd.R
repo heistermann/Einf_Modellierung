@@ -19,19 +19,22 @@ abcd = function(meteo, params) {
     W = P[i] + S
     # "Verdunstbares Wasser"
     Y = (W + b)/(2*a) - sqrt( (((W+b)/(2*a))^2 - b*W/a) )
+    # Aufteilung von Y zwischen Bodenwasser und ET
+    x = exp(-PET[i]/b)
     # Neuer Bodenwasserspeicher
-    S = Y * exp(-PET[i]/b)
+    S = x * Y
     # Evapotranspiration
-    ET = Y * (1 + exp(-PET[i]/b))
+    ET = (1 - x) * Y
     # Direktabfluss
     QD = (1-c)*(W-Y)
     # Grundwasserneubildung
     RG = c*(W-Y)
     # Basisabfluss
     QB = d * G
+    # Aktualisierung des Grundwasserspeichers
+    G = G + RG - d * G
     # Abfluss
     Q = QB + QD
-    G = (G + RG)/(1+d)
     # Schreibe Ergebnisse fuer diesen Zeitschritt in Dataframe
     out[i,] = c(Q, QD, QB, ET, S, G)    
   }
