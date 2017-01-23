@@ -2,11 +2,14 @@
 name: egl
 
 description: >
-	Welcher Funktion berechnet korrekt die 
-	Direktabflussganglinie mit Hilfe des 
-	Einheitsganglinienverfahrens?
+	## Ein Fehler in der Einheitsganglinie
+	
+	Nur eine der angebotenen Funktionen gibt 
+	den korrekten Vektor der Direktabflussganglinie mit Hilfe des 
+	Einheitsganglinienverfahrens zurück. Welche?
 	
 	Die Argumenten seien:
+	
 	```
 	p: Vektor - Ganglinie der Effektivniederschlagsintensitaet (m3/s)
 	egl: Vektor - Einheitsganglinie

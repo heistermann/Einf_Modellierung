@@ -9,6 +9,10 @@ description: >
 	x = read.csv(y)
 	```
 	
+	#### Hinweis
+	
+	Nur eine Antwort ist richtig.
+	
 num_answers: 5
 
 answer_description_1:

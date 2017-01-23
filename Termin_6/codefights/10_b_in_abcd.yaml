@@ -2,7 +2,12 @@
 name: b_in_abcd
 
 description: >
-	Eine Erhöhung des Parameters b im abcd-Modell führt zu einer...	
+	## Das b im abcd-Modell
+	
+	Nur eine der folgenden Antworten vervollständigt den
+	folgenden Satz auf korrekte Weise.
+	
+	*Ein größerer Werte des Parameters b im abcd-Modell führt zu einer...*	
 	
 num_answers: 4
 

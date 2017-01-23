@@ -169,8 +169,9 @@ lines(mopex$date, mopex$precip, type="l", col="blue", lwd=2)
 lines(mopex$date, mopex$pet, type="l", col="red", lwd=2)
 legend("topright", 
        legend=c("Abfluss (mm)", "Niederschlag (mm)", "PET (mm)"),
-       lwd=2, col=c("red","blue", "black"), cex=0.75)
+       lwd=2, col=c("black","blue", "red"), cex=0.75)
 #>
+
 
 # AUFGABE (optional): Nutze nun den MOPEX-Datensatz zum Antrieb Deines 
 #   abcd-Modells. Stelle die Dynamik des Abflusses, der einzelnen

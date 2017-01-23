@@ -1,6 +1,19 @@
 # QUIZ 02
-a = "Greet."
+a = "Greet"
+if (a = "Greet") print("Hello!")
+
+a = "Do not greet."
 if (a == "Greet") print("Hello!")
+
+a = "Do not greet."
+if (a == Greet) print("Hello!")
+
+a = "Greet"
+if (a == "Greet") print "Hello!"
+
+a = "Greet"
+if (a == "Greet") print("Hello!")
+
 
 # QUIZ 03
 x = c(1,5,NA,20,NA,13)
@@ -13,32 +26,33 @@ mean(x[is.na(x)])
 mean(x, na.rm=TRUE)
 
 # QUIZ 5
-par(mfcol=c(1,2), mar=c(5, 4, 1, 2) + 0.1 )
-plot(1:10)
-plot(20:29)
+x = 1:5
+y = 10:15
+plot(x, ylim=c(5,20), type="b")
+lines(y, type="b")
 
-layout(matrix(c(2,1), 2, 1))
-plot(1:10)
-plot(20:29)
+
 
 # QUIZ 7
-df = read.table("input.csv", sep=";", header=TRUE, stringsAsFactors=FALSE)
+df = read.table("input.csv", sep=";", header=TRUE)
 df$date = as.Date(df$date, format="%d.%m.%y")
+df$date
 
-df = read.csv("input.csv", header=TRUE, stringsAsFactors=FALSE)
+df = read.csv("input.csv", sep=";", header=TRUE)
+df$date = as.Date(df$date, format="%d/%m/%y")
+df$date
+
+df = read.table("input.csv", sep=";")
+df$date = as.Date(df$date, format="%d.%m.%y")
+df$date
+
+df = read.table("input.csv", sep=";", header=TRUE)
 df$date = as.Date(df$date)
+df$date
 
-df = read.table("input.csv", sep=";", header=TRUE, stringsAsFactors=FALSE)
-df$date = as.POSIXct(df$date)
-
-df = read.table("input.csv", sep=";", header=TRUE, stringsAsFactors=FALSE)
-df$date = as.Date(df$date)
-
-df = read.table("input.csv", sep=";", header=TRUE, stringsAsFactors=FALSE)
-df$date = as.Date(df$date, format="%d.%m.%Y")
-
-df = read.csv("input.csv", sep=";", header=TRUE, stringsAsFactors=TRUE)
-df$date = as.Date(df$date, format="%d.%m.%Y")
+df = read.table("input.csv", sep=";", header="TRUE")
+df$date = as.Date(df$date, format="%d.%m.%y")
+df$date
 
 # QUIZ 8
 qd = function(p, egl) {
@@ -48,7 +62,7 @@ qd = function(p, egl) {
     ix = i:(i+length(egl)-1)
     out[ix] = out[ix] + out_i
   }          
-  return(out)
+  #return(out)
 }
 # Aufruf der Funktion mit beliebigen Argumenten 
 qd(c(1., 5., 10.), c(0.1, 0.4, 0.3, 0.2))

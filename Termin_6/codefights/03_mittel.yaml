@@ -3,11 +3,16 @@ name: mittel
 
 description: >
 	Es soll für den Vektor `x = c(1,5,NA,20,NA,13)`
-	den Mittelwert aller Elemente von x berechnet werden.
+	der Mittelwert aller Vektorelemente berechnet werden.
 	
 	Welches der folgenden Statements erlaubt es,
 	bei der Berechnung des Mittelwertes die NA-Werte
 	zu ignorieren?
+	
+	#### Hinweis
+	
+	Es gibt *zwei* richtige Lösungen!
+	
     
 num_answers: 7
 

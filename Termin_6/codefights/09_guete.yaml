@@ -2,15 +2,25 @@
 name: guete
 
 description: >
-	Welche dieser Guetemaﬂe sollten bei einer
-	Modellkalibrierung **maximiert** werden?
+	
+	## Gute G¸te
+	
+	Die dargestellten Statements sind als R-Code
+	zur Berechnung eines Guete- bzw. Fehlermaﬂes 
+	`x` zu verstehen.
 
 	`obs` sei dabei der Vektor der Beobachtungen
 	(z.B. Abfluss am Pegel) und `sim` der Vektor
 	der mit dem Modell simulierten Werte.
 	
-	Die dargestellten Vorschlaege sind als R-Code
-	zur Berechnung des Guetemaﬂes `x` zu verstehen.
+	Welche der angebotenen Maﬂe sollten bei einer
+	Modellkalibrierung **maximiert** werden?
+	
+	#### Hinweis
+	
+	Die dargestellten Maﬂe sind auch unter folgenden
+	Namen bekannt: Sum of Squared Errors, Pearson Correlation,
+	Root Mean Squared Error, Mean Absolute Error, Nash-Sutcliffe Efficiency
 	
 num_answers: 5
 

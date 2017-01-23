@@ -1,0 +1,53 @@
+---
+name: multilines
+
+description: >
+	`x` und `y` seien zwei gleich lange Vektoren.
+	
+	Mit welchem Codebock plottest Du beide Vektoren
+	in ein Diagramm? Das Diagramm soll ferner folgende Eigenschaften
+	haben:
+	
+	- Die y-Achse solle sich auf *beide* Vektoren beziehen (keine Sekundärache),
+	- das Maximum der y-Achse soll bei 20 liegen, das Minimum bei 5,
+	- die Werte sollen als Punkte dargestellt werden, die durch Linien
+	verbunden sind.
+	
+	#### Hinweis
+	
+	Nur eine Antwort ist die richtige.
+    
+num_answers: 4
+
+answer_description_1:
+	description: |
+	```
+	plot(x, ymin=0, ymax=20, type="b")
+	lines(y, type="b")
+	```
+	is_correct: False
+
+answer_description_2:
+	description: |
+	```
+	plot(x, ylim=c(5,20) )
+	lines(y)
+	```
+	is_correct: False
+
+answer_description_3:
+	description: |
+	```
+	plot(x, ylim=c(5,20), type="b")
+	lines(y, type="b")
+	```
+	is_correct: True
+	
+answer_description_4:
+	description: |
+	```
+	plot(x, ylim=c(5,20), type="b")
+	par(new = T)
+	plot(y)
+	```
+	is_correct: False

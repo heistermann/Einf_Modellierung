@@ -2,37 +2,41 @@
 name: abcd
 
 description: >
-	Was unterscheidet das `abcd` vom `abc`-Modell?
+	## abc vs. abcd
+	
+	Wählen Sie aus den folgenden Aussagen über das abc bzw. das abcd-Modell
+	die drei zutreffenden aus.	
     
 num_answers: 6
 
 answer_description_1:
 	description: |
-		Das abcd-Modell bildet die Dynamik des Grundwasserspeichers ab.
+		Das abcd-Modell bildet die Dynamik des Basisabflusses ab,
+		das abc-Modell hingegen nicht.
 	is_correct: False	
 
 answer_description_2:
 	description: |
-		Im abcd-Modell bildet den Einfluss der Bodenfeuchte
+		Das abcd-Modell bildet den Einfluss der Bodenfeuchte
 		auf die Abflussbildung ab.
 	is_correct: True	
 
 answer_description_3:
 	description: |
-		Das abcd-Modell bildet den Einfluss der Schneeschmelze
-		auf die Abflussbildung ab.
-	is_correct: False	
+		Weder das abc- noch das abcd-Modell berücksichtigen
+		Akkumulation und Schmelzen von Schnee in der Wasserbilanz.
+	is_correct: True	
 
 answer_description_4:
 	description: |
-		Das abcd-Modell bildet den Einfluss der Potenziellen
+		Das abc-Modell bildet den Einfluss der Potenziellen
 		Evaporation auf die Abflussbildung ab.
-	is_correct: True	
+	is_correct: False	
 
 answer_description_5:
 	description: |
-		Das abcd-Modell kann die Abflussdynamik in einer viel
-		größeren zeitlichen Auflösung abbilden (bis zu stündlich). 
+		Im Gegensatz zum abc-Modell kann man mit dem abcd-Modell 
+		kann die Abflussdynamik in bis zu stündlicher Auflösung abbilden. 
 	is_correct: False
 
 answer_description_6:
