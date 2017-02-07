@@ -4,7 +4,7 @@ name: makedate
 description: >
 	
 	## Datumsspalte einer Textdatei auswerten
-	
+
 	Sie erhalten eine Textdatei namens `input.csv` mit folgendem Inhalt:
 
 	```
@@ -18,18 +18,14 @@ description: >
 
 	Mit welchem Statement können Sie diese Tabelle erfolgreich
 	einlesen und die erste Spalte (`date`) als Datum formatieren?
-	
-	#### Hinweis
-	
-	Es gibt nur eine richtige Lösung.
-    
+	    
 num_answers: 6
 
 answer_description_1:
 	description: |
 		```
 		df = read.table("input.csv", sep=";", header=TRUE)
-		df$date = as.Date(df$date, format="%d.%m.%y")
+		df$date = as.Date(df$date, format="%d.%m.%Y")
 		```
 	is_correct: True	
 
@@ -37,7 +33,7 @@ answer_description_2:
 	description: |
 		```
 		df = read.csv("input.csv", sep=";", header=TRUE)
-		df$date = as.Date(df$date, format="%d/%m/%y")
+		df$date = as.Date(df$date, format="%d/%m/%Y")
 		```
 	is_correct: False
 	
@@ -45,7 +41,7 @@ answer_description_3:
 	description: |
 		```
 		df = read.table("input.csv", sep=";")
-		df$date = as.Date(df$date, format="%d.%m.%y")
+		df$date = as.Date(df$date, format="%d.%m.%Y")
 		```
 	is_correct: False
 
@@ -61,6 +57,14 @@ answer_description_5:
 	description: |
 		```
 		df = read.table("input.csv", sep=";", header="TRUE")
-		df$date = as.Date(df$date, format="%d.%m.%y")
+		df$date = as.Date(df$date, format="%d.%m.%Y")
 		```
 	is_correct: False
+
+answer_description_6:
+	description: |
+		```
+		df = read.table("input.csv", sep=" ", header=TRUE)
+		df$date = as.Date(df$date, format="%d.%m.%y")
+		```
+	is_correct: False	

@@ -1,13 +1,13 @@
 ---
-name: abcd
+name: abc_and_d
 
 description: >
 	## abc vs. abcd
-	
+
 	Wählen Sie aus den folgenden Aussagen über das abc bzw. das abcd-Modell
-	die drei zutreffenden aus.	
+	die zutreffende aus.	
     
-num_answers: 6
+num_answers: 4
 
 answer_description_1:
 	description: |
@@ -23,24 +23,13 @@ answer_description_2:
 
 answer_description_3:
 	description: |
-		Weder das abc- noch das abcd-Modell berücksichtigen
-		Akkumulation und Schmelzen von Schnee in der Wasserbilanz.
-	is_correct: True	
-
-answer_description_4:
-	description: |
 		Das abc-Modell bildet den Einfluss der Potenziellen
 		Evaporation auf die Abflussbildung ab.
 	is_correct: False	
 
-answer_description_5:
+answer_description_4:
 	description: |
 		Im Gegensatz zum abc-Modell kann man mit dem abcd-Modell 
 		kann die Abflussdynamik in bis zu stündlicher Auflösung abbilden. 
 	is_correct: False
 
-answer_description_6:
-	description: |
-		Das abcd-Modell stellt eine nicht-lineare Transformation
-		von Niederschlag zu Abfluss dar.		
-	is_correct: True

@@ -2,18 +2,24 @@
 name: T7_02_Sieb
 
 description: >
+## Das Sieb des Eratosthenes
+
 Um alle Primzahlen bis `bis` zu bestimmen, kann man das *Sieb des Eratosthenes* verwenden:
 Ausgehend von der Liste aller Zahlen werden nacheinander die Zahlen entfernt, die durch 2, 3, usw. teilbar sind. Übrig bleiben die Primzahlen.
 	
 Gib alle Primzahlen bis `bis` zurück!
 Hinweis: 1 ist keine Primzahl. 
 Teilbarkeit lässt sich elegant mit dem *modulo*-Operator (`%%`)überprüfen. Dieser liefert den Rest bei ganzzahliger Division:
-	
+
+```	
 	> 6 %% 4
 	[1] 2
+```
+
 denn 6 erzeugt bei der ganzzahligen Division mit 4 den Rest 2.	
 
 #### Beispiel
+
 Für `bis = 10` soll der Vektor `c(2, 3, 5, 7)` zurückgegeben werden.
 
 
@@ -25,7 +31,7 @@ input1:
 	description: Zahl, bis zu der alle Primzahlen gefunden werden sollen.
 
 output:
-	type: array of integer
+	type: array of integers
 	description: Vektor aller Primzahlen bis `bis`.
 
 test1:

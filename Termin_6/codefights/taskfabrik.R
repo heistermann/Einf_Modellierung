@@ -35,23 +35,23 @@ lines(y, type="b")
 
 # QUIZ 7
 df = read.table("input.csv", sep=";", header=TRUE)
-df$date = as.Date(df$date, format="%d.%m.%y")
+df$date = as.Date(df$date, format="%d.%m.%Y")
 df$date
 
 df = read.csv("input.csv", sep=";", header=TRUE)
-df$date = as.Date(df$date, format="%d/%m/%y")
+df$date = as.Date(df$date, format="%d/%m/%Y")
 df$date
 
 df = read.table("input.csv", sep=";")
-df$date = as.Date(df$date, format="%d.%m.%y")
+df$date = as.Date(df$date, format="%d.%m.%Y")
 df$date
 
-df = read.table("input.csv", sep=";", header=TRUE)
+df = read.table("input.csv", sep=" ", header=TRUE)
 df$date = as.Date(df$date)
 df$date
 
 df = read.table("input.csv", sep=";", header="TRUE")
-df$date = as.Date(df$date, format="%d.%m.%y")
+df$date = as.Date(df$date, format="%d.%m.%Y")
 df$date
 
 # QUIZ 8

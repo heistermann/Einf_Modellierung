@@ -2,20 +2,19 @@
 name: multilines
 
 description: >
+	## Zwei Ganglinien in einem Diagramm
+	
 	`x` und `y` seien zwei gleich lange Vektoren.
-	
-	Mit welchem Codebock plottest Du beide Vektoren
-	in ein Diagramm? Das Diagramm soll ferner folgende Eigenschaften
+
+	Mit welchem Codeblock plottest Du für jeden der beiden Vektoren je eine Linie in ein Diagramm? 
+	Das Diagramm soll ferner folgende Eigenschaften
 	haben:
-	
-	- Die y-Achse solle sich auf *beide* Vektoren beziehen (keine Sekundärache),
+
+	- Die y-Achse soll sich auf *beide* Vektoren beziehen (keine Sekundärachse),
 	- das Maximum der y-Achse soll bei 20 liegen, das Minimum bei 5,
 	- die Werte sollen als Punkte dargestellt werden, die durch Linien
 	verbunden sind.
 	
-	#### Hinweis
-	
-	Nur eine Antwort ist die richtige.
     
 num_answers: 4
 

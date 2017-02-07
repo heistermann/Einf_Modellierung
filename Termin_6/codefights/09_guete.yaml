@@ -4,7 +4,7 @@ name: guete
 description: >
 	
 	## Gute G¸te
-	
+
 	Die dargestellten Statements sind als R-Code
 	zur Berechnung eines Guete- bzw. Fehlermaﬂes 
 	`x` zu verstehen.
@@ -12,34 +12,30 @@ description: >
 	`obs` sei dabei der Vektor der Beobachtungen
 	(z.B. Abfluss am Pegel) und `sim` der Vektor
 	der mit dem Modell simulierten Werte.
-	
+
 	Welche der angebotenen Maﬂe sollten bei einer
 	Modellkalibrierung **maximiert** werden?
-	
+
 	#### Hinweis
-	
+
 	Die dargestellten Maﬂe sind auch unter folgenden
-	Namen bekannt: Sum of Squared Errors, Pearson Correlation,
-	Root Mean Squared Error, Mean Absolute Error, Nash-Sutcliffe Efficiency
-	
-num_answers: 5
+	Namen bekannt: Sum of Squared Errors, Root Mean Squared Error,
+	Mean Absolute Error, Nash-Sutcliffe Efficiency
+
+num_answers: 4
 
 answer_description_1:
 	description: `x = sum((obs - sim)^2)`
 	is_correct: False	
 
 answer_description_2:
-	description: `x = cor(obs, sim)`
-	is_correct: True	
-
-answer_description_3:
 	description: `x = sqrt( sum((obs - sim)^2) )`
 	is_correct: False	
 
-answer_description_4:
+answer_description_3:
 	description: `x = mean(abs(obs - sim))`
 	is_correct: False	
 	
-answer_description_5:
+answer_description_4:
 	description: `x = 1. - sum((sim-obs)^2) / sum((obs-mean(obs))^2)`
 	is_correct: True	

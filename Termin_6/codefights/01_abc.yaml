@@ -7,9 +7,6 @@ description: >
 	Welcher Anteil `x` des monatlichen Niederschlags gelangt laut
 	dem abc-Modell unmittelbar zum Abfluss?
 	
-	#### Hinweis
-	
-	Es gibt nur eine richtige Lösung.
     
 num_answers: 5
 

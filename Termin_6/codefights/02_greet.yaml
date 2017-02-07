@@ -5,10 +5,6 @@ description: >
 	## Richtiges und falsches Grüßen
 	
 	Welche dieser Codeblöcke lassen sich fehlerfrei ausführen?
-	
-	#### Hinweis
-	
-	Es gibt *zwei* richtige Lösungen!
     
 num_answers: 5
 
@@ -44,10 +40,3 @@ answer_description_4:
 		```
 	is_correct: False	
 
-answer_description_5:
-	description: |
-		```
-		a = "Greet"
-		if (a == "Greet") print("Hello!")
-		```
-	is_correct: True	

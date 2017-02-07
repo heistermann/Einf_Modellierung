@@ -2,16 +2,14 @@
 name: dtype
 
 description: >
+	## Einlesen einer csv-Datei
+
 	Was fuer einen Datentyp hat `x`, wenn es sich bei `y` um den
 	Pfad zu einer komma-separierten csv-Datei handelt?
-	
+
 	```
 	x = read.csv(y)
 	```
-	
-	#### Hinweis
-	
-	Nur eine Antwort ist richtig.
 	
 num_answers: 5
 
