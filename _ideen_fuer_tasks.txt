@@ -1,9 +1,0 @@
-IDEEN FUER WEITERE TASKS
-------------------------
-(x: schon umgesetzt, o: noch offen)
-
-x Ist der Tag innerhalb der Vegetationsperiode?
-x Dauer eines Niederschlagserreignisses in Stunden
-x Zeitangaben aus unterschiedlichen Zeitzonen: Handelt es sich um die Gleiche Zeit?
-o Auswahl aus einem Array mit Indizes (mehrere Bedingungen)
-o USGS SCN-Verfahren mit csv-Tabelle als URL (schrittweise)
