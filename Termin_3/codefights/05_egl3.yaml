@@ -15,7 +15,7 @@ description: >
 	#### Beispiel
 	
 	Die Einheitsganglinie sei `egl = c(0.2, 0.8)`, die
-	Effektivniederschlagsganglinie (in mm/h) sei
+	Effektivniederschlagsganglinie (in *mm/h*) sei
 	`precip = c(2, 4)`, die Einzugsbietsfläche (in *km²*) sei
 	`area = 7.2`. Die Direktabflussganglinie ist somit
 	`3` Stunden lang und ergibt sich zu `c(0.8, 4.8, 6.4)`.	

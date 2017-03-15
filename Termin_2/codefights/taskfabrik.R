@@ -104,7 +104,7 @@ wuerfel_gezinkt(c(1,1,1,1,1))
 
 # Task 05
 interpolation = function(t_mess, x_mess, t_approx) {
-  return(round(approx(x=t_mess, y = x_mess, xout = t_approx)$y, digits=2))
+  return(round(approx(x=t_mess, y = x_mess, xout = t_approx)$y, digits=1))
   }
 
 interpolation(c(0,1), c(0,30), c(0.5,1))

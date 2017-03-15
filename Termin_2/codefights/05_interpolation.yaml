@@ -1,10 +1,11 @@
 ---
 task_name: interpolation
 
-description: Ein Zoologe hat einem Wal einen Sensor angelegt, der die zurückgelegte Strecke aufzeichnet. Wenn der Wal auftaucht, sendet der Sensor die Zeit und die seit Messbeginn zurückgelegte Strecke. Die Position des Wals für beliebige Zeitpunkte zwischen den Auftauchpasen soll durch lineare Interpolation abgeschätzt werden. Benutze dafür die Funktion `approx()`. 
+description: >
+Ein Zoologe hat einem Wal einen Sensor angelegt, der die zurückgelegte Strecke aufzeichnet. Wenn der Wal auftaucht, sendet der Sensor die Zeit und die seit Messbeginn zurückgelegte Strecke. Die Position des Wals für beliebige Zeitpunkte zwischen den Auftauchpasen soll durch lineare Interpolation abgeschätzt werden. Benutze dafür die Funktion `approx()`. 
 
 #### Beispiel
-Zu den Zeitpunkten `[0, 1]` wurden die Strecken `[0, 30]` bestimmt. Für die Zeitpunkte `[0.5, 1]` befand sich der Wal vermutlich jeweils bei `[15, 30]`.
+Zu den Zeitpunkten `[0, 1, 2.5]` wurden die Strecken `[0, 30, 45]` bestimmt. Für die Zeitpunkte `[0.5, 1]` befand sich der Wal vermutlich jeweils bei `[15, 30]`.
 #### Input / Output   
 
    
@@ -61,5 +62,5 @@ test4:
 	
 solution: |
 	interpolation = function(t_mess, x_mess, t_approx) {
-return(round(approx(x=t_mess, y = x_mess, xout = t_approx)$y), digits=2)
+return(round(approx(x=t_mess, y = x_mess, xout = t_approx)$y), digits=1)
 }
