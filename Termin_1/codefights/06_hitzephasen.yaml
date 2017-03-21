@@ -14,12 +14,12 @@ input1:
 	type: array.float
 	description: Vektor der mittleren Tagestemperaturen.
 
-input1:
+input2:
 	name: schwellenwert_temp
 	type: float
 	description: Schwellenwert der Temperatur, der überschritten werden muss.
 
-input1:
+input3:
 	name: schwellenwert_laenge
 	type: integer
 	description: Anzahl von aufeinanderfolgenden Tagen, die die Schwellentemperatur überschreiten müssen.
