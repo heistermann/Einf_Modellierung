@@ -1,0 +1,52 @@
+---
+task_name: max_maximum
+
+description: 
+	Write a function that returns the largest number withinthe two two vectors `v1` and `v2`!
+	
+	#### Example
+	For the vectors `v1 = c(23, 17, 1)` and `v2 = c(5, 4)` the function should yield `23`.
+	#### Input / Output
+    
+input1:
+	name: v1
+	type: array.integer
+	description: First vector
+
+input2:
+	name: v2
+	type: array.integer
+	description: Second vector
+
+output:
+	type: integer
+	description: Largest element of both vectors.
+
+test1:
+	input:
+	- [1, 2, 3]
+	- [1, 2, 3, 4]
+	output: 4
+
+test2:
+	input:
+	- [5, 2, 3]
+	- [0]
+	output: 5
+
+test3:
+	input:
+	- [1000]
+	- [1, 2, 3, 4, 5, 6, 7]
+	output: 1000
+
+solution: |
+	max_maximum <- function(v1, v2) {
+	   max(c(v1,v2))
+	}
+
+
+	
+	
+	
+	

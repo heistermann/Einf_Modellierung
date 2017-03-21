@@ -1,0 +1,65 @@
+---
+task_name: uhg3
+
+description: >
+	Compute the direct runoff response (in *m3/s*) to a precipitation event using the unit-hydrograph model!	
+		
+	#### Example
+	
+	Let the unit hydrograph be `uhg = [0.2, 0.8]`, the time series of hourly effective rainfall (in *mm/h*) be
+	`precip = [2, 4]`, and the catchment area (in *km²*) 
+	`area = 7.2`. Hence, the response hydrograph is `3` hours long and takes the values of `[0.8, 4.8, 6.4]`.	
+    
+input1:
+	name: precip
+	type: array.float
+	description: Hourly effective precipitation (mm/h)
+
+input2:
+	name: uhg
+	type: array.float
+	description: vector representing the unit hydrograph 
+
+input3:
+	name: area
+	type: float
+	description: catchment area (km²) 
+	
+output:
+	type: array.float
+	description: hydrograph of direct runoff (m³/s)
+
+test1:
+	input: 
+	- [2, 6]
+	- [0.2, 0.5, 0.3]
+	- 3.6
+	output: [0.4, 2.2, 3.6, 1.8]
+
+test2:
+	input: 
+	- [3, 10, 5]
+	- [0.1, 0.6, 0.2, 0.1]
+	- 7.2
+	output: [0.6, 5.6, 14.2, 10.6, 4.0, 1.0]
+
+test3:
+	input: 
+	- [6, 3, 4]
+	- [0.2, 0.5, 0.3]
+	- 10.8
+	output: [3.6, 10.8, 12.3, 8.7, 3.6]
+
+solution: |
+	uhg3 = function(precip, uhg, area) {
+	  out = rep(0, length(precip) + length(uhg) - 1)
+	  for (i in 1:length(precip)) {
+		ix = i:(i+length(uhg)-1)
+		out[ix] = out[ix] + precip[i] * uhg * area / 3.6
+	  }  
+	  return(out)
+	}
+	
+	
+	
+	

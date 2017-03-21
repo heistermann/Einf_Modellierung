@@ -1,0 +1,67 @@
+---
+task_name: interpolation
+
+description: >
+A biologist attached a sensor to a whale to track the distance it covers. Whenever there is radio and GPS coverage (e.g. the whale reaches the surface), the sensor transmits the time and the total cumulated distance so far. 
+Estimate the covered distance for a point in time between sensor records by linear interpolation!
+
+#### Example
+For the times `[0, 1, 2.5]` the sensor yielded the distances `[0, 30, 45]`. Consequently, for times `[0.5, 1]` the whale's swimming distance can be approximated with `[15, 30]`.
+#### Input / Output   
+
+   
+input1:
+	name: t_meas	
+	type: array.float
+	description: Times when the position (i.e. covered distance) was recorded.
+
+input2:
+	name: x_meas
+	type: array.float
+	description: Covered distance for `t_meas`
+
+input3:
+	name: t_approx	
+	type: array.float
+	description: Points in time, for which the position is to be approximated.
+	
+output:
+	type: array.float
+	description: Approximated distance for `t_approx`, rounded to one digit.
+
+
+	
+test1:
+	input: 
+	- [0,1]
+	- [0,30]
+	- [0.5, 1]
+
+	output: [15, 30]
+	
+test2:
+	input: 
+	-[0, 1, 2.5]
+	-[0,30, 31]
+	-[0.5, 1, 1.1]
+	output: [15.0, 30.0, 30.1]
+	
+test3:
+	input: 
+	-[2, 4, 5, 8] 
+	-[1, 2, 5, 10]
+	-[2.5, 2.5, 3]
+	output: [1.3, 1.3, 1.5]
+	
+test4:
+	input: 
+	-[-1,2]
+	-[2,3]
+	-[0]
+	output: [2.3]
+	
+	
+solution: |
+	interpolation = function(t_meas, x_meas, t_approx) {
+return(round(approx(x=t_meas, y = x_meas, xout = t_approx)$y), digits=1)
+}
