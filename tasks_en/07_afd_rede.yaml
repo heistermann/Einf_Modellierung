@@ -2,7 +2,7 @@
 name: populist_speach
 
 description: >
-## Redenschreiber
+### Ghostwriter
 
 You are ghostwriter for speeches of a populist politician. To address the target group, it is indispenseable that a certain buzzword `buzzword` occurs in the speach regularly every `interval` words.
 Provide a function, which does the necessary replacement for a speech given in `text`!

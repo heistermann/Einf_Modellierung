@@ -2,7 +2,7 @@
 task_name: max_maximum
 
 description: 
-	Write a function that returns the largest number withinthe two two vectors `v1` and `v2`!
+	Write a function that returns the largest number within two vectors `v1` and `v2`!
 	
 	#### Example
 	For the vectors `v1 = c(23, 17, 1)` and `v2 = c(5, 4)` the function should yield `23`.
