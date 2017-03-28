@@ -110,7 +110,7 @@ interpolation = function(t_mess, x_mess, t_approx) {
 interpolation(c(0,1), c(0,30), c(0.5,1))
 interpolation(c(0, 1, 2.5), c(0,30, 31), c(0.5, 1, 1.1))
 interpolation(c(2, 4, 5, 8) , c(1, 2, 5, 10), c(2.5, 2.5, 3))
-interpolation(c(-1,2), c(2,3), 0)
+interpolation(c(-1,2), c(2,3), c(0,0.5))
 
 
   
