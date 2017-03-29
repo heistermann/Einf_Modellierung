@@ -2,7 +2,7 @@
 task_name: heat_periods
 
 description: 
-	A heat period is defined by at least `thresh_length` consequetive days with mean daily temperatures exceeding `thresh_temp`.
+	A heat period is defined by at least `thresh_length` consecutive days with mean daily temperatures exceeding `thresh_temp`.
 	
 	How many heat periods are contained in the time series of mean daily temperatures `timeseries_temp` ?  
 	
@@ -22,7 +22,7 @@ input2:
 input3:
 	name: thresh_length
 	type: integer
-	description: threshold for minimum number of consequetive days, the threshold temperature must be exceeded.
+	description: threshold for minimum number of consecutive days, the threshold temperature must be exceeded.
 
 output:
 	name: n_h

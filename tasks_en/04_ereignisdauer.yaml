@@ -4,7 +4,7 @@ task_name: event_duration
 description: >
 	## Duration of an event
 
-	The variables `start` and `end` hold the beginning and the end of a precipitaiton event as strings of the format 
+	The variables `start` and `end` hold the beginning and the end of a precipitation event as strings of the format 
 	"2016-12-03 10:30:00".
 	Compute the duration of the event in hours, roundet to two digits!
 
