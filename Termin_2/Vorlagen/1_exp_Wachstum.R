@@ -15,7 +15,7 @@
   # Iterationsschleife über alle weiteren Zeitschritte
   #...hier ergänzen...
   
-  #Resultat darstellen
+  #Resultat im Diagramm darstellen (Zeitschritt vs. Populationsgröße)
   #...hier ergänzen...
   
   #? Wann überschreitet die Population den Wert 10000?

@@ -27,7 +27,7 @@
     N[t] = N[t-1] + r * N[t-1]
   #>
   
-  #Resultat darstellen
+  #Resultat im Diagramm darstellen (Zeitschritt vs. Populationsgröße)
   #<
   plot(1:nt, N, xlab = "Zeitschritte", ylab="Populationsgröße")
   #>

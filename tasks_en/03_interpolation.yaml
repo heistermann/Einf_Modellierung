@@ -3,7 +3,7 @@ task_name: interpolation
 
 description: >
 A biologist attached a sensor to a whale to track the distance it covers. Whenever there is radio and GPS coverage (e.g. the whale reaches the surface), the sensor transmits the time and the total cumulated distance so far. 
-Estimate the covered distance for a point in time between sensor records by linear interpolation!
+Estimate the covered distance for a point in time between sensor records by linear interpolation (rounded to one digit)!
 
 #### Example
 For the times `[0, 1, 2.5]` the sensor yielded the distances `[0, 30, 45]`. Consequently, for times `[0.5, 1]` the whale's swimming distance can be approximated with `[15, 30]`.
