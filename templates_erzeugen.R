@@ -1,7 +1,7 @@
 #Sucht alle R-Files in Unterverzeichnissen (Tiefe 1),
 #erzeugt Übungsvorlagen, indem Passagen zwischen "#<" und "#>" gelöscht werden
 #speichert Dateien in Unterorndern "Vorlagen"
-#ACHTUNG! Überschreibt eventuell vorhandenen vorlagen-Dateien
+#ACHTUNG! Überschreibt eventuell vorhandenen Vorlagen-Dateien
 
 subdirs=dir()
 

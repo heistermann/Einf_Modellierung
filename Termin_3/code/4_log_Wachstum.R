@@ -12,7 +12,6 @@ log_Wachstum = function (n0, r_max, K, nt)
 # r_max:   :  maximale Wachstumsrate
 # K :            Kapazität
 # nt :            Anzahl Zeitschritte
-# seed (optional) : Initialisierung des Zufallsgenerators  
  
   
   #Variablen vorbereiten
