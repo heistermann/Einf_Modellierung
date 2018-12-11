@@ -104,7 +104,6 @@ abcd = function(P, PET, a, b, c, d) {
   return(out)
 }
 
-windows()
 # 12 Monate Testdaten fuer Niederschlag (P)
 testP = c(0, 0, 0, 200, 0, 0, 200, 0, 0, 0, 0, 0, 0, 0, 0)
 # 12 Monate Testdaten fuer PET
