@@ -13,9 +13,10 @@ rm(list = ls())
 #      Modelleffizienz nach Nash und Sutcliffe (NSE, siehe Folie #8!).
 #
 #   2. Ueberpruefe mit Hilfe der Testdaten x und y, 
-#      ob die Funktion richtig funktioniert. Schiebe gleich noch eine Funktion "nash2" hinterher,
-#      welche vor der Berechnung die NA-Werte aussortiert.
-#      Orientiere dich dabei am Code vom letzten Termin.
+#      ob die Funktion richtig funktioniert. Schiebe gleich noch 
+#      eine Funktion "nash2" hinterher, welche vor der Berechnung
+#      die NA-Werte aussortiert. Orientiere dich dabei am Code
+#      vom letzten Termin.
 #
 #   3. Was ist der bestmögliche NSE-Wert?
 #
@@ -59,6 +60,9 @@ params = c(a=0.99, b=100, c=0.4, d=0.1)
 sim = abcd(mopex, params)
 # Berechne den NSE-Wert (ARGUMENTE EINFUEGEN)
 nash2(..., ...)
+
+# DELETE!
+nash2(mopex$discharge, sim$Q)
 
 
 # AUFGABE: Du sollst nun einen Suchalgorithmus zur automatischen
@@ -105,7 +109,7 @@ library(ppso)
 # Trage hier sinnvolle Unter- und Obergrenzen fuer a, b, c und d ein.
 bounds = data.frame(lower=c(..., ..., ..., ...), 
                     upper=c(..., ..., ..., ...))
-# DELETE
+# DELETE!
 bounds = data.frame(lower=c(0.8, 0,     0,  0), 
                     upper=c(1.,  3000., 1., 1.))
 row.names(bounds) = c("a", "b", "c", "d")

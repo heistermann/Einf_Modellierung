@@ -19,8 +19,8 @@ rm(list = ls())
 
 #   1. Schau Dir die Datei mit einem Text-Editor (notepad++) an.
 #      Welches Zeichen wird als Spaltentrenner verwendet? Fuege
-#      passende Argumente in den "read.table"-Befehl ein,
-#      welche R den Spaltentrenner mitteilen sowie die Tatsache,
+#      in den "read.table"-Befehl passende Argumente ein,
+#      die den Spaltentrenner spezifizieren und die festlegen,
 #      dass die Datei eine Kopfzeile (header) mit Spaltenbezeichnern
 #      besitzt. Ersetze dazu die beiden Platzhalter {SPALTENTRENNUNG}
 #      und {KOPFZEILE} durch sinnvolle Ausdruecke.
@@ -45,7 +45,7 @@ rm(list = ls())
 #   7. Schaue Dir auch andere Zeitfenster an. 
 #      Aendere dafuer die Variable "zoominto".
 
-# Lese die Daten (ERSETZE DIE PLATZHALTER!)
+# Lies die Daten (ERSETZE DIE PLATZHALTER!)
 mopex = read.table("02296750.monthly", stringsAsFactors=FALSE,
                    {SPALTENTRENNUNG}, {KOPFZEILE})
 # DELETE
@@ -114,7 +114,7 @@ rm(list = ls())
 #        und simulierten Abflusses.
 #      Lies nun also mit Hilfe des untenstehenden Codes den
 #      Datensatz "02296750.monthly" ein, definiere den Parametervektor,
-#      fuhre das abcd-Modell aus und stelle die Abflussganglinien dar.
+#      fuehre das abcd-Modell aus und stelle die Abflussganglinien dar.
 #
 #   3. Spiele nun mit den Parameterwerten, um eine moeglichst
 #      gute Uebereinstimmung des simulierten mit dem beobachteten
@@ -161,7 +161,7 @@ plot.hydro(mopex, sim, baseflow=FALSE,
 #      muesste als Ergebnis "1" zurueckgegeben werden.
 #
 #   4. Wende nun die Funktion "rmse" auf das  abcd-Modell fuer
-#      dem Peace River an (siehe oben). Berechne also den RMSE
+#      den Peace River an (siehe oben). Berechne also den RMSE
 #      des simulierten Abflusses im Vergleich zum beobachteten Abfluss
 #      fuer einen beliebigen Parametersatz param.
 #
