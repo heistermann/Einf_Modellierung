@@ -1,4 +1,4 @@
-# Seminar zu "Einführung in die Modellierung/Integrierte Modellierung"
+# Seminar zu "Einfuehrung in die Modellierung"
 
 # Workspace ausleeren
 rm(list = ls())
