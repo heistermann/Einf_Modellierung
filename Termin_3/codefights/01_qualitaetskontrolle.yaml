@@ -10,8 +10,7 @@ description: >
 	oft der Wert -9999 genutzt. Ersetze also alle unzuverlässigen Messungen
 	durch den Wert -9999 und gib den somit korrigierten Vektor zurück.
 	
-	#### Beispiel
-	
+#### Beispiel
 	Wenn `precip = c(1, 5.5, 10.1, 0, 3)` und `stoertage = c(2, 4)`,
 	dann ist das Ergebnis `c(1, -9999, 10.1, -9999, 3)`.
     
@@ -31,9 +30,9 @@ output:
 
 test1:
 	input:
-	- [1,2,3,4,5,6]
+	- [20,50,0.3,0,0.7,1]
 	- [1,2]
-	output: [-9999, -9999, 3, 4, 5, 6]
+	output: [-9999, -9999, 0.3, 0, 0.7, 1]
 
 test2:
 	input:
