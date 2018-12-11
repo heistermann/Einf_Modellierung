@@ -1,4 +1,4 @@
-# Seminar zu "Einf¸hrung in die Modellierung/Integrierte Modellierung"
+# Seminar zu "Einfuehrung in die Modellierung"
 
 # Workspace ausleeren
 rm(list = ls())
@@ -9,12 +9,12 @@ rm(list = ls())
 
 # AUFGABE: Wir inspizieren nun einen Datensatz fuer den
 #   MOPEX-Pegel "02296750" ("PEACE RIVER AT ARCADIA, FLORIDA").
-#   Der Datensatz enth‰lt u.a. monatliche Werte fuer Niederschlag,
+#   Der Datensatz enthaelt u.a. monatliche Werte fuer Niederschlag,
 #   Abfluss und Potenzielle Verdunstung. Diese Werte sind als
-#   mm Wassersaeule ¸ber das gesamte Einzugsgebiet angegeben.
+#   mm Wassersaeule ueber das gesamte Einzugsgebiet angegeben.
 #   Wir belassen es bei dieser Einheit.
 #
-#   Die entsprechende Datei heiﬂt "02296750.monthly" und wird
+#   Die entsprechende Datei heisst "02296750.monthly" und wird
 #   mit dem "read.table"-Befehl in R eingelesen. 
 
 #   1. Schau Dir die Datei mit einem Text-Editor (notepad++) an.
@@ -47,9 +47,6 @@ rm(list = ls())
 
 # Lies die Daten (ERSETZE DIE PLATZHALTER!)
 mopex = read.table("02296750.monthly", stringsAsFactors=FALSE,
-                   {SPALTENTRENNUNG}, {KOPFZEILE})
-# DELETE
-mopex = read.table("02296750.monthly", stringsAsFactors=FALSE,
                    sep=";", header=TRUE)
 
 # Struktur und Datentyp des Rueckgabewertes
@@ -75,8 +72,8 @@ lines(mopex$date, mopex$pet,       type="l", col="red",   lwd=2)
 #>
 # Legende zeichnen (ERGAENZE DEN EINTRAG FUER PET!)
 legend("topright", 
-       legend=c("Abfluss (mm)", "Niederschlag (mm)"),
-       lwd=2, col=c("black","blue"))
+       legend=c("Abfluss (mm)", "Niederschlag (mm)", "PET (mm)"),
+       lwd=2, col=c("black","blue", "red"))
 
 
 # Workspace ausleeren
@@ -141,9 +138,9 @@ plot.hydro(mopex, sim, baseflow=FALSE,
 # AUFGABE: Die visuelle Betrachtung ermoeglicht einen guten Eindruck der
 #   Uebereinstimmung zwischen Simulation und Beobachtung.
 #
-#   Allerdings waere ein objektives, quantitatives Uebereinstimmungsmaﬂ
-#   wuenschenswert (Guetemaﬂ oder Fehlermaﬂ). Ein verbreitetes
-#   Fehlermaﬂ ist der "Root Mean Squared Error" (RMSE).
+#   Allerdings waere ein objektives, quantitatives Uebereinstimmungsmass
+#   wuenschenswert (Guetemass oder Fehlermass). Ein verbreitetes
+#   Fehlermass ist der "Root Mean Squared Error" (RMSE).
 #
 #   1. Uebersetze "Root Mean Squared Error" ins Deutsche.
 #
