@@ -12,6 +12,13 @@ description: >
 	lange Ganglinie (Vektor) vor. Die zeitliche Auflösung aller
 	Ganglinien sei eine Stunde. 
 	
+	Achtung: Wegen eines Bugs in Codefights müssen die beiden Vektoren anfangs so behandelt werden:
+````
+	  precip=unlist(precip) #Codefights Bug
+	  egl=unlist(egl)
+````
+
+	
 	#### Beispiel
 	
 	Die Einheitsganglinie sei `egl = c(0.2, 0.8)`, die
@@ -62,6 +69,8 @@ test3:
 
 solution: |
 	egl3 = function(precip, egl, area) {
+	  precip=unlist(precip) #Codefights Bug
+	  egl=unlist(egl)
 	  out = rep(0, length(precip) + length(egl) - 1)
 	  for (i in 1:length(precip)) {
 		ix = i:(i+length(egl)-1)

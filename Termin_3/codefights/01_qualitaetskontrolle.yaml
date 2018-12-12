@@ -9,6 +9,12 @@ description: >
 	betreffenden Tage als Fehlwerte markieren. Als Fehlwertmarker wird
 	oft der Wert -9999 genutzt. Ersetze also alle unzuverlässigen Messungen
 	durch den Wert -9999 und gib den somit korrigierten Vektor zurück.
+
+Achtung: Wegen eines Bugs in Codefights müssen die beiden Vektoren anfangs so behandelt werden:
+````
+precip = unlist(precip) #Codefights-bug; sonst nicht nötig
+stoertage = unlist(stoertage)
+````
 	
 #### Beispiel
 	Wenn `precip = c(1, 5.5, 10.1, 0, 3)` und `stoertage = c(2, 4)`,
@@ -48,6 +54,8 @@ test3:
 
 solution: |
 	qualitatetskontrolle = function(precip, stoertage) {
+	  precip = unlist(precip) #Codefights-bug; sonst nicht nötig
+	stoertage = unlist(stoertage)
 	  precip[stoertage] = -9999
 	  return(precip)
 	}
