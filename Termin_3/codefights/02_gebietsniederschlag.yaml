@@ -9,6 +9,11 @@ description: >
 	den Stationen gemessenen Niederschläge (in mm). Berechne auf Grundlage 
 	dieser Informationen den Gebietsniederschlag. 
 	
+Achtung: Wegen eines Bugs in Codefights muss der Vektor anfangs so behandelt werden:
+````
+	messungen=unlist(messungen) #Codefights-Bug
+````
+	
 	#### Beispiel
 	
 	Wenn `messungen = c(4, 10, 5)`, dann ist der Gebietsniederschlag
@@ -37,6 +42,7 @@ test3:
 
 solution: |
 	gebietsniederschlag = function(messungen) {
+	messungen=unlist(messungen) #Codefights-Bug
 	  return(0.5*messungen[1] + 0.3*messungen[2] + 0.2*messungen[3])
 	}
 

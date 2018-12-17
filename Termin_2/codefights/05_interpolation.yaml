@@ -49,18 +49,12 @@ test3:
 	input: 
 	-[2, 4, 5, 8] 
 	-[1, 2, 5, 10]
-	-[3, 3, 4.5]
-	output: [1.5, 1.5, 3.5]
+	-[2.6, 2.6, 3]
+	output: [1.3, 1.3, 1.5]
 	
-test4:
-	input: 
-	-[-1,2]
-	-[2,3]
-	-[0, 0.5]
-	output: [2.3, 2.5]
 	
 	
 solution: |
 	interpolation = function(t_mess, x_mess, t_approx) {
-return(round(approx(x=t_meas, y = x_meas, xout =t_approx)$y, digits=1))
+return(round(approx(x=t_mess, y = x_mess, xout =t_approx)$y, digits=1))
 }

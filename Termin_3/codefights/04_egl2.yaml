@@ -50,6 +50,7 @@ test3:
 
 solution: |
 	egl2 = function(precip, egl) {
+	  precip=unlist(precip) #Codefights Bug
 	  return(length(precip) + length(egl) - 1)
 	}
 

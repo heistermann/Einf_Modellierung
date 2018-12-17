@@ -8,6 +8,11 @@ description: >
 	Effektivniederschlagsimpuls am Gebietsauslass 
 	als Abfluss über die Zeit verteilt.
 	
+	Achtung: Wegen eines Bugs in Codefights muss der Vektor anfangs so behandelt werden:
+````
+	precip=unlist(precip) #Codefights-Bug
+````
+	
 	#### Beispiel
 	
 	Der Vektor der Einheitsganglinie heiße `egl` und habe den
@@ -76,6 +81,7 @@ test3:
 
 solution: |
 	egl1 = function(precip, egl, area) {
+	  precip=unlist(precip) #Codefights Bug
 	  return(precip * area * egl / 3.6)
 	}
 

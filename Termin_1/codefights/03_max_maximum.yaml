@@ -3,6 +3,12 @@ task_name: max_maximum
 
 description: 
 	Gib die größte Zahl zurück, die in den beiden gegebenen Vektoren `v1` und `v2` enthalten ist!
+
+Achtung: Wegen eines Bugs in Codefights müssen die beiden Vektoren anfangs so behandelt werden:
+````
+   v1=unlist(v1) 
+   v2=unlist(v2)
+````
 	
 	#### Beispiel
 	Für  die Vektoren `v1 = c(23, 17, 1)` und `v2 = c(5, 4)` soll das Ergebnis `23` erzeugt werden.
@@ -42,7 +48,11 @@ test3:
 
 solution: |
 	max_maximum <- function(v1, v2) {
-	   max(c(v1,v2))
+	   #Codefights-Bug, nicht nötig in richtigem R
+   v1=unlist(v1) 
+   v2=unlist(v2)
+
+   max(c(v1,v2))
 	}
 
 
