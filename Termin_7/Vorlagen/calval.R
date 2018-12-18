@@ -1,7 +1,11 @@
 # Seminar zu "Einführung in die Modellierung/Integrierte Modellierung"
+
 # Workspace ausleeren
 rm(list = ls())
+
+
 # DIE NASH-SUTCLIFFE MODELLEFFIZIENZ
+
 # AUFAGBE: Beim letzten Termin hast Du bereits eine
 #   Funktion zur Berechnung des RMSE geschrieben.
 #
@@ -9,31 +13,39 @@ rm(list = ls())
 #      Modelleffizienz nach Nash und Sutcliffe (NSE, siehe Folie #8!).
 #
 #   2. Ueberpruefe mit Hilfe der Testdaten x und y, 
-#      ob die Funktion richtig funktioniert. Schiebe gleich noch eine Funktion "nash2" hinterher,
-#      welche vor der Berechnung die NA-Werte aussortiert.
-#      Orientiere dich dabei am Code vom letzten Termin.
+#      ob die Funktion richtig funktioniert. Schiebe gleich noch 
+#      eine Funktion "nash2" hinterher, welche vor der Berechnung
+#      die NA-Werte aussortiert. Orientiere dich dabei am Code
+#      vom letzten Termin.
 #
 #   3. Was ist der bestmögliche NSE-Wert?
 #
 #   4. Was ist der denkbar schlechteste NSE-Wert?
+
 nash = function(obs, sim) {
-  #...hier ergänzen...
+  # FUNKTION HIER EINTRAGEN
 }
+
 # Teste mit Hilfe von x und y
 x = c(2, 3, 2, 5, 1)
 y = c(1, 3, 4, 5, 1)
 round( nash(x, y), 2) == 0.46
+
 # Schreibe hier die Funktion, welche die NA Werte aussortiert
 nash2 = function(obs, sim) {
-  #...hier ergänzen...
+  # FUNKTION HIER EINTRAGEN
 }
+
+
 # AUTOMATISCHE KALIBRIERUNG DES ABCD-MODELLS
 # ------------------------------------------
+
 # AUFGABE: Wir nutzen erneut den Datensatz fuer den
 #   MOPEX-Pegel "02296750" ("PEACE RIVER AT ARCADIA, FLORIDA")
 #   und unsere Funktionsbibliothek "ModelLibrary.R".
 #   Berechne testweise mal den NSE-Wert fuer einen beliebigen
 #   Parametersatz params.
+
 source("ModelLibrary.R")
 # Daten lesen
 mopex = read.mopex("02296750.monthly")
@@ -43,6 +55,8 @@ params = c(a=0.99, b=100, c=0.4, d=0.1)
 sim = abcd(mopex, params)
 # Berechne den NSE-Wert (ARGUMENTE EINFUEGEN)
 nash2(..., ...)
+
+
 # AUFGABE: Du sollst nun einen Suchalgorithmus zur automatischen
 #   Kalibrierung anwenden. Dieser Algorithmus soll die Modellparameter
 #   a, b, c und d so optimieren, dass der NSE-Wert maximal wird.
@@ -76,22 +90,25 @@ nash2(..., ...)
 #   6. Wenn Du dem dem Suchalgorithmus mehr Zeit gibst, wird das
 #      Ergebnis evtl. besser. Setze das Argument 
 #      max_number_function_calls hoch - aendert sich das Suchergebnis?
+
 install.packages(pkgs="ppso", repos="http://rforge.net/", type = "source")
+
 # Importiere ppso mit Hilfe des "library"-Befehls
-#...hier ergänzen...
+# HIER IMPORTBEFEHL EINTRAGEN
+
 # Trage hier sinnvolle Unter- und Obergrenzen fuer a, b, c und d ein.
 bounds = data.frame(lower=c(..., ..., ..., ...), 
                     upper=c(..., ..., ..., ...))
-# DELETE
-bounds = data.frame(lower=c(0.8, 0,     0,  0), 
-                    upper=c(1.,  3000., 1., 1.))
+
 row.names(bounds) = c("a", "b", "c", "d")
+
 # Diese Funktion erhaelt einen Parametervektor und eine Modellfunktion
 zielfunktion= function(params, model, data) {
   x = data$discharge
   y = model(data, params)$Q
   return(-nash2(x, y)) 
 }
+
 # Nun fuehren wir die eigentliche Kalibrierung durch.
 #   Der Suchalgorithmus heißt optim_dds. Wer mehr ueber
 #   den DDS-Algorithmus erfahren moechte: 
@@ -105,13 +122,17 @@ fit = optim_dds(objective_function=zielfunktion,
                 parameter_bounds = bounds,
                 load_projectfile="no",
                 max_number_function_calls=50)
+
 # Das Objekt "fit" informiert uns ueber das
 #   Ergebnis der Kalibrierung.
 print( paste("NSE nach Optimierung:", round(-fit$value,2)) )
 print( paste(c("a:","b:","c:","d:"), round(fit$par,2)) )
+
 # Mit Hilfe des folgenden Befehls erfahren wir mehr
 #   ueber den Prozess der Kalibrierung.
 plot_optimization_progress(logfile="dds.log", projectfile="dds.pro")
+
+
 # AUFGABE: Nun visualisieren wir das Ergebnis der Kalibrierung nochmal.
 #   Wir basteln dazu eine zweiteilige Abbildung. Der obere Teil stellt
 #   die Ganglinien des beobachteten und simulierten Abflusses dar.
@@ -121,6 +142,7 @@ plot_optimization_progress(logfile="dds.log", projectfile="dds.pro")
 #   1. Was sind die Vor- und Nachteile der beiden Darstellungsformen?
 #
 #   2. Mit welchem Befehl unterteilen wir die Abbildung?
+
 # Zunaechst nutzen wir den "besten" Parametersatz fuer die Simulation
 bestabcd = abcd(mopex, fit$par)
 # Abbildung mit zwei Zeilen und einer Spalte
@@ -137,6 +159,8 @@ plot(mopex$discharge, bestabcd$Q,
      xlim=axlim, ylim=axlim)
 # Winkelhalbierende
 lines(x=c(axlim[1]-100,axlim[2]+100), y=c(axlim[1]-100,axlim[2]+100))
+
+
 # AUFGABE: Schreibe nun den Code, um das abc-Modell zu kalibrieren. 
 #   Denke an die erforderlichen Schritte: 
 #   - data.frame mit Ober- und Untergrenzen definieren
@@ -145,9 +169,13 @@ lines(x=c(axlim[1]-100,axlim[2]+100), y=c(axlim[1]-100,axlim[2]+100))
 #   - Ergebnis inspizieren
 #
 #  MASTERFRAGE: Was funktioniert besser: abc oder abcd?
-#...hier ergänzen...
-# AUFGABE (optional): Implementiere fuer das abcd-Modell
-#   Kalibierung UND Validierung als Split-Sampling. Gehe dafuer
+
+# HIER DEN CODE FUER DIE KALIBRIERUNG VON ABC EINTRAGEN
+
+
+
+# AUFGABE (optional): Fuehre fuer das abcd-Modell
+#   Kalibierung UND Validierung als Split-Sampling durch. Gehe dafuer
 #   wie folgt vor:
 #
 #   1. Generiere einen zwei Index-Vektoren, welche Deinen Datensatz
@@ -162,4 +190,20 @@ lines(x=c(axlim[1]-100,axlim[2]+100), y=c(axlim[1]-100,axlim[2]+100))
 #   4. Vergleiche die NSE-Werte, die Du jeweils fuer Kalibrierung und
 #      Validierung erreicht hast. Was schließt Du im Hinblick auf die
 #      Modellguete?
-#...hier ergänzen...
+
+calix = 1:(nrow(mopex)/2)
+valix = (nrow(mopex)/2):nrow(mopex)
+fit = optim_dds(objective_function=zielfunktion,
+                   model=abcd,
+                   data=mopex[calix,],
+                   number_of_parameters=4,
+                   parameter_bounds = bounds,
+                   load_projectfile="no",
+                   max_number_function_calls=500)
+print( paste("NSE nach Kalibrierung:", round(-fit$value,2)) )
+print( paste(c("a:","b:","c:","d:"), round(fit$par,2)) )
+print( paste("NSE nach Validierung:", 
+             round(nash2(mopex$discharge[valix], 
+                         abcd(mopex[valix,], fit$par)$Q)
+                   ,2)) )
+

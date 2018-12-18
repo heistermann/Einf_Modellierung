@@ -1,16 +1,16 @@
-# Seminar zu "Einf¸hrung in die Modellierung/Integrierte Modellierung"
+# Seminar zu "Einfuehrung in die Modellierung"
 # Workspace ausleeren
 rm(list = ls())
 # INSPEKTION EINES MOPEX-DATENSATZES
 # ----------------------------------
 # AUFGABE: Wir inspizieren nun einen Datensatz fuer den
 #   MOPEX-Pegel "02296750" ("PEACE RIVER AT ARCADIA, FLORIDA").
-#   Der Datensatz enth‰lt u.a. monatliche Werte fuer Niederschlag,
+#   Der Datensatz enthaelt u.a. monatliche Werte fuer Niederschlag,
 #   Abfluss und Potenzielle Verdunstung. Diese Werte sind als
-#   mm Wassersaeule ¸ber das gesamte Einzugsgebiet angegeben.
+#   mm Wassersaeule ueber das gesamte Einzugsgebiet angegeben.
 #   Wir belassen es bei dieser Einheit.
 #
-#   Die entsprechende Datei heiﬂt "02296750.monthly" und wird
+#   Die entsprechende Datei heisst "02296750.monthly" und wird
 #   mit dem "read.table"-Befehl in R eingelesen. 
 #   1. Schau Dir die Datei mit einem Text-Editor (notepad++) an.
 #      Welches Zeichen wird als Spaltentrenner verwendet? Fuege
@@ -42,9 +42,7 @@ rm(list = ls())
 # Lese die Daten (ERSETZE DIE PLATZHALTER!)
 mopex = read.table("02296750.monthly", stringsAsFactors=FALSE,
                    {SPALTENTRENNUNG}, {KOPFZEILE})
-# DELETE
-mopex = read.table("02296750.monthly", stringsAsFactors=FALSE,
-                   sep=";", header=TRUE)
+
 # Struktur und Datentyp des Rueckgabewertes
 str(mopex)
 # Konvertiere Strings aus der Spalte "date" zu Datumsobjekten 
@@ -59,8 +57,11 @@ plot(mopex$date, mopex$discharge, type="n", ylim = c(0,300),
 axis.Date(1, at=mopex$date, format="%m/%y")
 lines(mopex$date, mopex$discharge, type="l", col="black", lwd=2)
 lines(mopex$date, mopex$precip,    type="l", col="blue",  lwd=2)
+
 # Zeichne die Ganglinie fuer PET mit Hilfe des "lines"-Befehls
-#...hier erg‰nzen...
+
+#...hier ergaenzen...
+
 # Legende zeichnen (ERGAENZE DEN EINTRAG FUER PET!)
 legend("topright", 
        legend=c("Abfluss (mm)", "Niederschlag (mm)"),
@@ -102,8 +103,11 @@ rm(list = ls())
 #      gute Uebereinstimmung des simulierten mit dem beobachteten
 #      Abfluss zu erreichen. Mit Hilfe des "zoominto"-Arguments
 #      kannst Du unterschiedliche Zeitfenster betrachten.
+
 # Importiere mit dem Befehl "source" die Funktionen aus "ModelLibrary.R"
-#...hier erg‰nzen...
+
+#...hier ergaenzen...
+
 # Daten lesen
 mopex = read.mopex("02296750.monthly")
 # Parameter als Vektor definieren
@@ -114,12 +118,13 @@ sim = abcd(mopex, params)
 plot.hydro(mopex, sim, baseflow=FALSE,
                 zoominto=c(as.Date("1990-01-01"), 
                            as.Date("2000-01-01")))
+
 # AUFGABE: Die visuelle Betrachtung ermoeglicht einen guten Eindruck der
 #   Uebereinstimmung zwischen Simulation und Beobachtung.
 #
-#   Allerdings waere ein objektives, quantitatives Uebereinstimmungsmaﬂ
-#   wuenschenswert (Guetemaﬂ oder Fehlermaﬂ). Ein verbreitetes
-#   Fehlermaﬂ ist der "Root Mean Squared Error" (RMSE).
+#   Allerdings waere ein objektives, quantitatives Uebereinstimmungsmass
+#   wuenschenswert (Guetemass oder Fehlermass). Ein verbreitetes
+#   Fehlermass ist der "Root Mean Squared Error" (RMSE).
 #
 #   1. Uebersetze "Root Mean Squared Error" ins Deutsche.
 #
@@ -142,17 +147,21 @@ plot.hydro(mopex, sim, baseflow=FALSE,
 #      fuer einen beliebigen Parametersatz param.
 #
 #   5. Mist! Was funktioniert da nicht???
+
 # Schreibe hier die Funktion zur Berechnung des RMSE
 rmse = function(obs, sim) {
-  #...hier erg‰nzen...
+      #...hier ergaenzen...
 }
+
 # Teste Deine Funktion rmse anhand der Testdatensaetze x und y
 #   Richtiges Ergebnis: RMSE = 1
 x = c(2, 3, 2, 5, 1)
 y = c(1, 3, 4, 5, 1)
 rmse(x, y)
+
 # Berechnung des RMSE fuer das abcd-Modell im Peace River Einzugsgebiet
 rmse( mopex$discharge, abcd(mopex, params)$Q )
+
 # AUFGABE: Die Berechnung des RMSE mit Hilfe der Funktion rmse
 #   ergibt NA, also einen Fehlwert (Not Available, Missing Value).
 #   Dies liegt daran, dass die Zeitreihe der beobachten MOPEX-Abfluesse
@@ -170,12 +179,14 @@ rmse( mopex$discharge, abcd(mopex, params)$Q )
 #      hat dann der RMSE?
 #
 #   6. Wer schafft es, den kleinsten RMSE zu erzeugen?
+
 # Diese Funktion entfernt Zeitschritte mit NA
 #   und berechnet dann den RMSE.
 rmse2 = function(obs, sim) {
   ix = is.finite(obs) & is.finite(sim)
   return ( rmse(obs[ix], sim[ix]) )
 }
+
 # Und nun nochmal Berechnung des RMSE fuer das abcd-Modell
 #   im Peace River Einzugsgebiet
 params = c(a=0.99, b=100, c=0.4, d=0.1)

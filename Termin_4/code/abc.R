@@ -1,4 +1,4 @@
-# Seminar zu "Einführung in die Modellierung/Integrierte Modellierung"
+# Seminar zu "Einfuehrung in die Modellierung"
 
 # Workspace ausleeren
 rm(list = ls())
@@ -16,9 +16,9 @@ abc = function(P, a, b, c) {
   #<
   stopifnot(a+b<=1)
   stopifnot(c<=1)
-  # Für den Grundwassspeicher G müssen wir einen Startwert annehmen.
+  # Fuer den Grundwassspeicher G muessen wir einen Startwert annehmen.
   G = 0
-  # Ergebniscontainer für den Gesamtabfluss
+  # Ergebniscontainer fuer den Gesamtabfluss
   Q = rep(0., length(P))
   for (i in 1:length(P)) {
     Q[i] = (1-a-b) * P[i] + c * G
@@ -53,18 +53,18 @@ legend("topright", legend=c("Abfluss", "Niederschlag"),
 
 # AUFGABE: Modifiziere Deine Funktion abc so, dass nicht nur die
 #   Ganglinie des Gesamtabflusses, sondern auch die Ganglinie
-#   des Grundwasserabflusses zurückgegeben wird. Nutze dafuer
+#   des Grundwasserabflusses zurueckgegeben wird. Nutze dafuer
 #   den Datentyp einer Liste (list), in welchen man beliebige
 #   Datentypen einbetten kann, z.B. so: return(list(Q=x1, Qgw=x2))
 abc2 = function(P, a, b, c) {
   #<
   stopifnot(a+b<=1)
   stopifnot(c<=1)
-  # Für den Grundwassspeicher G muessen wir einen Startwert annehmen.
+  # Fuer den Grundwassspeicher G muessen wir einen Startwert annehmen.
   G = 0
-  # Ergebniscontainer für den Gesamtabfluss
+  # Ergebniscontainer fuer den Gesamtabfluss
   Q = rep(0., length(P))
-  # Ergebniscontainer für den GW-Abfluss
+  # Ergebniscontainer fuer GW-Abfluss
   Qgw = rep(0., length(P))
   for (i in 1:length(P)) {
     Q[i] = (1-a-b) * P[i] + c * G

@@ -1,4 +1,4 @@
-# Seminar zu "Einf¸hrung in die Modellierung/Integrierte Modellierung"
+# Seminar zu "Einfuehrung in die Modellierung"
 
 # Workspace ausleeren
 rm(list = ls())
@@ -9,18 +9,18 @@ rm(list = ls())
 
 # AUFGABE: Wir inspizieren nun einen Datensatz fuer den
 #   MOPEX-Pegel "02296750" ("PEACE RIVER AT ARCADIA, FLORIDA").
-#   Der Datensatz enth‰lt u.a. monatliche Werte fuer Niederschlag,
+#   Der Datensatz enthaelt u.a. monatliche Werte fuer Niederschlag,
 #   Abfluss und Potenzielle Verdunstung. Diese Werte sind als
-#   mm Wassersaeule ¸ber das gesamte Einzugsgebiet angegeben.
+#   mm Wassersaeule ueber das gesamte Einzugsgebiet angegeben.
 #   Wir belassen es bei dieser Einheit.
 #
-#   Die entsprechende Datei heiﬂt "02296750.monthly" und wird
+#   Die entsprechende Datei heisst "02296750.monthly" und wird
 #   mit dem "read.table"-Befehl in R eingelesen. 
 
 #   1. Schau Dir die Datei mit einem Text-Editor (notepad++) an.
 #      Welches Zeichen wird als Spaltentrenner verwendet? Fuege
-#      passende Argumente in den "read.table"-Befehl ein,
-#      welche R den Spaltentrenner mitteilen sowie die Tatsache,
+#      in den "read.table"-Befehl passende Argumente ein,
+#      die den Spaltentrenner spezifizieren und die festlegen,
 #      dass die Datei eine Kopfzeile (header) mit Spaltenbezeichnern
 #      besitzt. Ersetze dazu die beiden Platzhalter {SPALTENTRENNUNG}
 #      und {KOPFZEILE} durch sinnvolle Ausdruecke.
@@ -45,10 +45,7 @@ rm(list = ls())
 #   7. Schaue Dir auch andere Zeitfenster an. 
 #      Aendere dafuer die Variable "zoominto".
 
-# Lese die Daten (ERSETZE DIE PLATZHALTER!)
-mopex = read.table("02296750.monthly", stringsAsFactors=FALSE,
-                   {SPALTENTRENNUNG}, {KOPFZEILE})
-# DELETE
+# Lies die Daten (ERSETZE DIE PLATZHALTER!)
 mopex = read.table("02296750.monthly", stringsAsFactors=FALSE,
                    sep=";", header=TRUE)
 
@@ -75,8 +72,8 @@ lines(mopex$date, mopex$pet,       type="l", col="red",   lwd=2)
 #>
 # Legende zeichnen (ERGAENZE DEN EINTRAG FUER PET!)
 legend("topright", 
-       legend=c("Abfluss (mm)", "Niederschlag (mm)"),
-       lwd=2, col=c("black","blue"))
+       legend=c("Abfluss (mm)", "Niederschlag (mm)", "PET (mm)"),
+       lwd=2, col=c("black","blue", "red"))
 
 
 # Workspace ausleeren
@@ -114,7 +111,7 @@ rm(list = ls())
 #        und simulierten Abflusses.
 #      Lies nun also mit Hilfe des untenstehenden Codes den
 #      Datensatz "02296750.monthly" ein, definiere den Parametervektor,
-#      fuhre das abcd-Modell aus und stelle die Abflussganglinien dar.
+#      fuehre das abcd-Modell aus und stelle die Abflussganglinien dar.
 #
 #   3. Spiele nun mit den Parameterwerten, um eine moeglichst
 #      gute Uebereinstimmung des simulierten mit dem beobachteten
@@ -141,9 +138,9 @@ plot.hydro(mopex, sim, baseflow=FALSE,
 # AUFGABE: Die visuelle Betrachtung ermoeglicht einen guten Eindruck der
 #   Uebereinstimmung zwischen Simulation und Beobachtung.
 #
-#   Allerdings waere ein objektives, quantitatives Uebereinstimmungsmaﬂ
-#   wuenschenswert (Guetemaﬂ oder Fehlermaﬂ). Ein verbreitetes
-#   Fehlermaﬂ ist der "Root Mean Squared Error" (RMSE).
+#   Allerdings waere ein objektives, quantitatives Uebereinstimmungsmass
+#   wuenschenswert (Guetemass oder Fehlermass). Ein verbreitetes
+#   Fehlermass ist der "Root Mean Squared Error" (RMSE).
 #
 #   1. Uebersetze "Root Mean Squared Error" ins Deutsche.
 #
@@ -161,7 +158,7 @@ plot.hydro(mopex, sim, baseflow=FALSE,
 #      muesste als Ergebnis "1" zurueckgegeben werden.
 #
 #   4. Wende nun die Funktion "rmse" auf das  abcd-Modell fuer
-#      dem Peace River an (siehe oben). Berechne also den RMSE
+#      den Peace River an (siehe oben). Berechne also den RMSE
 #      des simulierten Abflusses im Vergleich zum beobachteten Abfluss
 #      fuer einen beliebigen Parametersatz param.
 #

@@ -34,8 +34,23 @@ sieb = function(bis)
   return(primzahlen)
 }
 
+sieb = function(bis)
+{  
+  
+  zahlen = 2:bis
+  primzahlen = c(2)
+  for (zahl in zahlen)
+  { 
+    mod = (zahl %% 2:(zahl-1))
+    if (!(0 %in% mod)) {
+      primzahlen = c(primzahlen, zahl)
+    }
+  }  
+  return(primzahlen)
+}
 
-sieb(10)
+
+sieb(2)
 
 sieb(30)
 
@@ -46,7 +61,8 @@ afd_rede = function(text, abstand, schwort)
 {  
   woerter = unlist(strsplit(text, " "))
   
-  woerter[1:length(woerter) %% abstand ==0] =  schwort
+  #woerter[1:length(woerter) %% abstand ==0] =  schwort
+  woerter[seq(abstand,length(woerter),abstand)] =  schwort
   return(paste(woerter, collapse=" "))
 }
   
