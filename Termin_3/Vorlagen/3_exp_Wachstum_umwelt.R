@@ -3,9 +3,7 @@
 # Populationswachstum: exponentielles Modell mit Umwelteinwirkungen
 
 # Funktion "exp_Wachstum_umwelt" definieren
-#<
-exp_Wachstum_umwelt = function (n0, r_pess, r_opt, nt)
-#>
+# --> hier ergaenzen
 {  
 # n0 :               Startpopulation
 # r_pess, r_opt:   : minimale und maximale Wachstumsrate
@@ -19,9 +17,7 @@ exp_Wachstum_umwelt = function (n0, r_pess, r_opt, nt)
   for (t in 2:nt)
   {
     # zufaellige Auspraegung der Wachstumsrate (z.B. durch Klima)  mit runif() erzeugen
-    #<
-    r = runif(n = 1, min=r_pess, max=r_opt)
-    #<
+    # --> hier ergaenzen
     n[t] = n[t-1] + r * n[t-1]
   }
   
@@ -37,22 +33,13 @@ exp_Wachstum_umwelt = function (n0, r_pess, r_opt, nt)
   
 
   #Funktion mit n0 = 2, r_pess= -0.2, r_opt=0.25, nt = 100 aufrufen, Rueckgabewert in n_1 speichern
-  #<
-  n_1 = exp_Wachstum_umwelt(n0 = 2, r_pess  = -0.2, r_opt = 0.25, nt = 100)
-  #>
+  # --> hier ergaenzen
   
   #Funktion mit n0 = 2, r_pess= -0.25, r_opt=0.2, nt = 100 aufrufen, Rueckgabewert in n_2 speichern
-  #<
-  n_2 = exp_Wachstum_umwelt(n0 = 2, r_pess  = -0.25, r_opt = 0.2, nt = 100)
-  #>
-
+  # --> hier ergaenzen
 
   #Resultate (n_1, n_2) in EINER Grafik darstellen
-  #<
-  plot  (x=1:length(n_1), y=n_1, type="p", col="black", xlab = "Zeitschritte", ylab="Populationsgroesse")
-  points(x=1:length(n_2), y=n_2, col="red")
-  legend("bottomright", legend=c("n_1", "n_2"), col=c("black","red"), pch = 21)
-  #>
+  # --> hier ergaenzen
   
   #? Welche Population stirbt (meist) (frueher) aus?
   
