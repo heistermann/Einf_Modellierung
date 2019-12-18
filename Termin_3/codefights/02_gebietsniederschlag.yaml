@@ -11,7 +11,7 @@ description: >
 	
 Achtung: Wegen eines Bugs in Codefights muss der Vektor anfangs so behandelt werden:
 ````
-	messungen=unlist(messungen) #Codefights-Bug
+messungen=unlist(messungen) #Codefights-Bug
 ````
 	
 	#### Beispiel
