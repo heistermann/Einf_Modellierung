@@ -4,13 +4,13 @@
 # Funktion "exp_Wachstum_umwelt" definieren
 #...hier ergänzen...
 {  
-# n0 :               Startpopulation
+# N0 :               Startpopulation
 # r_pess, r_opt:   : minimale und maximale Wachstumsrate
 # nt :               Anzahl Zeitschritte
   
   #Variablen vorbereiten
-  n = rep(NA,nt) #Vektor für zeitlichen Verlauf der Population
-  n[1] = n0
+  N = rep(NA,nt) #Vektor für zeitlichen Verlauf der Population
+  N[1] = N0
   
   # Iterationsschleife
   for (t in 2:nt)
@@ -18,7 +18,7 @@
   #...hier ergänzen...
   
   # Ergebnis zurückgeben
-  return(n)
+  return(N)
 }
   
   # seed (optional)  : Initialisierung des Zufallsgenerators  
@@ -27,12 +27,12 @@
   seed=6
   set.seed(seed)
   
-  #Funktion mit n0 = 2, r_pess= -0.2, r_opt=0.25, nt = 100 aufrufen, Rückgabewert in n_1 speichern
+  #Funktion mit N0 = 2, r_pess= -0.2, r_opt=0.25, nt = 100 aufrufen, Rückgabewert in N_1 speichern
   #...hier ergänzen...
   
-  #Funktion mit n0 = 2, r_pess= -0.25, r_opt=0.2, nt = 100 aufrufen, Rückgabewert in n_2 speichern
+  #Funktion mit N0 = 2, r_pess= -0.25, r_opt=0.2, nt = 100 aufrufen, Rückgabewert in N_2 speichern
   #...hier ergänzen...
-  #Resultate (n_1, n_2) in einer Grafik darstellen
+  #Resultate (N_1, N_2) in einer Grafik darstellen
   #...hier ergänzen...
   
   #? Welche Population stirbt (meist) (früher) aus?

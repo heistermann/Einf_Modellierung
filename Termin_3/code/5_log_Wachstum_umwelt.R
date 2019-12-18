@@ -31,10 +31,10 @@ plot(theta_plot, K_plot, xlab="theta", ylab="K_max", type="l", col="blue")
 
 # Funktion "log_Wachstum_umwelt" definieren (n_min=2)
 #<
-log_Wachstum_umwelt = function (n0, r_max, nt, K_opt, K_pess, theta_opt, praeferendumsbreite, theta, n_min=2)
+log_Wachstum_umwelt = function (N0, r_max, nt, K_opt, K_pess, theta_opt, praeferendumsbreite, theta, n_min=2)
 #>
 {  
-# n0 :            Startpopulation
+# N0 :            Startpopulation
 # r_max:   : maximale Wachstumsrate fuer aktuellen Zeitschritt
 # nt :            Anzahl Zeitschritte
 # K_opt, K_pess: Habitatkapazitaeten unter optimalen bzw. Pessimum-Bedingungen
@@ -45,8 +45,8 @@ log_Wachstum_umwelt = function (n0, r_max, nt, K_opt, K_pess, theta_opt, praefer
 
 
   #Variablen vorbereiten
-  n = rep(NA,nt) #Vektor fuer zeitlichen Verlauf der Population
-  n[1] = n0
+  N = rep(NA,nt) #Vektor fuer zeitlichen Verlauf der Population
+  N[1] = N0
   
   # Iterationsschleife
   for (t in 2:nt)
@@ -58,15 +58,15 @@ log_Wachstum_umwelt = function (n0, r_max, nt, K_opt, K_pess, theta_opt, praefer
       
     # dichtegesteuerte Wachstumsrate (logistischer Regression)
     #<
-    r = r_max* (1 - n[t-1]/K)
+    r = r_max* (1 - N[t-1]/K)
     #>
     
-    n[t] = n[t-1] + r * n[t-1]
-    if (n[t] < n_min) n[t] = 0     #Population kleiner als n_min stirbt aus
+    N[t] = N[t-1] + r * N[t-1]
+    if (N[t] < n_min) N[t] = 0     #Population kleiner als n_min stirbt aus
   }
 
   # Ergebnis zurueckgeben
-  return(n)
+  return(N)
 }
   
 
@@ -75,7 +75,7 @@ log_Wachstum_umwelt = function (n0, r_max, nt, K_opt, K_pess, theta_opt, praefer
   set.seed(3) # Initialisierung des Zufallsgenerators fuer reproduzierbaren Zufall
   theta_min=0 #Minimum und Maximum der Umweltvariable
   theta_max=1
-  theta = runif(n = nt, min=theta_min, max=theta_max)  #Zufallsgenerator
+  theta = runif(N = nt, min=theta_min, max=theta_max)  #Zufallsgenerator
   theta = lowess(theta, f=0.05)$y  #Glaettung, damit sich ein kontinuierlicher Verlauf zeigt
   #theta = (theta - min(theta)) / diff(range(theta))* (theta_max-theta_min) + theta_min
 
@@ -88,17 +88,17 @@ log_Wachstum_umwelt = function (n0, r_max, nt, K_opt, K_pess, theta_opt, praefer
 
   
       
-#Funktion mit n0 = 2, r_max aus Vektor, K = 100 aufrufen, Rueckgabewert in n_1 speichern
+#Funktion mit N0 = 2, r_max aus Vektor, K = 100 aufrufen, Rueckgabewert in N_1 speichern
 #<
-n_1 = log_Wachstum_umwelt(n0 = 2, r_max=r_max, nt = nt, 
+N_1 = log_Wachstum_umwelt(N0 = 2, r_max=r_max, nt = nt, 
                           K_opt = K_opt, K_pess = K_pess, 
                           theta_opt=theta_opt, praeferendumsbreite = praeferendumsbreite,
                           theta=theta)
 #>
 
 
-#Population (n_1) darstellen
-plot  (x=1:length(n_1), y=n_1, type="l", col="black", xlab = "Zeitschritte", ylab="Populationsgroesse")
+#Population (N_1) darstellen
+plot  (x=1:length(N_1), y=N_1, type="l", col="black", xlab = "Zeitschritte", ylab="Populationsgroesse")
 
 #Zeitreihe von theta (Klima) in die gleich Grafik einzeichnen
   #weitere Grafik ueber die erstere legen, ohne diese zu loeschen
@@ -108,7 +108,7 @@ par(new=TRUE)
 #erneute Titelausgabe unterdruecken               (Tipp: plot(..., xlab=...))
 #erneute Achsenbeschriftung unterdruecken         (Tipp: plot(..., axes=...))
 #<
-  plot(x=1:length(n_1), y = theta, col="blue", type="l", ylim = c(min(theta), 2*max(theta)), axes = FALSE,
+  plot(x=1:length(N_1), y = theta, col="blue", type="l", ylim = c(min(theta), 2*max(theta)), axes = FALSE,
      xlab="", ylab="" )
 #>  
 #zweite y-Achsenbeschriftung rechts einfuegen (Tipp: axis(...))
@@ -120,28 +120,28 @@ axis(side=4)
 abline(h=c(theta_opt-praeferendumsbreite/2, theta_opt, theta_opt+praeferendumsbreite/2) , lty="dashed", col="black")
 #>
 
-legend("topleft", legend=c("n_1", "theta"), col=c("black","blue"), lty= 1)
+legend("topleft", legend=c("N_1", "theta"), col=c("black","blue"), lty= 1)
 
 #? Was passiert, wenn die Art etwas stenoeker (paeferendumsbreite=0.15) ist?
 
 
-#? Vergleiche die Populationsdynamik mit einer zweiten Populationen n_2, 
+#? Vergleiche die Populationsdynamik mit einer zweiten Populationen N_2, 
 #? die trockenresistenter (theta_opt=0.3) ist
 
 #<
- n_2 = log_Wachstum_umwelt(n0 = 2, r_max=r_max, nt = nt, 
+ N_2 = log_Wachstum_umwelt(N0 = 2, r_max=r_max, nt = nt, 
                           K_opt = K_opt, K_pess = K_pess, 
                           theta_opt=0.3, praeferendumsbreite = praeferendumsbreite,
                           theta=theta)
 #> 
 
-#Population (n_1 und n_2) in einer Grafik darstellen
-plot  (x=1:length(n_1), y=n_1, type="l", col="black", xlab = "Zeitschritte", ylab="Populationsgroesse")
-lines (x=1:length(n_2), y=n_2,           col="red")
+#Population (N_1 und N_2) in einer Grafik darstellen
+plot  (x=1:length(N_1), y=N_1, type="l", col="black", xlab = "Zeitschritte", ylab="Populationsgroesse")
+lines (x=1:length(N_2), y=N_2,           col="red")
 
 #weitere Grafik ueber die erstere legen, ohne diese zu loeschen
 par(new=TRUE)
-plot(x=1:length(n_1), y = theta, col="blue", type="l", ylim = c(min(theta), 2*max(theta)), axes = FALSE,
+plot(x=1:length(N_1), y = theta, col="blue", type="l", ylim = c(min(theta), 2*max(theta)), axes = FALSE,
      xlab="", ylab="" )
 #zweite y-Achsenbeschriftung rechts einfuegen (Tipp: axis(...))
 axis(side=4)
@@ -149,7 +149,7 @@ axis(side=4)
 abline(h=c(theta_opt-praeferendumsbreite/2, theta_opt, theta_opt+praeferendumsbreite/2) , lty="dashed", col="black")
 abline(h=c(0.3-praeferendumsbreite/2, 0.3, 0.3+praeferendumsbreite/2) , lty="dashed", col="red")
 
-legend("topleft", legend=c("n_1", "n_2", "theta"), col=c("black", "red", "blue"), lty= 1)
+legend("topleft", legend=c("N_1", "N_2", "theta"), col=c("black", "red", "blue"), lty= 1)
 
   
   
