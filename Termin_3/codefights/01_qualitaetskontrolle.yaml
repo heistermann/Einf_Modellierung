@@ -17,8 +17,8 @@ stoertage = unlist(stoertage)
 ````
 	
 #### Beispiel
-	Wenn `precip = c(1, 5.5, 10.1, 0, 3)` und `stoertage = c(2, 4)`,
-	dann ist das Ergebnis `c(1, -9999, 10.1, -9999, 3)`.
+Wenn `precip = c(1, 5.5, 10.1, 0, 3)` und `stoertage = c(2, 4)`,
+dann ist das Ergebnis `c(1, -9999, 10.1, -9999, 3)`.
     
 input1:
 	name: precip

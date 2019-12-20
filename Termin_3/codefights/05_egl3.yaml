@@ -14,8 +14,8 @@ description: >
 	
 	Achtung: Wegen eines Bugs in Codefights müssen die beiden Vektoren anfangs so behandelt werden:
 ````
-	  precip=unlist(precip) #Codefights Bug
-	  egl=unlist(egl)
+precip = unlist(precip) #Codefights Bug
+egl    = unlist(egl)
 ````
 
 	

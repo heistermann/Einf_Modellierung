@@ -8,9 +8,10 @@ description: >
 	Effektivniederschlagsimpuls am Gebietsauslass 
 	als Abfluss über die Zeit verteilt.
 	
-	Achtung: Wegen eines Bugs in Codefights muss der Vektor anfangs so behandelt werden:
+Achtung: Wegen eines Bugs in Codefights müssen die beiden Vektoren anfangs so behandelt werden:
 ````
-	precip=unlist(precip) #Codefights-Bug
+precip = unlist(precip) #Codefights-Bug
+egl    = unlist(egl) 
 ````
 	
 	#### Beispiel
