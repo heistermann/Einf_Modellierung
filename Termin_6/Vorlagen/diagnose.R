@@ -1,6 +1,8 @@
 # Seminar zu "Einfuehrung in die Modellierung"
+
 # Workspace ausleeren
 rm(list = ls())
+
 # INSPEKTION EINES MOPEX-DATENSATZES
 # ----------------------------------
 # AUFGABE: Wir inspizieren nun einen Datensatz fuer den
@@ -39,16 +41,20 @@ rm(list = ls())
 #
 #   7. Schaue Dir auch andere Zeitfenster an. 
 #      Aendere dafuer die Variable "zoominto".
-# Lese die Daten (ERSETZE DIE PLATZHALTER!)
+
+# Lies die Daten (ERSETZE DIE PLATZHALTER!)
 mopex = read.table("02296750.monthly", stringsAsFactors=FALSE,
                    {SPALTENTRENNUNG}, {KOPFZEILE})
 
 # Struktur und Datentyp des Rueckgabewertes
 str(mopex)
+
 # Konvertiere Strings aus der Spalte "date" zu Datumsobjekten 
 mopex$date = as.Date(mopex$date)
+
 # Schaue Dir nun erneut die Struktur an... was hat sich geaendert?
 str(mopex)
+
 # Graphische Darstellung als Ganglinien mit Datum
 zoominto = c(as.Date("1990-01-01"), as.Date("1995-01-01"))
 plot(mopex$date, mopex$discharge, type="n", ylim = c(0,300),
@@ -66,8 +72,11 @@ lines(mopex$date, mopex$precip,    type="l", col="blue",  lwd=2)
 legend("topright", 
        legend=c("Abfluss (mm)", "Niederschlag (mm)"),
        lwd=2, col=c("black","blue"))
+
 # Workspace ausleeren
 rm(list = ls())
+
+
 # ANWENDUNG UND DIAGNOSE DES ABCD-MODELLS
 # ---------------------------------------
 # Du verstehst nun die Implementierung und das Verhalten des 
@@ -191,3 +200,14 @@ rmse2 = function(obs, sim) {
 #   im Peace River Einzugsgebiet
 params = c(a=0.99, b=100, c=0.4, d=0.1)
 rmse2( mopex$discharge, abcd(mopex, params)$Q )
+
+# Versuche nun durch Ausprobieren den RMSE zu minimieren.
+# Nutze auf der Suche die visuelle Darstellung als Unterstützung.
+params = c(a=0.99, b=100, c=0.4, d=0.1)
+# Ausfuehrung des Modells
+sim = abcd(mopex, params)
+# Darstellung der Ganglinien
+plot.hydro(mopex, sim, baseflow=FALSE,
+           zoominto=c(as.Date("1990-01-01"), 
+                      as.Date("2000-01-01")))
+rmse2( mopex$discharge, sim$Q )

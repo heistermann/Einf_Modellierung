@@ -1,0 +1,70 @@
+---
+name: namenseintrag
+
+description: >
+
+**Erstelle die Initialen eines Namens**
+
+Du erhältst die Zeichenketten `vorname` und `nachname` als Argument.
+
+Schreibe eine Funktion, welche die Initialen der Person - jeweils mit einem Punkt `.` als Zeichen der Abküzung versehen - als Zeichenkette zurückgibt.
+
+#### Beispiel
+Für `vorname = "Marianne"` und `nachname = "Weber"` sollte `M.W.` zurückgegeben werden.
+
+#### Hinweis
+Nutze die Funktion `substr`, um einen Buchstaben an einer bestimmten Position einer Zeichenkette "auszuschneiden". Füge dann wieder mit `paste` die Initialen zusammen. Aber Achtung: Hinter jedem der beiden Buchstaben soll ein `.` stehen. Füge den `.` explizit als Teil der zu verkettenden Zeichen ein, wähle für das Argument `sep` hingegen einen leeren String. Dein Code sieht also wie folgt aus:
+
+```
+initialen <- function(arg1) {
+    ini1 = substr(vorname, ...)
+    ini2 = substr(nachname, ...)
+    return( paste(..., sep="") )
+}
+```
+
+
+
+#### Input / Output
+  
+input1:
+	name: vorname	
+	type: string
+	description: Vorname
+
+input1:
+	name: nachname	
+	type: string
+	description: Nachname
+
+output:
+	type: string
+	description: Initialen
+	
+test1:
+	input1: "Henry"
+	input2: "Darcy"
+	output: "H.D."
+	
+test2:
+	input1: "Lorenzo A." 
+	input2: "Richards"
+	output: "L.R."
+		
+test3:
+	input1: "Claude-Louis"
+	input2: "Navier"
+	output: "C.N."
+
+test4:
+	input1: "George Gabriel"
+	input2: "Stokes"
+	output: "G.S."
+	
+	
+solution: |
+	namenseintrag = function(vorname, nachname) {
+	  return (paste(nachname, vorname, sep=", "))
+	}
+
+	

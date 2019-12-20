@@ -1,0 +1,61 @@
+---
+name: namenseintrag
+
+description: >
+
+**Namenseintrag**
+
+Ihr erhaltet den Vornamen (`vorname`) und den Nachnamen (`nachname`) einer Person als Zeichenketten (in R `character`). Schreibt eine Funktion, welche den
+Namen der Person in der Form `Nachname, Vorname` zurückgibt - also getrennt durch ein `,` und ein Leerzeichen.
+
+#### Beispiel
+
+Für `vorname = "Max"` und `nachname = "Mustermann"` soll `Mustermann, Max` zurückgegeben werden.
+
+#### Hinweis
+
+Nutzt die Funktion `paste`!
+
+#### Input / Output
+  
+input1:
+	name: vorname	
+	type: string
+	description: Vorname
+
+input1:
+	name: nachname	
+	type: string
+	description: Nachname
+
+output:
+	type: string
+	description: Nachname und Vorname
+	
+test1:
+	input1: "Henry"
+	input2: "Darcy"
+	output: "Darcy, Henry"
+	
+test2:
+	input1: "Lorenzo A." 
+	input2: "Richards"
+	output: "Richards, Lorenzo A."
+		
+test3:
+	input1: "Claude-Louis"
+	input2: "Navier"
+	output: "Navier, Claude-Louis"
+
+test4:
+	input1: "George Gabriel"
+	input2: "Stokes"
+	output: "Stokes, George Gabriel"
+	
+	
+solution: |
+	namenseintrag = function(vorname, nachname) {
+	  return (paste(nachname, vorname, sep=", "))
+	}
+
+	
