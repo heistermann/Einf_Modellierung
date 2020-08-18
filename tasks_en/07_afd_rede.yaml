@@ -1,5 +1,5 @@
 ---
-name: populist_speach
+name: x7_populist_speach
 
 description: >
 ### Ghostwriter
@@ -55,7 +55,7 @@ test3:
 	
 
 solution: |
-	populist_speach = function(text, interval, buzzword)
+	x7_populist_speach = function(text, interval, buzzword)
 {  
   woerter = unlist(strsplit(text, " "))
   

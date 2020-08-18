@@ -1,10 +1,15 @@
 ---
-task_name: uhg3
+task_name: x5_uhg3
 
 description: >
 	Compute the direct runoff response (in *m3/s*) to a precipitation event using the unit-hydrograph model!	
 		
-	#### Example
+	    **Attention R-users:** The concept of a list in R is different from languages such as Python. In order to make this work here, you need to first `unlist` any required input vector `v`.
+    
+    ```
+        v = unlist(v)
+    ```
+    #### Example
 	
 	Let the unit hydrograph be `uhg = [0.2, 0.8]`, the time series of hourly effective rainfall (in *mm/h*) be
 	`precip = [2, 4]`, and the catchment area (in *km²*) 
@@ -51,15 +56,14 @@ test3:
 	output: [3.6, 10.8, 12.3, 8.7, 3.6]
 
 solution: |
-	uhg3 = function(precip, uhg, area) {
-	  out = rep(0, length(precip) + length(uhg) - 1)
+	x5_uhg3 = function(precip, uhg, area) {
+      precip = unlist(precip)
+      uhg = unlist(uhg)
+      out = rep(0, length(precip) + length(uhg) - 1)
 	  for (i in 1:length(precip)) {
 		ix = i:(i+length(uhg)-1)
 		out[ix] = out[ix] + precip[i] * uhg * area / 3.6
 	  }  
 	  return(out)
 	}
-	
-	
-	
-	
+	  

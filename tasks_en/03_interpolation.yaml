@@ -1,5 +1,5 @@
 ---
-task_name: interpolation
+task_name: x3_interpolation
 
 description: >
 A biologist attached a sensor to a whale to track the distance it covers. Whenever there is radio and GPS coverage (e.g. the whale reaches the surface), the sensor transmits the time and the total cumulated distance so far. 
@@ -62,6 +62,6 @@ test4:
 	
 	
 solution: |
-	interpolation = function(t_meas, x_meas, t_approx) {
+	x3_interpolation = function(t_meas, x_meas, t_approx) {
 return(round(approx(x=t_meas, y = x_meas, xout =t_approx)$y, digits=1))
 }

@@ -1,9 +1,17 @@
 ---
-task_name: max_maximum
+task_name: x1_max_maximum
 
 description: 
 	Write a function that returns the largest number within two vectors `v1` and `v2`!
 	
+    **Attention R-users:** The concept of a list in R is different from languages such as Python. In order to make this work here, you need to first `unlist` the input vector `v1`.
+    ```
+    x0_maximum <- function(v1) {
+    v1 = unlist(v1)
+   ...
+    }
+```
+
 	#### Example
 	For the vectors `v1 = c(23, 17, 1)` and `v2 = c(5, 4)` the function should yield `23`.
 	#### Input / Output
@@ -41,8 +49,10 @@ test3:
 	output: 1000
 
 solution: |
-	max_maximum <- function(v1, v2) {
-	   max(c(v1,v2))
+	x1_max_maximum <- function(v1, v2) {
+	   v1 <- unlist(v1)
+	   v2 <- unlist(v2)
+       max(c(v1,v2))
 	}
 
 
