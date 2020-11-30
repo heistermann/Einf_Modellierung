@@ -1,81 +1,81 @@
 ---
 task_name: x6_heat_periods
 
-description: 
-	A heat period is defined by at least `thresh_length` consecutive days with mean daily temperatures exceeding `thresh_temp`.
-	
-	How many heat periods are contained in the time series of mean daily temperatures `timeseries_temp` ?  
-	
-	#### Example
-	For `timeseries_temp = c(19, 23, 24, 18, 19, 21)`, `thresh_temp = 20` and `thresh_length = 2`, `1` heat period can be discerned.
-	#### Input / Output 
+description: >
+   A heat period is defined by at least `thresh_length` consecutive days with mean daily temperatures exceeding `thresh_temp`.
+   
+   How many heat periods are contained in the time series of mean daily temperatures `timeseries_temp` ?  
+   
+   #### Example
+   For `timeseries_temp = c(19, 23, 24, 18, 19, 21)`, `thresh_temp = 20` and `thresh_length = 2`, `1` heat period can be discerned.
+   #### Input / Output 
 input1:
-	name: timeseries_temp
-	type: array.float
-	description: time series of mean daily temperatures.
+   name: timeseries_temp
+   type: array.float
+   description: time series of mean daily temperatures.
 
 input2:
-	name: thresh_temp
-	type: float
-	description: temperatur threshold, that must be exceeded.
+   name: thresh_temp
+   type: float
+   description: temperatur threshold, that must be exceeded.
 
 input3:
-	name: thresh_length
-	type: integer
-	description: threshold for minimum number of consecutive days, the threshold temperature must be exceeded.
+   name: thresh_length
+   type: integer
+   description: threshold for minimum number of consecutive days, the threshold temperature must be exceeded.
 
 output:
-	name: n_h
-	type: integer
-	description: Number of heat periods in given time series.
-	
+   name: n_h
+   type: integer
+   description: Number of heat periods in given time series.
+   
 test1:
-	-[19, 23, 24, 25, 19, 21]
-	- 20
-	- 1
-	output: 2
+   - [19, 23, 24, 25, 19, 21]
+   - 20
+   - 1
+   output: 2
 
 test2:
-	input:
-	-[30, 33, 19, 23, 24, 25, 19, 21, 22]
-	- 20
-	- 3
-	output: 1
+   input:
+   - [30, 33, 19, 23, 24, 25, 19, 21, 22]
+   - 20
+   - 3
+   output: 1
 
 test3:
-	input:
-	-[30, 33, 27, 15, 30, 31, 33, 20, 32, 33]
-	- 20
-	- 1
-	output: 3
+   input:
+   - [30, 33, 27, 15, 30, 31, 33, 20, 32, 33]
+   - 20
+   - 1
+   output: 3
 
 test4:
-	input:
-	-[30, 33, 27, 15, 30, 31, 33, 20, 32, 33]
-	- 15
-	- 2
-	output: 2
+   input:
+   - [30, 33, 27, 15, 30, 31, 33, 20, 32, 33]
+   - 15
+   - 2
+   output: 2
 
 test5:
-	input:
-	-[30, 33, 27, 15, 30, 31, 33, 20, 32, 33]
-	- 40
-	- 2
-	output: 0
+   input:
+   - [30, 33, 27, 15, 30, 31, 33, 20, 32, 33]
+   - 40
+   - 2
+   output: 0
 
-	
-	
-solution: |
-	x6_heat_periods = function(timeseries_temp, thresh_temp, thresh_length)
-	{
-	  hitzetage = as.numeric(timeseries_temp > thresh_temp)
-	  phasen = strsplit(x = paste0(hitzetage, collapse = ""), split = "0+") 
-	  phasenlaenge = sapply(phasen[[1]], FUN = nchar)         
-	  return(sum(phasenlaenge >= thresh_length))
-	}  
+   
+   
+solution: >
+   x6_heat_periods = function(timeseries_temp, thresh_temp, thresh_length)
+   {
+     hitzetage = as.numeric(timeseries_temp > thresh_temp)
+     phasen = strsplit(x = paste0(hitzetage, collapse = ""), split = "0+") 
+     phasenlaenge = sapply(phasen[[1]], FUN = nchar)         
+     return(sum(phasenlaenge >= thresh_length))
+   }  
 
 
-	
-	
-	
-	
+   
+   
+   
+   

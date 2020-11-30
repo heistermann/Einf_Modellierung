@@ -1,3 +1,42 @@
+# Task 02
+	Summe <- function(arg1, arg2) {
+	   return(arg1+arg2)
+	}
+
+Summe(1, 2)
+#	output: 2
+
+test2:
+	input:
+	- 2
+	- 3
+	output: 5
+
+test3:
+	input:
+	- 4
+	- 4
+	output: 8
+
+
+
+# Task 03
+max_maximum <- function(v1, v2) {
+   return(max(c(v1,v2)))
+	}
+
+max_maximum(c(1, 2, 3), c(1, 2, 3, 4))
+#	output: 4
+
+max_maximum(c(5, 2, 3), 0)
+# output: 5
+
+max_maximum(1000, c(1, 2, 3, 4, 5, 6, 7))
+#	output: 1000
+
+
+
+vektorteil(c(1, 2, 3), 1, 2)
 # Task 04
 vektorteil = function(v, start, n_e) {
   if (start+n_e -1 > length(v))

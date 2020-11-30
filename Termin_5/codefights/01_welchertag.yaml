@@ -2,72 +2,72 @@
 task_name: welchertag
 
 description: >
-	## Welcher Tag ist heute?
+   ## Welcher Tag ist heute?
 
-	Gegeben ist eine Zeichenkette (auch String genannt)
-	der Form "2016-12-03", die ein Datum repräsentiert 
-	(in diesem Beispiel den 3. Dezember 2016). 
-	Das entsprechende Argument heißt `datum`.
+   Gegeben ist eine Zeichenkette (auch String genannt)
+   der Form "2016-12-03", die ein Datum reprÃ¤sentiert 
+   (in diesem Beispiel den 3. Dezember 2016). 
+   Das entsprechende Argument heiÃŸt `datum`.
 
-	Gib den englischen Namen des Wochentages zurück,
-	der `datum` entspricht. 
+   Gib den englischen Namen des Wochentages zurÃ¼ck,
+   der `datum` entspricht. 
 
-	#### Beispiel
+   #### Beispiel
 
-	Wenn `datum="2017-01-17"`, dann soll `"Tuesday"` 
-	zurückgegeben werden. 
+   Wenn `datum="2017-01-17"`, dann soll `"Tuesday"` 
+   zurÃ¼ckgegeben werden. 
 
-	#### Hinweise
+   #### Hinweise
 
-	- Mit der Funktion `as.Date` teilst Du R mit, 
-	  dass der String als Datum interpretiert werden soll;
-	- Mit der Funktion `strftime` kannst Du das Datum dann
-	  umformatieren - z.B. zum Namen des entsprechenden 
-	  englischen Wochentags. Dazu muss ein passender Wert 
-	  für das Argument `format` übergeben werden. Konsultiere dafür die Hilfe
-	  zu `strftime`.
+   - Mit der Funktion `as.Date` teilst Du R mit, 
+     dass der String als Datum interpretiert werden soll;
+   - Mit der Funktion `strftime` kannst Du das Datum dann
+     umformatieren - z.B. zum Namen des entsprechenden 
+     englischen Wochentags. Dazu muss ein passender Wert 
+     fÃ¼r das Argument `format` Ã¼bergeben werden. Konsultiere dafÃ¼r die Hilfe
+     zu `strftime`.
 
-	Die Lösung hat daher die Form
+   Die LÃ¶sung hat daher die Form
 
-	```
-	return(strftime(as.Date(datum), format="..."))
-	```
+   ```
+   return(strftime(as.Date(datum), format="..."))
+   ```
 
-	in der Du das `...` ersetzen musst.
-	 
+   in der Du das `...` ersetzen musst.
+    
 input1:
-	name: datum
-	type: String
-	description: Datum als YYYY-MM-DD 
+   name: datum
+   type: String
+   description: Datum als YYYY-MM-DD 
 
 output:
-	type: String
-	description: Englischer Name des zugehörigen Wochentages
+   type: String
+   description: Englischer Name des zugehÃ¶rigen Wochentages
 
 test1:
-	input: "2016-11-15"
-	output: "Tuesday"
+   input: "2016-11-15"
+   output: "Tuesday"
 
 test2:
-	input: "2000-10-30"
-	output: "Monday"
+   input: "2000-10-30"
+   output: "Monday"
 
 test3:
-	input: "1999-05-10"
-	output: "Monday"
+   input: "1999-05-10"
+   output: "Monday"
 
 test4:
-	input: "1999-01-31"
-	output: "Sunday"
+   input: "1999-01-31"
+   output: "Sunday"
 
 
-solution: |
-	welchertag = function(datum) {
-	  return(strftime(as.Date(datum), format="%A"))
-	}	
+solution: >
+   welchertag = function(datum) {
+     return(strftime(as.Date(datum), format="%A"))
+   }
 
 
-	
-	
-	
-	
+   
+   
+   
+   

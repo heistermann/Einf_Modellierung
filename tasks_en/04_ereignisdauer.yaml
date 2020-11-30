@@ -2,64 +2,64 @@
 task_name: x4_event_duration
 
 description: >
-	## Duration of an event
+   ## Duration of an event
 
-	The variables `start` and `end` hold the beginning and the end of a precipitation event as strings of the format 
-	"2016-12-03 10:30:00".
-	Compute the duration of the event in hours, roundet to two digits!
+   The variables `start` and `end` hold the beginning and the end of a precipitation event as strings of the format 
+   "2016-12-03 10:30:00".
+   Compute the duration of the event in hours, roundet to two digits!
 
-	#### Example
+   #### Example
 
-	For `start="2016-12-03 10:00:00"` and `end="2016-12-03 12:20:00"`,
-	the result is supposed to be `2.33` (two and a third hours, rounded to two digits).
+   For `start="2016-12-03 10:00:00"` and `end="2016-12-03 12:20:00"`,
+   the result is supposed to be `2.33` (two and a third hours, rounded to two digits).
 
   
 input1:
-	name: start
-	type: String
-	description: Date/Time as YYYY-MM-DD HH:MM:SS
+   name: start
+   type: String
+   description: Date/Time as YYYY-MM-DD HH:MM:SS
 
 input2:
-	name: end
-	type: String
-	description: Date/Time as YYYY-MM-DD HH:MM:SS
+   name: end
+   type: String
+   description: Date/Time as YYYY-MM-DD HH:MM:SS
 
 output:
-	type: Float
-	description: duration of event (in hours, rounded to two digits)
+   type: Float
+   description: duration of event (in hours, rounded to two digits)
 
 test1:
-	input:
-	- "2011-03-05 09:02:34"
-	- "2011-03-05 16:40:43"
-	output: 7.64
+   input:
+   - "2011-03-05 09:02:34"
+   - "2011-03-05 16:40:43"
+   output: 7.64
 
 test2:
-	input:
-	- "1999-04-06 20:00:00"
-	- "1999-04-08 17:40:00"
-	output: 45.67
+   input:
+   - "1999-04-06 20:00:00"
+   - "1999-04-08 17:40:00"
+   output: 45.67
 
 test3:
-	input:
-	- "2023-04-06 19:30:00"
-	- "2023-05-08 17:40:00"
-	output: 766.17
+   input:
+   - "2023-04-06 19:30:00"
+   - "2023-05-08 17:40:00"
+   output: 766.17
 
 test4:
-	input:
-	- "2011-03-05 10:02:00"
-	- "2011-03-05 16:40:43"
-	output: 6.65
+   input:
+   - "2011-03-05 10:02:00"
+   - "2011-03-05 16:40:43"
+   output: 6.65
 
-solution: |
-	x4_event_duration = function(start, end) {
-	  dauer = difftime(as.POSIXct(end), as.POSIXct(start), units="hours")
-	  return(round(as.numeric(dauer), 2))
-	}
+solution: >
+   x4_event_duration = function(start, end) {
+     dauer = difftime(as.POSIXct(end), as.POSIXct(start), units="hours")
+     return(round(as.numeric(dauer), 2))
+   }
 
 
-	
-	
-	
-	
+   
+   
+   
+   

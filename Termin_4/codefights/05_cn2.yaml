@@ -2,152 +2,152 @@
 task_name: curveNumber2
 
 description: >
-	## Das US-SCS Curve Number Verfahren (Teil 2)
+   ## Das US-SCS Curve Number Verfahren (Teil 2)
 
-	Das Curve Number (CN) Verfahren wurde urspruenglich vom US Soil
-	Conservation Service (US-SCS) entwickelt und ist auch heute
-	noch weit verbreitet. Der CN-Wert beeinflusst den Ereignisabflussbeiwert
-	und wird auf Grundlage von Gebietseigenschaften sowie dem
-	Vorereignisniederschlag bestimmt.
+   Das Curve Number (CN) Verfahren wurde urspruenglich vom US Soil
+   Conservation Service (US-SCS) entwickelt und ist auch heute
+   noch weit verbreitet. Der CN-Wert beeinflusst den Ereignisabflussbeiwert
+   und wird auf Grundlage von Gebietseigenschaften sowie dem
+   Vorereignisniederschlag bestimmt.
 
-	Im ersten Schritt wurde bereits der CN-Wert aus
-	Landnutzung und Bodentyp ermittelt. Dieser Wert gilt fuer eine
-	"normale" Gebietsvorfeuchte (engl.: *antecedent moisture condition*, AMC).
-	Fuer feuchte oder trockene Bedingungen muss dieser CN-Wert angepasst werden.
-	Die Entscheidung, ob die Bedingungen trocken, normal oder feucht sind, 
-	wird auf Grundlage der Niederschlagssumme der vorangegangenen fuenf Tage
-	(P5, in mm) getroffen (Mishra & Singh, 2003):
-	- trocken: wenn P5 < 13 mm (Vegetationsperiode: P5 < 36 mm)
-	- feucht : wenn P5 > 28 mm (Vegetationsperiode: P5 > 53 mm)
-	- normal : sonst
+   Im ersten Schritt wurde bereits der CN-Wert aus
+   Landnutzung und Bodentyp ermittelt. Dieser Wert gilt fuer eine
+   "normale" Gebietsvorfeuchte (engl.: *antecedent moisture condition*, AMC).
+   Fuer feuchte oder trockene Bedingungen muss dieser CN-Wert angepasst werden.
+   Die Entscheidung, ob die Bedingungen trocken, normal oder feucht sind, 
+   wird auf Grundlage der Niederschlagssumme der vorangegangenen fuenf Tage
+   (P5, in mm) getroffen (Mishra & Singh, 2003):
+   - trocken: wenn P5 < 13 mm (Vegetationsperiode: P5 < 36 mm)
+   - feucht : wenn P5 > 28 mm (Vegetationsperiode: P5 > 53 mm)
+   - normal : sonst
 
-	Entsprechend erfolgt die Umrechung des CN-Wertes von normalen zu
-	trockenen oder feuchten Bedingungen mit Hilfe von Anpassungsfaktoren,
-	die der folgenden Tabelle entnommen werden koennen:
+   Entsprechend erfolgt die Umrechung des CN-Wertes von normalen zu
+   trockenen oder feuchten Bedingungen mit Hilfe von Anpassungsfaktoren,
+   die der folgenden Tabelle entnommen werden koennen:
 
-	```
-	tab = "normal;trocken;feucht
-	10;0.40;2.22
-	20;0.45;1.85
-	30;0.50;1.67
-	40;0.55;1.50
-	50;0.62;1.40
-	60;0.67;1.30
-	70;0.73;1.21
-	80;0.79;1.14
-	90;0.87;1.07
-	100;1.00;1.00"
-	```
+   ```
+   tab = "normal;trocken;feucht
+   10;0.40;2.22
+   20;0.45;1.85
+   30;0.50;1.67
+   40;0.55;1.50
+   50;0.62;1.40
+   60;0.67;1.30
+   70;0.73;1.21
+   80;0.79;1.14
+   90;0.87;1.07
+   100;1.00;1.00"
+   ```
 
-	Auch diese Tabelle kann in den Code kopiert und dann wie gehabt
-	als `data.frame` eingelesen werden:
+   Auch diese Tabelle kann in den Code kopiert und dann wie gehabt
+   als `data.frame` eingelesen werden:
 
-	```	
-	con = textConnection(tab)
-	df = read.table(con, header=TRUE, sep=";", stringsAsFactors=FALSE, strip.white=TRUE)
-	```
+   ```
+   con = textConnection(tab)
+   df = read.table(con, header=TRUE, sep=";", stringsAsFactors=FALSE, strip.white=TRUE)
+   ```
 
-	Wenn trockene oder feuchte Bedinungen herrschen, wird der entsprechende
-	Faktor mit dem CN-Wert fuer normale Bedingungen multipliziert. 
-		
-	Berechne nun den resultierenden CN-Wert auf Grundlage
-	- des CN-Wertes fuer normale Bedingungen (`cn2`), 
-	- der Niederschlagshoehen (in mm) der jeweils fuenf vorangegangenen Tage (`precip`),
-	- der Angabe, ob man sich innerhalb der Vegetationsperiode befindet (`vegetation`). 
+   Wenn trockene oder feuchte Bedinungen herrschen, wird der entsprechende
+   Faktor mit dem CN-Wert fuer normale Bedingungen multipliziert. 
+   
+   Berechne nun den resultierenden CN-Wert auf Grundlage
+   - des CN-Wertes fuer normale Bedingungen (`cn2`), 
+   - der Niederschlagshoehen (in mm) der jeweils fuenf vorangegangenen Tage (`precip`),
+   - der Angabe, ob man sich innerhalb der Vegetationsperiode befindet (`vegetation`). 
 
-	#### Beispiel
-	Der CN-Wert fuer normale Bedingungen sei `cn2=72`. Der Niederschlag der Vortage sei
-	`precip=c(4,3,0,2,1)`. Damit ergibt sich der P5-Wert zu `sum(precip)=10`.
-	Wenn `vegetation=FALSE`, dann befinden wir uns außerhalb der Vegetationsperiode.
-	Die Bedingungen sind somit **trocken**. Der Tabellenwert, welcher unserem CN-Wert 
-	fuer normale Bedingungen (`cn2`) am naechsten kommt ist `70`. 
-	Der Anpassungfaktor ist also `0.73`, und der resultierende CN-Wert
-	ergibt sich zu CN = 0.73 * 72.
+   #### Beispiel
+   Der CN-Wert fuer normale Bedingungen sei `cn2=72`. Der Niederschlag der Vortage sei
+   `precip=c(4,3,0,2,1)`. Damit ergibt sich der P5-Wert zu `sum(precip)=10`.
+   Wenn `vegetation=FALSE`, dann befinden wir uns auÃŸerhalb der Vegetationsperiode.
+   Die Bedingungen sind somit **trocken**. Der Tabellenwert, welcher unserem CN-Wert 
+   fuer normale Bedingungen (`cn2`) am naechsten kommt ist `70`. 
+   Der Anpassungfaktor ist also `0.73`, und der resultierende CN-Wert
+   ergibt sich zu CN = 0.73 * 72.
 
-	*Hinweis*: Die Funktion `which.min` gibt für einen Vektor diejenige Position ("Index")
-	zurück, an welcher sich der kleinste Wert befindet. Das könnte beim Auffinden des
-	Anpassungsfaktors hilfreich sein.
-	
+   *Hinweis*: Die Funktion `which.min` gibt fÃ¼r einen Vektor diejenige Position ("Index")
+   zurÃ¼ck, an welcher sich der kleinste Wert befindet. Das kÃ¶nnte beim Auffinden des
+   Anpassungsfaktors hilfreich sein.
+   
 input1:
-	name: cn2
-	type: Integer
-	description: CN-Wert fuer normale Gebietsvorfeuchte 
+   name: cn2
+   type: Integer
+   description: CN-Wert fuer normale Gebietsvorfeuchte 
 
 input2:
-	name: precip
-	type: Array of floats
-	description: Vektor der Laenge 5 mit den Niederschlagshoehen der letzten 5 Tage (in mm)  
+   name: precip
+   type: Array of floats
+   description: Vektor der Laenge 5 mit den Niederschlagshoehen der letzten 5 Tage (in mm)  
 
 input3:
-	name: vegetation
-	type: Boolean
-	description: Ist TRUE, wenn wir uns in der Vegetationsperiode befinden (sonst FALSE) 
-	
+   name: vegetation
+   type: Boolean
+   description: Ist TRUE, wenn wir uns in der Vegetationsperiode befinden (sonst FALSE) 
+   
 output:
-	type: Float
-	description: Resultierender CN-Wert
+   type: Float
+   description: Resultierender CN-Wert
 
 test1:
-	input:
-	- 72
-	- [2,5,3,6,0]
-	- true
-	output: 52.56
+   input:
+   - 72
+   - [2,5,3,6,0]
+   - true
+   output: 52.56
 
 test2:
-	input:
-	- 57
-	- [2,20,30,6,0]
-	- false
-	output: 74.1
+   input:
+   - 57
+   - [2,20,30,6,0]
+   - false
+   output: 74.1
 
 test3:
-	input:
-	- 63
-	- [2,1,3,1,0]
-	- false
-	output: 42.21
+   input:
+   - 63
+   - [2,1,3,1,0]
+   - false
+   output: 42.21
 
 test4:
-	input:
-	- 92
-	- [2,5,3,6,30]
-	- true
-	output: 92
+   input:
+   - 92
+   - [2,5,3,6,30]
+   - true
+   output: 92
 
-solution: |
-	curveNumber2 = function(cn2, precip, vegetation) {
-	  tab = "normal;trocken;feucht
-	  10;0.40;2.22
-	  20;0.45;1.85
-	  30;0.50;1.67
-	  40;0.55;1.50
-	  50;0.62;1.40
-	  60;0.67;1.30
-	  70;0.73;1.21
-	  80;0.79;1.14
-	  90;0.87;1.07
-	  100;1.00;1.00"
-	  con = textConnection(tab)
-	  df = read.table(con, header=TRUE, sep=";", stringsAsFactors=FALSE, strip.white=TRUE)
+solution: >
+   curveNumber2 = function(cn2, precip, vegetation) {
+     tab = "normal;trocken;feucht
+     10;0.40;2.22
+     20;0.45;1.85
+     30;0.50;1.67
+     40;0.55;1.50
+     50;0.62;1.40
+     60;0.67;1.30
+     70;0.73;1.21
+     80;0.79;1.14
+     90;0.87;1.07
+     100;1.00;1.00"
+     con = textConnection(tab)
+     df = read.table(con, header=TRUE, sep=";", stringsAsFactors=FALSE, strip.white=TRUE)
 
-	  P5 = sum(precip)
-	  amc = "normal"
-	  if (vegetation) {
-		if (P5<36) amc = "trocken"
-		if (P5>53) amc = "feucht"
-	  } else {
-		if (P5<13) amc = "trocken"
-		if (P5>28) amc = "feucht"
-	  }
-	  
-	  if (amc=="normal") {
-		return(cn2)
-	  } else {
-		return( df[which.min(abs(df$normal - cn2)),amc] * cn2 )
-	  }
-	}
-	
-	
-	
-	
+     P5 = sum(precip)
+     amc = "normal"
+     if (vegetation) {
+   	if (P5<36) amc = "trocken"
+   	if (P5>53) amc = "feucht"
+     } else {
+   	if (P5<13) amc = "trocken"
+   	if (P5>28) amc = "feucht"
+     }
+     
+     if (amc=="normal") {
+   	return(cn2)
+     } else {
+   	return( df[which.min(abs(df$normal - cn2)),amc] * cn2 )
+     }
+   }
+   
+   
+   
+   

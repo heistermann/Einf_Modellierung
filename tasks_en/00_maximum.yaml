@@ -1,8 +1,8 @@
 ---
 task_name: x0_maximum
 
-description: 
-	**To the max!**
+description: >
+   **To the max!**
 
 Return the maximum of the input vector v1!
 
@@ -21,38 +21,38 @@ For the vector `v1 = c(23, 17, 1)` the function should yield `23`.
 #### Input / Output
     
 input1:
-	name: v1
-	type: array.integer
-	description: A vector of numbers
+   name: v1
+   type: array.integer
+   description: A vector of numbers
 
 
 output:
-	type: integer
-	description: Largest element of the vector.
+   type: integer
+   description: Largest element of the vector.
 
 test1:
-	input:
-	- [1, 2, 3]
-	output: 3
+   input:
+   - [1, 2, 3]
+   output: 3
 
 test2:
-	input:
-	- [5, 2, 3]
-	output: 5
+   input:
+   - [5, 2, 3]
+   output: 5
 
 test3:
-	input:
-	- [1000]
-	output: 1000
+   input:
+   - [1000]
+   output: 1000
 
-solution: |
+solution: >
     x0_maximum <- function(v1) {
        v1 <- unlist(v1)
-	   max(v1)
-	}
+      max(v1)
+   }
 
 
-	
-	
-	
-	
+   
+   
+   
+   

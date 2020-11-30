@@ -2,41 +2,41 @@
 name: greet
 
 description: >
-	## Richtiges und falsches Grüßen
-	
-	Welche dieser Codeblöcke lassen sich fehlerfrei ausführen?
+   ## Richtiges und falsches Grüßen
+   
+   Welche dieser Codeblöcke lassen sich fehlerfrei ausführen?
     
 num_answers: 5
 
 answer_description_1:
-	description: |
-		```
-		a = "Greet"
-		if (a = "Greet") print("Hello!")
-		```
-	is_correct: False	
+   description: |
+   	```
+   	a = "Greet"
+   	if (a = "Greet") print("Hello!")
+   	```
+   is_correct: False
 
 answer_description_2:
-	description: |
-		```
-		a = "Do not greet."
-		if (a == "Greet") print("Hello!")
-		```
-	is_correct: True	
+   description: |
+   	```
+   	a = "Do not greet."
+   	if (a == "Greet") print("Hello!")
+   	```
+   is_correct: True
 
 answer_description_3:
-	description: |
-		```
-		a = "Do not greet."
-		if (a == Greet) print("Hello!")
-		```
-	is_correct: False	
+   description: |
+   	```
+   	a = "Do not greet."
+   	if (a == Greet) print("Hello!")
+   	```
+   is_correct: False
 
 answer_description_4:
-	description: |
-		```
-		a = "Greet"
-		if (a == "Greet") print "Hello!"
-		```
-	is_correct: False	
+   description: |
+   	```
+   	a = "Greet"
+   	if (a == "Greet") print "Hello!"
+   	```
+   is_correct: False
 

@@ -2,34 +2,34 @@
 name: abc_and_d
 
 description: >
-	## abc vs. abcd
+   ## abc vs. abcd
 
-	Wählen Sie aus den folgenden Aussagen über das abc bzw. das abcd-Modell
-	die zutreffende aus.	
+   Wählen Sie aus den folgenden Aussagen über das abc bzw. das abcd-Modell
+   die zutreffende aus.
     
 num_answers: 4
 
 answer_description_1:
-	description: |
-		Das abcd-Modell bildet die Dynamik des Basisabflusses ab,
-		das abc-Modell hingegen nicht.
-	is_correct: False	
+   description: |
+   	Das abcd-Modell bildet die Dynamik des Basisabflusses ab,
+   	das abc-Modell hingegen nicht.
+   is_correct: False
 
 answer_description_2:
-	description: |
-		Das abcd-Modell bildet den Einfluss der Bodenfeuchte
-		auf die Abflussbildung ab.
-	is_correct: True	
+   description: |
+   	Das abcd-Modell bildet den Einfluss der Bodenfeuchte
+   	auf die Abflussbildung ab.
+   is_correct: True
 
 answer_description_3:
-	description: |
-		Das abc-Modell bildet den Einfluss der Potenziellen
-		Evaporation auf die Abflussbildung ab.
-	is_correct: False	
+   description: |
+   	Das abc-Modell bildet den Einfluss der Potenziellen
+   	Evaporation auf die Abflussbildung ab.
+   is_correct: False
 
 answer_description_4:
-	description: |
-		Im Gegensatz zum abc-Modell kann man mit dem abcd-Modell 
-		kann die Abflussdynamik in bis zu stündlicher Auflösung abbilden. 
-	is_correct: False
+   description: |
+   	Im Gegensatz zum abc-Modell kann man mit dem abcd-Modell 
+   	kann die Abflussdynamik in bis zu stündlicher Auflösung abbilden. 
+   is_correct: False
 

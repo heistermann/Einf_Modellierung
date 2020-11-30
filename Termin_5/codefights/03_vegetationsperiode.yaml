@@ -2,95 +2,95 @@
 task_name: vegetationsperiode
 
 description: >
-	## Vegetationsperiode
+   ## Vegetationsperiode
 
-	Gegeben ist eine Zeichenkette (auch String genannt)
-	der Form "2016-12-03", die ein Datum repräsentiert 
-	(in diesem Beispiel den 3. Dezember 2016). 
-	Das entsprechende Argument heißt `datum`.
+   Gegeben ist eine Zeichenkette (auch String genannt)
+   der Form "2016-12-03", die ein Datum reprÃ¤sentiert 
+   (in diesem Beispiel den 3. Dezember 2016). 
+   Das entsprechende Argument heiÃŸt `datum`.
 
-	Außerdem erhältst Du Informationen, wann die Vegetationsperiode
-	beginnt (`start`) und endet (`ende`). `start` und `ende`
-	liegen als  "Tag im Jahr" vor - ein Wert von 1 entspräche 
-	also dem 1. Januar eines beliebigen Jahres, 32 dem 1. Februar usw.
+   AuÃŸerdem erhÃ¤ltst Du Informationen, wann die Vegetationsperiode
+   beginnt (`start`) und endet (`ende`). `start` und `ende`
+   liegen als  "Tag im Jahr" vor - ein Wert von 1 entsprÃ¤che 
+   also dem 1. Januar eines beliebigen Jahres, 32 dem 1. Februar usw.
 
-	Wenn das gegebene Datum innerhalb der Vegetationsperiode
-	liegt, soll die Funktion `TRUE` zurückgeben, sonst `FALSE`.
+   Wenn das gegebene Datum innerhalb der Vegetationsperiode
+   liegt, soll die Funktion `TRUE` zurÃ¼ckgeben, sonst `FALSE`.
 
-	#### Beispiel
+   #### Beispiel
 
-	Wenn `datum="2015-11-13"` sowie `beginn=120` und `ende=273`,
-	dann soll `FALSE` zurückgegeben werden.
+   Wenn `datum="2015-11-13"` sowie `beginn=120` und `ende=273`,
+   dann soll `FALSE` zurÃ¼ckgegeben werden.
 
-	#### Hinweise
+   #### Hinweise
 
-	Gehe ähnlich vor wie in den beiden vorherigen Aufgaben: 
+   Gehe Ã¤hnlich vor wie in den beiden vorherigen Aufgaben: 
 
-	- Wandle zunächst den String in ein Datum um (`as.Date`);
-	- wandle dann das Datum in den "Tag im Jahr" um (wieder mit
-	  `strftime`, diesmal aber mit einem anderen Wert für `format`);
-	- der Rückgabewert ist auch ein String und muss mit
-	  `as.numeric` in eine Zahl umgewandelt werden;
-	- schließlich kannst Du prüfen, ob dieser Tag nach Beginn (>=) und vor
-	  Ende (<=) der Vegetationsperiode liegt.	
+   - Wandle zunÃ¤chst den String in ein Datum um (`as.Date`);
+   - wandle dann das Datum in den "Tag im Jahr" um (wieder mit
+     `strftime`, diesmal aber mit einem anderen Wert fÃ¼r `format`);
+   - der RÃ¼ckgabewert ist auch ein String und muss mit
+     `as.numeric` in eine Zahl umgewandelt werden;
+   - schlieÃŸlich kannst Du prÃ¼fen, ob dieser Tag nach Beginn (>=) und vor
+     Ende (<=) der Vegetationsperiode liegt.
     
 input1:
-	name: datum
-	type: String
-	description: Datum als YYYY-MM-DD 
+   name: datum
+   type: String
+   description: Datum als YYYY-MM-DD 
 
 input2:
-	name: start
-	type: Integer
-	description: Start der Vegetationsperiode (Day of Year) 
+   name: start
+   type: Integer
+   description: Start der Vegetationsperiode (Day of Year) 
 
 input3:
-	name: ende
-	type: Integer
-	description: Ende der Vegetationsperiode (Day of Year) 
+   name: ende
+   type: Integer
+   description: Ende der Vegetationsperiode (Day of Year) 
 
 output:
-	type: Boolean
-	description: Aussage, ob der Tag innerhalb der Vegetationsperiode liegt.
+   type: Boolean
+   description: Aussage, ob der Tag innerhalb der Vegetationsperiode liegt.
 
 test1:
-	input:
-	- "1944-05-03"
-	- 90
-	- 300
-	output: true
+   input:
+   - "1944-05-03"
+   - 90
+   - 300
+   output: true
 
 test2:
-	input:
-	- "2025-02-15"
-	- 132
-	- 196
-	output: false
+   input:
+   - "2025-02-15"
+   - 132
+   - 196
+   output: false
 
 test3:
-	input:
-	- "2015-10-15"
-	- 132
-	- 196
-	output: false
+   input:
+   - "2015-10-15"
+   - 132
+   - 196
+   output: false
 
 test4:
-	input:
-	- "1993-07-23"
-	- 101
-	- 290
-	output: true
+   input:
+   - "1993-07-23"
+   - 101
+   - 290
+   output: true
 
-solution: |
-	vegetationsperiode = function(datum, start, ende) {
-	  doy = as.numeric(strftime(as.Date(datum), format="%j"))
-	  if ((doy>= start) & (doy<=ende)) {
-		return(TRUE)
-	  } else return(FALSE)
-	}
+solution: >
+   vegetationsperiode = function(datum, start, ende) {
+     doy = as.numeric(strftime(as.Date(datum), format="%j"))
+     if ((doy>= start) & (doy<=ende)) {
+   	return(TRUE)
+     } else return(FALSE)
+   }
 
 
-	
-	
-	
-	
+   
+   
+   
+   

@@ -2,7 +2,7 @@
 task_name: x2_quality_check
 
 description: >
-	**Replace elements of a vector**
+   **Replace elements of a vector**
     `precip` is a vector of daily precipitation (in mm). You know that the rain gauge was malfunctioning on certain days contained in the vector `error_days`. Replace all faulty measurements with `-9999` and return the corrected vector.
     
     **Attention:** `error_days` specifies a the position in a time series. In many languages such as R, you can use it directly as an index vector. In other languages such as C or Python, you need to be aware that the first element of a vector is indexed by `0`. So day `4` e.g. corresponds to index `3`.
@@ -17,47 +17,47 @@ description: >
     For `precip = [1, 5.5, 10.1, 0, 3]` and `error_days = [2, 4]`, the result should be `[1, -9999, 10.1, -9999, 3]`.
     
 input1:
-	name: precip
-	type: array.float
-	description: vector of daily precipitation (in mm) 
+   name: precip
+   type: array.float
+   description: vector of daily precipitation (in mm) 
 
 input2:
-	name: error_days
-	type: array.integer
-	description: vector indicating the days of intrument failure 
+   name: error_days
+   type: array.integer
+   description: vector indicating the days of intrument failure 
 
 output:
-	type: array.float
-	description: vector of daily precipitation with erroneous values masked
+   type: array.float
+   description: vector of daily precipitation with erroneous values masked
 
 test1:
-	input:
-	- [1,2,3,4,5,6]
-	- [1,2]
-	output: [-9999, -9999, 3, 4, 5, 6]
+   input:
+   - [1,2,3,4,5,6]
+   - [1,2]
+   output: [-9999, -9999, 3, 4, 5, 6]
 
 test2:
-	input:
-	- [1,2,3,4,5,6]
-	- [4,5]
-	output: [1, 2, 3, -9999, -9999, 6]
+   input:
+   - [1,2,3,4,5,6]
+   - [4,5]
+   output: [1, 2, 3, -9999, -9999, 6]
 
 test3:
-	input:
-	- [1,2,3,4,5,6]
-	- [1,3,6]
-	output: [-9999, 2, -9999, 4, 5, -9999]
+   input:
+   - [1,2,3,4,5,6]
+   - [1,3,6]
+   output: [-9999, 2, -9999, 4, 5, -9999]
 
-solution: |
-	x2_quality_check = function(precip, error_days) {
-	  precip = unlist(precip)
+solution: >
+   x2_quality_check = function(precip, error_days) {
+     precip = unlist(precip)
       error_days = unlist(error_days)
       precip[error_days] = -9999
-	  return(precip)
-	}
+     return(precip)
+   }
 
 
-	
-	
-	
-	
+   
+   
+   
+   

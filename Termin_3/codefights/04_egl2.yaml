@@ -2,65 +2,65 @@
 task_name: egl2
 
 description: >
-	Gegeben seien der Vektor der Einheitsganglinie `egl` und
-	der Vektor der Effektivniederschlagsganglinie `precip` (diese
-	Ganglinie kann also nun im Unterschied zur vorherigen Aufgabe
-	mehrere zeitlich aufeinanderfolgende Effektivniederschlagsimpulse enthalten).
+   Gegeben seien der Vektor der Einheitsganglinie `egl` und
+   der Vektor der Effektivniederschlagsganglinie `precip` (diese
+   Ganglinie kann also nun im Unterschied zur vorherigen Aufgabe
+   mehrere zeitlich aufeinanderfolgende Effektivniederschlagsimpulse enthalten).
 
-	Berechnen nun die Länge der resultierenden Direktabflussganglinie. 
-	Alle Ganglinien liegen jeweils in stündlicher Auflösung vor.
-	
+   Berechnen nun die LÃ¤nge der resultierenden Direktabflussganglinie. 
+   Alle Ganglinien liegen jeweils in stÃ¼ndlicher AuflÃ¶sung vor.
+   
 
-Achtung: Wegen eines Bugs in Codefights müssen die beiden Vektoren anfangs so behandelt werden:
-````
-precip=unlist(precip) #Codefights-Bug
-egl=unlist(egl) #Codefights-Bug
-````
+    Achtung: Wegen eines Bugs in Codefights mÃ¼ssen die beiden Vektoren anfangs so behandelt werden:
+    ````
+    precip=unlist(precip) #Codefights-Bug
+    egl=unlist(egl) #Codefights-Bug
+    ````
 
-#### Beispiel
-Wenn `egl = c(0.2, 0.5, 0.3)` und `precip = c(2.0, 3.5)`, dann hat
-die Direktabflussganglinie eine Länge von `4` Stunden.
+    #### Beispiel
+    Wenn `egl = c(0.2, 0.5, 0.3)` und `precip = c(2.0, 3.5)`, dann hat
+    die Direktabflussganglinie eine LÃ¤nge von `4` Stunden.
     
 input1:
-	name: precip
-	type: array.float
-	description: Effektivniederschlagsganglinie
+   name: precip
+   type: array.float
+   description: Effektivniederschlagsganglinie
 
 input2:
-	name: egl
-	type: array.float
-	description: Einheitsganglinie
+   name: egl
+   type: array.float
+   description: Einheitsganglinie
 
-	
+   
 output:
-	type: integer
-	description: Länge der Abflussganglinie
+   type: integer
+   description: LÃ¤nge der Abflussganglinie
 
 test1:
-	input: 
-	- [2, 6, 3, 2, 7, 4, 5]
-	- [0.2, 0.5, 0.3]
-	output: 9
+   input: 
+   - [2, 6, 3, 2, 7, 4, 5]
+   - [0.2, 0.5, 0.3]
+   output: 9
 
 test2:
-	input: 
-	- [2]
-	- [0.1, 0.6, 0.2, 0.1]
-	output: 4
+   input: 
+   - [2]
+   - [0.1, 0.6, 0.2, 0.1]
+   output: 4
 
 test3:
-	input: 
-	- [2, 6, 3, 2, 7, 4, 5, 15]
-	- [0.1, 0.6, 0.2, 0.1]
-	output: 11	
+   input: 
+   - [2, 6, 3, 2, 7, 4, 5, 15]
+   - [0.1, 0.6, 0.2, 0.1]
+   output: 11
 
-solution: |
-	egl2 = function(precip, egl) {
-	  precip=unlist(precip) #Codefights Bug
-	  return(length(precip) + length(egl) - 1)
-	}
+solution: >
+   egl2 = function(precip, egl) {
+     precip=unlist(precip) #Codefights Bug
+     return(length(precip) + length(egl) - 1)
+   }
 
-	
-	
-	
-	
+   
+   
+   
+   

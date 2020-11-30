@@ -2,52 +2,52 @@
 task_name: gebietsniederschlag
 
 description: >
-	In einem Einzugsgebiet stehen drei Niederschlagsstationen.
-	Mit dem Thiessen-Verfahren wurden 50 Prozent des Gebiets der
-	Station 1 zugeordnet, 30 Prozent der Station 2 und 20 Prozent
-	der Station 3. Der Vektor `messungen` enthält die drei jeweils an
-	den Stationen gemessenen Niederschläge (in mm). Berechne auf Grundlage 
-	dieser Informationen den Gebietsniederschlag. 
-	
-Achtung: Wegen eines Bugs in Codefights muss der Vektor anfangs so behandelt werden:
-````
-messungen=unlist(messungen) #Codefights-Bug
-````
-	
-	#### Beispiel
-	
-	Wenn `messungen = c(4, 10, 5)`, dann ist der Gebietsniederschlag
-	`0.5 * 4 + 0.3 * 10 + 0.2 * 5 = 6` (mm).
+   In einem Einzugsgebiet stehen drei Niederschlagsstationen.
+   Mit dem Thiessen-Verfahren wurden 50 Prozent des Gebiets der
+   Station 1 zugeordnet, 30 Prozent der Station 2 und 20 Prozent
+   der Station 3. Der Vektor `messungen` enthÃ¤lt die drei jeweils an
+   den Stationen gemessenen NiederschlÃ¤ge (in mm). Berechne auf Grundlage 
+   dieser Informationen den Gebietsniederschlag. 
+   
+   Achtung: Wegen eines Bugs in Codefights muss der Vektor anfangs so behandelt werden:
+   ````
+   messungen=unlist(messungen) #Codefights-Bug
+   ````
+   
+   #### Beispiel
+   
+   Wenn `messungen = c(4, 10, 5)`, dann ist der Gebietsniederschlag
+   `0.5 * 4 + 0.3 * 10 + 0.2 * 5 = 6` (mm).
     
 input1:
-	name: messungen
-	type: array.float
-	description: Vektor mit drei Niederschlagshöhen (in mm) 
+   name: messungen
+   type: array.float
+   description: Vektor mit drei NiederschlagshÃ¶hen (in mm) 
 
 output:
-	type: float
-	description: Das gewichtete Mittel der drei Messungen
+   type: float
+   description: Das gewichtete Mittel der drei Messungen
 
 test1:
-	input: [1, 2, 3]
-	output: 1.7
+   input: [1, 2, 3]
+   output: 1.7
 
 test2:
-	input: [5, 2, 3]
-	output: 3.7
+   input: [5, 2, 3]
+   output: 3.7
 
 test3:
-	input: [15, 13, 20]
-	output: 15.4
+   input: [15, 13, 20]
+   output: 15.4
 
-solution: |
-	gebietsniederschlag = function(messungen) {
-	messungen=unlist(messungen) #Codefights-Bug
-	  return(0.5*messungen[1] + 0.3*messungen[2] + 0.2*messungen[3])
-	}
+solution: >
+   gebietsniederschlag = function(messungen) {
+   messungen=unlist(messungen) #Codefights-Bug
+     return(0.5*messungen[1] + 0.3*messungen[2] + 0.2*messungen[3])
+   }
 
 
-	
-	
-	
-	
+   
+   
+   
+   
