@@ -83,7 +83,3 @@ solution: >
      x[x<0] = 0
      return( which(cumsum(x)>=erntereif)[1] )
    }
-   
-   
-   
-   

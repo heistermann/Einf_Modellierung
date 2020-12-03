@@ -63,5 +63,5 @@ test4:
    
 solution: >
    x3_interpolation = function(t_meas, x_meas, t_approx) {
-return(round(approx(x=t_meas, y = x_meas, xout =t_approx)$y, digits=1))
-}
+    return(round(approx(x=t_meas, y = x_meas, xout =t_approx)$y, digits=1))
+   }

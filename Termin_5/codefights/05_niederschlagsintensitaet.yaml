@@ -92,7 +92,3 @@ solution: >
      hoehe = volumen * 1e3 / (pi*(radius*10)^2)
      return(round(hoehe / as.numeric(dauer), digits=2))
    }
-   
-   
-   
-   

@@ -46,8 +46,3 @@ solution: >
      return(0.5*messungen[1] + 0.3*messungen[2] + 0.2*messungen[3])
    }
 
-
-   
-   
-   
-   

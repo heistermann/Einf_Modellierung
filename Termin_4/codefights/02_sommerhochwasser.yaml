@@ -82,7 +82,4 @@ solution: >
    sommerhochwasser = function(abfluss, monat, beginn, ende) {
      return( round(mean(abfluss[(monat>=beginn) & (monat<=ende)]),2 ))
    }
-   
-   
-   
-   
+

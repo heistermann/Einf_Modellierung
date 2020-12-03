@@ -33,4 +33,3 @@ solution: >
    Echo <- function(n) {
       return(n)
    }
-   

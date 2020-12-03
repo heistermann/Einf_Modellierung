@@ -86,7 +86,3 @@ solution: >
      return(precip * area * egl / 3.6)
    }
 
-   
-   
-   
-   

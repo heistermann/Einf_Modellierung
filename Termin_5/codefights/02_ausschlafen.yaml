@@ -57,8 +57,3 @@ solution: >
      return(name %in% wochenende)
    }
 
-
-   
-   
-   
-   

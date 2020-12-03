@@ -74,8 +74,3 @@ solution: >
      return(sum(phasenlaenge >= thresh_length))
    }  
 
-
-   
-   
-   
-   

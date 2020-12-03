@@ -51,7 +51,7 @@ test4:
    
 solution: >
    wuerfel = function(n_wuerfe, seed) {
-   set.seed(seed)
-   wuerfe = ceiling(runif(n = n_wuerfe, min = 0, max=6))
-   return (wuerfe)
+      set.seed(seed)
+      wuerfe = ceiling(runif(n = n_wuerfe, min = 0, max=6))
+      return (wuerfe)
    }

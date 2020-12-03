@@ -82,5 +82,3 @@ solution: >
      dimnames(brett)=list(8:1,letters[1:8])
      return(brett[substr(feld,2,2), substr(feld,1,1)])
    }
-
-   

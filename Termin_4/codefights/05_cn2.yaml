@@ -130,7 +130,7 @@ solution: >
      100;1.00;1.00"
      con = textConnection(tab)
      df = read.table(con, header=TRUE, sep=";", stringsAsFactors=FALSE, strip.white=TRUE)
-
+     
      P5 = sum(precip)
      amc = "normal"
      if (vegetation) {
@@ -147,7 +147,4 @@ solution: >
    	return( df[which.min(abs(df$normal - cn2)),amc] * cn2 )
      }
    }
-   
-   
-   
    

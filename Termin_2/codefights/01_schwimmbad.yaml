@@ -86,26 +86,26 @@ test5:
    
 solution: >
    schwimmbad = function(n0, r, n_grenzwert) {
-   
-   exp_Wachstum = function (n0, r, nt)
-   {  
-     # n0 : Startpopulation
-     # r  : Wachstumsrate
-     # nt : Anzahl Zeitschritte
      
-     n = rep(NA,nt) #Vektor für zeitlichen Verlauf der Population anlegen
-     n[1] = n0
+     exp_Wachstum = function (n0, r, nt)
+     {  
+         # n0 : Startpopulation
+         # r  : Wachstumsrate
+         # nt : Anzahl Zeitschritte
+         
+         n = rep(NA,nt) #Vektor für zeitlichen Verlauf der Population anlegen
+         n[1] = n0
+         
+         for (t in 2:nt)
+         n[t] = n[t-1] + r * n[t-1]
+         
+         return(n)
+     }
      
-     for (t in 2:nt)
-       n[t] = n[t-1] + r * n[t-1]
+     n = exp_Wachstum (n0, r, 1000)
+     sperrtag = which (n > n_grenzwert)[1]
      
-     return(n)
-   }
-   
-   n = exp_Wachstum (n0, r, 1000)
-   sperrtag = which (n > n_grenzwert)[1]
-   
-   if (is.na(sperrtag)) sperrtag = -1
-   
-   return (sperrtag)
+     if (is.na(sperrtag)) sperrtag = -1
+     
+     return (sperrtag)
    }

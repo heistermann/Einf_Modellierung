@@ -56,11 +56,9 @@ test3:
 
 solution: >
    x7_populist_speach = function(text, interval, buzzword)
-{  
-  woerter = unlist(strsplit(text, " "))
-  
-  woerter[1:length(woerter) %% interval ==0] =  buzzword
-  return(paste(woerter, collapse=" "))
-}
-
-   
+   {  
+     woerter = unlist(strsplit(text, " "))
+     
+     woerter[1:length(woerter) %% interval ==0] =  buzzword
+     return(paste(woerter, collapse=" "))
+   }

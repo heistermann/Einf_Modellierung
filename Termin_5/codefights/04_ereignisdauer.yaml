@@ -67,8 +67,3 @@ solution: >
      return(round(as.numeric(dauer), 2))
    }
 
-
-   
-   
-   
-   

@@ -60,7 +60,3 @@ solution: >
      return(length(precip) + length(egl) - 1)
    }
 
-   
-   
-   
-   

@@ -57,5 +57,3 @@ solution: >
      }  
      return(primzahlen)
    }
-
-   

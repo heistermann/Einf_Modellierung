@@ -66,8 +66,3 @@ solution: >
      return(strftime(as.Date(datum), format="%A"))
    }
 
-
-   
-   
-   
-   

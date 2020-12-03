@@ -63,4 +63,3 @@ solution: >
      return(paste(woerter, collapse=" "))
    }
 
-   

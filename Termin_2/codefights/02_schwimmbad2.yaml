@@ -97,28 +97,28 @@ test5:
    
 solution: >
    schwimmbad2 = function(n0, r, n_grenzwert, r_chlor) {
-   
-   exp_Wachstum = function (n0, r, nt)
-   {  
-     # n0 : Startpopulation
-     # r  : Wachstumsrate
-     # nt : Anzahl Zeitschritte
-     
-     n = rep(NA,nt) #Vektor für zeitlichen Verlauf der Population anlegen
-     n[1] = n0
-     
-     for (t in 2:nt)
-       n[t] = n[t-1] + r * n[t-1]
-     
-     return(n)
-   }
-   
-   n = exp_Wachstum (n0=n0, r=r, nt=1000)
-   sperrtag = which (n > n_grenzwert)[1]
-   
-   if (is.na(sperrtag)) return(round(max(n)))   #Grenzwert wurde nicht überschritten, gib Maximalpopulation zurück
-   
-   N_chlor = exp_Wachstum (n0=n[sperrtag], r=r_chlor, nt=4)  #Wachstum unter Chloreinfluss
-   
-   return (round(N_chlor[4]))
+      
+      exp_Wachstum = function (n0, r, nt)
+      {  
+        # n0 : Startpopulation
+        # r  : Wachstumsrate
+        # nt : Anzahl Zeitschritte
+        
+        n = rep(NA,nt) #Vektor für zeitlichen Verlauf der Population anlegen
+        n[1] = n0
+        
+        for (t in 2:nt)
+          n[t] = n[t-1] + r * n[t-1]
+        
+        return(n)
+      }
+      
+      n = exp_Wachstum (n0=n0, r=r, nt=1000)
+      sperrtag = which (n > n_grenzwert)[1]
+      
+      if (is.na(sperrtag)) return(round(max(n)))   #Grenzwert wurde nicht überschritten, gib Maximalpopulation zurück
+      
+      N_chlor = exp_Wachstum (n0=n[sperrtag], r=r_chlor, nt=4)  #Wachstum unter Chloreinfluss
+      
+      return (round(N_chlor[4]))
    }

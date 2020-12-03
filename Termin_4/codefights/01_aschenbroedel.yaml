@@ -61,7 +61,3 @@ solution: >
      return(length(which(erbsen==gut)))
    }
 
-   
-   
-   
-   

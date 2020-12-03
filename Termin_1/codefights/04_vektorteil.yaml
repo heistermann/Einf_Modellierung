@@ -68,7 +68,6 @@ test5:
 solution: >
    vektorteil = function(v, start, n_e) {
      if (start+n_e -1 > length(v))
-   return(c())
+     return(c())
      return(v[start:(start+n_e-1)])
    }
-   

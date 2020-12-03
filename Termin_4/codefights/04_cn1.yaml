@@ -127,6 +127,3 @@ solution: >
      return(subset(df, LANU1==lanu1 & LANU2==lanu2)[,boden])
    }
    
-   
-   
-   
