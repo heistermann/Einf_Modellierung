@@ -1,13 +1,18 @@
 #Korrektur-Template Termin_7
+rm(list=ls()) #Speicher leeren
+################################################################################
 ################################################################################
 
 # Bitte zuerst die zu beurteilende Lösung hierher kopieren.
 # Dann gesamtes Skript mit Strg+Shift+S ausführen und Ausgabe am Ende beachten.
 
+# !!! Bitte keine Änderungen unterhalb dieses Blocks !!!
 ################################################################################
-rm(list=ls()) #Speicher leeren
+################################################################################
+
 cat("\014") #Konsole leeren
 kontrollergebnis_alle = data.frame() #gesammelte Korrekturergebnisse
+identical2 = function(a, b){isTRUE(all.equal(a,b))} #etwas toleranterer Vergleich zweier Objekte (erlaubt Vergleich von real und integer-Werten als gleich)
 ################################################################################
 
 #Aufgabe 01_schach; Musterlösung:
@@ -24,19 +29,19 @@ schach_muster_lsg  = function(feld) {
  #test1
  einreichung = try(schach(feld = "b7")) #Ergebnis der Einreichung
  muster_lsg  = try(schach_muster_lsg(feld = "b7")) #Ergebnis der Musterlösung
-if (identical(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
+if (identical2(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
 if (class(einreichung) == "try-error") kontrollergebnis_t$nicht_aufrufbar[1] = kontrollergebnis_t$nicht_aufrufbar[1] + 1 #zähle fehlerhafte Aufrufe
 
  #test2
  einreichung = try(schach(feld = "d8")) #Ergebnis der Einreichung
  muster_lsg  = try(schach_muster_lsg(feld = "d8")) #Ergebnis der Musterlösung
-if (identical(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
+if (identical2(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
 if (class(einreichung) == "try-error") kontrollergebnis_t$nicht_aufrufbar[1] = kontrollergebnis_t$nicht_aufrufbar[1] + 1 #zähle fehlerhafte Aufrufe
 
  #test3
  einreichung = try(schach(feld = "a2")) #Ergebnis der Einreichung
  muster_lsg  = try(schach_muster_lsg(feld = "a2")) #Ergebnis der Musterlösung
-if (identical(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
+if (identical2(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
 if (class(einreichung) == "try-error") kontrollergebnis_t$nicht_aufrufbar[1] = kontrollergebnis_t$nicht_aufrufbar[1] + 1 #zähle fehlerhafte Aufrufe
 
 kontrollergebnis_alle = rbind(kontrollergebnis_alle, kontrollergebnis_t) #Ergebnis dieser Aufgabe speichern
@@ -58,19 +63,19 @@ sieb_muster_lsg  = function(bis) {
  #test1
  einreichung = try(sieb(bis = 10L)) #Ergebnis der Einreichung
  muster_lsg  = try(sieb_muster_lsg(bis = 10L)) #Ergebnis der Musterlösung
-if (identical(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
+if (identical2(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
 if (class(einreichung) == "try-error") kontrollergebnis_t$nicht_aufrufbar[1] = kontrollergebnis_t$nicht_aufrufbar[1] + 1 #zähle fehlerhafte Aufrufe
 
  #test2
  einreichung = try(sieb(bis = 30L)) #Ergebnis der Einreichung
  muster_lsg  = try(sieb_muster_lsg(bis = 30L)) #Ergebnis der Musterlösung
-if (identical(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
+if (identical2(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
 if (class(einreichung) == "try-error") kontrollergebnis_t$nicht_aufrufbar[1] = kontrollergebnis_t$nicht_aufrufbar[1] + 1 #zähle fehlerhafte Aufrufe
 
  #test3
  einreichung = try(sieb(bis = 50L)) #Ergebnis der Einreichung
  muster_lsg  = try(sieb_muster_lsg(bis = 50L)) #Ergebnis der Musterlösung
-if (identical(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
+if (identical2(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
 if (class(einreichung) == "try-error") kontrollergebnis_t$nicht_aufrufbar[1] = kontrollergebnis_t$nicht_aufrufbar[1] + 1 #zähle fehlerhafte Aufrufe
 
 kontrollergebnis_alle = rbind(kontrollergebnis_alle, kontrollergebnis_t) #Ergebnis dieser Aufgabe speichern
@@ -88,28 +93,31 @@ afd_rede_muster_lsg  = function(text, abstand, schwort) {
  #test1
  einreichung = try(afd_rede(text = "Denk ich an Deutschland in der Nacht, bin ich um den Schlaf gebracht", abstand = 4L, schwort = "Patrioten")) #Ergebnis der Einreichung
  muster_lsg  = try(afd_rede_muster_lsg(text = "Denk ich an Deutschland in der Nacht, bin ich um den Schlaf gebracht", abstand = 4L, schwort = "Patrioten")) #Ergebnis der Musterlösung
-if (identical(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
+if (identical2(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
 if (class(einreichung) == "try-error") kontrollergebnis_t$nicht_aufrufbar[1] = kontrollergebnis_t$nicht_aufrufbar[1] + 1 #zähle fehlerhafte Aufrufe
 
  #test2
  einreichung = try(afd_rede(text = "Für jedes komplexe Problem gibt es eine Lösung, die einfach, einleuchtend und falsch ist", abstand = 1L, schwort = "Außengrenze")) #Ergebnis der Einreichung
  muster_lsg  = try(afd_rede_muster_lsg(text = "Für jedes komplexe Problem gibt es eine Lösung, die einfach, einleuchtend und falsch ist", abstand = 1L, schwort = "Außengrenze")) #Ergebnis der Musterlösung
-if (identical(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
+if (identical2(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
 if (class(einreichung) == "try-error") kontrollergebnis_t$nicht_aufrufbar[1] = kontrollergebnis_t$nicht_aufrufbar[1] + 1 #zähle fehlerhafte Aufrufe
 
  #test3
  einreichung = try(afd_rede(text = "Drei Chinesen mit nem Kontrabass saßen auf der Straße", abstand = 2L, schwort = "Sauerkraut")) #Ergebnis der Einreichung
  muster_lsg  = try(afd_rede_muster_lsg(text = "Drei Chinesen mit nem Kontrabass saßen auf der Straße", abstand = 2L, schwort = "Sauerkraut")) #Ergebnis der Musterlösung
-if (identical(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
+if (identical2(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
 if (class(einreichung) == "try-error") kontrollergebnis_t$nicht_aufrufbar[1] = kontrollergebnis_t$nicht_aufrufbar[1] + 1 #zähle fehlerhafte Aufrufe
 
 kontrollergebnis_alle = rbind(kontrollergebnis_alle, kontrollergebnis_t) #Ergebnis dieser Aufgabe speichern
 
 
 ################################################################################
+print(paste0(rep("#", 80), collapse = "")) #Trennlinie
 kontrollergebnis_alle$anteil_richtig = kontrollergebnis_alle$richtig / kontrollergebnis_alle$tests
 kontrollergebnis_alle$punkte = 100 / nrow(kontrollergebnis_alle) * kontrollergebnis_alle$anteil_richtig
-print(kontrollergebnis_alle)
+print("Testergebnisse:")
 print(paste0("Gesamtpunktzahl für diesen Termin: ", round(sum(kontrollergebnis_alle$punkte))))
-print(paste0("Bitte Punktzahl in Moodle eintragen, obenstehende Tabelle und etwaige weitere Hinweise als Kommentar hinzufügen."))
+print(paste0("Bitte in Moodle eintragen, (Feld <Bewertung für Kriterium 1>)."))
+print(kontrollergebnis_alle)
+print(paste0("Bitte in Moodle eintragen, Textfeld <Kommentar für Kriterium 1>."))
 

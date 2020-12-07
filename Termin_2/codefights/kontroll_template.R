@@ -1,13 +1,18 @@
 #Korrektur-Template Termin_2
+rm(list=ls()) #Speicher leeren
+################################################################################
 ################################################################################
 
 # Bitte zuerst die zu beurteilende Lösung hierher kopieren.
 # Dann gesamtes Skript mit Strg+Shift+S ausführen und Ausgabe am Ende beachten.
 
+# !!! Bitte keine Änderungen unterhalb dieses Blocks !!!
 ################################################################################
-rm(list=ls()) #Speicher leeren
+################################################################################
+
 cat("\014") #Konsole leeren
 kontrollergebnis_alle = data.frame() #gesammelte Korrekturergebnisse
+identical2 = function(a, b){isTRUE(all.equal(a,b))} #etwas toleranterer Vergleich zweier Objekte (erlaubt Vergleich von real und integer-Werten als gleich)
 ################################################################################
 
 #Aufgabe 01_schwimmbad; Musterlösung:
@@ -39,31 +44,31 @@ schwimmbad_muster_lsg  = function(n0, r, n_grenzwert) {
  #test1
  einreichung = try(schwimmbad(n0 = 2L, r = 0.1, n_grenzwert = 100L)) #Ergebnis der Einreichung
  muster_lsg  = try(schwimmbad_muster_lsg(n0 = 2L, r = 0.1, n_grenzwert = 100L)) #Ergebnis der Musterlösung
-if (identical(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
+if (identical2(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
 if (class(einreichung) == "try-error") kontrollergebnis_t$nicht_aufrufbar[1] = kontrollergebnis_t$nicht_aufrufbar[1] + 1 #zähle fehlerhafte Aufrufe
 
  #test2
  einreichung = try(schwimmbad(n0 = 50L, r = 0.01, n_grenzwert = 200L)) #Ergebnis der Einreichung
  muster_lsg  = try(schwimmbad_muster_lsg(n0 = 50L, r = 0.01, n_grenzwert = 200L)) #Ergebnis der Musterlösung
-if (identical(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
+if (identical2(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
 if (class(einreichung) == "try-error") kontrollergebnis_t$nicht_aufrufbar[1] = kontrollergebnis_t$nicht_aufrufbar[1] + 1 #zähle fehlerhafte Aufrufe
 
  #test3
  einreichung = try(schwimmbad(n0 = 5L, r = 0.001, n_grenzwert = 1000L)) #Ergebnis der Einreichung
  muster_lsg  = try(schwimmbad_muster_lsg(n0 = 5L, r = 0.001, n_grenzwert = 1000L)) #Ergebnis der Musterlösung
-if (identical(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
+if (identical2(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
 if (class(einreichung) == "try-error") kontrollergebnis_t$nicht_aufrufbar[1] = kontrollergebnis_t$nicht_aufrufbar[1] + 1 #zähle fehlerhafte Aufrufe
 
  #test4
  einreichung = try(schwimmbad(n0 = 10L, r = 1.2, n_grenzwert = 100L)) #Ergebnis der Einreichung
  muster_lsg  = try(schwimmbad_muster_lsg(n0 = 10L, r = 1.2, n_grenzwert = 100L)) #Ergebnis der Musterlösung
-if (identical(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
+if (identical2(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
 if (class(einreichung) == "try-error") kontrollergebnis_t$nicht_aufrufbar[1] = kontrollergebnis_t$nicht_aufrufbar[1] + 1 #zähle fehlerhafte Aufrufe
 
  #test5
  einreichung = try(schwimmbad(n0 = 200L, r = 0.1, n_grenzwert = 100L)) #Ergebnis der Einreichung
  muster_lsg  = try(schwimmbad_muster_lsg(n0 = 200L, r = 0.1, n_grenzwert = 100L)) #Ergebnis der Musterlösung
-if (identical(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
+if (identical2(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
 if (class(einreichung) == "try-error") kontrollergebnis_t$nicht_aufrufbar[1] = kontrollergebnis_t$nicht_aufrufbar[1] + 1 #zähle fehlerhafte Aufrufe
 
 kontrollergebnis_alle = rbind(kontrollergebnis_alle, kontrollergebnis_t) #Ergebnis dieser Aufgabe speichern
@@ -100,31 +105,31 @@ schwimmbad2_muster_lsg  = function(n0, r, n_grenzwert, r_chlor) {
  #test1
  einreichung = try(schwimmbad2(n0 = 2L, r = 0.1, n_grenzwert = 100L, r_chlor = -0.1)) #Ergebnis der Einreichung
  muster_lsg  = try(schwimmbad2_muster_lsg(n0 = 2L, r = 0.1, n_grenzwert = 100L, r_chlor = -0.1)) #Ergebnis der Musterlösung
-if (identical(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
+if (identical2(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
 if (class(einreichung) == "try-error") kontrollergebnis_t$nicht_aufrufbar[1] = kontrollergebnis_t$nicht_aufrufbar[1] + 1 #zähle fehlerhafte Aufrufe
 
  #test2
  einreichung = try(schwimmbad2(n0 = 50L, r = 0.01, n_grenzwert = 200L, r_chlor = 0L)) #Ergebnis der Einreichung
  muster_lsg  = try(schwimmbad2_muster_lsg(n0 = 50L, r = 0.01, n_grenzwert = 200L, r_chlor = 0L)) #Ergebnis der Musterlösung
-if (identical(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
+if (identical2(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
 if (class(einreichung) == "try-error") kontrollergebnis_t$nicht_aufrufbar[1] = kontrollergebnis_t$nicht_aufrufbar[1] + 1 #zähle fehlerhafte Aufrufe
 
  #test3
  einreichung = try(schwimmbad2(n0 = 5L, r = 0.001, n_grenzwert = 1000L, r_chlor = -0.1)) #Ergebnis der Einreichung
  muster_lsg  = try(schwimmbad2_muster_lsg(n0 = 5L, r = 0.001, n_grenzwert = 1000L, r_chlor = -0.1)) #Ergebnis der Musterlösung
-if (identical(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
+if (identical2(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
 if (class(einreichung) == "try-error") kontrollergebnis_t$nicht_aufrufbar[1] = kontrollergebnis_t$nicht_aufrufbar[1] + 1 #zähle fehlerhafte Aufrufe
 
  #test4
  einreichung = try(schwimmbad2(n0 = 10L, r = 1.2, n_grenzwert = 100L, r_chlor = 0.3)) #Ergebnis der Einreichung
  muster_lsg  = try(schwimmbad2_muster_lsg(n0 = 10L, r = 1.2, n_grenzwert = 100L, r_chlor = 0.3)) #Ergebnis der Musterlösung
-if (identical(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
+if (identical2(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
 if (class(einreichung) == "try-error") kontrollergebnis_t$nicht_aufrufbar[1] = kontrollergebnis_t$nicht_aufrufbar[1] + 1 #zähle fehlerhafte Aufrufe
 
  #test5
  einreichung = try(schwimmbad2(n0 = 200L, r = 0.1, n_grenzwert = 100L, r_chlor = 0.01)) #Ergebnis der Einreichung
  muster_lsg  = try(schwimmbad2_muster_lsg(n0 = 200L, r = 0.1, n_grenzwert = 100L, r_chlor = 0.01)) #Ergebnis der Musterlösung
-if (identical(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
+if (identical2(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
 if (class(einreichung) == "try-error") kontrollergebnis_t$nicht_aufrufbar[1] = kontrollergebnis_t$nicht_aufrufbar[1] + 1 #zähle fehlerhafte Aufrufe
 
 kontrollergebnis_alle = rbind(kontrollergebnis_alle, kontrollergebnis_t) #Ergebnis dieser Aufgabe speichern
@@ -141,25 +146,25 @@ wuerfel_muster_lsg  = function(n_wuerfe, seed) {
  #test1
  einreichung = try(wuerfel(n_wuerfe = 2L, seed = 1L)) #Ergebnis der Einreichung
  muster_lsg  = try(wuerfel_muster_lsg(n_wuerfe = 2L, seed = 1L)) #Ergebnis der Musterlösung
-if (identical(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
+if (identical2(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
 if (class(einreichung) == "try-error") kontrollergebnis_t$nicht_aufrufbar[1] = kontrollergebnis_t$nicht_aufrufbar[1] + 1 #zähle fehlerhafte Aufrufe
 
  #test2
  einreichung = try(wuerfel(n_wuerfe = 5L, seed = 3L)) #Ergebnis der Einreichung
  muster_lsg  = try(wuerfel_muster_lsg(n_wuerfe = 5L, seed = 3L)) #Ergebnis der Musterlösung
-if (identical(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
+if (identical2(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
 if (class(einreichung) == "try-error") kontrollergebnis_t$nicht_aufrufbar[1] = kontrollergebnis_t$nicht_aufrufbar[1] + 1 #zähle fehlerhafte Aufrufe
 
  #test3
  einreichung = try(wuerfel(n_wuerfe = 7L, seed = 0L)) #Ergebnis der Einreichung
  muster_lsg  = try(wuerfel_muster_lsg(n_wuerfe = 7L, seed = 0L)) #Ergebnis der Musterlösung
-if (identical(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
+if (identical2(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
 if (class(einreichung) == "try-error") kontrollergebnis_t$nicht_aufrufbar[1] = kontrollergebnis_t$nicht_aufrufbar[1] + 1 #zähle fehlerhafte Aufrufe
 
  #test4
  einreichung = try(wuerfel(n_wuerfe = 3L, seed = 1000L)) #Ergebnis der Einreichung
  muster_lsg  = try(wuerfel_muster_lsg(n_wuerfe = 3L, seed = 1000L)) #Ergebnis der Musterlösung
-if (identical(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
+if (identical2(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
 if (class(einreichung) == "try-error") kontrollergebnis_t$nicht_aufrufbar[1] = kontrollergebnis_t$nicht_aufrufbar[1] + 1 #zähle fehlerhafte Aufrufe
 
 kontrollergebnis_alle = rbind(kontrollergebnis_alle, kontrollergebnis_t) #Ergebnis dieser Aufgabe speichern
@@ -183,25 +188,25 @@ wuerfel_gezinkt_muster_lsg  = function(wurf) {
  #test1
  einreichung = try(wuerfel_gezinkt(wurf = 1L)) #Ergebnis der Einreichung
  muster_lsg  = try(wuerfel_gezinkt_muster_lsg(wurf = 1L)) #Ergebnis der Musterlösung
-if (identical(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
+if (identical2(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
 if (class(einreichung) == "try-error") kontrollergebnis_t$nicht_aufrufbar[1] = kontrollergebnis_t$nicht_aufrufbar[1] + 1 #zähle fehlerhafte Aufrufe
 
  #test2
  einreichung = try(wuerfel_gezinkt(wurf = 6L)) #Ergebnis der Einreichung
  muster_lsg  = try(wuerfel_gezinkt_muster_lsg(wurf = 6L)) #Ergebnis der Musterlösung
-if (identical(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
+if (identical2(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
 if (class(einreichung) == "try-error") kontrollergebnis_t$nicht_aufrufbar[1] = kontrollergebnis_t$nicht_aufrufbar[1] + 1 #zähle fehlerhafte Aufrufe
 
  #test3
  einreichung = try(wuerfel_gezinkt(wurf = 1L)) #Ergebnis der Einreichung
  muster_lsg  = try(wuerfel_gezinkt_muster_lsg(wurf = 1L)) #Ergebnis der Musterlösung
-if (identical(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
+if (identical2(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
 if (class(einreichung) == "try-error") kontrollergebnis_t$nicht_aufrufbar[1] = kontrollergebnis_t$nicht_aufrufbar[1] + 1 #zähle fehlerhafte Aufrufe
 
  #test4
  einreichung = try(wuerfel_gezinkt(wurf = 1L)) #Ergebnis der Einreichung
  muster_lsg  = try(wuerfel_gezinkt_muster_lsg(wurf = 1L)) #Ergebnis der Musterlösung
-if (identical(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
+if (identical2(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
 if (class(einreichung) == "try-error") kontrollergebnis_t$nicht_aufrufbar[1] = kontrollergebnis_t$nicht_aufrufbar[1] + 1 #zähle fehlerhafte Aufrufe
 
 kontrollergebnis_alle = rbind(kontrollergebnis_alle, kontrollergebnis_t) #Ergebnis dieser Aufgabe speichern
@@ -214,28 +219,31 @@ interpolation_muster_lsg  = function(t_mess, x_mess, t_approx) { return(round(ap
  #test1
  einreichung = try(interpolation(t_mess = 0:1, x_mess = c(0L, 30L), t_approx = list(0.5, 1L))) #Ergebnis der Einreichung
  muster_lsg  = try(interpolation_muster_lsg(t_mess = 0:1, x_mess = c(0L, 30L), t_approx = list(0.5, 1L))) #Ergebnis der Musterlösung
-if (identical(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
+if (identical2(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
 if (class(einreichung) == "try-error") kontrollergebnis_t$nicht_aufrufbar[1] = kontrollergebnis_t$nicht_aufrufbar[1] + 1 #zähle fehlerhafte Aufrufe
 
  #test2
  einreichung = try(interpolation(t_mess = list(0L, 1L, 2.5), x_mess = c(0L, 30L, 31L), t_approx = list(0.5, 1L, 1.1))) #Ergebnis der Einreichung
  muster_lsg  = try(interpolation_muster_lsg(t_mess = list(0L, 1L, 2.5), x_mess = c(0L, 30L, 31L), t_approx = list(0.5, 1L, 1.1))) #Ergebnis der Musterlösung
-if (identical(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
+if (identical2(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
 if (class(einreichung) == "try-error") kontrollergebnis_t$nicht_aufrufbar[1] = kontrollergebnis_t$nicht_aufrufbar[1] + 1 #zähle fehlerhafte Aufrufe
 
  #test3
  einreichung = try(interpolation(t_mess = c(2L, 4L, 5L, 8L), x_mess = c(1L, 2L, 5L, 10L), t_approx = list(2.6, 2.6, 3L))) #Ergebnis der Einreichung
  muster_lsg  = try(interpolation_muster_lsg(t_mess = c(2L, 4L, 5L, 8L), x_mess = c(1L, 2L, 5L, 10L), t_approx = list(2.6, 2.6, 3L))) #Ergebnis der Musterlösung
-if (identical(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
+if (identical2(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse
 if (class(einreichung) == "try-error") kontrollergebnis_t$nicht_aufrufbar[1] = kontrollergebnis_t$nicht_aufrufbar[1] + 1 #zähle fehlerhafte Aufrufe
 
 kontrollergebnis_alle = rbind(kontrollergebnis_alle, kontrollergebnis_t) #Ergebnis dieser Aufgabe speichern
 
 
 ################################################################################
+print(paste0(rep("#", 80), collapse = "")) #Trennlinie
 kontrollergebnis_alle$anteil_richtig = kontrollergebnis_alle$richtig / kontrollergebnis_alle$tests
 kontrollergebnis_alle$punkte = 100 / nrow(kontrollergebnis_alle) * kontrollergebnis_alle$anteil_richtig
-print(kontrollergebnis_alle)
+print("Testergebnisse:")
 print(paste0("Gesamtpunktzahl für diesen Termin: ", round(sum(kontrollergebnis_alle$punkte))))
-print(paste0("Bitte Punktzahl in Moodle eintragen, obenstehende Tabelle und etwaige weitere Hinweise als Kommentar hinzufügen."))
+print(paste0("Bitte in Moodle eintragen, (Feld <Bewertung für Kriterium 1>)."))
+print(kontrollergebnis_alle)
+print(paste0("Bitte in Moodle eintragen, Textfeld <Kommentar für Kriterium 1>."))
 

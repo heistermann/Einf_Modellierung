@@ -36,14 +36,19 @@ for (sd in subdirs)
   #Templates anlegen
   write(paste0("#Aufgaben-Template ", titel), tfil)
   write(paste0("#Korrektur-Template ", titel), kfil)
+  write("rm(list=ls()) #Speicher leeren", kfil, append=TRUE)
+  write(paste0(rep("#", 80), collapse = ""), kfil, append=TRUE) #Trennlinie
   write(paste0(rep("#", 80), collapse = ""), kfil, append=TRUE) #Trennlinie
   write(paste0("\n# Bitte zuerst die zu beurteilende Lösung hierher kopieren.\n# Dann gesamtes Skript mit Strg+Shift+S ausführen und Ausgabe am Ende beachten.\n"), kfil, append=TRUE)
+  write("# !!! Bitte keine Änderungen unterhalb dieses Blocks !!!", kfil, append=TRUE)
+  
+  write(paste0(rep("#", 80), collapse = ""), kfil, append=TRUE) #Trennlinie
   write(paste0(rep("#", 80), collapse = ""), kfil, append=TRUE) #Trennlinie
   
-  write("rm(list=ls()) #Speicher leeren", kfil, append=TRUE)
-  write("cat(\"\\014\") #Konsole leeren", kfil, append=TRUE)
+  write("\ncat(\"\\014\") #Konsole leeren", kfil, append=TRUE)
   write(paste0("kontrollergebnis_alle = data.frame() #gesammelte Korrekturergebnisse"), kfil, append = TRUE)
-  
+  write("identical2 = function(a, b){isTRUE(all.equal(a,b))} #etwas toleranterer Vergleich zweier Objekte (erlaubt Vergleich von real und integer-Werten als gleich)", kfil, append = TRUE)
+
   yaml_file=yaml_files[2]
   #yaml_file=yaml_files[3]
   for (yaml_file in yaml_files)
@@ -161,7 +166,7 @@ for (sd in subdirs)
       write(paste0(" muster_lsg  = try(", str2, "_muster_lsg(", arg_str, ")) #Ergebnis der Musterlösung"), kfil, append = TRUE)
 
       #write(paste0("loesung = ", str, "_lsg (" = aufgabe[\"richtig\"] + 1"), kfil, append = TRUE)
-      write(paste0("if (identical(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse"), kfil, append = TRUE)
+      write(paste0("if (identical2(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse"), kfil, append = TRUE)
       write(paste0("if (class(einreichung) == \"try-error\") kontrollergebnis_t$nicht_aufrufbar[1] = kontrollergebnis_t$nicht_aufrufbar[1] + 1 #zähle fehlerhafte Aufrufe\n"), kfil, append = TRUE)
       
     }
@@ -193,13 +198,18 @@ for (sd in subdirs)
   #Kontroll-Template abschließen ####
   write("\n", kfil, append=TRUE) #Umbruch
   write(paste0(rep("#", 80), collapse = ""), kfil, append=TRUE) #Trennlinie
-
+  
+  
   write(paste0(
+  "print(paste0(rep(\"#\", 80), collapse = \"\")) #Trennlinie\n",
   "kontrollergebnis_alle$anteil_richtig = kontrollergebnis_alle$richtig / kontrollergebnis_alle$tests\n",
   "kontrollergebnis_alle$punkte = 100 / nrow(kontrollergebnis_alle) * kontrollergebnis_alle$anteil_richtig\n",
-  "print(kontrollergebnis_alle)\n",
+  "print(\"Testergebnisse:\")\n",
   "print(paste0(\"Gesamtpunktzahl für diesen Termin: \", round(sum(kontrollergebnis_alle$punkte))))\n",
-  "print(paste0(\"Bitte Punktzahl in Moodle eintragen, obenstehende Tabelle und etwaige weitere Hinweise als Kommentar hinzufügen.\"))\n"
+  "print(paste0(\"Bitte in Moodle eintragen, (Feld <Bewertung für Kriterium 1>).\"))\n",
+  "print(kontrollergebnis_alle)\n",
+  "print(paste0(\"Bitte in Moodle eintragen, Textfeld <Kommentar für Kriterium 1>.\"))\n"
+  
   ), kfil, append=TRUE) 
   
   
