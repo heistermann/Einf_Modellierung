@@ -1,51 +1,47 @@
 ---
 task_name: summe
 
-description: 
-	Gib die Summe der beiden Argumente `arg1` und `arg2` zurück!
+description: >
+   Gib die Summe der beiden Argumente `arg1` und `arg2` zurÃ¼ck!
 
-	#### Beispiel
-	Für die Zahlen `arg1 = 17` und `arg2 = 4` soll das Ergebnis `21` erzeugt werden.
-	#### Input / Output
+   #### Beispiel
+   FÃ¼r die Zahlen `arg1 = 17` und `arg2 = 4` soll das Ergebnis `21` erzeugt werden.
+   #### Input / Output
 
 input1:
-	name: arg1
-	type: float
-	description: Eine Zahl
+   name: arg1
+   type: float
+   description: Eine Zahl
 
 input2:
-	name: arg2
-	type: float
-	description: Noch eine Zahl
+   name: arg2
+   type: float
+   description: Noch eine Zahl
 
 output:
-	type: float
-	description: Die Summe beider Zahlen
+   type: float
+   description: Die Summe beider Zahlen
 
 test1:
-	input:
-	- 1
-	- 2
-	output: 2
+   input:
+   - 1
+   - 2
+   output: 3
 
 test2:
-	input:
-	- 2
-	- 3
-	output: 5
+   input:
+   - 2
+   - 3
+   output: 5
 
 test3:
-	input:
-	- 4
-	- 4
-	output: 8
+   input:
+   - 4
+   - 4
+   output: 8
 
-solution: |
-	Summe <- function(arg1, arg2) {
-	   return(arg1+arg2)
-	}
+solution: >
+   Summe <- function(arg1, arg2) {
+      return(arg1+arg2)
+   }
 
-	
-	
-	
-	

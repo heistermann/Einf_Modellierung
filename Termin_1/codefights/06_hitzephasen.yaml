@@ -1,81 +1,76 @@
 ---
 task_name: hitzephasen
 
-description: 
-	Wenn die mittlere Tagestemperatur den Werte `schwellenwert_temp` an mindestens `schwellenwert_laenge` aufeinanderfolgenden Tagen überschreitet, sprich man von einer Hitzephase.
-		
-	Wieviele Hitzephasen enthält die Zeitreihe der Tagestemperaturen `zeitreihe_temp` ?  
-	
-	#### Beispiel
-	Für den Vektor `zeitreihe_temp = c(19, 23, 24, 18, 19, 21)` soll mit `schwellenwert_temp = 20` und `schwellenwert_laenge = 2`  das Ergebnis `1` erzeugt werden.
-	#### Input / Output 
+description: >
+   Wenn die mittlere Tagestemperatur den Werte `schwellenwert_temp` an mindestens `schwellenwert_laenge` aufeinanderfolgenden Tagen Ã¼berschreitet, sprich man von einer Hitzephase.
+   Wieviele Hitzephasen enthÃ¤lt die Zeitreihe der Tagestemperaturen `zeitreihe_temp` ?
+   
+   #### Beispiel
+   FÃ¼r den Vektor `zeitreihe_temp = c(19, 23, 24, 18, 19, 21)` soll mit `schwellenwert_temp = 20` und `schwellenwert_laenge = 2`  das Ergebnis `1` erzeugt werden.
+   #### Input / Output 
 input1:
-	name: zeitreihe_temp
-	type: array.float
-	description: Vektor der mittleren Tagestemperaturen.
+   name: zeitreihe_temp
+   type: array.float
+   description: Vektor der mittleren Tagestemperaturen.
 
 input2:
-	name: schwellenwert_temp
-	type: float
-	description: Schwellenwert der Temperatur, der überschritten werden muss.
+   name: schwellenwert_temp
+   type: float
+   description: Schwellenwert der Temperatur, der Ã¼berschritten werden muss.
 
 input3:
-	name: schwellenwert_laenge
-	type: integer
-	description: Anzahl von aufeinanderfolgenden Tagen, die die Schwellentemperatur überschreiten müssen.
+   name: schwellenwert_laenge
+   type: integer
+   description: Anzahl von aufeinanderfolgenden Tagen, die die Schwellentemperatur Ã¼berschreiten mÃ¼ssen.
 
 output:
-	name: n_h
-	type: integer
-	description: Anzahl der Hitzephasen.
-	
+   name: n_h
+   type: integer
+   description: Anzahl der Hitzephasen.
+   
 test1:
-	-[19, 23, 24, 25, 19, 21]
-	- 20
-	- 1
-	output: 2
+   input:
+   - [19, 23, 24, 25, 19, 21]
+   - 20
+   - 1
+   output: 2
 
 test2:
-	input:
-	-[30, 33, 19, 23, 24, 25, 19, 21, 22]
-	- 20
-	- 3
-	output: 1
+   input:
+   - [30, 33, 19, 23, 24, 25, 19, 21, 22]
+   - 20
+   - 3
+   output: 1
 
 test3:
-	input:
-	-[30, 33, 27, 15, 30, 31, 33, 20, 32, 33]
-	- 20
-	- 1
-	output: 3
+   input:
+   - [30, 33, 27, 15, 30, 31, 33, 20, 32, 33]
+   - 20
+   - 1
+   output: 3
 
 test4:
-	input:
-	-[30, 33, 27, 15, 30, 31, 33, 20, 32, 33]
-	- 15
-	- 2
-	output: 2
+   input:
+   - [30, 33, 27, 15, 30, 31, 33, 20, 32, 33]
+   - 15
+   - 2
+   output: 2
 
 test5:
-	input:
-	-[30, 33, 27, 15, 30, 31, 33, 20, 32, 33]
-	- 40
-	- 2
-	output: 0
+   input:
+   - [30, 33, 27, 15, 30, 31, 33, 20, 32, 33]
+   - 40
+   - 2
+   output: 0
 
-	
-	
-solution: |
-	hitzephasen = function(zeitreihe_temp, schwellenwert_temp, schwellenwert_laenge)
-	{
-	  hitzetage = as.numeric(zeitreihe_temp > schwellenwert_temp)
-	  phasen = strsplit(x = paste0(hitzetage, collapse = ""), split = "0+") 
-	  phasenlaenge = sapply(phasen[[1]], FUN = nchar)         
-	  return(sum(phasenlaenge >= schwellenwert_laenge))
-	}  
+   
+   
+solution: >
+   hitzephasen = function(zeitreihe_temp, schwellenwert_temp, schwellenwert_laenge)
+   {
+     hitzetage = as.numeric(zeitreihe_temp > schwellenwert_temp)
+     phasen = strsplit(x = paste0(hitzetage, collapse = ""), split = "0+") 
+     phasenlaenge = sapply(phasen[[1]], FUN = nchar)         
+     return(sum(phasenlaenge >= schwellenwert_laenge))
+   }  
 
-
-	
-	
-	
-	

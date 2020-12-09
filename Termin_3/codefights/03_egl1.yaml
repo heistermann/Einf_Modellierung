@@ -2,91 +2,87 @@
 task_name: egl1
 
 description: >
-	Ihr erinnert Euch: Das Einheitsganglinienverfahren 
-	beschreibt die Abflusskonzentration im Einzugsgebiet:Der
-	Vektor der Einheitsganglinie stellt dar, wie sich ein
-	Effektivniederschlagsimpuls am Gebietsauslass 
-	als Abfluss über die Zeit verteilt.
-	
-Achtung: Wegen eines Bugs in Codefights müssen die beiden Vektoren anfangs so behandelt werden:
-````
-precip = unlist(precip) #Codefights-Bug
-egl    = unlist(egl) 
-````
-	
-	#### Beispiel
-	
-	Der Vektor der Einheitsganglinie heiße `egl` und habe den
-	Wert `egl = c(0.2, 0.5, 0.3)`. Der Zeitschritt der Einhheitsganglinie
-	sei eine Stunde. Dies bedeutet, dass innerhalb der ersten Stunde 20 % des
-	Effektivniederschlagsimpulses am Gebietsauslass abfließen. In der zweiten
-	Stunde fließen 50 % ab, und in der dritten Stunde 30 %. Nach drei Stunden
-	ist der Effektivniederschlagsimpuls vollständig aus dem Gebiet abgeflossen.
-	
-	Bevor man jedoch die Abflussantwort auf einen Effektivniederschlagsimpuls 
-	berechnen kann, muss man den Effektivniederschlag in die
-	Einheit des Abflusses umrechnen. Falls der Effektivniederschlag `precip`
-	in *mm/h* und die Einzugsgebietsgröße `area` in *km²* gegeben ist, 
-	ergibt sich der Effektivniederschlag in der Einheit *m³/s* aus
-	`precip * area / 3.6`. Ein Effektivniederschlagsimpuls mit der Intensität
-	*2 mm/h* ergibt auf einem *7.2 km²* großen Einzugsgebiet somit
-	einen Direktabflussimpuls von *4 m³/s*, der dann mit Hilfe der
-	Einheitganglinie über die Zeit verteilt wird. Für die oben angebene Einheitsganglinie
-	`egl = c(0.2, 0.5, 0.3)` ergäbe sich sich somit als Direktabflussganglinie
-	`c(0.8, 2, 1.2)` (in m3/s).	
-	
-	Berechne nun also für **einen einzigen** Effektivniederschlagsimpuls `precip` (in *mm/h*)
-	die Abflussganglinie (*m³/s*) am Auslass des Einzugsgebiets der Größe `area` (*km²*).
-	Das Zeitintervall der Einheitsganglinie `egl` und die Dauer des	Niederschlagsimpulses
-	seien je eine Stunde.
+   Ihr erinnert Euch: Das Einheitsganglinienverfahren 
+   beschreibt die Abflusskonzentration im Einzugsgebiet:Der
+   Vektor der Einheitsganglinie stellt dar, wie sich ein
+   Effektivniederschlagsimpuls am Gebietsauslass 
+   als Abfluss Ã¼ber die Zeit verteilt.
+   
+   Achtung: Wegen eines Bugs in Codefights mÃ¼ssen die beiden Vektoren anfangs so behandelt werden:
+   ````
+   precip = unlist(precip) #Codefights-Bug
+   egl    = unlist(egl) 
+   ````
+   
+   #### Beispiel
+   
+   Der Vektor der Einheitsganglinie heiÃŸe `egl` und habe den
+   Wert `egl = c(0.2, 0.5, 0.3)`. Der Zeitschritt der Einhheitsganglinie
+   sei eine Stunde. Dies bedeutet, dass innerhalb der ersten Stunde 20 % des
+   Effektivniederschlagsimpulses am Gebietsauslass abflieÃŸen. In der zweiten
+   Stunde flieÃŸen 50 % ab, und in der dritten Stunde 30 %. Nach drei Stunden
+   ist der Effektivniederschlagsimpuls vollstÃ¤ndig aus dem Gebiet abgeflossen.
+   
+   Bevor man jedoch die Abflussantwort auf einen Effektivniederschlagsimpuls 
+   berechnen kann, muss man den Effektivniederschlag in die
+   Einheit des Abflusses umrechnen. Falls der Effektivniederschlag `precip`
+   in *mm/h* und die EinzugsgebietsgrÃ¶ÃŸe `area` in *kmÂ²* gegeben ist, 
+   ergibt sich der Effektivniederschlag in der Einheit *mÂ³/s* aus
+   `precip * area / 3.6`. Ein Effektivniederschlagsimpuls mit der IntensitÃ¤t
+   *2 mm/h* ergibt auf einem *7.2 kmÂ²* groÃŸen Einzugsgebiet somit
+   einen Direktabflussimpuls von *4 mÂ³/s*, der dann mit Hilfe der
+   Einheitganglinie Ã¼ber die Zeit verteilt wird. FÃ¼r die oben angebene Einheitsganglinie
+   `egl = c(0.2, 0.5, 0.3)` ergÃ¤be sich sich somit als Direktabflussganglinie
+   `c(0.8, 2, 1.2)` (in m3/s).
+   
+   Berechne nun also fÃ¼r **einen einzigen** Effektivniederschlagsimpuls `precip` (in *mm/h*)
+   die Abflussganglinie (*mÂ³/s*) am Auslass des Einzugsgebiets der GrÃ¶ÃŸe `area` (*kmÂ²*).
+   Das Zeitintervall der Einheitsganglinie `egl` und die Dauer des	Niederschlagsimpulses
+   seien je eine Stunde.
     
 input1:
-	name: precip
-	type: float
-	description: EIN Effektivniederschlagsimpuls (mm/h)
+   name: precip
+   type: float
+   description: EIN Effektivniederschlagsimpuls (mm/h)
 
 input2:
-	name: egl
-	type: array.float
-	description: Einheitsganglinie als Vektor von Gewichten 
+   name: egl
+   type: array.float
+   description: Einheitsganglinie als Vektor von Gewichten 
 
 input3:
-	name: area
-	type: float
-	description: Fläche des Einzugsgebiets (km²) 
-	
+   name: area
+   type: float
+   description: FlÃ¤che des Einzugsgebiets (kmÂ²) 
+   
 output:
-	type: array.float
-	description: Abflussganglinie (m³/s)
+   type: array.float
+   description: Abflussganglinie (mÂ³/s)
 
 test1:
-	input: 
-	- 5
-	- [0.2, 0.5, 0.3]
-	- 3.6
-	output: [1.0, 2.5, 1.5]
+   input: 
+   - 5
+   - [0.2, 0.5, 0.3]
+   - 3.6
+   output: [1.0, 2.5, 1.5]
 
 test2:
-	input: 
-	- 10
-	- [0.1, 0.6, 0.3]
-	- 7.2
-	output: [2, 12, 6]
+   input: 
+   - 10
+   - [0.1, 0.6, 0.3]
+   - 7.2
+   output: [2, 12, 6]
 
 test3:
-	input: 
-	- 0
-	- [0.1, 0.6, 0.3]
-	- 10.8
-	output: [0, 0, 0]
+   input: 
+   - 0
+   - [0.1, 0.6, 0.3]
+   - 10.8
+   output: [0, 0, 0]
 
-solution: |
-	egl1 = function(precip, egl, area) {
-	  precip=unlist(precip) #Codefights Bug
-	  return(precip * area * egl / 3.6)
-	}
+solution: >
+   egl1 = function(precip, egl, area) {
+     precip=unlist(precip) #Codefights Bug
+     return(precip * area * egl / 3.6)
+   }
 
-	
-	
-	
-	

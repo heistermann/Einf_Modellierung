@@ -1,5 +1,5 @@
 ---
-name: populist_speach
+name: x7_populist_speach
 
 description: >
 ### Ghostwriter
@@ -14,53 +14,51 @@ For the text `text = "Denk ich an Deutschland in der Nacht, bin ich um den Schla
 #### Input / Output
   
 input1:
-	name: text	
-	type: string
-	description: Original text of speech.
+   name: text
+   type: string
+   description: Original text of speech.
 
 input2:
-	name: interval	
-	type: integer
-	description: Required frequency of `buzzword` in final speech.
+   name: interval
+   type: integer
+   description: Required frequency of `buzzword` in final speech.
 
 input3:
-	name: buzzword	
-	type: string
-	description: Buzzword that needs to be injected into speech, e.g. "huge", "fake news", "disaster"
+   name: buzzword
+   type: string
+   description: Buzzword that needs to be injected into speech, e.g. "huge", "fake news", "disaster"
 
 output:
-	type: string
-	description: Modified speech, to be delivered with pathos.
+   type: string
+   description: Modified speech, to be delivered with pathos.
 
 test1:
-	input: 
-		- "Denk ich an Deutschland in der Nacht, bin ich um den Schlaf gebracht"
-		- 4
-		- "Patrioten"
-	output: "Denk ich an Patrioten in der Nacht, Patrioten ich um den Patrioten gebracht"
-	
+   input: 
+   	- "Denk ich an Deutschland in der Nacht, bin ich um den Schlaf gebracht"
+   	- 4
+   	- "Patrioten"
+   output: "Denk ich an Patrioten in der Nacht, Patrioten ich um den Patrioten gebracht"
+   
 test2:
-	input: 
-		- "Für jedes komplexe Problem gibt es eine Lösung, die einfach, einleuchtend und falsch ist"
-		- 1
-		- "Außengrenze"
-	output: "Außengrenze Außengrenze Außengrenze Außengrenze Außengrenze Außengrenze Außengrenze Außengrenze Außengrenze Außengrenze Außengrenze Außengrenze Außengrenze Außengrenze"
-		
+   input: 
+   	- "Für jedes komplexe Problem gibt es eine Lösung, die einfach, einleuchtend und falsch ist"
+   	- 1
+   	- "Außengrenze"
+   output: "Außengrenze Außengrenze Außengrenze Außengrenze Außengrenze Außengrenze Außengrenze Außengrenze Außengrenze Außengrenze Außengrenze Außengrenze Außengrenze Außengrenze"
+   
 test3:
-	input: 
-	- "Drei Chinesen mit nem Kontrabass saßen auf der Straße"
-	- 2
-	- "Sauerkraut"
-	output: "Drei Sauerkraut mit Sauerkraut Kontrabass Sauerkraut auf Sauerkraut Straße"
-	
+   input: 
+   - "Drei Chinesen mit nem Kontrabass saßen auf der Straße"
+   - 2
+   - "Sauerkraut"
+   output: "Drei Sauerkraut mit Sauerkraut Kontrabass Sauerkraut auf Sauerkraut Straße"
+   
 
-solution: |
-	populist_speach = function(text, interval, buzzword)
-{  
-  woerter = unlist(strsplit(text, " "))
-  
-  woerter[1:length(woerter) %% interval ==0] =  buzzword
-  return(paste(woerter, collapse=" "))
-}
-
-	
+solution: >
+   x7_populist_speach = function(text, interval, buzzword)
+   {  
+     woerter = unlist(strsplit(text, " "))
+     
+     woerter[1:length(woerter) %% interval ==0] =  buzzword
+     return(paste(woerter, collapse=" "))
+   }

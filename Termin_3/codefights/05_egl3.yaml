@@ -2,83 +2,80 @@
 task_name: egl3
 
 description: >
-	Bevor Du Dich an dieser Aufgabe versuchst, solltest Du die Aufgaben
-	`egl1` und `egl2` lösen.
-	
-	Berechne wie in der Aufgabe `egl1` aus den gegebenen Argumenten
-	die Direktabflussganglinie (*m3/s*) am Auslass 
-	des Einzugsgebiets. Für den Effektivniederschlag liegt
-	nun aber nicht ein einzelner Impuls, sondern eine beliebig
-	lange Ganglinie (Vektor) vor. Die zeitliche Auflösung aller
-	Ganglinien sei eine Stunde. 
-	
-	Achtung: Wegen eines Bugs in Codefights müssen die beiden Vektoren anfangs so behandelt werden:
-````
-precip = unlist(precip) #Codefights Bug
-egl    = unlist(egl)
-````
+   Bevor Du Dich an dieser Aufgabe versuchst, solltest Du die Aufgaben
+   `egl1` und `egl2` lÃ¶sen.
+   
+   Berechne wie in der Aufgabe `egl1` aus den gegebenen Argumenten
+   die Direktabflussganglinie (*m3/s*) am Auslass 
+   des Einzugsgebiets. FÃ¼r den Effektivniederschlag liegt
+   nun aber nicht ein einzelner Impuls, sondern eine beliebig
+   lange Ganglinie (Vektor) vor. Die zeitliche AuflÃ¶sung aller
+   Ganglinien sei eine Stunde. 
+   
+   Achtung: Wegen eines Bugs in Codefights mÃ¼ssen die beiden Vektoren anfangs so behandelt werden:
+   ````
+   precip = unlist(precip) #Codefights Bug
+   egl    = unlist(egl)
+   ````
 
-	
-	#### Beispiel
-	
-	Die Einheitsganglinie sei `egl = c(0.2, 0.8)`, die
-	Effektivniederschlagsganglinie (in *mm/h*) sei
-	`precip = c(2, 4)`, die Einzugsbietsfläche (in *km²*) sei
-	`area = 7.2`. Die Direktabflussganglinie ist somit
-	`3` Stunden lang und ergibt sich zu `c(0.8, 4.8, 6.4)`.	
+   
+   #### Beispiel
+   
+   Die Einheitsganglinie sei `egl = c(0.2, 0.8)`, die
+   Effektivniederschlagsganglinie (in *mm/h*) sei
+   `precip = c(2, 4)`, die EinzugsbietsflÃ¤che (in *kmÂ²*) sei
+   `area = 7.2`. Die Direktabflussganglinie ist somit
+   `3` Stunden lang und ergibt sich zu `c(0.8, 4.8, 6.4)`.
     
 input1:
-	name: precip
-	type: array.float
-	description: Effektivniederschlagsganglinie(mm/h)
+   name: precip
+   type: array.float
+   description: Effektivniederschlagsganglinie(mm/h)
 
 input2:
-	name: egl
-	type: array.float
-	description: Einheitsganglinie als Vektor von Gewichten 
+   name: egl
+   type: array.float
+   description: Einheitsganglinie als Vektor von Gewichten 
 
 input3:
-	name: area
-	type: float
-	description: Fläche des Einzugsgebiets (km²) 
-	
+   name: area
+   type: float
+   description: FlÃ¤che des Einzugsgebiets (kmÂ²) 
+   
 output:
-	type: array.float
-	description: Abflussganglinie (m³/s)
+   type: array.float
+   description: Abflussganglinie (mÂ³/s)
 
 test1:
-	input: 
-	- [2, 6]
-	- [0.2, 0.5, 0.3]
-	- 3.6
-	output: [0.4, 2.2, 3.6, 1.8]
+   input: 
+   - [2, 6]
+   - [0.2, 0.5, 0.3]
+   - 3.6
+   output: [0.4, 2.2, 3.6, 1.8]
 
 test2:
-	input: 
-	- [3, 10, 5]
-	- [0.1, 0.6, 0.2, 0.1]
-	- 7.2
-	output: [0.6, 5.6, 14.2, 10.6, 4.0, 1.0]
+   input: 
+   - [3, 10, 5]
+   - [0.1, 0.6, 0.2, 0.1]
+   - 7.2
+   output: [0.6, 5.6, 14.2, 10.6, 4.0, 1.0]
 
 test3:
-	input: 
-	- [6, 3, 4]
-	- [0.2, 0.5, 0.3]
-	- 10.8
-	output: [3.6, 10.8, 12.3, 8.7, 3.6]
+   input: 
+   - [6, 3, 4]
+   - [0.2, 0.5, 0.3]
+   - 10.8
+   output: [3.6, 10.8, 12.3, 8.7, 3.6]
 
-solution: |
-	egl3 = function(precip, egl, area) {
-	  precip=unlist(precip) #Codefights Bug
-	  egl=unlist(egl)
-	  out = rep(0, length(precip) + length(egl) - 1)
-	  for (i in 1:length(precip)) {
-		ix = i:(i+length(egl)-1)
-		out[ix] = out[ix] + precip[i] * egl * area / 3.6
-	  }  
-	  return(out)
-	}
-	
-	
-	
-	
+solution: >
+   egl3 = function(precip, egl, area) {
+     precip=unlist(precip) #Codefights Bug
+     egl=unlist(egl)
+     out = rep(0, length(precip) + length(egl) - 1)
+     for (i in 1:length(precip)) {
+   	ix = i:(i+length(egl)-1)
+   	out[ix] = out[ix] + precip[i] * egl * area / 3.6
+     }  
+     return(out)
+   }
+   

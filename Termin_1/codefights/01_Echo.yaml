@@ -1,36 +1,35 @@
 ---
 task_name: echo
 
-description: 
-	Gibt die übergebene Zahl `n` wieder zurück.
-
-	#### Beispiel
-	Für `n = 7` soll das Ergebnis `7` erzeugt werden.
-	#### Input / Output
+description: >
+   Gib die Ã¼bergebene Zahl `n` wieder zurÃ¼ck.
+   
+   #### Beispiel
+   FÃ¼r `n = 7` soll das Ergebnis `7` erzeugt werden.
+   #### Input / Output
 
 input1:
-	name: n	
-	type: integer
-	description: eine Zahl
+   name: n   
+   type: integer
+   description: eine Zahl
 
 output:
-	type: integer
-	description: Die selbe Zahl wie das Eingabeargument.
+   type: integer
+   description: Die selbe Zahl wie das Eingabeargument.
 
 test1:
-	input: 1
-	output: 1	
-	
+   input: 1
+   output: 1   
+   
 test2:
-	input: 2
-	output: 2	
-	
+   input: 2
+   output: 2   
+   
 test3:
-	input: 3
-	output: 3	
-	
-solution: |
-	Echo <- function(n) {
-	   return(n)
-	}
-	
+   input: 3
+   output: 3   
+   
+solution: >
+   Echo <- function(n) {
+      return(n)
+   }

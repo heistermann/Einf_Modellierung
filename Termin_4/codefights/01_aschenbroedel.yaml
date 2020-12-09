@@ -2,66 +2,62 @@
 task_name: aschenbroedel
 
 description: >
-	## Aschenbrödel
-	
-	Wie viele Elemente des Vektors `erbsen` entsprechen
-	der Zahl `gut`?
-	
-	#### Beispiel
-	Wenn `erbsen=c(1,5,3,5)` und `gut=5`, dann liegen 2 
-	*gute* Erbsen in der Schüssel. 
-	 
+   ## AschenbrÃ¶del
+   
+   Wie viele Elemente des Vektors `erbsen` entsprechen
+   der Zahl `gut`?
+   
+   #### Beispiel
+   Wenn `erbsen=c(1,5,3,5)` und `gut=5`, dann liegen 2 
+   *gute* Erbsen in der SchÃ¼ssel. 
+    
 input1:
-	name: erbsen
-	type: Array of integers
-	description: Eine Schuessel voll Erbsen 
+   name: erbsen
+   type: Array of integers
+   description: Eine Schuessel voll Erbsen 
 
 input2:
-	name: gut
-	type: Integer
-	description: Zahl, die eine gute Erbse markiert. 
-	
+   name: gut
+   type: Integer
+   description: Zahl, die eine gute Erbse markiert. 
+   
 output:
-	type: Integer
-	description: Anzahl der guten Erbsen in der Schuessel
+   type: Integer
+   description: Anzahl der guten Erbsen in der Schuessel
 
 test1:
-	input:
-	- [0,1,0,1,0,1]
-	- 1
-	output: 3
+   input:
+   - [0,1,0,1,0,1]
+   - 1
+   output: 3
 
 test2:
-	input:
-	- [0,0,1,1,1,1]
-	- 0
-	output: 2
+   input:
+   - [0,0,1,1,1,1]
+   - 0
+   output: 2
 
 test3:
-	input:
-	- [0,1,1,1,1,1]
-	- 1
-	output: 5
+   input:
+   - [0,1,1,1,1,1]
+   - 1
+   output: 5
 
 test4:
-	input:
-	- [1,1,1,1,0,0]
-	- 0
-	output: 2
+   input:
+   - [1,1,1,1,0,0]
+   - 0
+   output: 2
 
 test5:
-	input:
-	- [1,2,1,4,0,0]
-	- 2
-	output: 1
+   input:
+   - [1,2,1,4,0,0]
+   - 2
+   output: 1
 
 
-solution: |
-	instoepfchen = function(erbsen, gut) {
-	  return(length(which(erbsen==gut)))
-	}
+solution: >
+   instoepfchen = function(erbsen, gut) {
+     return(length(which(erbsen==gut)))
+   }
 
-	
-	
-	
-	

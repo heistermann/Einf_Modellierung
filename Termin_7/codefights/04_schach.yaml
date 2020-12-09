@@ -2,89 +2,83 @@
 name: Schach
 
 description: >
+   Ein Schachfeld besteht aus acht mal acht Feldern. Wir bauen uns eines, auf dem wir *reproduzierbar* zufÃ¤llig die Figuren verteilen:
+   ```
+   figuren = rep(c("K","D","T","S","L","B"," "), times=c(2,2,4,4,4,16,32))
+   set.seed(1)
+   brett = array(sample(figuren), c(8,8))
+   ```
 
-## Schach
+   Die Felder werden Ã¼blicherweise Ã¼ber eine Kombination von Buchstabe a-h (Reihe) und Zahl 1-8 (Spalte) angesprochen. In R kÃ¶nnen wir fÃ¼r die gegebene 8x8-Matrix `brett` gleiches erreichen, indem wir folgenden Befehl ausfÃ¼hren:
 
-Ein Schachfeld besteht aus acht mal acht Feldern. Wir bauen uns eines, auf dem wir *reproduzierbar* zufällig die Figuren verteilen:
+   ```
+      dimnames(brett)=list(8:1,letters[1:8])
+   ```
 
-```
-	figuren = rep(c("K","D","T","S","L","B"," "), times=c(2,2,4,4,4,16,32))
-	set.seed(1)
-	brett = array(sample(figuren), c(8,8))
-```
+   Nun sieht das Schachbrett z.B. so aus:
 
-Die Felder werden üblicherweise über eine Kombination von Buchstabe a-h (Reihe) und Zahl 1-8 (Spalte) angesprochen. In R können wir für die gegebene 8x8-Matrix `brett` gleiches erreichen, indem wir folgenden Befehl ausführen:
+   ```
+      a   b   c   d   e   f   g   h
+   8 "B" " " " " "S" " " "B" "B" "B"
+   7 "B" "D" " " "L" " " " " " " " "
+   6 " " "S" "B" "K" " " " " "T" "L"
+   5 " " "S" " " "L" " " " " " " "T"
+   4 "L" " " " " "B" "B" "B" "B" " "
+   3 " " "B" " " " " "D" " " "B" " "
+   2 " " " " "B" " " "B" " " "B" "T"
+   1 " " "B" "T" " " " " "S" " " "K"
+   ```
 
-```	
-	dimnames(brett)=list(8:1,letters[1:8])
-```
+   und kann auch mittels der neu vergebenen Indizes angesprochen werden:
 
-Nun sieht das Schachbrett z.B. so aus:
+   ```
+      brett["1", "f"]
+   ```
 
-```
-	   a   b   c   d   e   f   g   h  
-	8 "B" " " " " "S" " " "B" "B" "B"
-	7 "B" "D" " " "L" " " " " " " " "
-	6 " " "S" "B" "K" " " " " "T" "L"
-	5 " " "S" " " "L" " " " " " " "T"
-	4 "L" " " " " "B" "B" "B" "B" " "
-	3 " " "B" " " " " "D" " " "B" " "
-	2 " " " " "B" " " "B" " " "B" "T"
-	1 " " "B" "T" " " " " "S" " " "K"
-```
+   liefert dann `"S"`, da dort der Springer steht.
 
-und kann auch mittels der neu vergebenen Indizes angesprochen werden:
+   Gib fÃ¼r das gegebene Spielbrett `brett` die Figur zurÃ¼ck, die auf dem Feld `feld` steht, das mittels Buchstaben-Zahlen-Kombination angegeben wird.
 
-```
-	brett["1", "f"]
-```
+   #### Beispiel
 
-liefert dann `"S"`, da dort der Springer steht.
-	
-Gib für das gegebene Spielbrett `brett` die Figur zurück, die auf dem Feld `feld` steht, das mittels Buchstaben-Zahlen-Kombination angegeben wird.
+   FÃ¼r `feld = "f1"` soll `"S"` zurÃ¼ckgegeben werden.
 
-#### Beispiel
+   #### Hinweis
 
-Für `feld = "f1"` soll `"S"` zurückgegeben werden.
+   Neben der oben angegeben Zeile kÃ¶nnte die Funktion `substr()` nÃ¼tzlich sein.
 
-#### Hinweis
+   #### Input / Output
 
-Neben der oben angegeben Zeile könnte die Funktion `substr()` nützlich sein.
-
-#### Input / Output
-  
 input1:
-	name: feld	
-	type: string
-	description: Verweis auf ein Spielfeld, notiert als Kleinbuchstabe (Spalte) und Zahl (Zeile).
+   name: feld
+   type: string
+   description: Verweis auf ein Spielfeld, notiert als Kleinbuchstabe (Spalte) und Zahl (Zeile).
 
 output:
-	type: string
-	description: Spielfigur, die auf dem betreffenden Feld steht.
-	
+   type: string
+   description: Spielfigur, die auf dem betreffenden Feld steht.
+
 test1:
-	input: "b7"
-	output: "D"
-	
+   input: "b7"
+   output: "D"
+
 test2:
-	input: "d8"
-	output: "S"
-		
+   input: "d8"
+   output: "S"
+
 test3:
-	input: "a2"
-	output: " "
-	
-	
-solution: |
-	schach = function(feld)
-{  
-  
-  figuren = rep(c("K","D","T","S","L","B"," "), times=c(2,2,4,4,4,16,32))
-  set.seed(1)
-  brett = array(sample(figuren), c(8,8))
+   input: "a2"
+   output: " "
 
-  dimnames(brett)=list(8:1,letters[1:8])
-  return(brett[substr(feld,2,2), substr(feld,1,1)])
-}
 
-	
+solution: >
+   schach = function(feld)
+   {
+
+     figuren = rep(c("K","D","T","S","L","B"," "), times=c(2,2,4,4,4,16,32))
+     set.seed(1)
+     brett = array(sample(figuren), c(8,8))
+
+     dimnames(brett)=list(8:1,letters[1:8])
+     return(brett[substr(feld,2,2), substr(feld,1,1)])
+   }

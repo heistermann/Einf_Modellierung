@@ -1,5 +1,5 @@
 ---
-task_name: interpolation
+task_name: x3_interpolation
 
 description: >
 A biologist attached a sensor to a whale to track the distance it covers. Whenever there is radio and GPS coverage (e.g. the whale reaches the surface), the sensor transmits the time and the total cumulated distance so far. 
@@ -11,57 +11,57 @@ For the times `[0, 1, 2.5]` the sensor yielded the distances `[0, 30, 45]`. Cons
 
    
 input1:
-	name: t_meas	
-	type: array.float
-	description: Times when the position (i.e. covered distance) was recorded.
+   name: t_meas
+   type: array.float
+   description: Times when the position (i.e. covered distance) was recorded.
 
 input2:
-	name: x_meas
-	type: array.float
-	description: Covered distance for `t_meas`
+   name: x_meas
+   type: array.float
+   description: Covered distance for `t_meas`
 
 input3:
-	name: t_approx	
-	type: array.float
-	description: Points in time, for which the position is to be approximated.
-	
+   name: t_approx
+   type: array.float
+   description: Points in time, for which the position is to be approximated.
+   
 output:
-	type: array.float
-	description: Approximated distance for `t_approx`, rounded to one digit.
+   type: array.float
+   description: Approximated distance for `t_approx`, rounded to one digit.
 
 
-	
+   
 test1:
-	input: 
-	- [0,1]
-	- [0,30]
-	- [0.5, 1]
+   input: 
+   - [0,1]
+   - [0,30]
+   - [0.5, 1]
 
-	output: [15, 30]
-	
+   output: [15, 30]
+   
 test2:
-	input: 
-	-[0, 1, 2.5]
-	-[0,30, 31]
-	-[0.5, 1, 1.1]
-	output: [15.0, 30.0, 30.1]
-	
+   input: 
+   - [0, 1, 2.5]
+   - [0,30, 31]
+   - [0.5, 1, 1.1]
+   output: [15.0, 30.0, 30.1]
+   
 test3:
-	input: 
-	-[2, 4, 5, 8] 
-	-[1, 2, 5, 10]
-	-[3, 3, 4.5]
-	output: [1.5, 1.5, 3.5]
-	
+   input: 
+   - [2, 4, 5, 8] 
+   - [1, 2, 5, 10]
+   - [3, 3, 4.5]
+   output: [1.5, 1.5, 3.5]
+   
 test4:
-	input: 
-	-[-1,2]
-	-[2,3]
-	-[0, 0.5]
-	output: [2.3, 2.5]
-	
-	
-solution: |
-	interpolation = function(t_meas, x_meas, t_approx) {
-return(round(approx(x=t_meas, y = x_meas, xout =t_approx)$y, digits=1))
-}
+   input: 
+   - [-1,2]
+   - [2,3]
+   - [0, 0.5]
+   output: [2.3, 2.5]
+   
+   
+solution: >
+   x3_interpolation = function(t_meas, x_meas, t_approx) {
+    return(round(approx(x=t_meas, y = x_meas, xout =t_approx)$y, digits=1))
+   }

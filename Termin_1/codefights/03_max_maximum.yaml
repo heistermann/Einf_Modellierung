@@ -1,62 +1,56 @@
 ---
 task_name: max_maximum
 
-description: 
-	Gib die größte Zahl zurück, die in den beiden gegebenen Vektoren `v1` und `v2` enthalten ist!
-
-Achtung: Wegen eines Bugs in Codefights müssen die beiden Vektoren anfangs so behandelt werden:
-````
+description: >
+   Gib die grÃ¶ÃŸte Zahl zurÃ¼ck, die in den beiden gegebenen Vektoren `v1` und `v2` enthalten ist!
+   
+   Achtung: Wegen eines Bugs in Codefights mÃ¼ssen die beiden Vektoren anfangs so behandelt werden:
+   ````
    v1=unlist(v1) 
    v2=unlist(v2)
-````
-	
-	#### Beispiel
-	Für  die Vektoren `v1 = c(23, 17, 1)` und `v2 = c(5, 4)` soll das Ergebnis `23` erzeugt werden.
-	#### Input / Output
+   ````
+   
+   #### Beispiel
+   FÃ¼r  die Vektoren `v1 = c(23, 17, 1)` und `v2 = c(5, 4)` soll das Ergebnis `23` erzeugt werden.
+   #### Input / Output
     
 input1:
-	name: v1
-	type: array.integer
-	description: Erster Vektor
+   name: v1
+   type: array.integer
+   description: Erster Vektor
 
 input2:
-	name: v2
-	type: array.integer
-	description: Zweiter Vektor
+   name: v2
+   type: array.integer
+   description: Zweiter Vektor
 
 output:
-	type: integer
-	description: Das größte Element beider Vektoren.
+   type: integer
+   description: Das grÃ¶ÃŸte Element beider Vektoren.
 
 test1:
-	input:
-	- [1, 2, 3]
-	- [1, 2, 3, 4]
-	output: 4
+   input:
+   - [1, 2, 3]
+   - [1, 2, 3, 4]
+   output: 4
 
 test2:
-	input:
-	- [5, 2, 3]
-	- [0]
-	output: 5
+   input:
+   - [5, 2, 3]
+   - [0]
+   output: 5
 
 test3:
-	input:
-	- [1000]
-	- [1, 2, 3, 4, 5, 6, 7]
-	output: 1000
+   input:
+   - [1000]
+   - [1, 2, 3, 4, 5, 6, 7]
+   output: 1000
 
-solution: |
-	max_maximum <- function(v1, v2) {
-	   #Codefights-Bug, nicht nötig in richtigem R
-   v1=unlist(v1) 
-   v2=unlist(v2)
+solution: >
+   max_maximum <- function(v1, v2) {
+     #Codefights-Bug, nicht nÃ¶tig in richtigem R
+     v1=unlist(v1) 
+     v2=unlist(v2)
+     max(c(v1,v2))
+   }
 
-   max(c(v1,v2))
-	}
-
-
-	
-	
-	
-	

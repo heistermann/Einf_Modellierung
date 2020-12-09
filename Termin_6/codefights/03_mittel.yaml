@@ -2,32 +2,32 @@
 name: mittel
 
 description: >
-	Es soll für den Vektor `x = c(1,5,NA,20,NA,13)`
-	der Mittelwert aller Vektorelemente berechnet werden.
+   Es soll für den Vektor `x = c(1,5,NA,20,NA,13)`
+   der Mittelwert aller Vektorelemente berechnet werden.
 
-	Welches der folgenden Statements erlaubt es,
-	bei der Berechnung des Mittelwertes die NA-Werte
-	zu ignorieren?
+   Welches der folgenden Statements erlaubt es,
+   bei der Berechnung des Mittelwertes die NA-Werte
+   zu ignorieren?
 
     
 num_answers: 7
 
 answer_description_1:
-	description: `mean(x)`
-	is_correct: False	
+   description: `mean(x)`
+   is_correct: False
 
 answer_description_2:
-	description: `mean(x, na.rm=NULL)`
-	is_correct: False		
+   description: `mean(x, na.rm=NULL)`
+   is_correct: False	
 
 answer_description_3:
-	description: `mean(x, na.rm=FALSE)`
-	is_correct: False	
+   description: `mean(x, na.rm=FALSE)`
+   is_correct: False
 
 answer_description_4:
-	description: `mean(x[is.na(x)])`
-	is_correct: False	
+   description: `mean(x[is.na(x)])`
+   is_correct: False
 
 answer_description_5:
-	description: `mean(x, na.rm=TRUE)`
-	is_correct: True	
+   description: `mean(x, na.rm=TRUE)`
+   is_correct: True

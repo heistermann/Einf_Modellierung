@@ -2,88 +2,84 @@
 task_name: gradtage
 
 description: >
-	## Gradtage
+   ## Gradtage
 
-	Das Tag-Grad-Verfahren ermittelt fuer mehrere
-	aufeinanderfolgende Tage die **Summe** der Tagesmitteltemperaturen,
-	die einen Schwellenwert `minT` ueberschreiten. Das Verfahren
-	wird in unterschiedlichsten Bereichen eingesetzt: z.B. bei der
-	Modellierung der Schneeschmelze, des Heizwaermebedarfs oder
-	der phaenologischen Entwicklung von Pflanzen.
+   Das Tag-Grad-Verfahren ermittelt fuer mehrere
+   aufeinanderfolgende Tage die **Summe** der Tagesmitteltemperaturen,
+   die einen Schwellenwert `minT` ueberschreiten. Das Verfahren
+   wird in unterschiedlichsten Bereichen eingesetzt: z.B. bei der
+   Modellierung der Schneeschmelze, des Heizwaermebedarfs oder
+   der phaenologischen Entwicklung von Pflanzen.
 
-	Wir nehmen an, eine Feldfrucht ist nach einer bestimmten Zahl
-	Gradtagen `erntereif` (Einheit: Grad Celsius*Tag). 
-	Bestimme den Zeitpunkt der Ernte.
+   Wir nehmen an, eine Feldfrucht ist nach einer bestimmten Zahl
+   Gradtagen `erntereif` (Einheit: Grad Celsius*Tag). 
+   Bestimme den Zeitpunkt der Ernte.
 
-	#### Beispiel
-	Der Vektor der Tagesmitteltemperaturen (in Grad Celsius) sei
-	`temp = c(1,7,3,2,4)`. Bei einem Schwellenwert
-	von `minT = 2` ergibt sich für die Gradtagwerte der betreffenden
-	fünf Tage:
-	```
-	1. Tag: min(0,1 - 2)= 0
-	2. Tag: (7 - 2) + 0 = 5
-	3. Tag: (3 - 1) + 5 = 7
-	4. Tag: (2 - 2) + 7 = 7
-	5. Tag: (4 - 2) + 7 = 9
-	```
-	Wenn die Feldfrucht bei 7 Gradtagen reif ist (`erntereif = 7`), kann
-	sie folglich nach 3 Tagen geerntet werden.
-	 
+   #### Beispiel
+   Der Vektor der Tagesmitteltemperaturen (in Grad Celsius) sei
+   `temp = c(1,7,3,2,4)`. Bei einem Schwellenwert
+   von `minT = 2` ergibt sich fÃ¼r die Gradtagwerte der betreffenden
+   fÃ¼nf Tage:
+   ```
+   1. Tag: min(0,1 - 2)= 0
+   2. Tag: (7 - 2) + 0 = 5
+   3. Tag: (3 - 1) + 5 = 7
+   4. Tag: (2 - 2) + 7 = 7
+   5. Tag: (4 - 2) + 7 = 9
+   ```
+   Wenn die Feldfrucht bei 7 Gradtagen reif ist (`erntereif = 7`), kann
+   sie folglich nach 3 Tagen geerntet werden.
+    
 input1:
-	name: temp
-	type: Array of floats
-	description: Vektor der Tagesmitteltemperaturen 
+   name: temp
+   type: Array of floats
+   description: Vektor der Tagesmitteltemperaturen 
 
 input2:
-	name: minT
-	type: Float
-	description: Schwellenwert der Temperatur, ab welcher Gradtage gezaehlt werden. 
-	
+   name: minT
+   type: Float
+   description: Schwellenwert der Temperatur, ab welcher Gradtage gezaehlt werden. 
+   
 input3:
-	type: erntereif
-	type: Integer
-	description: Gradtage, die zur Ernte erreicht werden muessen.
+   name: erntereif
+   type: Integer
+   description: Gradtage, die zur Ernte erreicht werden muessen.
 
 output:
-	type: Integer
-	description: Zahl der Tage, nach denen geerntet wird.
-	
+   type: Integer
+   description: Zahl der Tage, nach denen geerntet wird.
+   
 test1:
-	input:
-	- [1,7,3,2,4,8,3,8,7,3,5,1]
-	- 2
-	- 10
-	output: 6
+   input:
+   - [1,7,3,2,4,8,3,8,7,3,5,1]
+   - 2
+   - 10
+   output: 6
 
 test2:
-	input:
-	- [1,7,3,2,4,8,3,8,7,3,5,1]
-	- 4
-	- 10
-	output: 8
+   input:
+   - [1,7,3,2,4,8,3,8,7,3,5,1]
+   - 4
+   - 10
+   output: 8
 
 test3:
-	input:
-	- [1,7,3,2,4,8,3,8,7,3,5,1]
-	- 4
-	- 12
-	output: 9
+   input:
+   - [1,7,3,2,4,8,3,8,7,3,5,1]
+   - 4
+   - 12
+   output: 9
 
 test4:
-	input:
-	- [1,7,3,2,4,8,3,8,7,3,5,1]
-	- 4
-	- 15
-	output: 11
+   input:
+   - [1,7,3,2,4,8,3,8,7,3,5,1]
+   - 4
+   - 15
+   output: 11
 
-solution: |
-	gradtage = function(temp, minT, erntereif) {
-	  x = temp - minT
-	  x[x<0] = 0
-	  return( which(cumsum(x)>=erntereif)[1] )
-	}
-	
-	
-	
-	
+solution: >
+   gradtage = function(temp, minT, erntereif) {
+     x = temp - minT
+     x[x<0] = 0
+     return( which(cumsum(x)>=erntereif)[1] )
+   }

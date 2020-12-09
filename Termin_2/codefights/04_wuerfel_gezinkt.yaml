@@ -1,56 +1,53 @@
 ---
 task_name: wuerfel_gezinkt
 
-description: Die Würfelsimulation lässt sich auch elegant mit der Zeile
-`sample(x = 1:6, size = 2, replace = TRUE)` umsetzen, wobei das Argument `size` die Anzahl der Würfe beschreibt.
-Für einen Besuch im Casino wollen wir unsere Würfel etwas präparieren: Indem wir die Initialisierung des Zufallsgenerators `seed` beeinflussen, bestimmen wir das folgende Würfelergebnis.
-Nur, welchen Initialisierungswert `seed` braucht man, um dann mit o.g. Zeile das Ergebnis `wurf` zu erzeugen?
-
-#### Beispiel
-Wenn man den Zufallsgenerator mit `seed = 42` initialisiert, werden die Zahlen `[6, 6]` gewürfelt.
-#### Input / Output   
-
+description: >
+   Die WÃ¼rfelsimulation lÃ¤sst sich auch elegant mit der Zeile
+   `sample(x = 1:6, size = 2, replace = TRUE)` umsetzen, wobei das Argument `size` die Anzahl der WÃ¼rfe beschreibt.
+   FÃ¼r einen Besuch im Casino wollen wir unsere WÃ¼rfel etwas prÃ¤parieren: Indem wir die Initialisierung des Zufallsgenerators `seed` beeinflussen, bestimmen wir das folgende WÃ¼rfelergebnis.
+   Nur, welchen Initialisierungswert `seed` braucht man, um dann mit o.g. Zeile das Ergebnis `wurf` zu erzeugen?
+   
+   #### Beispiel
+   Wenn man den Zufallsgenerator mit `seed = 42` initialisiert, werden die Zahlen `[6, 6]` gewÃ¼rfelt.
+   #### Input / Output   
+   
 input1:
-	name: wurf
-	type: array.integer
-	description: Vektor mit den Augenzahlen der Würfelwürfe, die erzielt werden sollen
+   name: wurf
+   type: array.integer
+   description: Vektor mit den Augenzahlen der WÃ¼rfelwÃ¼rfe, die erzielt werden sollen
 
 output:
-	name: seed	
-	type: integer
-	description: Initialisierungswert des Zufallsgenerators, der das Ergebnis `wurf` erzeugt. `seed`<1000. 
-	
-	
-	
+   name: seed
+   type: integer
+   description: Initialisierungswert des Zufallsgenerators, der das Ergebnis `wurf` erzeugt. `seed`<1000. 
+   
 test1:
-	input: [1]
-	output: 12
-	
+   input: [1]
+   output: 12
+   
 test2:
-	input: [6,6]
-	output: 42
-	
+   input: [6,6]
+   output: 42
+   
 test3:
-	input: [1,2,3,4]
-	output: 188
-	
+   input: [1,2,3,4]
+   output: 188
+   
 test4:
-	input: [1,1,1,1,1]	
-	output: 797
+   input: [1,1,1,1,1]
+   output: 797
 
-solution: |
-wuerfel_gezinkt = function(wurf) {
-  n_wuerfe = length(wurf)
-  testwurf = rep(0, n_wuerfe)
-  seed=0
-  while(any(testwurf != wurf))
-  {
-    seed=seed+1
-    set.seed(seed)
-    testwurf = sample(x = 1:6, size = n_wuerfe, replace = TRUE)
-  }
-
-  return (seed)
-}
-
-	
+solution: >
+   wuerfel_gezinkt = function(wurf) {
+      n_wuerfe = length(wurf)
+      testwurf = rep(0, n_wuerfe)
+      seed=0
+      while(any(testwurf != wurf))
+      {
+       seed=seed+1
+       set.seed(seed)
+       testwurf = sample(x = 1:6, size = n_wuerfe, replace = TRUE)
+      }
+      
+      return (seed)
+   }
