@@ -34,4 +34,4 @@
   
   #? Wann überschreitet die Population den Wert 10000?
   #? Unter welchen Bedingungen bleibt die Population konstant?
-  #? Kann die Population auch schrumpfen? (Wann) stirbt dann sie aus?
+  #? Kann die Population auch schrumpfen? (Wann) stirbt sie dann aus?
