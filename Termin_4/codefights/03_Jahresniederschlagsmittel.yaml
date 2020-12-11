@@ -1,0 +1,81 @@
+---
+task_name: Jahresniederschlagsmittel
+
+description: >
+   Berechnung eines Mittelwerts aus mehreren Jahresniederschlaegen
+      
+      Wie in der letzten Aufgabe ist ein Vektor mit Jahresniederschlagssummen
+      (`niederschlaege`) gegeben sowie ein weiterer Vektor mit den Jahreszahlen,
+      in denen diese Jahresniederschlaege jeweils gemessen wurden (`jahre`).
+      
+      Gib nun fuer den Zeitraum von einschl. Jahr `anfang` bis einschl. Jahr
+      `ende` den Mittelwert der Jahresniederschlaege zurueck.
+      
+   Beispiel
+      
+      Wenn
+      `niederschlaege  = c( 100, 300, 500, 300)`
+      `jahre = c(1999, 2000, 2001, 2002)`
+      dann muss fuer die Argumente `anfang=2000` und `ende=2001` der Wert
+      400 zurueckgegeben werden (Mittelwert aus 200 und 400).
+
+input1:
+   name: niederschlaege
+   type: Array of floats
+   description: Vektor mit Jahresniederschlagssummen.
+
+input2:
+   name: jahre
+   type: Integer
+   description: Vektor mit Jahreszahlen
+
+input3:
+   name: anfang
+   type: Integer
+   description: Anfangsjahr
+
+input4:
+   name: ende
+   type: Integer
+   description: Endjahr
+
+output:
+   type: Float
+   description: Mittlerer Jahresniederschlag
+
+test1:
+   input:
+   - [100,500,300,2500,200,600]
+   - [1999,2000,2001,2002,2003,2004]
+   - 2000
+   - 2002
+   output: 1100
+
+test2:
+   input:
+   - [100,500,300,2500,200,600]
+   - [1999,2000,2001,2002,2003,2004]
+   - 2002
+   - 2004
+   output: 1100
+
+test3:
+   input:
+   - [100,500,300,2500,200,600]
+   - [1999,2000,2001,2002,2003,2004]
+   - 1999
+   - 2002
+   output: 850
+
+test4:
+   input:
+   - [100,500,300,2500,200,600]
+   - [1899,1900,1901,1902,1903,1904]
+   - 1900
+   - 1903
+   output: 875
+
+solution: >
+   niederschlagsmittel = function(niederschlaege, jahre, anfang, ende) {
+     return( mean(niederschlaege[(jahre>=anfang) & (jahre<=ende)]))
+   }

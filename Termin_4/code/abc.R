@@ -16,7 +16,7 @@ abc = function(P, a, b, c) {
   #<
   stopifnot(a+b<=1)
   stopifnot(c<=1)
-  # Fuer den Grundwassspeicher G muessen wir einen Startwert annehmen.
+  # Fuer den Grundwasserpeicher G muessen wir einen Startwert annehmen.
   G = 0
   # Ergebniscontainer fuer den Gesamtabfluss
   Q = rep(0., length(P))
@@ -41,7 +41,7 @@ Q = abc(P, 0.5, 0.5, 0.1)
 
 # Darstellung als Zeitreihendiagramm
 par(mar = c(5,5,2,5))
-plot(zeit, Q, type="l", lwd=2, col="red", 
+plot(zeit, Q, type="b", lwd=2, col="red", 
      xlab="Zeitindex", ylab="Abfluss", ylim=c(0,5))
 abline(v=zeit, col="grey")
 par(new = T)
@@ -49,7 +49,7 @@ plot(zeit, P, type="h", lwd=2, axes=F, xlab=NA, ylab=NA)
 axis(side = 4)
 mtext(side = 4, line = 3, "Niederschlag")
 legend("topright", legend=c("Abfluss", "Niederschlag"),
-       lwd=c(2,2), col=c("red", "black"))
+       lwd=c(2,2), col=c("red", "black"), pch=c("o",""))
 
 # AUFGABE: Modifiziere Deine Funktion abc so, dass nicht nur die
 #   Ganglinie des Gesamtabflusses, sondern auch die Ganglinie
