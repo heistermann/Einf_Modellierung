@@ -19,7 +19,7 @@ require(yaml)
 
 subdirs=list.dirs()
 subdirs = subdirs[grepl(subdirs, pattern = "/codefights$")] #[5] #[-(1:5)]
-sd = subdirs[1] #[-(1:5)]
+sd = subdirs #[1] #[-(1:5)]
 
 for (sd in subdirs)
 {
@@ -27,7 +27,9 @@ for (sd in subdirs)
   if (length(yaml_files) == 0) next #no files found
   
   tfil = paste0(sd,"/aufgaben_template.R") #Dateiname Aufgaben-Template
-  kfil = paste0(sd,"/kontroll_template.R") #Dateiname Kontroll-Template
+  if (loesung_simulieren)
+    kfil = paste0(sd,"/kontroll_tmpl_lsg.R") else #Dateiname Kontroll-Template mit Lösung
+    kfil = paste0(sd,"/kontroll_template.R")      #Dateiname Kontroll-Template
   
   
   titel = gsub(sd, pattern="(\\./)|(/codefights)", repl="") #Titel des Termins
