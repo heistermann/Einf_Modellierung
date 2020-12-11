@@ -5,11 +5,10 @@
 
 #Aufgabe 01_aschenbroedel
 
-### Aschenbrödel
+### Aschenbroedel
 #Wie viele Elemente des Vektors `erbsen` entsprechen der Zahl `gut`?
 #Beispiel:
-# Wenn `erbsen=c(1,5,3,5)` und `gut=5`, dann liegen 2  *gute* Erbsen in der Schüssel. 
-# 
+# Wenn `erbsen=c(1,5,3,5)` und `gut=5`, dann liegen 2 *gute* Erbsen in der SchÃ¼ssel.
 
 #Input(s)
 #  Name: erbsen
@@ -26,25 +25,24 @@
 #  Input: 1
 #  Output: 3
 # (beim Aufruf von 'instoepfchen(...)' mit diesem Input sollte dieser Output erzeugt werden.)
-#Hier die Lösung eintragen:
+#Hier die Loesung eintragen:
 instoepfchen = function(erbsen, gut) {
-	output = 1 #hier die richtige Lösung eintragen
+	output = 1 #hier die richtige Loesung eintragen
 	return(output)
 }
-#[etwaige Tests und Zwischenlösungen bitte löschen]
+#[etwaige Tests und Zwischenloesungen bitte loeschen]
 
 
 ################################################################################
 
 #Aufgabe 02_sommerhochwasser
 
-### Sommerhochwasser
-#Gegeben ist ein Vektor mit Hochwasserabfluessen (`abfluss`) und ein weiterer Vektor mit den Monaten, in welchen diese Abfluesse jeweils gemessen wurden (`monat`). Ermittle den mittleren Hochwasserabfluss im Sommer. 
-#Aber was heißt eigentlich Sommer? Das Argument `beginn` definiert den ersten Sommermonat und das Argument `ende` den letzten.
-#Runden Sie das Ergebnis auf zwei Nachkommastellen (Funktion `round`).
+#Sommerhochwasser
+#Gegeben ist ein Vektor mit Hochwasserabfluessen (`abfluss`) und ein weiterer Vektor mit den Monaten, in welchen diese Abfluesse jeweils gemessen wurden (`monat`). Ermittle den mittleren Hochwasserabfluss im Sommer.
+#Aber was heiÃŸt eigentlich "Sommer"? Das Argument `beginn` definiert den ersten Sommermonat und das Argument `ende` den letzten. Runden Sie das Ergebnis auf zwei Nachkommastellen (Funktion `round`).
 #Beispiel:
-# In den Monaten `monat=c(1,3,5,7,9,11,2,4,6,8,10,12)` wurde der Spitzenabfluss `abfluss=c(10,20,15,30,5,25,11,14,30,18,24,20)`  gemessen. Als Sommer gelten alle Monate von `beginn=6` bis `ende=9`. Der mittlere HW-Abfluss im	Sommer beträgt also 20.75  (Mittelwert aus 30, 5, 30 und 18).
-# 
+#  In den Monaten `monat=c(1,3,5,7,9,11,2,4,6,8,10,12)` wurde der Spitzenabfluss
+#  `abfluss=c(10,20,15,30,5,25,11,14,30,18,24,20)`  gemessen. Als Sommer gelten alle Monate von `beginn=6` bis `ende=9`. Der mittlere HW-Abfluss im	Sommer betrÃ¤gt also 20.75  (Mittelwert aus 30, 5, 30 und 18).
 
 #Input(s)
 #  Name: abfluss
@@ -69,12 +67,12 @@ instoepfchen = function(erbsen, gut) {
 #  Input: 7
 #  Output: 4.33
 # (beim Aufruf von 'sommerhochwasser(...)' mit diesem Input sollte dieser Output erzeugt werden.)
-#Hier die Lösung eintragen:
+#Hier die Loesung eintragen:
 sommerhochwasser = function(abfluss, monat, beginn, ende) {
-	output = 1 #hier die richtige Lösung eintragen
+	output = 1 #hier die richtige Loesung eintragen
 	return(output)
 }
-#[etwaige Tests und Zwischenlösungen bitte löschen]
+#[etwaige Tests und Zwischenloesungen bitte loeschen]
 
 
 ################################################################################
@@ -85,7 +83,7 @@ sommerhochwasser = function(abfluss, monat, beginn, ende) {
 #Das Tag-Grad-Verfahren ermittelt fuer mehrere aufeinanderfolgende Tage die **Summe** der Tagesmitteltemperaturen, die einen Schwellenwert `minT` ueberschreiten. Das Verfahren wird in unterschiedlichsten Bereichen eingesetzt: z.B. bei der Modellierung der Schneeschmelze, des Heizwaermebedarfs oder der phaenologischen Entwicklung von Pflanzen.
 #Wir nehmen an, eine Feldfrucht ist nach einer bestimmten Zahl Gradtagen `erntereif` (Einheit: Grad Celsius*Tag).  Bestimme den Zeitpunkt der Ernte.
 #Beispiel:
-# Der Vektor der Tagesmitteltemperaturen (in Grad Celsius) sei `temp = c(1,7,3,2,4)`. Bei einem Schwellenwert von `minT = 2` ergibt sich für die Gradtagwerte der betreffenden fünf Tage: ``` 1. Tag: min(0,1 - 2)= 0 2. Tag: (7 - 2) + 0 = 5 3. Tag: (3 - 1) + 5 = 7 4. Tag: (2 - 2) + 7 = 7 5. Tag: (4 - 2) + 7 = 9 ``` Wenn die Feldfrucht bei 7 Gradtagen reif ist (`erntereif = 7`), kann sie folglich nach 3 Tagen geerntet werden.
+# Der Vektor der Tagesmitteltemperaturen (in Grad Celsius) sei `temp = c(1,7,3,2,4)`. Bei einem Schwellenwert von `minT = 2` ergibt sich fÃ¼r die Gradtagwerte der betreffenden fÃ¼nf Tage: ``` 1. Tag: min(0,1 - 2)= 0 2. Tag: (7 - 2) + 0 = 5 3. Tag: (3 - 1) + 5 = 7 4. Tag: (2 - 2) + 7 = 7 5. Tag: (4 - 2) + 7 = 9 ``` Wenn die Feldfrucht bei 7 Gradtagen reif ist (`erntereif = 7`), kann sie folglich nach 3 Tagen geerntet werden.
 # 
 
 #Input(s)
@@ -107,12 +105,12 @@ sommerhochwasser = function(abfluss, monat, beginn, ende) {
 #  Input: 10
 #  Output: 6
 # (beim Aufruf von 'gradtage(...)' mit diesem Input sollte dieser Output erzeugt werden.)
-#Hier die Lösung eintragen:
+#Hier die Loesung eintragen:
 gradtage = function(temp, minT, erntereif) {
-	output = 1 #hier die richtige Lösung eintragen
+	output = 1 #hier die richtige Loesung eintragen
 	return(output)
 }
-#[etwaige Tests und Zwischenlösungen bitte löschen]
+#[etwaige Tests und Zwischenloesungen bitte loeschen]
 
 
 ################################################################################
@@ -151,12 +149,12 @@ gradtage = function(temp, minT, erntereif) {
 #  Input: B
 #  Output: 61
 # (beim Aufruf von 'curveNumber1(...)' mit diesem Input sollte dieser Output erzeugt werden.)
-#Hier die Lösung eintragen:
+#Hier die Loesung eintragen:
 curveNumber1 = function(lanu1, lanu2, boden) {
-	output = 1 #hier die richtige Lösung eintragen
+	output = 1 #hier die richtige Loesung eintragen
 	return(output)
 }
-#[etwaige Tests und Zwischenlösungen bitte löschen]
+#[etwaige Tests und Zwischenloesungen bitte loeschen]
 
 
 ################################################################################
@@ -173,8 +171,8 @@ curveNumber1 = function(lanu1, lanu2, boden) {
 #Wenn trockene oder feuchte Bedinungen herrschen, wird der entsprechende Faktor mit dem CN-Wert fuer normale Bedingungen multipliziert. 
 #Berechne nun den resultierenden CN-Wert auf Grundlage - des CN-Wertes fuer normale Bedingungen (`cn2`),  - der Niederschlagshoehen (in mm) der jeweils fuenf vorangegangenen Tage (`precip`), - der Angabe, ob man sich innerhalb der Vegetationsperiode befindet (`vegetation`). 
 #Beispiel:
-# Der CN-Wert fuer normale Bedingungen sei `cn2=72`. Der Niederschlag der Vortage sei `precip=c(4,3,0,2,1)`. Damit ergibt sich der P5-Wert zu `sum(precip)=10`. Wenn `vegetation=FALSE`, dann befinden wir uns außerhalb der Vegetationsperiode. Die Bedingungen sind somit **trocken**. Der Tabellenwert, welcher unserem CN-Wert  fuer normale Bedingungen (`cn2`) am naechsten kommt ist `70`.  Der Anpassungfaktor ist also `0.73`, und der resultierende CN-Wert ergibt sich zu CN = 0.73 * 72.
-#*Hinweis*: Die Funktion `which.min` gibt für einen Vektor diejenige Position ("Index") zurück, an welcher sich der kleinste Wert befindet. Das könnte beim Auffinden des Anpassungsfaktors hilfreich sein.
+# Der CN-Wert fuer normale Bedingungen sei `cn2=72`. Der Niederschlag der Vortage sei `precip=c(4,3,0,2,1)`. Damit ergibt sich der P5-Wert zu `sum(precip)=10`. Wenn `vegetation=FALSE`, dann befinden wir uns auÃŸerhalb der Vegetationsperiode. Die Bedingungen sind somit **trocken**. Der Tabellenwert, welcher unserem CN-Wert  fuer normale Bedingungen (`cn2`) am naechsten kommt ist `70`.  Der Anpassungfaktor ist also `0.73`, und der resultierende CN-Wert ergibt sich zu CN = 0.73 * 72.
+#*Hinweis*: Die Funktion `which.min` gibt fÃ¼r einen Vektor diejenige Position ("Index") zurÃ¼ck, an welcher sich der kleinste Wert befindet. Das kÃ¶nnte beim Auffinden des Anpassungsfaktors hilfreich sein.
 
 #Input(s)
 #  Name: cn2
@@ -195,13 +193,13 @@ curveNumber1 = function(lanu1, lanu2, boden) {
 #  Input: TRUE
 #  Output: 52.56
 # (beim Aufruf von 'curveNumber2(...)' mit diesem Input sollte dieser Output erzeugt werden.)
-#Hier die Lösung eintragen:
+#Hier die Loesung eintragen:
 curveNumber2 = function(cn2, precip, vegetation) {
-	output = 1 #hier die richtige Lösung eintragen
+	output = 1 #hier die richtige Loesung eintragen
 	return(output)
 }
-#[etwaige Tests und Zwischenlösungen bitte löschen]
+#[etwaige Tests und Zwischenloesungen bitte loeschen]
 
 
 ################################################################################
-#Zum Testen nun die ganze Datei ausführen - es dürfen keine Fehlermeldungen auftreten!
+#Zum Testen nun die ganze Datei ausfuehren - es duerfen keine Fehlermeldungen auftreten!

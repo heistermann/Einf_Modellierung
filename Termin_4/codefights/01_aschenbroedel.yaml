@@ -2,25 +2,25 @@
 task_name: aschenbroedel
 
 description: >
-   ## Aschenbrödel
-   
+   ## Aschenbroedel
+
    Wie viele Elemente des Vektors `erbsen` entsprechen
    der Zahl `gut`?
-   
+
    #### Beispiel
-   Wenn `erbsen=c(1,5,3,5)` und `gut=5`, dann liegen 2 
-   *gute* Erbsen in der Schüssel. 
-    
+   Wenn `erbsen=c(1,5,3,5)` und `gut=5`, dann liegen 2
+   *gute* Erbsen in der Schüssel.
+
 input1:
    name: erbsen
    type: Array of integers
-   description: Eine Schuessel voll Erbsen 
+   description: Eine Schuessel voll Erbsen
 
 input2:
    name: gut
    type: Integer
-   description: Zahl, die eine gute Erbse markiert. 
-   
+   description: Zahl, die eine gute Erbse markiert.
+
 output:
    type: Integer
    description: Anzahl der guten Erbsen in der Schuessel
@@ -60,4 +60,3 @@ solution: >
    instoepfchen = function(erbsen, gut) {
      return(length(which(erbsen==gut)))
    }
-
