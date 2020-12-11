@@ -1,0 +1,101 @@
+---
+task_name: curveNumber1
+
+description: >
+   Das US-SCS Curve Number Verfahren (Teil 1)
+      
+      Das Curve Number (CN) Verfahren wurde urspruenglich vom US Soil
+      Conservation Service (US-SCS) entwickelt und ist auch heute noch weit
+      verbreitet. Der CN-Wert beeinflusst den Ereignisabflussbeiwert und wird
+      auf Grundlage von Gebietseigenschaften sowie dem Vorereignisniederschlag
+      bestimmt.
+
+      Im ersten Schritt wird die sogenannte "Curve Number" aus der Landnutzung
+      und dem Bodentyp ermittelt. Dazu gibt es Tabellenwerke. Eine typische Tabelle
+      findest Du unter diesem Link:
+      
+      https://raw.githubusercontent.com/heistermann/served/master/txt/CN_Tabelle.csv
+      
+      Mit R kannst Du eine "kommaseparierte" Tabelle direkt aus dem Netz
+      als data.frame (also Tabelle) einlesen:
+      
+      > con = "https://raw.githubusercontent.com/heistermann/served/master/txt/CN_Tabelle.csv"
+      > df = read.table(con, header=TRUE, sep=";", stringsAsFactors=FALSE, strip.white=TRUE)
+      > df
+      
+      Probier's mal aus und drucke Dir den df einfach in die R Console.
+      
+      Nutze nun den data.frame `df`, um aus den folgenden Argumenten den
+      passenden CN-Wert zu ermitteln. Waehle zunaechst durch Angabe der Landnutzung
+      Typ 1 (Argument `lanu1`) und der Landnutzung Typ 2 (Argument `lanu2`)
+      die passenden Zeilen aus der Tabelle aus. Dabei hilft die Funktion subset:
+      
+      > dfsub = subset(df, LANU1==lanu1 & LANU2==lanu2)
+      
+      Aus diesem Tabellenausschnitt (dfsub) kannst Du dann die Spalte mit dem
+      passenden Bodentyp auswählen (Argument `boden` - dieses kann die Werte "A",
+      "B", "C" oder "D" annehmen).
+      
+      output = dfsub[,boden]
+      
+   Beispiel
+      
+      Wenn `lanu1=Verkehrsflaeche`, `lanu2=Feldweg` und `boden="B"`, dann
+      ist die Kurvennummer CN=82.
+
+   Eigentlich musst Du jetzt nur noch die Zeilen zur vollstaendigen Loesung
+   zusammenkopieren!
+
+input1:
+   name: lanu1
+   type: String
+   description: Landnutzung Typ 1
+
+input2:
+   name: lanu2
+   type: String
+   description: Landnutzung Typ 2 (Untertyp)
+
+input3:
+   name: boden
+   type: String
+   description: Bodentyp (A, B, C oder D)
+
+output:
+   type: Integer
+   description: CN-Wert fuer den Standort
+
+test1:
+   input:
+   - "Freiflaeche"
+   - "hoher Wiesenanteil"
+   - "B"
+   output: 61
+
+test2:
+   input:
+   - "Wohngebiet"
+   - "30% bebaut"
+   - "A"
+   output: 57
+
+test3:
+   input:
+   - "Verkehrsflaeche"
+   - "Feldweg"
+   - "A"
+   output: 72
+
+test4:
+   input:
+   - "Freiflaeche"
+   - "mittlerer Wiesenanteil"
+   - "D"
+   output: 84
+
+solution: >
+   curveNumber1 = function(lanu1, lanu2, boden) {
+     con = "https://raw.githubusercontent.com/heistermann/served/master/txt/CN_Tabelle.csv"
+     df = read.table(con, header=TRUE, sep=";", stringsAsFactors=FALSE, strip.white=TRUE)
+     return(subset(df, LANU1==lanu1 & LANU2==lanu2)[,boden])
+   }

@@ -2,14 +2,16 @@
 task_name: aschenbroedel
 
 description: >
-   ## Aschenbroedel
-
-   Wie viele Elemente des Vektors `erbsen` entsprechen
-   der Zahl `gut`?
-
-   #### Beispiel
-   Wenn `erbsen=c(1,5,3,5)` und `gut=5`, dann liegen 2
-   *gute* Erbsen in der Schüssel.
+   Aschenbroedel
+      
+      Weihnachtszeit, Aschenbroedelzeit.
+      Wie viele Elemente des Vektors `erbsen` entsprechen
+      der Zahl `gut`?
+      
+   Beispiel
+      
+      Wenn `erbsen=c(1,5,3,5)` und `gut=5`, dann liegen 2
+      *gute* Erbsen in der Schüssel.
 
 input1:
    name: erbsen
@@ -48,12 +50,6 @@ test4:
    - [1,1,1,1,0,0]
    - 0
    output: 2
-
-test5:
-   input:
-   - [1,2,1,4,0,0]
-   - 2
-   output: 1
 
 
 solution: >

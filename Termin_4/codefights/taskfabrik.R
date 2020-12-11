@@ -27,37 +27,55 @@ sommerhochwasser(c(3,3,3,1,8,7,4,8,1,2,5,7),
 sommerhochwasser(c(5,2,3,8,3,7,3,7,4,8,1,1), 
                  c(8,4,7,5,2,3,1,11,12,6,9,10), 6, 10)
 
-# Task 03
-gradtage = function(temp, minT, erntereif) {
-  x = temp - minT
-  x[x<0] = 0
-  return( which(cumsum(x)>=erntereif)[1] )
+
+jahresniederschlag = function(niederschlaege, jahre, jahr) {
+  return( niederschlaege[jahre==jahr])
 }
 # Tests
-gradtage(c(1,7,3,2,4,8,3,8,7,3,5,1), 2, 10)
-gradtage(c(1,7,3,2,4,8,3,8,7,3,5,1), 4, 10)
-gradtage(c(1,7,3,2,4,8,3,8,7,3,5,1), 4, 12)
-gradtage(c(1,7,3,2,4,8,3,8,7,3,5,1), 4, 15)
+jahresniederschlag(c(100,500,300,2500), 
+                 c(1999,2000,2001,2002), 2000)
+jahresniederschlag(c(100,500,300,2500), 
+                   c(1999,2005,2001,2002), 2005)
+jahresniederschlag(c(200,600,400,1500), 
+                   c(1997,2000,2001,2010), 2010)
+jahresniederschlag(c(200,600,400,1500), 
+                   c(1997,2000,2001,2010), 2000)
+
+
+
+niederschlagsmittel = function(niederschlaege, jahre, anfang, ende) {
+  return( mean(niederschlaege[(jahre>=anfang) & (jahre<=ende)]))
+}
+
+
+# Tests
+niederschlagsmittel(c(100,500,300,2500,200,600), 
+                   c(1999,2000,2001,2002,2003,2004), 2000, 2002)
+niederschlagsmittel(c(100,500,300,2500,200,600), 
+                   c(1999,2000,2001,2002,2003,2004), 2002, 2004)
+niederschlagsmittel(c(100,500,300,2500,200,600), 
+                   c(1999,2000,2001,2002,2003,2004), 1999, 2002)
+niederschlagsmittel(c(100,500,300,2500,200,600), 
+                   c(1899,1900,1901,1902,1903,1904), 1900, 1903)
+
+
+
+# Task 03
+gradtage = function(temp, erntereif) {
+  temp[temp<0] = 0
+  gradtage = cumsum(temp)
+  ueber = which(gradtage>=erntereif)
+  return( ueber[1] )
+}
+# Tests
+gradtage(c(1,7,3,2,4,8,3,8,7,3,5,1), 10)
+gradtage(c(1,7,3,2,4,8,3,8,7,3,5,1), 20)
+gradtage(c(1,7,3,2,4,8,3,8,7,3,5,1), 25)
+gradtage(c(1,7,3,2,4,8,3,8,7,3,5,1), 40)
 
 
 curveNumber1 = function(lanu1, lanu2, boden) {
-  tab = "LANU1;LANU2;A;B;C;D
-	Freiflaeche;geringer Wiesenanteil;68;79;86;89
-	Freiflaeche;mittlerer Wiesenanteil;49;69;79;84
-	Freiflaeche;hoher Wiesenanteil;39;61;74;80
-	Verkehrsflaeche;vollversiegelt;98;98;98;98
-	Verkehrsflaeche;offener Wegerand;83;89;92;93
-	Verkehrsflaeche;Schotterweg;76;85;89;91
-	Verkehrsflaeche;Feldweg;72;82;87;89
-	Gewerbeflaeche;Geschaeftsflaeche;89;92;94;95
-	Gewerbeflaeche;Industrieflaeche;81;88;91;93
-	Wohngebiet;>65% bebaut;77;85;90;92
-	Wohngebiet;38% bebaut;61;75;83;87
-	Wohngebiet;30% bebaut;57;72;81;86
-	Wohngebiet;25% bebaut;54;70;80;85
-	Wohngebiet;20%bebaut;51;68;79;84
-	Wohngebiet;<12%bebaut;46;65;77;82"
-  con = textConnection(tab)
+  con = "https://raw.githubusercontent.com/heistermann/served/master/txt/CN_Tabelle.csv"
   df = read.table(con, header=TRUE, sep=";", stringsAsFactors=FALSE, strip.white=TRUE)
   return(subset(df, LANU1==lanu1 & LANU2==lanu2)[,boden])
 }
@@ -68,36 +86,23 @@ curveNumber1("Verkehrsflaeche","Feldweg","A")
 curveNumber1("Freiflaeche","mittlerer Wiesenanteil","D")
 
 
-curveNumber2 = function(cn2, precip, vegetation) {
-  tab = "normal;trocken;feucht
-  10;0.40;2.22
-  20;0.45;1.85
-  30;0.50;1.67
-  40;0.55;1.50
-  50;0.62;1.40
-  60;0.67;1.30
-  70;0.73;1.21
-  80;0.79;1.14
-  90;0.87;1.07
-  100;1.00;1.00"
-  con = textConnection(tab)
-  df = read.table(con, header=TRUE, sep=";", stringsAsFactors=FALSE, strip.white=TRUE)
 
-  P5 = sum(precip)
+curveNumber2 = function(cn2, precip, vegetation) {
+  con = "https://raw.githubusercontent.com/heistermann/served/master/txt/CN_anpassung.csv"
+  df = read.table(con, header=TRUE, sep=";", stringsAsFactors=FALSE, strip.white=TRUE)
+  
+  p5 = sum(precip)
   amc = "normal"
   if (vegetation) {
-    if (P5<36) amc = "trocken"
-    if (P5>53) amc = "feucht"
+    if (p5<36) amc = "trocken"
+    if (p5>53) amc = "feucht"
   } else {
-    if (P5<13) amc = "trocken"
-    if (P5>28) amc = "feucht"
+    if (p5<13) amc = "trocken"
+    if (p5>28) amc = "feucht"
   }
-  
-  if (amc=="normal") {
-    return(cn2)
-  } else {
-    return( df[which.min(abs(df$normal - cn2)),amc] * cn2 )
-  }
+  output = round(subset(df,cn==cn2)[,amc] * cn2)
+  return( output )
+
 }
 
 curveNumber2(72, c(2,5,3,6,0), TRUE)

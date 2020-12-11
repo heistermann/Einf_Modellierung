@@ -1,0 +1,71 @@
+---
+task_name: Jahresniederschlag
+
+description: >
+   Jahresniederschlag
+      
+      Gegeben ist ein Vektor mit Jahresniederschlagssummen (`niederschlaege`) und ein weiterer
+      Vektor mit den Jahreszahlen, in denen diese Jahresniederschlaege jeweils gemessen wurden
+      (`jahre`).
+      
+      Gib fuer ein gegebenes Jahr `jahr` bitte den zugehoerigen Jahresniederschlag zurueck.
+      
+   Beispiel
+      
+      Wenn
+      `niederschlaege  = c( 100, 300, 500, 300)`
+      `jahre = c(1999, 2000, 2001, 2002)`
+      dann muss fuer das Argument `jahr=2001` der Wert 500 zurueckgegeben werden.
+      (also der Niederschlag im Jahr 2001).
+
+input1:
+   name: niederschlaege
+   type: Array of floats
+   description: Vektor mit Jahresniederschlagssummen.
+
+input2:
+   name: jahre
+   type: Array of integers
+   description: Vektor mit Jahreszahlen
+
+input3:
+   name: jahr
+   type: Integer
+   description: Zieljahr, fuer dass wir uns interessieren
+
+output:
+   type: Float
+   description: Niederschlag im Zieljahr
+
+test1:
+   input:
+   - [100,500,300,2500]
+   - [1999,2000,2001,2002]
+   - 2000
+   output: 500
+
+test2:
+   input:
+   - [100,500,300,2500]
+   - [1999,2005,2001,2002]
+   - 2005
+   output: 500
+
+test3:
+   input:
+   - [200,600,400,1500]
+   - [1997,2000,2001,2010]
+   - 2010
+   output: 1500
+
+test4:
+   input:
+   - [200,600,400,1500]
+   - [1997,2000,2001,2010]
+   - 2000
+   output: 600
+
+solution: >
+   jahresniederschlag = function(niederschlaege, jahre, jahr) {
+     return( niederschlaege[jahre==jahr])
+   }
