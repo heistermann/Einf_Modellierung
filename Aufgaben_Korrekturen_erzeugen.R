@@ -1,7 +1,7 @@
 #Sucht alle yaml-Files in Unterverzeichnissen */codefights (Tiefe 1),
-#erzeugt Aufgabenstellungen (R-Template mit Aufgabenstellung und Beispiel) sowie Kontroll-Template (für Kontrolleur)
+#erzeugt Aufgabenstellungen (R-Template mit Aufgabenstellung und Beispiel) sowie Kontroll-Template (fuer Kontrolleur)
 #speichert Dateien in Unterordern "Codefights"
-#ACHTUNG! Überschreibt eventuell vorhandenen Dateien
+#ACHTUNG! ueberschreibt eventuell vorhandenen Dateien
 
 #Arbeitsverzeichnis in Verzeichnis dieser Datei setzen
 if (!require("rstudioapi", quietly = TRUE)) install.packages("rstudioapi")
@@ -10,7 +10,7 @@ wd = rstudioapi::getActiveDocumentContext()$path
 wd = sub(x=wd, pattern="(.*/)[^/]+$","\\1")
 setwd(wd)
 
-loesung_simulieren = FALSE #TRUE: Musterlösung als eingereichte Lösung einbinden, um Template zu testen.
+loesung_simulieren = FALSE #TRUE: Musterloesung als eingereichte Loesung einbinden, um Template zu testen.
                           #vor Herausgabe unbedingt auf FALSE setzen
 
 
@@ -41,8 +41,8 @@ for (sd in subdirs)
   write("rm(list=ls()) #Speicher leeren", kfil, append=TRUE)
   write(paste0(rep("#", 80), collapse = ""), kfil, append=TRUE) #Trennlinie
   write(paste0(rep("#", 80), collapse = ""), kfil, append=TRUE) #Trennlinie
-  write(paste0("\n# Bitte zuerst die zu beurteilende Lösung hierher kopieren.\n# Dann gesamtes Skript mit Strg+Shift+S ausführen und Ausgabe am Ende beachten.\n"), kfil, append=TRUE)
-  write("# !!! Bitte keine Änderungen unterhalb dieses Blocks !!!", kfil, append=TRUE)
+  write(paste0("\n# Bitte zuerst die zu beurteilende Loesung hierher kopieren.\n# Dann gesamtes Skript mit Strg+Shift+S ausfuehren und Ausgabe am Ende beachten.\n"), kfil, append=TRUE)
+  write("# !!! Bitte keine Aenderungen unterhalb dieses Blocks !!!", kfil, append=TRUE)
   
   write(paste0(rep("#", 80), collapse = ""), kfil, append=TRUE) #Trennlinie
   write(paste0(rep("#", 80), collapse = ""), kfil, append=TRUE) #Trennlinie
@@ -110,10 +110,10 @@ for (sd in subdirs)
     write(paste0("#  Output: ", feld$output), tfil, append = TRUE)
     write(paste0("# (beim Aufruf von '", str2, "(...)' mit diesem Input sollte dieser Output erzeugt werden.)"), tfil, append = TRUE)
     
-    write("#Hier die Lösung eintragen:", tfil, append = TRUE)
+    write("#Hier die Loesung eintragen:", tfil, append = TRUE)
     write(str, tfil, append = TRUE)
-    write(x = "\toutput = 1 #hier die richtige Lösung eintragen\n\treturn(output)\n}",tfil, append = TRUE)
-    write("#[etwaige Tests und Zwischenlösungen bitte löschen]", tfil, append = TRUE)
+    write(x = "\toutput = 1 #hier die richtige Loesung eintragen\n\treturn(output)\n}",tfil, append = TRUE)
+    write("#[etwaige Tests und Zwischenloesungen bitte loeschen]", tfil, append = TRUE)
     
     
     #Kontroll-Template ####
@@ -123,23 +123,23 @@ for (sd in subdirs)
     #Titel der Aufgabe
     str = gsub(yaml_file, pattern="\\.yaml", repl="") 
     #write(paste0("aufgaben_titel = \"", str,"\""), kfil, append = TRUE)
-    write(paste0("\n#Aufgabe ", str, "; Musterlösung:"), kfil, append = TRUE)
+    write(paste0("\n#Aufgabe ", str, "; Musterloesung:"), kfil, append = TRUE)
 
-    # Code der Musterlösung
+    # Code der Musterloesung
     str = sub(x=cont$solution, pattern = "<-", replacement = "=")  #"<-" durch "=" ersetzen
     #Codefights workarounds mit unlist() entfernen
     str = gsub(x=str, pattern = "\\n\\s*(.*)\\s*=\\s*unlist\\(\\1\\)", replacement = "\n")  
-    str = gsub(x=str, pattern = "#Codefights-Bug, nicht nötig in richtigem R\n", replacement = "")  
+    str = gsub(x=str, pattern = "#Codefights-Bug, nicht noetig in richtigem R\n", replacement = "")  
     str = sub(x=str, pattern = "\n\\s*\\n", replacement = "\n")  
     if (loesung_simulieren)
-      write(str, kfil, append = TRUE) #Lösung mit Musterlösung simulieren, um template testen zu können
+      write(str, kfil, append = TRUE) #Loesung mit Musterloesung simulieren, um template testen zu koennen
     
     str = sub(str, pattern = "^[ \t]*([^ ]+)(.*)", replacement = "\\1_muster_lsg \\2")
     str2 =sub(str, pattern="_muster_lsg.*", repl="") #Funktionsname
     
     write(str, kfil, append = TRUE)
     
-    write("#Überprüfung: ", kfil, append = TRUE)
+    write("#Ueberpruefung: ", kfil, append = TRUE)
     tests =grep(x = names(cont), pattern="test", value=TRUE) #extrahiere Namen der Tests
     
     write(paste0(" kontrollergebnis_t =  data.frame(aufgabe = \"", str2, "\", tests=", length(tests),", nicht_aufrufbar=0, richtig=0) #Korrekturergebnis der aktuellen Aufgabe"), kfil, append = TRUE)
@@ -165,11 +165,11 @@ for (sd in subdirs)
       }
       arg_str = sub(arg_str, pattern = ", $", repl="")
       write(paste0(" einreichung = try(", str2, "(", arg_str, ")) #Ergebnis der Einreichung"), kfil, append = TRUE)
-      write(paste0(" muster_lsg  = try(", str2, "_muster_lsg(", arg_str, ")) #Ergebnis der Musterlösung"), kfil, append = TRUE)
+      write(paste0(" muster_lsg  = try(", str2, "_muster_lsg(", arg_str, ")) #Ergebnis der Musterloesung"), kfil, append = TRUE)
 
       #write(paste0("loesung = ", str, "_lsg (" = aufgabe[\"richtig\"] + 1"), kfil, append = TRUE)
-      write(paste0("if (identical2(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zähle richtige Ergebnisse"), kfil, append = TRUE)
-      write(paste0("if (class(einreichung) == \"try-error\") kontrollergebnis_t$nicht_aufrufbar[1] = kontrollergebnis_t$nicht_aufrufbar[1] + 1 #zähle fehlerhafte Aufrufe\n"), kfil, append = TRUE)
+      write(paste0("if (identical2(einreichung, muster_lsg)) kontrollergebnis_t$richtig[1] = kontrollergebnis_t$richtig[1] + 1 #zaehle richtige Ergebnisse"), kfil, append = TRUE)
+      write(paste0("if (class(einreichung) == \"try-error\") kontrollergebnis_t$nicht_aufrufbar[1] = kontrollergebnis_t$nicht_aufrufbar[1] + 1 #zaehle fehlerhafte Aufrufe\n"), kfil, append = TRUE)
       
     }
     write("kontrollergebnis_alle = rbind(kontrollergebnis_alle, kontrollergebnis_t) #Ergebnis dieser Aufgabe speichern", kfil, append = TRUE)
@@ -185,19 +185,19 @@ for (sd in subdirs)
     # write(paste0("#  Output: ", feld$output), kfil, append = TRUE)
     # write(paste0("# (beim Aufruf von '", str2, "(...)' mit diesem Input sollte dieser Output erzeugt werden.)"), kfil, append = TRUE)
     # 
-    # write("#Hier die Lösung eintragen:", kfil, append = TRUE)
+    # write("#Hier die Loesung eintragen:", kfil, append = TRUE)
     # write(str, kfil, append = TRUE)
     # write(x = "...\nreturn(...)\n}",kfil, append = TRUE)
-    # write("#[etwaige Tests und Zwischenlösungen bitte löschen]", kfil, append = TRUE)
+    # write("#[etwaige Tests und Zwischenloesungen bitte loeschen]", kfil, append = TRUE)
     
     
   }  
-  #Aufgaben-Template abschließen ####
+  #Aufgaben-Template abschliessen ####
   write("\n", tfil, append=TRUE) #Umbruch
   write(paste0(rep("#", 80), collapse = ""), tfil, append=TRUE) #Trennlinie
-  write("#Zum Testen nun die ganze Datei ausführen - es dürfen keine Fehlermeldungen auftreten!", tfil, append=TRUE) #
+  write("#Zum Testen nun die ganze Datei ausfuehren - es duerfen keine Fehlermeldungen auftreten!", tfil, append=TRUE) #
   
-  #Kontroll-Template abschließen ####
+  #Kontroll-Template abschliessen ####
   write("\n", kfil, append=TRUE) #Umbruch
   write(paste0(rep("#", 80), collapse = ""), kfil, append=TRUE) #Trennlinie
   
@@ -207,10 +207,10 @@ for (sd in subdirs)
   "kontrollergebnis_alle$anteil_richtig = kontrollergebnis_alle$richtig / kontrollergebnis_alle$tests\n",
   "kontrollergebnis_alle$punkte = 100 / nrow(kontrollergebnis_alle) * kontrollergebnis_alle$anteil_richtig\n",
   "print(\"Testergebnisse:\")\n",
-  "print(paste0(\"Gesamtpunktzahl für diesen Termin: \", round(sum(kontrollergebnis_alle$punkte))))\n",
-  "print(paste0(\"Bitte in Moodle eintragen, (Feld <Bewertung für Kriterium 1>).\"))\n",
+  "print(paste0(\"Gesamtpunktzahl fuer diesen Termin: \", round(sum(kontrollergebnis_alle$punkte))))\n",
+  "print(paste0(\"Bitte in Moodle eintragen, (Feld <Bewertung fuer Kriterium 1>).\"))\n",
   "print(kontrollergebnis_alle)\n",
-  "print(paste0(\"Bitte in Moodle eintragen, Textfeld <Kommentar für Kriterium 1>.\"))\n"
+  "print(paste0(\"Bitte in Moodle eintragen, Textfeld <Kommentar fuer Kriterium 1>.\"))\n"
   
   ), kfil, append=TRUE) 
   

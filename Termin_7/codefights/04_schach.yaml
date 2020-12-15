@@ -1,5 +1,5 @@
 ---
-name: T7_01_Schach
+name: Schach
 
 description: >
    Ein Schachfeld besteht aus acht mal acht Feldern. Wir bauen uns eines, auf dem wir *reproduzierbar* zufällig die Figuren verteilen:
@@ -10,15 +10,15 @@ description: >
    ```
 
    Die Felder werden üblicherweise über eine Kombination von Buchstabe a-h (Reihe) und Zahl 1-8 (Spalte) angesprochen. In R können wir für die gegebene 8x8-Matrix `brett` gleiches erreichen, indem wir folgenden Befehl ausführen:
-   
+
    ```
       dimnames(brett)=list(8:1,letters[1:8])
    ```
-   
+
    Nun sieht das Schachbrett z.B. so aus:
-   
+
    ```
-      a   b   c   d   e   f   g   h  
+      a   b   c   d   e   f   g   h
    8 "B" " " " " "S" " " "B" "B" "B"
    7 "B" "D" " " "L" " " " " " " " "
    6 " " "S" "B" "K" " " " " "T" "L"
@@ -34,21 +34,21 @@ description: >
    ```
       brett["1", "f"]
    ```
-   
+
    liefert dann `"S"`, da dort der Springer steht.
-      
+
    Gib für das gegebene Spielbrett `brett` die Figur zurück, die auf dem Feld `feld` steht, das mittels Buchstaben-Zahlen-Kombination angegeben wird.
 
    #### Beispiel
-   
+
    Für `feld = "f1"` soll `"S"` zurückgegeben werden.
-   
+
    #### Hinweis
-   
+
    Neben der oben angegeben Zeile könnte die Funktion `substr()` nützlich sein.
-   
+
    #### Input / Output
-  
+
 input1:
    name: feld
    type: string
@@ -57,28 +57,28 @@ input1:
 output:
    type: string
    description: Spielfigur, die auf dem betreffenden Feld steht.
-   
+
 test1:
    input: "b7"
    output: "D"
-   
+
 test2:
    input: "d8"
    output: "S"
-   
+
 test3:
    input: "a2"
    output: " "
-   
-   
+
+
 solution: >
    schach = function(feld)
-   {  
-     
+   {
+
      figuren = rep(c("K","D","T","S","L","B"," "), times=c(2,2,4,4,4,16,32))
      set.seed(1)
      brett = array(sample(figuren), c(8,8))
-   
+
      dimnames(brett)=list(8:1,letters[1:8])
      return(brett[substr(feld,2,2), substr(feld,1,1)])
    }

@@ -1,0 +1,16 @@
+LANU1;LANU2;A;B;C;D
+Freiflaeche;geringer Wiesenanteil;68;79;86;89
+Freiflaeche;mittlerer Wiesenanteil;49;69;79;84
+Freiflaeche;hoher Wiesenanteil;39;61;74;80
+Verkehrsflaeche;vollversiegelt;98;98;98;98
+Verkehrsflaeche;offener Wegerand;83;89;92;93
+Verkehrsflaeche;Schotterweg;76;85;89;91
+Verkehrsflaeche;Feldweg;72;82;87;89
+Gewerbeflaeche;Geschaeftsflaeche;89;92;94;95
+Gewerbeflaeche;Industrieflaeche;81;88;91;93
+Wohngebiet;>65% bebaut;77;85;90;92
+Wohngebiet;38% bebaut;61;75;83;87
+Wohngebiet;30% bebaut;57;72;81;86
+Wohngebiet;25% bebaut;54;70;80;85
+Wohngebiet;20%bebaut;51;68;79;84
+Wohngebiet;<12%bebaut;46;65;77;82

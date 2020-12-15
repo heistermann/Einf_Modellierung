@@ -210,3 +210,15 @@ rmse2 = function(obs, sim) {
 #   im Peace River Einzugsgebiet
 params = c(a=0.99, b=100, c=0.4, d=0.1)
 rmse2( mopex$discharge, abcd(mopex, params)$Q )
+
+# Versuche nun durch Ausprobieren den RMSE zu minimieren.
+# Nutze auf der Suche die visuelle Darstellung als Unterstützung.
+params = c(a=0.99, b=100, c=0.4, d=0.1)
+# Ausfuehrung des Modells
+sim = abcd(mopex, params)
+# Darstellung der Ganglinien
+plot.hydro(mopex, sim, baseflow=FALSE,
+           zoominto=c(as.Date("1990-01-01"), 
+                      as.Date("2000-01-01")))
+rmse2( mopex$discharge, sim$Q )
+
