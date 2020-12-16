@@ -54,5 +54,5 @@ exp_Wachstum_umwelt = function (N0, r_pess, r_opt, nt)
   legend("bottomright", legend=c("N_1", "N_2"), col=c("black","red"), pch = 21)
   #>
   
-  #? Welche Population stirbt (meist) (frueher) aus?
-  
+  #? Welche Population stirbt (meist) (frueher) aus? Dafür die Berechnungen für N_1 nd N_2 mehrfach wiederholen.
+  #? Für welche Initialisierung des Zufallsgenerators (seed) ist das nicht so?

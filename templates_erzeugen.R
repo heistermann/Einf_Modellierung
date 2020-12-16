@@ -3,6 +3,14 @@
 #speichert Dateien in Unterordern "Vorlagen"
 #ACHTUNG! Überschreibt eventuell vorhandenen Vorlagen-Dateien
 
+
+#Arbeitsverzeichnis in Verzeichnis dieser Datei setzen
+if (!require("rstudioapi", quietly = TRUE)) install.packages("rstudioapi")
+require(rstudioapi)
+wd = rstudioapi::getActiveDocumentContext()$path
+wd = sub(x=wd, pattern="(.*/)[^/]+$","\\1")
+setwd(wd)
+
 subdirs=dir()
 
 for (sd in subdirs)
