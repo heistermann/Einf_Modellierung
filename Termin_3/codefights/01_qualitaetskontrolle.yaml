@@ -53,7 +53,7 @@ test3:
    output: [-9999, 2, -9999, 4, 5, -9999]
 
 solution: >
-   qualitatetskontrolle = function(precip, stoertage) {
+   qualitaetskontrolle = function(precip, stoertage) {
      precip = unlist(precip) #Codefights-bug; sonst nicht nötig
    stoertage = unlist(stoertage)
      precip[stoertage] = -9999
