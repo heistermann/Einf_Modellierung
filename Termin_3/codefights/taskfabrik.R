@@ -1,14 +1,14 @@
 # Task 01
-qualitatetskontrolle = function(precip, stoertage) {
+qualitaetskontrolle = function(precip, stoertage) {
 	  precip = unlist(precip) #Codefights-bug; sonst nicht nötig
 	stoertage = unlist(stoertage)
 	  precip[stoertage] = -9999
 	  return(precip)
 	}
 
-qualitatetskontrolle(c(1,2,3,4,5,6), c(1,2))
-qualitatetskontrolle(c(1,2,3,4,5,6), c(4,5))
-qualitatetskontrolle(c(1,2,3,4,5,6), c(1,3,6))
+qualitaetskontrolle(c(1,2,3,4,5,6), c(1,2))
+qualitaetskontrolle(c(1,2,3,4,5,6), c(4,5))
+qualitaetskontrolle(c(1,2,3,4,5,6), c(1,3,6))
 
 
 # Task 02
