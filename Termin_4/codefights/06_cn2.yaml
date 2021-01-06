@@ -29,7 +29,7 @@ description: >
       Mit R kannst Du so eine "kommaseparierte" Tabelle direkt aus dem Netz
       als data.frame (also Tabelle) einlesen:
       
-      > con = "https://raw.githubusercontent.com/heistermann/served/master/txt/CN_Tabelle.csv"
+      > con = "https://raw.githubusercontent.com/heistermann/served/master/txt/CN_anpassung.csv"
       > df = read.table(con, header=TRUE, sep=";", stringsAsFactors=FALSE, strip.white=TRUE)
       > df
       
@@ -46,7 +46,7 @@ description: >
       Der CN-Wert fuer normale Bedingungen sei `cn2=72`. Der Niederschlag der
       Vortage sei `precip=c(4,3,0,2,1)`. Damit nimmt P5 einen Wert von `10` an
       (`sum(precip)`). Wenn `vegetation=FALSE`, dann befinden wir uns außerhalb
-      der Vegetationsperiode. Die Bedingungen sind somit *trocken* (P5 < 13). Der 
+      der Vegetationsperiode. Die Bedingungen sind somit *trocken* (P5 < 13).  
       Wir suchen also aus der Tabelle die Zeile heraus, in der die Spalte cn den
       Wert `cn2` annimmt und wählen dann den Anpassungsfaktor aus der Spalte
       "trocken". Unser Ergebnis ist das Produkt aus `cn2` und diesem

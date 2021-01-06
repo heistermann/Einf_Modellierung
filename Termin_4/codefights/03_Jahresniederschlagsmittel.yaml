@@ -17,7 +17,7 @@ description: >
       `niederschlaege  = c( 100, 300, 500, 300)`
       `jahre = c(1999, 2000, 2001, 2002)`
       dann muss fuer die Argumente `anfang=2000` und `ende=2001` der Wert
-      400 zurueckgegeben werden (Mittelwert aus 200 und 400).
+      400 zurueckgegeben werden (Mittelwert aus 300 und 500).
 
 input1:
    name: niederschlaege
