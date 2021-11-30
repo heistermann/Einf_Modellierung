@@ -4,7 +4,7 @@ name: abc_and_d
 description: >
    ## abc vs. abcd
 
-   Wählen Sie aus den folgenden Aussagen über das abc bzw. das abcd-Modell
+   WÃ¤hlen Sie aus den folgenden Aussagen Ã¼ber das abc bzw. das abcd-Modell
    die zutreffende aus.
     
 num_answers: 4
@@ -30,6 +30,6 @@ answer_description_3:
 answer_description_4:
    description: |
    	Im Gegensatz zum abc-Modell kann man mit dem abcd-Modell 
-   	kann die Abflussdynamik in bis zu stündlicher Auflösung abbilden. 
+   	kann die Abflussdynamik in bis zu stÃ¼ndlicher AuflÃ¶sung abbilden. 
    is_correct: False
 

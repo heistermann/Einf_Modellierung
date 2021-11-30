@@ -41,17 +41,17 @@ test1:
    
 test2:
    input: 
-   	- "Für jedes komplexe Problem gibt es eine Lösung, die einfach, einleuchtend und falsch ist"
+   	- "FÃ¼r jedes komplexe Problem gibt es eine LÃ¶sung, die einfach, einleuchtend und falsch ist"
    	- 1
-   	- "Außengrenze"
-   output: "Außengrenze Außengrenze Außengrenze Außengrenze Außengrenze Außengrenze Außengrenze Außengrenze Außengrenze Außengrenze Außengrenze Außengrenze Außengrenze Außengrenze"
+   	- "AuÃŸengrenze"
+   output: "AuÃŸengrenze AuÃŸengrenze AuÃŸengrenze AuÃŸengrenze AuÃŸengrenze AuÃŸengrenze AuÃŸengrenze AuÃŸengrenze AuÃŸengrenze AuÃŸengrenze AuÃŸengrenze AuÃŸengrenze AuÃŸengrenze AuÃŸengrenze"
    
 test3:
    input: 
-   - "Drei Chinesen mit nem Kontrabass saßen auf der Straße"
+   - "Drei Chinesen mit nem Kontrabass saÃŸen auf der StraÃŸe"
    - 2
    - "Sauerkraut"
-   output: "Drei Sauerkraut mit Sauerkraut Kontrabass Sauerkraut auf Sauerkraut Straße"
+   output: "Drei Sauerkraut mit Sauerkraut Kontrabass Sauerkraut auf Sauerkraut StraÃŸe"
    
 
 solution: >

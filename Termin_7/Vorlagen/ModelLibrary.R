@@ -1,5 +1,4 @@
 # R-Bibliothek mit Funktionen fuer den Kurs "Einfuehrung in die Modellierung".
-
 # Die Funktion "abcd" erhaelt zwei Argumente:
 #   - "meteo" ist ein data.frame, der monatl. Zeitreihen
 #     mit Niederschag und PET enthaelt
@@ -47,7 +46,6 @@ abcd = function(meteo, params) {
   }
   return(out)
 }
-
 # Die Funktion "abc" erhaelt zwei Argumente:
 #   - "meteo" ist ein data.frame, der monatl. Zeitreihen
 #     mit Niederschag und PET enthaelt
@@ -77,10 +75,6 @@ abc = function(meteo, params) {
   }
   return(out)
 }
-
-
-
-
 # Die Funktion "read.mopex" liest eine MOPEX-Datensatz als data.frame ein
 #   und formatiert die Datumsspalte als Datum.
 #   Die Funktion erhaelt als Argument den Namen/Pfad der MOPEX-Datei.
@@ -91,7 +85,6 @@ read.mopex = function(fname) {
   out$date = as.Date(out$date)
   return(out)
 }
-
 # Die Funktion "plot.hydro" zeichnet Ganglinien des
 #   beobachteten und simulierten Abflusses.
 #   Die Funktion erhaelt folgende Argumente:
@@ -114,7 +107,4 @@ plot.hydro = function(mopex, model, zoominto=NULL,
   if(baseflow) lines(mopex$date, model$QB, col="blue", lwd=2)
   lines(mopex$date, mopex$discharge, col="red", lwd=2)
   legend("topright", c("obs", "sim"), col=c("red", "black"), lwd=2)
-
 }
-
-
