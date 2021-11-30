@@ -1,5 +1,5 @@
 ---
-name: Schach
+task_name: Schach
 
 description: >
    Ein Schachfeld besteht aus acht mal acht Feldern. Wir bauen uns eines, auf dem wir *reproduzierbar* zufällig die Figuren verteilen:
