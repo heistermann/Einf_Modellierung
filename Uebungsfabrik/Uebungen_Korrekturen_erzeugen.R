@@ -37,19 +37,19 @@ for (sd in subdirs)
   
   #Templates anlegen
   # Uebungen-Template
-  write(paste0("# dynamisch erzeugt mit Uebungen_Korrekturen_erzeugen.R"), afil)
-  write(paste0("#Uebungen-Template <", lektion, ">"), afil)
-  write(paste0("#Bitte erst unter dem Namen \"Uebungen.R\" speichern, dann bearbeiten."),afil)
+  #write(paste0("# dynamisch erzeugt mit Uebungen_Korrekturen_erzeugen.R"), afil, append=FALSE)
+  write(paste0("#Uebungen-Template <", lektion, ">"), afil, append=FALSE)
+  #write(paste0("#Bitte erst unter dem Namen \"Uebungen.R\" speichern, dann bearbeiten."),afil, append=TRUE)
   
   #Musterloesungen-Include-Datei
-  write(paste0("# dynamisch erzeugt mit Uebungen_Korrekturen_erzeugen.R"), mfil)
-  write(paste0("#Musterloesungen zu Lektion ", lektion), mfil)
-  write(paste0("lektion = \"", lektion, "\" #lektion/Nr der Lektion"), mfil)
+  write(paste0("# dynamisch erzeugt mit Uebungen_Korrekturen_erzeugen.R"), mfil, append=FALSE)
+  write(paste0("#Musterloesungen zu Lektion ", lektion), mfil, append=TRUE)
+  write(paste0("lektion = \"", lektion, "\" #lektion/Nr der Lektion"), mfil, append=TRUE)
   #write("rm(list=ls()) #Speicher leeren", mfil, append=TRUE)
   write(paste0(rep("#", 80), collapse = ""), mfil, append=TRUE) #Trennlinie
   
   #Tests-Include-Datei
-  write(paste0("# dynamisch erzeugt mit Uebungen_Korrekturen_erzeugen.R"), tfil)
+  write(paste0("# dynamisch erzeugt mit Uebungen_Korrekturen_erzeugen.R"), tfil, append=FALSE)
   write(paste0("#Tests zu Lektion ", lektion), tfil, append=TRUE)
   write(paste0("testliste =list()"), tfil, append=TRUE)
   

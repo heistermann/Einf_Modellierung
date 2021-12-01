@@ -35,10 +35,10 @@ abcd = function(meteo, params) {
     QD = (1-c)*(W-Y)
     # Grundwasserneubildung
     RG = c*(W-Y)
-    # Basisabfluss
-    QB = d * G
     # Aktualisierung des Grundwasserspeichers
-    G = G + RG - d * G
+    #  und Berechnung des Basisabflusses
+    G = (G + RG) / (1 + d)
+    QB = d * G
     # Abfluss
     Q = QB + QD
     # Schreibe Ergebnisse fuer diesen Zeitschritt in Dataframe

@@ -1,8 +1,6 @@
 # Seminar zu "Einfuehrung in die Modellierung"
-
 # Workspace ausleeren
 rm(list = ls())
-
 # INSPEKTION EINES MOPEX-DATENSATZES
 # ----------------------------------
 # AUFGABE: Wir inspizieren nun einen Datensatz fuer den
@@ -16,8 +14,8 @@ rm(list = ls())
 #   mit dem "read.table"-Befehl in R eingelesen. 
 #   1. Schau Dir die Datei mit einem Text-Editor (notepad++) an.
 #      Welches Zeichen wird als Spaltentrenner verwendet? Fuege
-#      passende Argumente in den "read.table"-Befehl ein,
-#      welche R den Spaltentrenner mitteilen sowie die Tatsache,
+#      in den "read.table"-Befehl passende Argumente ein,
+#      die den Spaltentrenner spezifizieren und die festlegen,
 #      dass die Datei eine Kopfzeile (header) mit Spaltenbezeichnern
 #      besitzt. Ersetze dazu die beiden Platzhalter {SPALTENTRENNUNG}
 #      und {KOPFZEILE} durch sinnvolle Ausdruecke.
@@ -41,20 +39,15 @@ rm(list = ls())
 #
 #   7. Schaue Dir auch andere Zeitfenster an. 
 #      Aendere dafuer die Variable "zoominto".
-
 # Lies die Daten (ERSETZE DIE PLATZHALTER!)
 mopex = read.table("02296750.monthly", stringsAsFactors=FALSE,
-                   {SPALTENTRENNUNG}, {KOPFZEILE})
-
+                   sep=";", header=TRUE)
 # Struktur und Datentyp des Rueckgabewertes
 str(mopex)
-
 # Konvertiere Strings aus der Spalte "date" zu Datumsobjekten 
 mopex$date = as.Date(mopex$date)
-
 # Schaue Dir nun erneut die Struktur an... was hat sich geaendert?
 str(mopex)
-
 # Graphische Darstellung als Ganglinien mit Datum
 zoominto = c(as.Date("1990-01-01"), as.Date("1995-01-01"))
 plot(mopex$date, mopex$discharge, type="n", ylim = c(0,300),
@@ -63,20 +56,14 @@ plot(mopex$date, mopex$discharge, type="n", ylim = c(0,300),
 axis.Date(1, at=mopex$date, format="%m/%y")
 lines(mopex$date, mopex$discharge, type="l", col="black", lwd=2)
 lines(mopex$date, mopex$precip,    type="l", col="blue",  lwd=2)
-
 # Zeichne die Ganglinie fuer PET mit Hilfe des "lines"-Befehls
-
-#...hier ergaenzen...
-
+#...hier erg‰nzen...
 # Legende zeichnen (ERGAENZE DEN EINTRAG FUER PET!)
 legend("topright", 
-       legend=c("Abfluss (mm)", "Niederschlag (mm)"),
-       lwd=2, col=c("black","blue"))
-
+       legend=c("Abfluss (mm)", "Niederschlag (mm)", "PET (mm)"),
+       lwd=2, col=c("black","blue", "red"))
 # Workspace ausleeren
 rm(list = ls())
-
-
 # ANWENDUNG UND DIAGNOSE DES ABCD-MODELLS
 # ---------------------------------------
 # Du verstehst nun die Implementierung und das Verhalten des 
@@ -106,17 +93,14 @@ rm(list = ls())
 #        und simulierten Abflusses.
 #      Lies nun also mit Hilfe des untenstehenden Codes den
 #      Datensatz "02296750.monthly" ein, definiere den Parametervektor,
-#      fuhre das abcd-Modell aus und stelle die Abflussganglinien dar.
+#      fuehre das abcd-Modell aus und stelle die Abflussganglinien dar.
 #
 #   3. Spiele nun mit den Parameterwerten, um eine moeglichst
 #      gute Uebereinstimmung des simulierten mit dem beobachteten
 #      Abfluss zu erreichen. Mit Hilfe des "zoominto"-Arguments
 #      kannst Du unterschiedliche Zeitfenster betrachten.
-
 # Importiere mit dem Befehl "source" die Funktionen aus "ModelLibrary.R"
-
-#...hier ergaenzen...
-
+#...hier erg‰nzen...
 # Daten lesen
 mopex = read.mopex("02296750.monthly")
 # Parameter als Vektor definieren
@@ -127,7 +111,6 @@ sim = abcd(mopex, params)
 plot.hydro(mopex, sim, baseflow=FALSE,
                 zoominto=c(as.Date("1990-01-01"), 
                            as.Date("2000-01-01")))
-
 # AUFGABE: Die visuelle Betrachtung ermoeglicht einen guten Eindruck der
 #   Uebereinstimmung zwischen Simulation und Beobachtung.
 #
@@ -151,26 +134,22 @@ plot.hydro(mopex, sim, baseflow=FALSE,
 #      muesste als Ergebnis "1" zurueckgegeben werden.
 #
 #   4. Wende nun die Funktion "rmse" auf das  abcd-Modell fuer
-#      dem Peace River an (siehe oben). Berechne also den RMSE
+#      den Peace River an (siehe oben). Berechne also den RMSE
 #      des simulierten Abflusses im Vergleich zum beobachteten Abfluss
 #      fuer einen beliebigen Parametersatz param.
 #
 #   5. Mist! Was funktioniert da nicht???
-
 # Schreibe hier die Funktion zur Berechnung des RMSE
 rmse = function(obs, sim) {
-      #...hier ergaenzen...
+  #...hier erg‰nzen...
 }
-
 # Teste Deine Funktion rmse anhand der Testdatensaetze x und y
 #   Richtiges Ergebnis: RMSE = 1
 x = c(2, 3, 2, 5, 1)
 y = c(1, 3, 4, 5, 1)
 rmse(x, y)
-
 # Berechnung des RMSE fuer das abcd-Modell im Peace River Einzugsgebiet
 rmse( mopex$discharge, abcd(mopex, params)$Q )
-
 # AUFGABE: Die Berechnung des RMSE mit Hilfe der Funktion rmse
 #   ergibt NA, also einen Fehlwert (Not Available, Missing Value).
 #   Dies liegt daran, dass die Zeitreihe der beobachten MOPEX-Abfluesse
@@ -188,19 +167,16 @@ rmse( mopex$discharge, abcd(mopex, params)$Q )
 #      hat dann der RMSE?
 #
 #   6. Wer schafft es, den kleinsten RMSE zu erzeugen?
-
 # Diese Funktion entfernt Zeitschritte mit NA
 #   und berechnet dann den RMSE.
 rmse2 = function(obs, sim) {
   ix = is.finite(obs) & is.finite(sim)
   return ( rmse(obs[ix], sim[ix]) )
 }
-
 # Und nun nochmal Berechnung des RMSE fuer das abcd-Modell
 #   im Peace River Einzugsgebiet
 params = c(a=0.99, b=100, c=0.4, d=0.1)
 rmse2( mopex$discharge, abcd(mopex, params)$Q )
-
 # Versuche nun durch Ausprobieren den RMSE zu minimieren.
 # Nutze auf der Suche die visuelle Darstellung als Unterst√ºtzung.
 params = c(a=0.99, b=100, c=0.4, d=0.1)

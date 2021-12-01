@@ -1,3 +1,5 @@
+# dynamisch erzeugt mit Uebungen_Korrekturen_erzeugen.R
+#Musterloesungen zu Lektion Termin_7/codefights
 lektion = "Termin_7/codefights" #lektion/Nr der Lektion
 ################################################################################
 ################################################################################
