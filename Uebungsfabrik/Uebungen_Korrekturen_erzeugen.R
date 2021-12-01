@@ -141,7 +141,8 @@ for (sd in subdirs)
     str = sub(x=str, pattern = "\n\\s*\\n", replacement = "\n")  
     #write(str, mfil, append = TRUE) 
     
-    str = sub(str, pattern = "^[ \t]*([^ ]+)(.*)", replacement = "\\L\\1_muster_lsg \\2", perl = TRUE)
+   str = sub(str, pattern = "^[ \t]*([^ =<]+)(.*)", replacement = "\\L\\1_muster_lsg \\2", perl = TRUE)
+    write(str, mfil, append = TRUE)
     str2 =sub(str, pattern="_muster_lsg.*", repl="") #Funktionsname
     
     #Musterloesung testen
@@ -155,7 +156,6 @@ for (sd in subdirs)
       stop()
     }
     
-    write(str, mfil, append = TRUE)
     
     #schreibe Tests ####
     #lektion der Uebung
