@@ -39,19 +39,18 @@ initialen("George Gabriel", "Stokes")
 
 # Task 04
 schach = function(feld)
-{  
-  
+{
   figuren = rep(c("K","D","T","S","L","B"," "), times=c(2,2,4,4,4,16,32))
-  set.seed(1)
+  set.seed(1, kind = "Super-Duper") #reproduzierbarer Zufall auf allen Plattformen
   brett = array(sample(figuren), c(8,8))
   
   dimnames(brett)=list(8:1,letters[1:8])
   return(brett[substr(feld,2,2), substr(feld,1,1)])
 }
 
-schach("b7")
-schach("d8")
-schach("a2")
+schach("e8") #D
+schach("c6") #L
+schach("b2") #K
 
 
 # Task 05

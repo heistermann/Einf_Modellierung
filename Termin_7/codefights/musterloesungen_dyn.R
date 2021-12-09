@@ -25,9 +25,8 @@ namenseintrag_muster_lsg  = function(vorname, nachname) {
 #Uebung Schach; Musterloesung:
 schach_muster_lsg  = function(feld) {
   figuren = rep(c("K","D","T","S","L","B"," "), times=c(2,2,4,4,4,16,32))
-  set.seed(1)
+  set.seed(1, kind = "Super-Duper") #reproduzierbarer Zufall auf allen Plattformen
   brett = array(sample(figuren), c(8,8))
-
   dimnames(brett)=list(8:1,letters[1:8])
   return(brett[substr(feld,2,2), substr(feld,1,1)])
 }

@@ -5,43 +5,43 @@ description: >
    Ein Schachfeld besteht aus acht mal acht Feldern. Wir bauen uns eines, auf dem wir *reproduzierbar* zufällig die Figuren verteilen:
    ```
    figuren = rep(c("K","D","T","S","L","B"," "), times=c(2,2,4,4,4,16,32))
-   set.seed(1)
+   set.seed(1, kind = "Super-Duper") #reproduzierbarer Zufall auf allen Plattformen und R-Versionen
    brett = array(sample(figuren), c(8,8))
    ```
 
    Die Felder werden üblicherweise über eine Kombination von Buchstabe a-h (Reihe) und Zahl 1-8 (Spalte) angesprochen. In R können wir für die gegebene 8x8-Matrix `brett` gleiches erreichen, indem wir folgenden Befehl ausführen:
 
    ```
-      dimnames(brett)=list(8:1,letters[1:8])
+      dimnames(brett) = list(8:1, letters[1:8])
    ```
 
-   Nun sieht das Schachbrett z.B. so aus:
+   Nun sieht das Schachbrett konkret so aus:
 
    ```
-      a   b   c   d   e   f   g   h
-   8 "B" " " " " "S" " " "B" "B" "B"
-   7 "B" "D" " " "L" " " " " " " " "
-   6 " " "S" "B" "K" " " " " "T" "L"
-   5 " " "S" " " "L" " " " " " " "T"
-   4 "L" " " " " "B" "B" "B" "B" " "
-   3 " " "B" " " " " "D" " " "B" " "
-   2 " " " " "B" " " "B" " " "B" "T"
-   1 " " "B" "T" " " " " "S" " " "K"
+        a   b   c   d   e   f   g   h  
+     8 "B" "S" " " " " "D" " " " " "B"
+     7 "B" " " " " " " "B" " " " " "B"
+     6 " " " " "L" "B" " " "T" " " "L"
+     5 " " "K" "L" "B" "B" " " "B" " "
+     4 " " " " " " " " " " "D" "T" "T"
+     3 " " " " "B" "S" " " "S" "T" " "
+     2 " " "K" "B" "L" " " "S" " " " "
+     1 " " "B" "B" "B" "B" " " " " "B"
    ```
 
    und kann auch mittels der neu vergebenen Indizes angesprochen werden:
 
    ```
-      brett["1", "f"]
+      brett["8", "b"]
    ```
 
-   liefert dann `"S"`, da dort der Springer steht.
+   liefert dann `"S"`, da dort ein Springer steht.
 
-   Gib für das gegebene Spielbrett `brett` die Figur zurück, die auf dem Feld `feld` steht, das mittels Buchstaben-Zahlen-Kombination angegeben wird.
+   Gib für das oben derart generierte Spielbrett `brett` die Figur zurück, die auf dem Feld `feld` steht, das mittels Buchstaben-Zahlen-Kombination angegeben wird.
 
    #### Beispiel
 
-   Für `feld = "f1"` soll `"S"` zurückgegeben werden.
+   Für `feld = "b8"` soll `"S"` zurückgegeben werden.
 
    #### Hinweis
 
@@ -59,24 +59,23 @@ output:
    description: Spielfigur, die auf dem betreffenden Feld steht.
 
 test1:
-   input: "b7"
+   input: "e8"
    output: "D"
 
 test2:
-   input: "d8"
-   output: "S"
+   input: "c6"
+   output: "L"
 
 test3:
-   input: "a2"
-   output: " "
+   input: "b2"
+   output: "K"
 
 
 solution: >
    schach = function(feld)
    {
-
      figuren = rep(c("K","D","T","S","L","B"," "), times=c(2,2,4,4,4,16,32))
-     set.seed(1)
+     set.seed(1, kind = "Super-Duper") #reproduzierbarer Zufall auf allen Plattformen
      brett = array(sample(figuren), c(8,8))
 
      dimnames(brett)=list(8:1,letters[1:8])

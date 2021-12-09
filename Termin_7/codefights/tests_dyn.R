@@ -28,9 +28,9 @@ test4 = list()
 
 #Uebung Schach
 testliste[["Schach"]]=list(tests=list(
-test1 = list(feld = "b7"),
-test2 = list(feld = "d8"),
-test3 = list(feld = "a2")
+test1 = list(feld = "e8"),
+test2 = list(feld = "c6"),
+test3 = list(feld = "b2")
 ), muster_lsg=schach_muster_lsg)
 
 #Uebung afd_rede

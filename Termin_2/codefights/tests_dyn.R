@@ -31,9 +31,9 @@ test4 = list(n_wuerfe = 3L, seed = 1000L)
 #Uebung wuerfel_gezinkt
 testliste[["wuerfel_gezinkt"]]=list(tests=list(
 test1 = list(wurf = 1L),
-test2 = list(wurf = 6L, wurf = 6L),
-test3 = list(wurf = 1L, wurf = 2L, wurf = 3L, wurf = 4L),
-test4 = list(wurf = 1L, wurf = 1L, wurf = 1L, wurf = 1L, wurf = 1L)
+test2 = list(wurf = c(6L, 6L)),
+test3 = list(wurf = 1:4),
+test4 = list(wurf = c(3L, 3L, 3L, 3L, 3L))
 ), muster_lsg=wuerfel_gezinkt_muster_lsg)
 
 #Uebung interpolation
