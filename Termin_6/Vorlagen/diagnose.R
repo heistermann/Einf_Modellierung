@@ -57,7 +57,7 @@ axis.Date(1, at=mopex$date, format="%m/%y")
 lines(mopex$date, mopex$discharge, type="l", col="black", lwd=2)
 lines(mopex$date, mopex$precip,    type="l", col="blue",  lwd=2)
 # Zeichne die Ganglinie fuer PET mit Hilfe des "lines"-Befehls
-#...hier erg?nzen...
+#...hier ergaenzen...
 # Legende zeichnen (ERGAENZE DEN EINTRAG FUER PET!)
 legend("topright", 
        legend=c("Abfluss (mm)", "Niederschlag (mm)", "PET (mm)"),
@@ -100,7 +100,7 @@ rm(list = ls())
 #      Abfluss zu erreichen. Mit Hilfe des "zoominto"-Arguments
 #      kannst Du unterschiedliche Zeitfenster betrachten.
 # Importiere mit dem Befehl "source" die Funktionen aus "ModelLibrary.R"
-#...hier erg?nzen...
+#...hier ergaenzen...
 # Daten lesen
 mopex = read.mopex("02296750.monthly")
 # Parameter als Vektor definieren
@@ -141,7 +141,7 @@ plot.hydro(mopex, sim, baseflow=FALSE,
 #   5. Mist! Was funktioniert da nicht???
 # Schreibe hier die Funktion zur Berechnung des RMSE
 rmse = function(obs, sim) {
-  #...hier erg?nzen...
+  #...hier ergaenzen...
 }
 # Teste Deine Funktion rmse anhand der Testdatensaetze x und y
 #   Richtiges Ergebnis: RMSE = 1

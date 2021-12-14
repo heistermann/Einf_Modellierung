@@ -3,22 +3,22 @@ name: guete
 
 description: >
    
-   ## Gute Güte
+   ## Gute GÃ¼te
 
    Die dargestellten Statements sind als R-Code
-   zur Berechnung eines Guete- bzw. Fehlermaßes 
+   zur Berechnung eines Guete- bzw. FehlermaÃŸes 
    `x` zu verstehen.
 
    `obs` sei dabei der Vektor der Beobachtungen
    (z.B. Abfluss am Pegel) und `sim` der Vektor
    der mit dem Modell simulierten Werte.
 
-   Welche der angebotenen Maße sollten bei einer
+   Welche der angebotenen MaÃŸe sollten bei einer
    Modellkalibrierung **maximiert** werden?
 
    #### Hinweis
 
-   Die dargestellten Maße sind auch unter folgenden
+   Die dargestellten MaÃŸe sind auch unter folgenden
    Namen bekannt: Sum of Squared Errors, Root Mean Squared Error,
    Mean Absolute Error, Nash-Sutcliffe Efficiency
 

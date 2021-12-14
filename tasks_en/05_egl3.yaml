@@ -12,7 +12,7 @@ description: >
     #### Example
    
    Let the unit hydrograph be `uhg = [0.2, 0.8]`, the time series of hourly effective rainfall (in *mm/h*) be
-   `precip = [2, 4]`, and the catchment area (in *km²*) 
+   `precip = [2, 4]`, and the catchment area (in *kmÂ²*) 
    `area = 7.2`. Hence, the response hydrograph is `3` hours long and takes the values of `[0.8, 4.8, 6.4]`.
     
 input1:
@@ -28,11 +28,11 @@ input2:
 input3:
    name: area
    type: float
-   description: catchment area (km²) 
+   description: catchment area (kmÂ²) 
    
 output:
    type: array.float
-   description: hydrograph of direct runoff (m³/s)
+   description: hydrograph of direct runoff (mÂ³/s)
 
 test1:
    input: 

@@ -16,7 +16,7 @@ description: >
    05.01.1999;64.54;143.8;4.9;18.4;32.8
    ```
 
-   Mit welchem Statement können Sie diese Tabelle erfolgreich
+   Mit welchem Statement kÃ¶nnen Sie diese Tabelle erfolgreich
    einlesen und die erste Spalte (`date`) als Datum formatieren?
        
 num_answers: 6

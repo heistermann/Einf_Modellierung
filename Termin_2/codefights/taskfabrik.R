@@ -68,7 +68,7 @@ schwimmbad2(200, 0.1, 100, 0.01)
 
 # Task 03
 wuerfel = function(n_wuerfe, seed) {
-  set.seed(seed)
+  set.seed(1, kind = "Super-Duper")
   wuerfe = ceiling(runif(n = n_wuerfe, min = 0, max=6))
   return (wuerfe)
 }
@@ -86,7 +86,7 @@ wuerfel_gezinkt = function(wurf) {
   while(any(testwurf != wurf))
   {
     seed=seed+1
-    set.seed(seed)
+    set.seed(seed=seed, kind="Super-Duper")
     testwurf = sample(x = 1:6, size = n_wuerfe, replace = TRUE)
   }
   
@@ -96,7 +96,7 @@ wuerfel_gezinkt = function(wurf) {
 wuerfel_gezinkt(1)
 wuerfel_gezinkt(c(6,6))
 wuerfel_gezinkt(c(1,2,3,4))
-wuerfel_gezinkt(c(1,1,1,1,1))
+wuerfel_gezinkt(c(3,3,3,3,3))
 
 
 

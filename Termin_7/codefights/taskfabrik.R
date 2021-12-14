@@ -55,9 +55,9 @@ schach = function(feld)
   return(brett[substr(feld,2,2), substr(feld,1,1)])
 }
 
-schach("b7")
-schach("d8")
-schach("a2")
+schach("e8") #D
+schach("c6") #L
+schach("b2") #K
 
 
 # Task 05

@@ -1,11 +1,8 @@
 # Seminar zu "Einfuehrung in die Modellierung"
-
 # Workspace ausleeren
 rm(list = ls())
-
 # EINHEITSGANGLINIENVERFAHREN
 # ---------------------------
-
 # Effektivniederschlagsganglinie (in mm/h) 
 precip = c(1., 5., 10.)
 # Einheitsganglinie
@@ -16,7 +13,6 @@ out = rep(0., length(precip) + length(egl) - 1)
 print(out)
 # Flaeche des Einzugsgebiets (km2)
 area = 7.2
-
 # Schleife ueber alle Niederschlagsimpulse
 for (i in 1:length(precip)) {
   # Abflussantwort auf Impuls i
@@ -26,14 +22,10 @@ for (i in 1:length(precip)) {
   # Addiere auf Abflussganglinie
   out[ix] = out[ix] + out_i
 }
-
 # Ergebnis (Abflussganglinie) anzeigen
 print(out)
-
-
 # Workspace ausleeren
 rm(list = ls())
-
 # Besser: Implementierung als Funktion
 func_egl = function(precip, egl, area) {
   # Abflussganglinie (in m3/s)
@@ -48,23 +40,15 @@ func_egl = function(precip, egl, area) {
   }          
   return(out)
 }
-
 # AUFGABE: Wie ruft man diese Funktion mit Argumenten auf?
-
-#...hier ergaenzen...
-
-
+#...hier ergänzen...
 # AUFGABE: Schreibe nun eine Funktion func_egl2, 
 #   die den (konstanten) Basisabfluss beruecksichtigt.
 #   Fuehre dazu ein zusaetzliches Argument baseflow ein.
-
-#...hier ergaenzen...
-
+#...hier ergänzen...
 # Nutzung der Funktion fuer beliebige Argumente 
 func_egl2(c(1., 5., 10.), c(0.1, 0.4, 0.3, 0.2), 7.2, 2.)
 func_egl2(c(6, 3, 4), c(0.2, 0.5, 0.3), 10.8, 0.)
-
-
 # AUFGABE: Nutze nun den "plot"-Befehl, um die resultierende 
 #   Abflussganglinie (LINIE!) fuer Q zu zeichnen. 
 #   Nutze ggf. die Hilfe: ?plot
@@ -77,5 +61,4 @@ egl = c(0.1, 0.4, 0.3, 0.2)
 area = 7.2
 basisabfluss = 2.
 Q = func_egl2(precip, egl, area, basisabfluss)
-
-#...hier ergaenzen...
+#...hier ergänzen...

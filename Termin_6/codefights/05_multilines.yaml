@@ -6,11 +6,11 @@ description: >
    
    `x` und `y` seien zwei gleich lange Vektoren.
 
-   Mit welchem Codeblock plottest Du für jeden der beiden Vektoren je eine Linie in ein Diagramm? 
+   Mit welchem Codeblock plottest Du fÃ¼r jeden der beiden Vektoren je eine Linie in ein Diagramm? 
    Das Diagramm soll ferner folgende Eigenschaften
    haben:
 
-   - Die y-Achse soll sich auf *beide* Vektoren beziehen (keine Sekundärachse),
+   - Die y-Achse soll sich auf *beide* Vektoren beziehen (keine SekundÃ¤rachse),
    - das Maximum der y-Achse soll bei 20 liegen, das Minimum bei 5,
    - die Werte sollen als Punkte dargestellt werden, die durch Linien
    verbunden sind.

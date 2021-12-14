@@ -4,14 +4,14 @@ name: b_in_abcd
 description: >
    ## Das b im abcd-Modell
 
-   Nur eine der folgenden Antworten vervollständigt den folgenden Satz auf korrekte Weise.
+   Nur eine der folgenden Antworten vervollstÃ¤ndigt den folgenden Satz auf korrekte Weise.
 
-   *Ein größerer Wert des Parameters b im abcd-Modell führt zu einer...*
+   *Ein grÃ¶ÃŸerer Wert des Parameters b im abcd-Modell fÃ¼hrt zu einer...*
    
 num_answers: 4
 
 answer_description_1:
-   description: ...verstärkten Abflussbildung.
+   description: ...verstÃ¤rkten Abflussbildung.
    is_correct: False
 
 answer_description_2:
@@ -19,7 +19,7 @@ answer_description_2:
    is_correct: True
 
 answer_description_3:
-   description: ...verzögerten Abflussantwort.
+   description: ...verzÃ¶gerten Abflussantwort.
    is_correct: False
 
 answer_description_4:

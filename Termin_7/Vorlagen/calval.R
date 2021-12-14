@@ -1,4 +1,4 @@
-# Seminar zu "Einfü¾˜¶˜¼hrung in die Modellierung/Integrierte Modellierung"
+# Seminar zu "Einfuehrung in die Modellierung/Integrierte Modellierung"
 # Workspace ausleeren
 rm(list = ls())
 # DIE NASH-SUTCLIFFE MODELLEFFIZIENZ
@@ -14,11 +14,11 @@ rm(list = ls())
 #      die NA-Werte aussortiert. Orientiere dich dabei am Code
 #      vom letzten Termin.
 #
-#   3. Was ist der bestmü¾¦˜¼gliche NSE-Wert?
+#   3. Was ist der bestmoegliche NSE-Wert?
 #
 #   4. Was ist der denkbar schlechteste NSE-Wert?
 nash = function(obs, sim) {
-  #...hier erg?nzen...
+  #...hier ergaenzen...
 }
 # Teste mit Hilfe von x und y
 x = c(2, 3, 2, 5, 1)
@@ -26,7 +26,7 @@ y = c(1, 3, 4, 5, 1)
 round( nash(x, y), 2) == 0.46
 # Schreibe hier die Funktion, welche die NA Werte aussortiert
 nash2 = function(obs, sim) {
-  #...hier erg?nzen...
+  #...hier ergaenzen...
 }
 # AUTOMATISCHE KALIBRIERUNG DES ABCD-MODELLS
 # ------------------------------------------
@@ -81,7 +81,7 @@ nash2(mopex$discharge, sim$Q)
 #      max_number_function_calls hoch - aendert sich das Suchergebnis?
 install.packages(pkgs="ppso", repos="http://rforge.net/", type = "source")
 # Importiere ppso mit Hilfe des "library"-Befehls
-#...hier erg?nzen...
+#...hier ergaenzen...
 # Trage hier sinnvolle Unter- und Obergrenzen fuer a, b, c und d ein.
 bounds = data.frame(lower=c(..., ..., ..., ...), 
                     upper=c(..., ..., ..., ...))
@@ -96,7 +96,7 @@ zielfunktion= function(params, model, data) {
   return(-nash2(x, y)) 
 }
 # Nun fuehren wir die eigentliche Kalibrierung durch.
-#   Der Suchalgorithmus heiü¾™¦¼t optim_dds. Wer mehr ueber
+#   Der Suchalgorithmus heisst optim_dds. Wer mehr ueber
 #   den DDS-Algorithmus erfahren moechte: 
 #   dx.doi.org/10.1029/2005WR004723
 #
@@ -148,7 +148,7 @@ lines(x=c(axlim[1]-100,axlim[2]+100), y=c(axlim[1]-100,axlim[2]+100))
 #   - Ergebnis inspizieren
 #
 #  MASTERFRAGE: Was funktioniert besser: abc oder abcd?
-#...hier erg?nzen...
+#...hier ergaenzen...
 # AUFGABE (optional): Implementiere fuer das abcd-Modell
 #   Kalibierung UND Validierung als Split-Sampling. Gehe dafuer
 #   wie folgt vor:
@@ -163,6 +163,6 @@ lines(x=c(axlim[1]-100,axlim[2]+100), y=c(axlim[1]-100,axlim[2]+100))
 #      berechne anhand des zweiten Datensatzteils die den NSE-Wert.
 #
 #   4. Vergleiche die NSE-Werte, die Du jeweils fuer Kalibrierung und
-#      Validierung erreicht hast. Was schlieü¾™¦¼t Du im Hinblick auf die
+#      Validierung erreicht hast. Was schliesst Du im Hinblick auf die
 #      Modellguete?
-#...hier erg?nzen...
+#...hier ergaenzen...
