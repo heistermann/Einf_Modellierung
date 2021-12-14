@@ -9,19 +9,21 @@ description: >
       (in diesem Beispiel den 3. Dezember 2016). 
       Das entsprechende Argument heißt `datum`.
       
-      Gib den englischen Namen des Wochentages zurück,
+      Gib den Namen des Wochentages zurück,
       der `datum` entspricht. 
       
    Beispiel
       
-      Wenn `datum="2017-01-17"`, dann soll `"Tuesday"` 
-      zurückgegeben werden. 
+      Wenn `datum="2021-01-13"`, dann soll `"Wednesday"` 
+      zurückgegeben werden. Falls die R-Einstellungen auf deutsche Datumsformate
+      eingestellt sind, muesste stattdessen "Mittwoch" rauskommen. Ist auch ok! 
       
    Hinweise
       
       Mit der Funktion `as.Date` teilst Du R mit, dass der String als Datum
       interpretiert werden soll. Mit der Funktion `strftime` kannst Du das Datum
-      dann umformatieren - z.B. zum Namen des entsprechenden englischen Wochentags,
+      dann umformatieren - z.B. zum Namen des entsprechenden Wochentags (in
+      Abhaengigkeit von den Systemeinstellungen deutsch oder englisch oder...),
       der dem konkreten Datum entspricht. Dazu muss ein passender Wert für das
       Argument `format` übergeben werden. Konsultiere dafür die Hilfe zu `strftime`.
       
@@ -38,7 +40,7 @@ input1:
 
 output:
    type: String
-   description: Englischer Name des zugehörigen Wochentages
+   description: Name des zugehoerigen Wochentages
 
 test1:
    input: "2016-11-15"

@@ -13,10 +13,12 @@ welchertag("1999-01-31")
 
 # Task 02
 ausschlafen = function(datum) {
-  name = strftime(as.Date(datum), format="%A")
-  wochenende = c("Saturday", "Sunday")
-  return(name %in% wochenende)
+  daynum = strftime(as.Date(datum), format="%w")
+  daynum = as.numeric(daynum)
+  wochenende = c(0, 6)
+  return(daynum %in% wochenende)
 }
+
 # Tests
 ausschlafen("1944-05-03")
 ausschlafen("1988-06-11")

@@ -2,17 +2,35 @@
 name: afd_rede
 
 description: >
-   ## Redenschreiber
-   Du bist als Redenschreiber für die AFD tätig. Um die Zielgruppe anzusprechen, ist es notwendig, dass im regelmäßigen Abstand `abstand` ein bestimmtes Schlüsselwort `schwort` in der Rede auftaucht.
-   Entwirf eine Funktion, die in einen gegebenen Text `text` die nötigen Ersetzungen macht! Wahrheitsgehalt, guter Geschmack und Grammatik sind für das Resultat unerheblich.
+   Redenschreiber
+      
+      Du bist als Redenschreiber fuer die AFD taetig. Um die Zielgruppe
+      anzusprechen, ist es notwendig, dass in regelmaessigem Abstand `abstand`
+      ein bestimmtes Schluesselwort `schwort` in der Rede auftaucht.
+      
+      Entwirf eine Funktion, die in einem gegebenen Text `text` die noetigen
+      Ersetzungen macht! Wahrheitsgehalt, guter Geschmack und Grammatik sind
+      fuer das Resultat unerheblich.
+      
+   Beispiel
+      
+      Fuer den Ausgangstext `text = "Denk ich an Deutschland in der Nacht,
+      bin ich um den Schlaf gebracht"` soll jedes vierte Wort (`abstand = 4`)
+      durch das Schluesselwort `schwort = "Patriot"` ersetzt werden, so dass
+      das Resultat `"Denk ich an Patrioten in der Nacht, Patrioten ich um den
+      Patrioten gebracht"`.
+      
+   Hinweis
+      
+      Die Funktionen `strsplit()`, `unlist()` und paste() koennten nuetzlich sein.
+      Der Funktion paste kann man uebrigens auch einfach einen Vektor von
+      Zeichenketten uebergeben. Die einzelnen Elemente werden dann im 
+      Ausgabestring mit dem Zeichen getrennt, welches im Argument collapse
+      angegeben wurde. Kompliziert? Nein, hier ein Beispiel:
+      
+      > paste(c("Essen", "ist", "fertig", "!"), collapse=" ") 
+      [1] "Essen ist fertig !"
 
-   #### Beispiel
-   Für den Ausgangstext `text = "Denk ich an Deutschland in der Nacht, bin ich um den Schlaf gebracht"` soll jedes vierte Wort (`abstand = 4`) durch das Schlüsselwort `schwort = "Patriot"` ersetzt werden, so dass das Resultat
-   `"Denk ich an Patrioten in der Nacht, Patrioten ich um den Patrioten gebracht"`.
-
-   Hinweis: Die Funktionen `strsplit()`, `unlist()` und paste() könnten nützlich sein.
-
-   #### Input / Output
 input1:
    name: text
    type: string
@@ -21,16 +39,16 @@ input1:
 input2:
    name: abstand
    type: integer
-   description: Gibt an, alle wieviel Worte das Schlüsselwort `schwort` in der Rede auftauchen soll.
+   description: Gibt an, alle wieviel Worte das Schluesselwort `schwort` in der Rede auftauchen soll.
 
 input3:
    name: schwort
    type: string
-   description: Schlüsselwort, das in die Rede eingefügt werden soll, z.B. "Vaterland", "Lügenpresse", "Schande"
+   description: Schluesselwort, das in die Rede eingefuegt werden soll, z.B. "Luegenpresse", "Schande"
 
 output:
    type: string
-   description: Überarbeitete Rede, mit Inbrunst vorzutragen.
+   description: Ueberarbeitete Rede.
 
 test1:
    input:
@@ -41,24 +59,23 @@ test1:
 
 test2:
    input:
-   - "Für jedes komplexe Problem gibt es eine Lösung, die einfach, einleuchtend und falsch ist"
+   - "Fuer jedes komplexe Problem gibt es eine Loesung, die einfach, einleuchtend und falsch ist"
    - 1
-   - "Außengrenze"
-   output: "Außengrenze Außengrenze Außengrenze Außengrenze Außengrenze Außengrenze Außengrenze Außengrenze Außengrenze Außengrenze Außengrenze Außengrenze Außengrenze Außengrenze"
+   - "Aussengrenze"
+   output: "Aussengrenze Aussengrenze Aussengrenze Aussengrenze Aussengrenze Aussengrenze Aussengrenze Aussengrenze Aussengrenze Aussengrenze Aussengrenze Aussengrenze Aussengrenze Aussengrenze"
 
 test3:
    input:
-   - "Drei Chinesen mit nem Kontrabass saßen auf der Straße"
+   - "Drei Chinesen mit nem Kontrabass sassen auf der Strasse"
    - 2
-   - "Sauerkraut"
-   output: "Drei Sauerkraut mit Sauerkraut Kontrabass Sauerkraut auf Sauerkraut Straße"
+   - "Schande"
+   output: "Drei Schande mit Schande Kontrabass Schande auf Schande Strasse"
 
 
 solution: >
-   afd_rede = function(text, abstand, schwort)
-   {
-     woerter = unlist(strsplit(text, " "))
-
-     woerter[1:length(woerter) %% abstand ==0] =  schwort
-     return(paste(woerter, collapse=" "))
+   afd_rede = function(text, abstand, schwort) {
+      woerter = unlist(strsplit(text, " "))
+      woerter[1:length(woerter) %% abstand ==0] =  schwort
+      return(paste(woerter, collapse=" "))
    }
+

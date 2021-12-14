@@ -14,8 +14,8 @@ namenseintrag("George Gabriel", "Stokes")
 # Task 02
 umkehren = function(name) {
   teile = strsplit(name, ", ")
-  teile = unlist(teile)
-  return (paste(teile[2], teile[1], sep=" "))
+  teile2 = unlist(teile)
+  return (paste(teile2[2], teile2[1], sep=" "))
 }
 
 umkehren("Darcy, Henry")
@@ -41,10 +41,16 @@ initialen("George Gabriel", "Stokes")
 schach = function(feld)
 {  
   
-  figuren = rep(c("K","D","T","S","L","B"," "), times=c(2,2,4,4,4,16,32))
-  set.seed(1)
-  brett = array(sample(figuren), c(8,8))
-  
+  figuren = c("B"," "," ","T"," "," ","T"," ",
+              "B","B","B"," "," ","B","S","B",
+              " ","B"," ","T","B","K"," ","S",
+              " "," ","D"," "," "," "," ","D",
+              " ","L"," "," ","S"," ","B","B",
+              "B"," ","B"," ","S","L","B"," ",
+              "B","T"," ","K","L"," "," "," ",
+              "L"," "," "," ","B","B"," "," " )
+  brett = array(figuren, c(8,8))
+  brett=t(brett)
   dimnames(brett)=list(8:1,letters[1:8])
   return(brett[substr(feld,2,2), substr(feld,1,1)])
 }

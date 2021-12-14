@@ -8,7 +8,7 @@ description: >
       die ein Datum repraesentiert (in diesem Beispiel den 3. Dezember 2016).
       Das entsprechende Argument heißt `datum`.
       
-      Außerdem erhältst Du Informationen, wann die Vegetationsperiode beginnt
+      Außerdem erhaeltst Du Informationen, wann die Vegetationsperiode beginnt
       (`start`) und endet (`ende`). `start` und `ende` liegen als  "Tag im Jahr"
       vor - ein Wert von 1 entspraeche also dem 1. Januar eines beliebigen Jahres,
       32 dem 1. Februar usw.
@@ -23,13 +23,13 @@ description: >
       
    Hinweise
       
-      Gehe ähnlich vor wie in den beiden vorherigen Aufgaben:
+      Gehe aehnlich vor wie in den beiden vorherigen Aufgaben:
       - Wandle zunächst den String in ein Datum um (`as.Date`);
       - wandle dann das Datum in den "Tag im Jahr" um (wieder mit `strftime`,
          diesmal aber mit `format="%j"`);
-      - der Rückgabewert ist auch ein String und muss mit `as.numeric` in eine 
+      - der Rueckgabewert ist auch ein String und muss mit `as.numeric` in eine 
          Zahl umgewandelt werden;
-      - schließlich kannst Du prüfen, ob dieser Tag nach Beginn (>=) und vor
+      - schliesslich kannst Du pruefen, ob dieser Tag nach Beginn (>=) und vor
          Ende (<=) der Vegetationsperiode liegt.	
 
 input1:

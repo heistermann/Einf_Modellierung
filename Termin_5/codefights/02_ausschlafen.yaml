@@ -5,22 +5,26 @@ description: >
    Heute ausschlafen?
       
       Gegeben ist eine Zeichenkette (auch String genannt) der Form "2016-12-03",
-      die ein Datum repräsentiert (in diesem Beispiel den 3. Dezember 2016).
+      die ein Datum repraesentiert (in diesem Beispiel den 3. Dezember 2016).
       Das entsprechende Argument heißt `datum`.
       
       Deine Funktion soll entscheiden, ob Du an diesem Tag ausschlafen kannst.
       Falls es sich um einen Tag am Wochenende handelt, soll die Funktion 
       den Wert TRUE zurückgeben. Für Wochentage soll die Funktion FALSE zurückgeben.
       
+      Achtung: 
+      
    Beispiel
       
-      Wenn `datum="2020-01-13`, dann soll FALSE zurückgegeben werden. Wenn
-      `datum="2020-01-10"`, dann soll TRUE zurückgegeben werden.
+      Wenn `datum="2021-01-13`, dann soll FALSE zurückgegeben werden. Wenn
+      `datum="2021-01-17"`, dann soll TRUE zurückgegeben werden.
 
    Hinweise
       
-      Nutze den Code aus der ersten Aufgabe (`welchertag`)
-      und mache von dort aus weiter.
+      Nutze as.numeric(strftime(as.Date(datum), format="%w")), um die Nummer des
+      Wochentages zu erzeugen (0 fuer Sonntag, 1 fuer Montag, ... 6 fuer Samstag).
+      strftime gibt immer eine Zeichenkette (z.B. "0") zurueck, diese muss über as.numeric
+      noch in eine Zahl (z.B. 0) umgewandelt werden.
 
 input1:
    name: datum
@@ -49,8 +53,8 @@ test4:
    
 solution: >
    ausschlafen = function(datum) {
-     name = strftime(as.Date(datum), format="%A")
-     wochenende = c("Saturday", "Sunday")
-     return(name %in% wochenende)
+     daynum = strftime(as.Date(datum), format="%w")
+     daynum = as.numeric(daynum)
+     wochenende = c(0, 6)
+     return(daynum %in% wochenende)
    }
-
